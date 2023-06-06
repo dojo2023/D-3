@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title> 今日の天気 </title>
+
+    </head>
+    <body>
+
+        <script>
+            //現在の天気を取得する場所の名前とAPIを使用するためのキー
+            let targetCityName = "tokyo";
+            let appId = "575de8ce2aa264c5450b882c3d71ee5b";
+
+            const requestUrl = "https://api.openweathermap.org/data/2.5/weather?APPID=" + appId + "&lang=ja&units=metric&q=" + targetCityName + ",jp;";
+
+            //通信方式の設定と実行
+            let xhr =new XMLHttpRequest();
+            xhr.open("GET",requestUrl);
+            xhr.send();
+
+            //通信できたら自動実行する
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    ShowTodaysWeather(xhr.responseText);
+                }
+            }
+
+            //今日の天気を表示する
+            function ShowTodaysWeather(response){
+
+                let obj = JSON.parse(response);
+
+                let weather = obj.weather[0].description;
+                let city = obj.name;
+                let temp = Math.round(obj.main.temp);
+                let icon = obj.weather[0].icon;
+                let Week = new Array("（日）","（月）","（火）","（水）","（木）","（金）","（土）");
+                let date = new Date ();
+                date.setHours(date.getHours());
+                let month = date.getMonth()+1;
+                let day = month + "月" + date.getDate() + "日" + Week[date.getDay()] + date.getHours() + "：00";
+
+                let sentence = city +
+                '<img src="https://openweathermap.org/img/w/' + icon + '.png">' +
+                "気温：" + temp +"度"+
+                " " +
+                day
+
+                picture_weather.insertAdjacentHTML("afterbegin", sentence);
+
+            }
+
+        </script>
+        <div id="place_weather"></div><br>
+        <div id="picture_weather"></div>
+    </body>
+</html>
