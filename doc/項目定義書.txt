@@ -87,8 +87,9 @@ TOPページ
 ・time,時刻,Label,String;
 ・post_page,投稿ページ遷移,Link,int;
 
-通報ページ（詳細）※要相談
-・remove_button,削除,Button,String
+通報ページ（詳細）
+・remove_post,投稿削除,Button,String
+・expose_post,投稿者実名視聴,Images,;
 ・back_button,戻る,Images,;
 ・post_title,投稿タイトル,Text,Srting;
 ・post_category,投稿カテゴリー,Text,String;
@@ -98,6 +99,8 @@ TOPページ
 ・mark,通報された印,Text,String;
 ・reply_sentence,返信本文,Text,String;
 ・reply_time,返信時刻,Text,String;
+・remove_reply,返信削除,Button,String
+・expose_reply,返信者実名視聴,Images,;
 
 掲示板ページ（全体）
 ・title,タイトルロゴ,Link,String;
