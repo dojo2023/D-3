@@ -56,8 +56,8 @@ ID確認画面
 
 TOPページ
 ・title,タイトルロゴ,Link,String;
-・option,設定ページへ,Icon,;
-・logout,ログアウト,Icon,;
+・option,設定ページへ,Link,;
+・logout,ログアウト,Link,;
 ・mode,モード切替,Pulldown,String;（管理者のみ）
 ・number,通知件数,Label,num;（ガチ管理者のみ）
 ・notion,通知ページへ,Button,String;（ガチ管理者のみ）
@@ -67,14 +67,14 @@ TOPページ
 
 設定ページ
 ・title,タイトルロゴ,Link,String;
-・top,トップ画面へ,Images,;
-・logout,ログアウト,Images,;
+・top,トップ画面へ,Link,;
+・logout,ログアウト,Link,;
 ・ID_change,新規ID,Textbox,;
 ・ID_button,IDを変更,Button,String;
 ・password_change,新規パスワード,Textbox,;
 ・password_button,パスワードを変更,Button,String;
-・password_change,新規通知設定,Textbox,;
-・password_button,通知設定を変更,Button,String;
+・notion_change,新規通知設定,Textbox,;
+・notionbutton,通知設定を変更,Button,String;
 ・radio_button,ラジオボタン,Radiobutton,;
 ・item,項目,Label,String;
 ・administrator,管理者権限,Textbox,;
@@ -83,16 +83,16 @@ TOPページ
 
 通報ページ（全体）
 ・title,タイトルロゴ,Link,String;
-・top,トップ画面へ,Icon,;
-・logout,ログアウト,Icon,;
+・top,トップ画面へ,Link,;
+・logout,ログアウト,Link,;
 ・post_title,投稿タイトル,Label,String;
 ・post_time,投稿時刻,Label,String;
 ・post_page,投稿ページ遷移,Link,int;
 
 通報ページ（詳細）
-・remove_post,投稿削除,Icon,;
-・disclosure_post,投稿者実名開示,Icon,;
-・back_button,戻る,Icon,;
+・remove_post,投稿削除,Button,;
+・disclosure_post,投稿者実名開示,Button,;
+・back_button,戻る,Button,;
 ・post_title,投稿タイトル,Text,Srting;
 ・post_category,投稿カテゴリ,Text,String;
 ・post_name,投稿者名,Text,String;
@@ -103,36 +103,44 @@ TOPページ
 ・reply_time,返信時刻,Text,String;
 ・reply_sentence,返信文,Text,String;
 ・reply_name,返信者名,Text,String;
-・remove_reply,返信削除,Icon,;
+・remove_reply,返信削除,Button,;
 ・disclosure_reply,返信者実名開示,Icon,;
 
 掲示板ページ（全体）
 ・title,タイトルロゴ,Link,String;
-・top,トップ画面へ,Images,;
-・logout,ログアウト,Images,;
+・top,トップ画面へ,Link,;
+・logout,ログアウト,Link,;
 ・category,カテゴリ名,Text,String;
 ・search,検索バー,Textbox,;
-・post_form,新規投稿フォーム,Label,String;
+・new_post,新規投稿フォーム,Label,String;
 ・post_title,投稿タイトル,Label,String;
-・time,投稿時刻,Label,String;
-・post_page,投稿ページ遷移,Link,int;
+・post_time,投稿時刻,Label,String;
+・page,投稿ページ遷移,Link,int;
 
 掲示板ページ（新規投稿）
-・back_button,戻る,Images,;
+・cancel,キャンセル,Button,;
 ・post_title,投稿タイトル,Textbox,;
-・post_category,投稿カテゴリー,Label,String;
-・main_sentence,本文,Textbox,;
+・post_category,投稿カテゴリ,Text,String;
+・raio_button,ラジオボタン,Radiobutton,;
+・item,名前選択,Text,String;,
+・sentence,本文,Textbox,;
 ・tag,タグ,Teetbox,;
 ・post_button,投稿,Button,String;
 
 掲示板ページ（返信）
-・remove_button,削除,Button,String
-・report_button,通報,Button,String;
-・back_button,戻る,Images,;
+・remove_button,削除,Button,;
+・report_button,通報,Button,;
+・cancel,キャンセル,Button,;
 ・post_title,投稿タイトル,Text,Srting;
-・post_category,投稿カテゴリー,Text,String;
-・main_sentence,本文,Text,String;
+・post_category,投稿カテゴリ,Text,String;
+・post_name,投稿者名,Text,String;
+・post_time,投稿時間,Text,String;
+・post_sentence,投稿文,Text,String;
 ・tag,タグ,Text,String;
-・reply_button,返信,Button,String;
 ・reply_sentence,返信本文,Text,String;
+・item,名前選択,Text,String;,
+・raio_button,ラジオボタン,Radiobutton,;
+・reply_button,返信,Button,;
 ・reply_time,返信時刻,Text,String;
+・subreply_sentence,返信本文,Text,String;
+・reply_name,返信者名,Text,String;
