@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/WebApp_GENDA/OgaminoTestServlet" method="POST">
-		ID<input type="text" name="id"><br>
-		PW<input type="text" name="pw"><br>
-		<input type="submit" value="送信">
-	</form>
+	接続失敗
+	<a href = "/WebApp_GENDA/OgaminoTestServlet"> >>ログイン画面へ戻る </a>
 </body>
 </html>
