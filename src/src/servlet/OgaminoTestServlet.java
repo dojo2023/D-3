@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.OgaminoTESTDao;
-import model.OgaminoIdpw;
+import model.USER_SQ;
 
 /**
  * Servlet implementation class OgaminoTestServlet
@@ -42,24 +41,11 @@ public class OgaminoTestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-
-		// ログイン処理を行う
-		OgaminoTESTDao TESTDao = new OgaminoTESTDao();
-		if (TESTDao.isLoginOK(new OgaminoIdpw(id,pw))) {	// ログイン成功
-
-			// メニューサーブレットにリダイレクトする
+		String sq_id = request.getParameter("SQ");
+		USER_SQ SQ = new USER_SQ();
+		SQ.setUSER_SQ_ID(sq_id);
+		SQ.setUSER_SQ_NAME(SQ);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
 			dispatcher.forward(request, response);
-		}
-		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_failed.jsp");
-			dispatcher.forward(request, response);
-		}
-		request.setAttribute("idpw",new OgaminoIdpw(id,pw));
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
-		dispatcher.forward(request, response);
 	}
 }
