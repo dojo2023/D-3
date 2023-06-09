@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/WebApp_GENDA/OgaminoTestServlet" method="POST">
-		ID<input type="text" name="id"><br>
-		PW<input type="text" name="pw"><br>
-		<input type="submit" value="送信">
-	</form>
+pw忘れた人が見る画面
 </body>
 </html>

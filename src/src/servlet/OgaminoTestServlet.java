@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Id;
+import dao.OgaminoTESTDao;
+import model.OgaminoIdpw;
 
 /**
  * Servlet implementation class OgaminoTestServlet
@@ -45,22 +46,20 @@ public class OgaminoTestServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 
 		// ログイン処理を行う
-		USER_INFODao UserDao = new USER_INFODao();
-		if (UserDao.isLoginOK(new Idpw(id,pw))) {	// ログイン成功
+		OgaminoTESTDao TESTDao = new OgaminoTESTDao();
+		if (TESTDao.isLoginOK(new OgaminoIdpw(id,pw))) {	// ログイン成功
 
 			// メニューサーブレットにリダイレクトする
-			response.sendRedirect("/BCapp/HomeServlet");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
+			dispatcher.forward(request, response);
 		}
 		else {									// ログイン失敗
 			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			request.setAttribute("result",
-			new Result("ログイン失敗", "IDまたはPWに間違いがあります。", null));
-
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login_err.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_failed.jsp");
 			dispatcher.forward(request, response);
 		}
+		request.setAttribute("idpw",new OgaminoIdpw(id,pw));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
+		dispatcher.forward(request, response);
 	}
-	}
-
 }
