@@ -2,24 +2,24 @@ package model;
 import java.io.Serializable;
 
 public class USER_SQ implements Serializable {
-	private int id;
+	private String id;
 	private String name;
 
-	public USER_SQ(int id, String name) {
+	public USER_SQ(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
 	public USER_SQ() {
-		this.id = 0;
+		this.id = "";
 		this.name = "";
 	}
 
-	public int getUSER_SQ_ID() {
+	public String getUSER_SQ_ID() {
 		return id;
 	}
 
-	public void setUSER_SQ_ID(int id) {
+	public void setUSER_SQ_ID(String id) {
 		this.id = id;
 	}
 

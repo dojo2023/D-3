@@ -8,10 +8,9 @@ import java.sql.SQLException;
 
 public class USER_SQDao {
 	// ログインできるならtrueを返す
-	public String SQ_return(int id) {
+	public String SQ_return(String id) {
 		Connection conn = null;
-		boolean loginResult = false;
-		String SQ = "";
+		String SQA = "";
 
 		try {
 			// JDBCドライバを読み込む
@@ -24,22 +23,18 @@ public class USER_SQDao {
 			String sql = "select USER_SQ_NAME from USER_SQ where USER_SQ_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			Integer I_id = Integer.valueOf(id);
-			String S_id = I_id.toString();
-			pStmt.setString(1, S_id);
+			pStmt.setString(1, "0001");
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			SQ = rs.getString("USER_SQ_NAME");
+			SQA = rs.getString("USER_SQ_NAME");
 
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			loginResult = false;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			loginResult = false;
 		}
 		finally {
 			// データベースを切断
@@ -49,12 +44,11 @@ public class USER_SQDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					loginResult = false;
 				}
 			}
 		}
 
 		// 結果を返す
-		return SQ;
+		return SQA;
 	}
 }

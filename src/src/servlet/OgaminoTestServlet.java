@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.USER_SQDao;
 import model.USER_SQ;
 
 /**
@@ -42,9 +43,12 @@ public class OgaminoTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String sq_id = request.getParameter("SQ");
-		USER_SQ SQ = new USER_SQ();
-		SQ.setUSER_SQ_ID(sq_id);
-		SQ.setUSER_SQ_NAME(SQ);
+		USER_SQDao SQ = new USER_SQDao();
+		String sen = SQ.SQ_return(sq_id);
+		USER_SQ new_SQ = new USER_SQ(sq_id, sen);
+
+		request.setAttribute("SQ", new_SQ);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
 			dispatcher.forward(request, response);
 	}
