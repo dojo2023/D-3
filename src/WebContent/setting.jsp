@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-id忘れた人が見る画面
+	設定が表示される画面
 </body>
 </html>
