@@ -882,3 +882,31 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/dojo6/src
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 44 more
 >>>>>>> b2ef53638d1d74927e1aea9b561ae0d450f18e0d
+2023-06-09 14:43:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO POSTER VALUES(1,'タイトル1'1[*],'本文1',1,'投稿日時1',1,USERID1)"; 期待されるステートメント "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO POSTER VALUES(1,'タイトル1'1[*],'本文1',1,'投稿日時1',1,USERID1)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO POSTER VALUES(1,'タイトル1'1,'本文1',1,'投稿日時1',1,UserID1) [42001-200]
+2023-06-09 14:44:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "USERID1" が見つかりません
+Column "USERID1" not found; SQL statement:
+INSERT INTO POSTER VALUES(1,'タイトル1',1,'本文1',1,'投稿日時1',1,UserID1) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
