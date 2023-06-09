@@ -3,9 +3,6 @@
 <html>
 <head>
     <title>掲示板</title>
-    <style>
-        /* CSS スタイルをここに追加 */
-    </style>
 </head>
 <body>
     <header>
