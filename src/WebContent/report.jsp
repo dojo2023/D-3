@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-id忘れた人が見る画面
+	通報されたデータ一覧が表示されるページ<br>
+	管理者のみ閲覧可能
 </body>
 </html>
