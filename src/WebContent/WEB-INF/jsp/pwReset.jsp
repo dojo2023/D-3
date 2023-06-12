@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PW再設定画面</title>
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
     </header>
 
     <div class="password-reset">
-        <form action="resetPassword" method="post">
+        <form action="/PwReset.java" method="post">
             <label for="id">IDを入力してください:</label>
             <input type="text" id="id" name="id" placeholder="IDを入力してください" required>
 
