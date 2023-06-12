@@ -113,7 +113,8 @@ public class HASHTAGSDao {
 	    return result;
 	}
 
-	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
+	// 掲示板に表示したらポスターデーターベースに接続して＃IDを持ってきて、その＃IDから＃の名前をもってくるのは、♯データーベースに接続。
+	//＃IDを入力したらそれに対応した関数を持ってくる必要がある
 	public boolean update(Bc card) {
 		Connection conn = null;
 		boolean result = false;
