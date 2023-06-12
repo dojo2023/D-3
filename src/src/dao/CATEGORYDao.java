@@ -32,11 +32,8 @@ public class CATEGORYDao {
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        if (param.getCATEGORY_ID() != null) {
 	            pStmt.setString(1, "%" + param.getCATEGORY_ID() + "%");
-	        } else {
-	            pStmt.setString(1, "%");
-	        }
+
 	        if (param.getCATEGORY_NAME() != null) {
 	            pStmt.setString(2, "%" + param.getCATEGORY_NAME() + "%");
 	        } else {
@@ -49,7 +46,7 @@ public class CATEGORYDao {
 	        // 結果をリストに格納する
 	        while (rs.next()) {
 	            CATEGORY CATEGORY = new CATEGORY();
-	            CATEGORY.setCATEGORY_ID(rs.getString("CATEGORY_ID"));
+	            CATEGORY.setCATEGORY_ID(rs.getInt("CATEGORY_ID"));
 	            CATEGORY.setCATEGORY_NAME(rs.getString("CATEGORY_NAME"));
 	            CATEGORYList.add(CATEGORY);
 	        }
@@ -85,13 +82,12 @@ public class CATEGORYDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 	        // SQL文を準備する
-	        String sql = "INSERT INTO CATEGORY (CATEGORY_ID, CATEGORY_NAME) "
-	                + "VALUES (?, ?)";
+	        String sql = "INSERT INTO CATEGORY (CATEGORY_NAME) "
+	                + "VALUES (?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        pStmt.setString(1, list.getCATEGORY_ID());
-	        pStmt.setString(2, list.getCATEGORY_NAME());
+	        pStmt.setString(1, list.getCATEGORY_NAME());
 
 	        // SQL文を実行する
 	        if (pStmt.executeUpdate() == 1) {

@@ -2,11 +2,11 @@ package model;
 import java.io.Serializable;
 
 public class CATEGORY implements Serializable {
-	private String CATEGORY_ID;
+	private int CATEGORY_ID;
 	private String CATEGORY_NAME;
 
 
-	public  CATEGORY(String CATEGORY_ID, String CATEGORY_NAME) {
+	public  CATEGORY(int CATEGORY_ID, String CATEGORY_NAME) {
 		super();
 		this.CATEGORY_ID = CATEGORY_ID;
 		this.CATEGORY_NAME = CATEGORY_NAME;
@@ -14,14 +14,14 @@ public class CATEGORY implements Serializable {
 
 	public CATEGORY() {
 		super();
-		this.CATEGORY_ID = "";
+		this.CATEGORY_ID = 0;
 		this.CATEGORY_NAME = "";
 
 	}
-	public String getCATEGORY_ID() {
+	public int getCATEGORY_ID() {
 		return CATEGORY_ID;
 	}
-	public void setCATEGORY_ID(String CATEGORY_ID) {
+	public void setCATEGORY_ID(int CATEGORY_ID) {
 		this.CATEGORY_ID = CATEGORY_ID;
 	}
 	public String getCATEGORY_NAME() {
