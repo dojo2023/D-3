@@ -35,16 +35,12 @@ public class POSTERDao {
 	                + "AND ANIMAL_ID LIKE ? "
 	                + "AND USER_ID LIKE ? "
 	                + "AND USER_NAME_SWITCH = ? "
-	                + "ORDER BY POSTER_ID";
+	                + "ORDER BY POSTED_DATE";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        if (param.getPOSTER_ID() != null) {
-	            pStmt.setString(1, "%" + param.getPOSTER_ID() + "%");
-	        } else {
-	            pStmt.setString(1, "%");
-	        }
+	        pStmt.setInt(1, param.getPOSTER_ID());
 	        if (param.getTITLE() != null) {
 	            pStmt.setString(2, "%" + param.getTITLE() + "%");
 	        } else {
@@ -82,13 +78,14 @@ public class POSTERDao {
 	        }
 	        pStmt.setInt(9, param.getUSER_NAME_SWITCH());
 
+
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();
 
 	        // 結果をリストに格納する
 	        while (rs.next()) {
 	            POSTER poster = new POSTER();
-	            poster.setPOSTER_ID(rs.getString("POSTER_ID"));
+	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
 	            poster.setTITLE(rs.getString("TITLE"));
 	            poster.setCATEGORY_ID(rs.getString("CATEGORY_ID"));
 	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
@@ -159,7 +156,7 @@ public class POSTERDao {
 	        // 結果をリストに格納する
 	        while (rs.next()) {
 	            POSTER poster = new POSTER();
-	            poster.setPOSTER_ID(rs.getString("POSTER_ID"));
+	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
 	            poster.setTITLE(rs.getString("TITLE"));
 	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
 	            posterHeadline.add(poster);
@@ -200,7 +197,7 @@ public class POSTERDao {
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        pStmt.setString(1, list.getPOSTER_ID());
+	        pStmt.setInt(1, list.getPOSTER_ID());
 	        pStmt.setString(2, list.getTITLE());
 	        pStmt.setString(3, list.getCATEGORY_ID());
 	        pStmt.setString(4, list.getMAIN_SENTENCE());
