@@ -19,17 +19,19 @@ public class USER_SQDao {
 
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
-
+			result="True";
 			// SELECT文を準備する
-			String sql = "select USER_SQ_NAME from USER_SQ where USER_SQ_ID = ?";
+			String sql = "select * from USER_SQ where USER_SQ_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setString(1, "0001");
-
+			pStmt.setString(1, "%");
+			result="True1";
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
+			result="True2";
 			SQA = rs.getString("USER_SQ_NAME");
-			result="True";
+			result="True3";
+
 
 		}
 		catch (SQLException e) {
@@ -51,6 +53,6 @@ public class USER_SQDao {
 		}
 
 		// 結果を返す
-		return result;
+		return SQA;
 	}
 }
