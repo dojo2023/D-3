@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.USER_SQDao;
-import model.USER_SQ;
-
 /**
- * Servlet implementation class OgaminoTestServlet
+ * Servlet implementation class PwReset
  */
-@WebServlet("/OgaminoTestServlet")
-public class OgaminoTestServlet extends HttpServlet {
+@WebServlet("/PwReset")
+public class PwReset extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OgaminoTestServlet() {
+    public PwReset() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +28,15 @@ public class OgaminoTestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_test.jsp");
-		dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pwReset.jsp");
+        dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		String sq_id = request.getParameter("SQ");
-		USER_SQDao SQ = new USER_SQDao();
-		String sen = SQ.SQ_return(sq_id);
-		USER_SQ new_SQ = new USER_SQ(sq_id, sen  );
 
-		request.setAttribute("SQ", new_SQ);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
-			dispatcher.forward(request, response);
 	}
+
 }
