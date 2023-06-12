@@ -910,3 +910,418 @@ INSERT INTO POSTER VALUES(1,'タイトル1',1,'本文1',1,'投稿日時1',1,User
 	at org.h2.server.web.WebThread.process(WebThread.java:178)
 	at org.h2.server.web.WebThread.run(WebThread.java:94)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 15:17:19 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DROP TABLE HASHTAGS CATEGORY[*] ANIMAL"
+Syntax error in SQL statement "DROP TABLE HASHTAGS CATEGORY[*] ANIMAL"; SQL statement:
+DROP TABLE HASHTAGS CATEGORY ANIMAL [42000-200]
+2023-06-12 15:17:45 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; 期待されるステートメント "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; expected "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY(USER_ID)
+) [42001-200]
+2023-06-12 15:19:22 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; 期待されるステートメント "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; expected "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY(USER_ID)
+) [42001-200]
+2023-06-12 15:19:23 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; 期待されるステートメント "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY([*]USER_ID)
+)"; expected "HASH, AUTO_INCREMENT, NOT, NULL, COMMENT, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30),
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1)
+PRIMARY KEY(USER_ID)
+) [42001-200]
+2023-06-12 15:26:03 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30) NOT NULL,
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1),
+PRIMARY KEY
+)[*]"; 期待されるステートメント "HASH, ("
+Syntax error in SQL statement "CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30) NOT NULL,
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1),
+PRIMARY KEY
+)[*]"; expected "HASH, ("; SQL statement:
+CREATE TABLE USER_INFO (
+USER_EN VARCHAR (20),
+USER_NAME VARCHAR (30),
+USER_ID VARCHAR (30) NOT NULL,
+USER_PW VARCHAR (15),
+USER_SQ_ID VARCHAR (1),
+USER_SA VARCHAR (30),
+USER_MODE_SWITCH INT (1),
+CATEGORY_ID INT (10),
+HASHTAGS_ID INT (10),
+FREE_WORD VARCHAR (30),
+FAVORITE_SWITCH INT (1),
+PRIMARY KEY
+) [42001-200]
+2023-06-12 15:37:33 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO USER_INFO VALUES(0001,氏名1,ID1,PW1,1,回答1,0,1,1,フリーワード1,0,)[*]"; 期待されるステートメント "DEFAULT, NOT, EXISTS, INTERSECTS, UNIQUE"
+Syntax error in SQL statement "INSERT INTO USER_INFO VALUES(0001,氏名1,ID1,PW1,1,回答1,0,1,1,フリーワード1,0,)[*]"; expected "DEFAULT, NOT, EXISTS, INTERSECTS, UNIQUE"; SQL statement:
+INSERT INTO USER_INFO VALUES(0001,氏名1,ID1,PW1,1,回答1,0,1,1,フリーワード1,0,) [42001-200]
+2023-06-12 15:42:11 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "氏名1" が見つかりません
+Column "氏名1" not found; SQL statement:
+INSERT INTO USER_INFO VALUES(0001,氏名1,ID1,PW1,1,回答1,0,0000000001,0000000001,フリーワード1,0) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 15:51:22 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "氏名1" が見つかりません
+Column "氏名1" not found; SQL statement:
+INSERT INTO USER_INFO (USER_EN,USER_NAME,USER_ID,USER_PW,USER_SQ_ID,USER_SA,USER_MODE_SWITCH,CATEGORY_ID,HASHTAGS_ID,FREE_WORD,FAVORITE_SWITCH) VALUES (0001,氏名1,id1,pw1,1,回答1,0,0000000001,0000000001,フリーワード1,0) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 15:55:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "氏名1" が見つかりません
+Column "氏名1" not found; SQL statement:
+INSERT INTO USER_INFO(USER_EN,USER_NAME,USER_ID) VALUES(0001,氏名1,0001) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 16:00:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "0001" が見つかりません
+Column "0001" not found; SQL statement:
+INSERT INTO USER_INFO VALUES("0001","氏名1","ID1","PW1","1","回答1",0,0000000001,0000000001,"フリーワード1",0) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 16:33:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "0001" が見つかりません
+Column "0001" not found; SQL statement:
+INSERT INTO USER_INFO VALUES("0001","氏名1","ID1","PW1","1","回答1",0,0000000001,0000000001,"フリーワード1",0) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 16:41:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "氏名1" が見つかりません
+Column "氏名1" not found; SQL statement:
+INSERT INTO USER_INFO VALUES('0001',"氏名1","ID1","PW1","1","回答1",0,0000000001,0000000001,"フリーワード1",0) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 16:52:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO POSTER  VALUES(0000000001,'タイトル1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1'0[*])"; 期待されるステートメント "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO POSTER  VALUES(0000000001,'タイトル1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1'0[*])"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO POSTER  VALUES(0000000001,'タイトル1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1'0) [42001-200]
+2023-06-12 16:53:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO POSTER  VALUES(1,'タイトル1',1,'本文1',1,'投稿日時1','001','ID1'0[*])"; 期待されるステートメント "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO POSTER  VALUES(1,'タイトル1',1,'本文1',1,'投稿日時1','001','ID1'0[*])"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO POSTER  VALUES(1,'タイトル1',1,'本文1',1,'投稿日時1','001','ID1'0) [42001-200]
+2023-06-12 16:56:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列番号が一致しません
+Column count does not match; SQL statement:
+INSERT INTO POSTER VALUES('タイトル1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0) [21002-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.command.dml.Insert.prepare(Insert.java:319)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 16:56:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO POSTER VALUES(1'タイトル1'[*],0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0)"; 期待されるステートメント "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO POSTER VALUES(1'タイトル1'[*],0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO POSTER VALUES(1'タイトル1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0) [42001-200]
+2023-06-12 17:05:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列番号が一致しません
+Column count does not match; SQL statement:
+INSERT INTO POSTER VALUES('本文1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0) [21002-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.command.dml.Insert.prepare(Insert.java:319)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-12 17:05:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "INSERT INTO POSTER VALUES(1'本文1'[*],0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0)"; 期待されるステートメント "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO POSTER VALUES(1'本文1'[*],0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0)"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO POSTER VALUES(1'本文1',0000000001,'本文1',0000000001,'投稿日時1','001','ID1',0) [42001-200]
+2023-06-12 17:23:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "DEFAULT" が見つかりません
+Column "DEFAULT" not found; SQL statement:
+INSERT INTO CATEGORY (default,'カテゴリ名1') [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.getColumn(Table.java:703)
+	at org.h2.command.Parser.parseColumn(Parser.java:1450)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1435)
+	at org.h2.command.Parser.parseInsertGivenTable(Parser.java:1804)
+	at org.h2.command.Parser.parseInsert(Parser.java:1749)
+	at org.h2.command.Parser.parsePrepared(Parser.java:954)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
