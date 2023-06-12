@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.USER_SQDao;
-import model.USER_SQ;
 
 /**
  * Servlet implementation class OgaminoTestServlet
@@ -44,10 +43,11 @@ public class OgaminoTestServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String sq_id = request.getParameter("SQ");
 		USER_SQDao SQ = new USER_SQDao();
-		String sen = SQ.SQ_return(sq_id);
-		USER_SQ new_SQ = new USER_SQ(sq_id, sen  );
+		String question = SQ.SQ_return(sq_id);
+		//USER_SQ new_SQ = new USER_SQ(sq_id, question);
 
-		request.setAttribute("SQ", new_SQ);
+		request.setAttribute("SQ", question);
+
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
 			dispatcher.forward(request, response);

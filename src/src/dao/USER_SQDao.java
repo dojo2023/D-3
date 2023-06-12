@@ -11,6 +11,7 @@ public class USER_SQDao {
 	public String SQ_return(String id) {
 		Connection conn = null;
 		String SQA = "";
+		String result="False";
 
 		try {
 			// JDBCドライバを読み込む
@@ -28,6 +29,7 @@ public class USER_SQDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 			SQA = rs.getString("USER_SQ_NAME");
+			result="True";
 
 		}
 		catch (SQLException e) {
@@ -49,6 +51,6 @@ public class USER_SQDao {
 		}
 
 		// 結果を返す
-		return SQA;
+		return result;
 	}
 }
