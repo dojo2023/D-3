@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.POSTER;
+import model.POSTER_HEADLINE;
 
 public class POSTERDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -113,6 +114,70 @@ public class POSTERDao {
 	    }
 
 	    return posterList;
+	}
+
+	public List<POSTER> select(POSTER_HEADLINE param) {
+	    Connection conn = null;
+	    List<POSTER> posterHeadline = new ArrayList<>();
+
+	    try {
+	        // JDPOSTERドライバを読み込む
+	        Class.forName("org.h2.Driver");
+
+	        // データベースに接続する
+	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+	        // SQL文を準備する
+	        String sql = "SELECT * FROM POSTER "
+	                + "WHERE POSTER_ID LIKE ? "
+	                + "AND TITLE LIKE ? "
+	                + "AND POSTED_DATE LIKE ? "
+	                + "ORDER BY POSTER_ID";
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	        // SQL文を完成させる
+	        if (param.getPOSTER_ID() != null) {
+	            pStmt.setString(1, "%" + param.getPOSTER_ID() + "%");
+	        } else {
+	            pStmt.setString(1, "%");
+	        }
+	        if (param.getTITLE() != null) {
+	            pStmt.setString(2, "%" + param.getTITLE() + "%");
+	        } else {
+	            pStmt.setString(2, "%");
+	        }
+	        if (param.getPOSTED_DATE() != null) {
+	            pStmt.setString(3, "%" + param.getPOSTED_DATE() + "%");
+	        } else {
+	            pStmt.setString(3, "%");
+	        }
+
+	        // SQL文を実行し、結果を取得する
+	        ResultSet rs = pStmt.executeQuery();
+
+	        // 結果をリストに格納する
+	        while (rs.next()) {
+	            POSTER poster = new POSTER();
+	            poster.setPOSTER_ID(rs.getString("POSTER_ID"));
+	            poster.setTITLE(rs.getString("TITLE"));
+	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
+	            posterHeadline.add(poster);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // データベース接続を閉じる
+	        if (conn != null) {
+	            try {
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return posterHeadline;
 	}
 
 
