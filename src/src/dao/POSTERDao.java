@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.POSTER;
+import model.POSTER_HEADLINE;
 
 public class POSTERDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -34,16 +35,12 @@ public class POSTERDao {
 	                + "AND ANIMAL_ID LIKE ? "
 	                + "AND USER_ID LIKE ? "
 	                + "AND USER_NAME_SWITCH = ? "
-	                + "ORDER BY POSTER_ID";
+	                + "ORDER BY POSTED_DATE";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        if (param.getPOSTER_ID() != null) {
-	            pStmt.setString(1, "%" + param.getPOSTER_ID() + "%");
-	        } else {
-	            pStmt.setString(1, "%");
-	        }
+	        pStmt.setInt(1, param.getPOSTER_ID());
 	        if (param.getTITLE() != null) {
 	            pStmt.setString(2, "%" + param.getTITLE() + "%");
 	        } else {
@@ -81,13 +78,14 @@ public class POSTERDao {
 	        }
 	        pStmt.setInt(9, param.getUSER_NAME_SWITCH());
 
+
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();
 
 	        // 結果をリストに格納する
 	        while (rs.next()) {
 	            POSTER poster = new POSTER();
-	            poster.setPOSTER_ID(rs.getString("POSTER_ID"));
+	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
 	            poster.setTITLE(rs.getString("TITLE"));
 	            poster.setCATEGORY_ID(rs.getString("CATEGORY_ID"));
 	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
@@ -115,6 +113,67 @@ public class POSTERDao {
 	    return posterList;
 	}
 
+	public List<POSTER_HEADLINE> select_HEADLINE(POSTER_HEADLINE param) {
+	    Connection conn = null;
+	    List<POSTER_HEADLINE> posterHeadline = new ArrayList<POSTER_HEADLINE>();
+
+	    try {
+	        // JDPOSTERドライバを読み込む
+	        Class.forName("org.h2.Driver");
+
+	        // データベースに接続する
+	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+	        // SQL文を準備する
+	        String sql = "SELECT * FROM POSTER "
+	                + "WHERE POSTER_ID LIKE ? "
+	                + "AND TITLE LIKE ? "
+	                + "AND POSTED_DATE LIKE ? "
+	                + "ORDER BY POSTER_ID";
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	        // SQL文を完成させる
+	            pStmt.setString(1, "%" + param.getPOSTER_ID() + "%");
+
+	        if (param.getTITLE() != null) {
+	            pStmt.setString(2, "%" + param.getTITLE() + "%");
+	        } else {
+	            pStmt.setString(2, "%");
+	        }
+	        if (param.getPOSTED_DATE() != null) {
+	            pStmt.setString(3, "%" + param.getPOSTED_DATE() + "%");
+	        } else {
+	            pStmt.setString(3, "%");
+	        }
+
+	        // SQL文を実行し、結果を取得する
+	        ResultSet rs = pStmt.executeQuery();
+
+	        // 結果をリストに格納する
+	        while (rs.next()) {
+	        	POSTER_HEADLINE poster = new POSTER_HEADLINE();
+	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
+	            poster.setTITLE(rs.getString("TITLE"));
+	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
+	            posterHeadline.add(poster);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // データベース接続を閉じる
+	        if (conn != null) {
+	            try {
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return posterHeadline;
+	}
+
 
 
 	// 引数listで指定されたレコードを登録し、成功したらtrueを返す
@@ -130,19 +189,18 @@ public class POSTERDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 	        // SQL文を準備する
-	        String sql = "INSERT INTO POSTER (POSTER_ID, TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, POSTED_DATE, ANIMAL_ID, USER_ID, USER_NAME_SWITCH) "
-	                + "VALUES (?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
+	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, POSTED_DATE, ANIMAL_ID, USER_ID, USER_NAME_SWITCH) "
+	                + "VALUES (?, ?, ?, ?, NOW(), ?, ?, ?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
-	        pStmt.setString(1, list.getPOSTER_ID());
-	        pStmt.setString(2, list.getTITLE());
-	        pStmt.setString(3, list.getCATEGORY_ID());
-	        pStmt.setString(4, list.getMAIN_SENTENCE());
-	        pStmt.setString(5, list.getHASHTAGS_ID());
-	        pStmt.setString(6, list.getANIMAL_ID());
-	        pStmt.setString(7, list.getUSER_ID());
-	        pStmt.setInt(8, list.getUSER_NAME_SWITCH());
+	        pStmt.setString(1, list.getTITLE());
+	        pStmt.setString(2, list.getCATEGORY_ID());
+	        pStmt.setString(3, list.getMAIN_SENTENCE());
+	        pStmt.setString(4, list.getHASHTAGS_ID());
+	        pStmt.setString(5, list.getANIMAL_ID());
+	        pStmt.setString(6, list.getUSER_ID());
+	        pStmt.setInt(7, list.getUSER_NAME_SWITCH());
 
 	        // SQL文を実行する
 	        if (pStmt.executeUpdate() == 1) {
@@ -167,7 +225,7 @@ public class POSTERDao {
 
 
 	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
-	public boolean delete(String POSTER_ID) {
+	public boolean delete(int POSTER_ID) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -183,7 +241,7 @@ public class POSTERDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, POSTER_ID);
+			pStmt.setInt(1, POSTER_ID);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
