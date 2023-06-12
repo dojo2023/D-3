@@ -13,7 +13,7 @@
 	<form method="POST">
 		秘密の質問 <select name="question">
 		<option> 秘密の質問1 </option>
-		<option> 秘密の質問2 </option>>
+		<option> 秘密の質問2 </option>
 		<option> 秘密の質問3 </option>
 		<option> 秘密の質問4 </option>
 		<option> 秘密の質問5 </option>
