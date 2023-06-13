@@ -31,6 +31,10 @@
     <div id="register" class="tab-content">
         <h3>新規登録</h3>
         <form action="registerServlet" method="post">
+        <div>
+                <label for="registerId">氏名:</label>
+                <input type="text" id="registerId" name="registerId">
+            </div>
             <div>
                 <label for="registerId">ID:</label>
                 <input type="text" id="registerId" name="registerId">
