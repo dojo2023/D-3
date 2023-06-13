@@ -1325,3 +1325,23 @@ INSERT INTO CATEGORY (default,'カテゴリ名1') [42122-200]
 	at org.h2.server.web.WebThread.process(WebThread.java:178)
 	at org.h2.server.web.WebThread.run(WebThread.java:94)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+2023-06-13 13:53:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "ID1"
+Data conversion error converting "ID1"; SQL statement:
+SELECT * FROM USER_INFO WHERE USER_EN AND USER_ID AND USER_SQ_ID [22018-200]
+2023-06-13 13:55:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "ID1"
+Data conversion error converting "ID1"; SQL statement:
+SELECT * FROM USER_INFO WHERE USER_EN AND USER_ID AND USER_SQ_ID [22018-200]
+2023-06-13 13:57:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW FULL[*] COLUMNS FROM USER_INFO"
+Syntax error in SQL statement "SHOW FULL[*] COLUMNS FROM USER_INFO"; SQL statement:
+SHOW FULL COLUMNS FROM USER_INFO [42000-200]
+2023-06-13 13:57:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW FULL[*] COLUMNS FROM USER_INFO"
+Syntax error in SQL statement "SHOW FULL[*] COLUMNS FROM USER_INFO"; SQL statement:
+SHOW FULL COLUMNS FROM USER_INFO [42000-200]
+2023-06-13 13:59:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SELECT * FROM USER_INFO WHERE USER_EN,[*]USER_ID,USER_SQ_ID"
+Syntax error in SQL statement "SELECT * FROM USER_INFO WHERE USER_EN,[*]USER_ID,USER_SQ_ID"; SQL statement:
+SELECT * FROM USER_INFO WHERE USER_EN,USER_ID,USER_SQ_ID [42000-200]
