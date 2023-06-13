@@ -37,11 +37,37 @@ public class SettingServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idcatch = 0;
-		int pwcatch = 1;
-		int wordcatch = 2;
 
-		int authority = 4;
+		request.setCharacterEncoding("UTF-8");
+		String check = "NoChange";
+
+		if(request.getParameter("password_change") != null) {
+			//ユーザのパスワードを変更する処理
+			String new_password = request.getParameter("password"); //このパスワードに変更する
+		}
+		else if(request.getParameter("news_change") != null) {
+			//ユーザの新着に表示するものを変更する処理
+			String new_item = request.getParameter("radio"); //これに"フリーワード"か"カテゴリー"か"タグ"が入ってる
+			String new_content = request.getParameter("news_content"); //これに登録する単語が入ってる
+		}
+		else if(request.getParameter("en_change") != null) {
+			//ユーザの社員番号を変更する処理
+			String new_en = request.getParameter("user_en"); //この社員番号に変更する
+		}
+		else if(request.getParameter("grant") != null) {
+			//ユーザの管理者権限を付与する処理
+			String user_id = request.getParameter("admin"); //このIDのユーザに管理者権限を付与する
+		}
+		else if(request.getParameter("revoke") != null) {
+			//ユーザの管理者権限を剥奪する処理
+			String user_id = request.getParameter("admin"); //このIDのユーザに管理者権限を剥奪する
+		}
+
+		request.setAttribute("SQ", check);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 }

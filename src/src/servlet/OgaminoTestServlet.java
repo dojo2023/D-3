@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.USER_SQDao;
-
 /**
  * Servlet implementation class OgaminoTestServlet
  */
@@ -39,17 +37,38 @@ public class OgaminoTestServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		request.setCharacterEncoding("UTF-8");
-		String sq_id = request.getParameter("SQ");
-		USER_SQDao SQ = new USER_SQDao();
-		String question = SQ.SQ_return(sq_id);
-		//USER_SQ new_SQ = new USER_SQ(sq_id, question);
+		String check = "default";
 
-		request.setAttribute("SQ", question);
+		if(request.getParameter("a") != null) {
+			check = request.getParameter("aa");
+		}
 
+		else if(request.getParameter("b") != null) {
+			check = request.getParameter("bb");
+		}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
-			dispatcher.forward(request, response);
+		else if(request.getParameter("c") != null) {
+			if(request.getParameter("fuyo") != null) {
+				check = "fuyo";
+			}
+			if(request.getParameter("kaizyo") != null) {
+				check = "kaizyo";
+			}
+		}
+
+		else if(request.getParameter("f") != null) {
+			if(request.getParameter("ra") != null) {
+				check = request.getParameter("ra");
+			} else {
+				check = "dame";
+			}
+		}
+
+		request.setAttribute("SQ", check);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
+		dispatcher.forward(request, response);
 	}
 }
