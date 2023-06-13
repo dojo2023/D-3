@@ -35,7 +35,7 @@ public class SQServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String itf = request.getParameter("itf");
+		String idf = request.getParameter("idf");
 		/*
 		SQServletは
 		1.PWを忘れた→ID入力→秘密の質問回答→PW再設定
@@ -43,10 +43,10 @@ public class SQServlet extends HttpServlet {
 		という2つの流れで呼び出されるため
 		それぞれをitfが0(PW再設定)の時と1(ID表示)の時で区別する
 		*/
-		if(itf.equals("0")) {
-			request.setAttribute("itf", itf);
-		} else if(itf.equals("1")) {
-			request.setAttribute("itf", itf);
+		if(idf.equals("0")) {
+			request.setAttribute("idf", idf);
+		} else if(idf.equals("1")) {
+			request.setAttribute("idf", idf);
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sq.jsp");
 		dispatcher.forward(request, response);
