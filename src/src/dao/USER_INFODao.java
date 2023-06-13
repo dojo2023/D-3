@@ -162,11 +162,11 @@ public class USER_INFODao {
 					+ "AND USER_ID  LIKE ? "
 					+ "AND USER_SQ_ID LIKE ? "
 					+ "AND USER_SA LIKE ? "
-					+ "AND USER_MODE_SWITCH LIKE ? "
-					+ "AND CATEGORY_ID LIKE ? "
-					+ "AND HASHTAGS_ID LIKE ? "
+					+ "AND USER_MODE_SWITCH = ? "
+					+ "AND CATEGORY_ID = ? "
+					+ "AND HASHTAGS_ID = ? "
 					+ "AND FREE_WORD LIKE ? "
-					+ "AND FAVORITE_SWITCH LIKE ? ORDER BY USER_EN";
+					+ "AND FAVORITE_SWITCH = ? ORDER BY USER_EN";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
