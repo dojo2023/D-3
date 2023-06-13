@@ -7,7 +7,7 @@
 <title>トップページ</title>
 </head>
 <body>
-<h1><a href = ""><img src = "image/" alt =トップ"></a></h1>
+<h1><a href = ""><img src = "image/" alt ="トップ"></a></h1>
 <p>設定</p>
 <p>ログアウト</p>
 <br>通報一覧
