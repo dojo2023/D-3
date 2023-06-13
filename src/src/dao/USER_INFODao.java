@@ -73,11 +73,38 @@ public class USER_INFODao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
-			// SQL文を準備する(ID, PW, 社員番号, 秘密の質問, 秘密の質問の答え)
-			String sql = "insert into USER_INFO values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			// SQL文を準備する(社員番号, 秘密の質問の答え,ID, PW,)
+			String sql = "insert into USER_INFO(USER_EN, USER_NAME, USER_ID, USER_PW) values (?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
+			if (login_info.getUser_en() != null && !login_info.getUser_en().equals("")) {
+				pStmt.setString(1, login_info.getUser_en());
+			}
+			else {
+				pStmt.setString(1,null);
+			}
+
+			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
+				pStmt.setString(2, login_info.getUser_name());
+			}
+			else {
+				pStmt.setString(2,null);
+			}
+
+			if (login_info.getUser_id() != null && !login_info.getUser_id().equals("")) {
+				pStmt.setString(3, login_info.getUser_id());
+			}
+			else {
+				pStmt.setString(3,null);
+			}
+
+			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
+				pStmt.setString(4, login_info.getUser_pw());
+			}
+			else {
+				pStmt.setString(4,null);
+			}
 
 			//SQL文を実行する
 			if(pStmt.executeUpdate() == 1) {
@@ -105,6 +132,8 @@ public class USER_INFODao {
 		// 結果を返す
 		return result;
 	}
+
+	//[秘密の質問]
 
 }
 
