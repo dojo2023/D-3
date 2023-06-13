@@ -262,9 +262,109 @@ public class USER_INFODao {
 		// 結果を返す
 		return userList;
 	}
-	
-	//PW再設定
-	
 
+
+	//[PW再設定]
+	public boolean update(USER_INFO login_info) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDUSER_INFOドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+			// SQL文を準備する
+			String sql = "update USER_INFO set "
+					+ "USER_EN=?, "
+					+ "USER_NAME=?,"
+					+ "USER_PW=?,"
+					+ "USER_SQ_ID=?,"
+					+ "USER_SA=?, "
+					+ "USER_MODE_SWITCH=?, "
+					+ "CATEGORY_ID=?, "
+					+ "HASHTAGS_ID=? "
+					+ "FREE_WORD=? "
+					+ "FAVORITE_SWITCH=? "
+					+ "where USER_ID=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
+				pStmt.setString(1, login_info.getUser_name());
+			}
+			else {
+				pStmt.setString(1, null);
+			}
+
+			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
+				pStmt.setString(2, login_info.getUser_name());
+			}
+			else {
+				pStmt.setString(2, null);
+			}
+
+			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
+				pStmt.setString(3, login_info.getUser_pw());
+			}
+			else {
+				pStmt.setString(3, null);
+			}
+
+			if (login_info.getUser_sq_id() != null && !login_info.getUser_sq_id().equals("")) {
+				pStmt.setString(4, login_info.getUser_sq_id());
+			}
+			else {
+				pStmt.setString(4, null);
+			}
+
+			if (login_info.getUser_sa() != null && !login_info.getUser_sa().equals("")) {
+				pStmt.setString(5, login_info.getUser_sa());
+			}
+			else {
+				pStmt.setString(5, null);
+			}
+
+			pStmt.setInt(6, login_info.getUser_mode_switch());
+			pStmt.setInt(7, login_info.getCategory_id());
+			pStmt.setInt(8, login_info.getHashtags_id());
+
+			if (login_info.getFree_word() != null && !login_info.getFree_word().equals("")) {
+				pStmt.setString(9, login_info.getFree_word());
+			}
+			else {
+				pStmt.setString(9, null);
+			}
+
+			pStmt.setInt(10, login_info.getFavorite_switch());
+			pStmt.setString(11, login_info.getUser_id());
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
 }
-
