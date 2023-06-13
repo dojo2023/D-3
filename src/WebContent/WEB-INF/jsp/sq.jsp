@@ -12,11 +12,11 @@
 	</header>
 	<form method="POST">
 		秘密の質問 <select name="question">
-		<option> 秘密の質問1 </option>
-		<option> 秘密の質問2 </option>
-		<option> 秘密の質問3 </option>
-		<option> 秘密の質問4 </option>
-		<option> 秘密の質問5 </option>
+		<option value="1"> 秘密の質問1 </option>
+		<option value="2"> 秘密の質問2 </option>
+		<option value="3"> 秘密の質問3 </option>
+		<option value="4"> 秘密の質問4 </option>
+		<option value="5"> 秘密の質問5 </option>
 		</select><br>
 		秘密の回答 <input type="text" name="answer"><br>
 		<% String idf = (String)request.getAttribute("idf");
