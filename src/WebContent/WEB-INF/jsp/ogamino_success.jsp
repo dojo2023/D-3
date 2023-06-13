@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	接続成功
+	接続成功<br>
 	<%= result %>
-	<a href = "/WebApp_GENDA/OgaminoTestServlet"> >>ログイン画面へ戻る </a>
+	<br><a href = "/WebApp_GENDA/OgaminoTestServlet"> >>ログイン画面へ戻る </a>
 </body>
 </html>

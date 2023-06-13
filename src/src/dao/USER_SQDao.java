@@ -6,12 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//入力：秘密の質問ID(String)、出力：IDに対応した秘密の質問文(String)
 public class USER_SQDao {
 	// ログインできるならtrueを返す
 	public String SQ_return(String id) {
 		Connection conn = null;
 		String SQA = "";
-		String result="False";
 
 		try {
 			// JDBCドライバを読み込む
@@ -19,18 +19,16 @@ public class USER_SQDao {
 
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
-			result="True";
-			// SELECT文を準備する
-			String sql = "select * from USER_SQ where USER_SQ_ID = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setString(1, "%");
-			result="True1";
+			// SELECT文を準備する
+			String sql = "SELECT * FROM USER_SQ WHERE USER_SQ_ID LIKE ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			result="True2";
+			rs.next();
 			SQA = rs.getString("USER_SQ_NAME");
-			result="True3";
 
 
 		}

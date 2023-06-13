@@ -19,10 +19,10 @@
 		<option> 秘密の質問5 </option>
 		</select><br>
 		秘密の回答 <input type="text" name="answer"><br>
-		<% String itf = (String)request.getAttribute("itf");
-		if(itf.equals("0")) {%>
+		<% String idf = (String)request.getAttribute("idf");
+		if(idf.equals("0")) {%>
 			<input type="submit" name="submit_button" value="送信" formaction="/WebApp_GENDA/PEResetServlet">
-		<% } else if(itf.equals("1")) { %>
+		<% } else if(idf.equals("1")) { %>
 			<input type="submit" name="submit_button" value="送信" formaction="/WebApp_GENDA/IDDisplayServlet">
 		<% } %>
 	</form>
