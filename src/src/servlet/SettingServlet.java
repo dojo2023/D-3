@@ -37,7 +37,11 @@ public class SettingServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idcatch = 0;
+		int pwcatch = 1;
+		int wordcatch = 2;
 
+		int authority = 4;
 	}
 
 }
