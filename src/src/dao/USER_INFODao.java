@@ -75,7 +75,7 @@ public class USER_INFODao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
-			// SQL文を準備する(名前, 社員番号, 秘密の質問の答え,ID, PW,)
+			// SQL文を準備する(名前, 社員番号, 秘密の質問の答え,ID, PW)
 			String sql = "insert into USER_INFO values (?, ?, ?, ?, ?,)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -142,7 +142,7 @@ public class USER_INFODao {
 		return result;
 	}
 
-	//[秘密の質問]
+	//[秘密の質問]引数paramで検索項目を指定し、検索結果のリストを返す
 	public List<USER_INFO> select(USER_INFO param) {
 		Connection conn = null;
 		List<USER_INFO> userList = new ArrayList<USER_INFO>();
@@ -215,8 +215,6 @@ public class USER_INFODao {
 
 			pStmt.setInt(11,  param.getFavorite_switch());
 
-
-
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
@@ -264,7 +262,7 @@ public class USER_INFODao {
 	}
 
 
-	//[PW再設定]
+	//[USER_INFOのデータの再設定]引数login_infoで指定されたレコードを更新し、成功したらtrueを返す
 	public boolean update(USER_INFO login_info) {
 		Connection conn = null;
 		boolean result = false;
