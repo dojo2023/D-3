@@ -152,7 +152,7 @@ public class USER_INFODao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdUSER_INFO:h2:file:C:\\dojo6\\src\\data\\gendaDB", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select * from USER_INFO "
@@ -262,6 +262,9 @@ public class USER_INFODao {
 		// 結果を返す
 		return userList;
 	}
+	
+	//PW再設定
+	
 
 }
 
