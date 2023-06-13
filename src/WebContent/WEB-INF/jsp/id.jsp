@@ -11,7 +11,7 @@
 <div class="idReset">
 <form action="WebApp_GENDA/SQServlet.java" method="POST">
 <p>社員番号を入力してください</p>
-<input type="text" id="id" name="id" placeholder="社員番号を入力してください">
+<input type="text" name="id" placeholder="社員番号を入力してください">
 <input type="submit" value="送信">
 <a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
 </form>
