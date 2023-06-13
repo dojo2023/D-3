@@ -9,15 +9,15 @@ public class USER_INFO implements Serializable {
 	private String user_pw;
 	private String user_sq_id;
 	private String user_sa;
-	private String user_mode_switch;
-	private String category_id;
-	private String hashtags_id;
+	private int user_mode_switch;
+	private int category_id;
+	private int hashtags_id;
 	private String free_word;
-	private String favorite_switch;
+	private int favorite_switch;
 
 	//コンストラクタ
 	public USER_INFO(String user_en, String user_name, String user_id, String user_pw, String user_sq_id, String user_sa,
-			String user_mode_switch, String category_id, String hashtags_id, String free_word, String favorite_switch) {
+			int user_mode_switch, int category_id, int hashtags_id, String free_word, int favorite_switch) {
 		super();
 		this.user_en = user_en;
 		this.user_name = user_name;
@@ -41,11 +41,11 @@ public class USER_INFO implements Serializable {
 			this.user_pw = "";
 			this.user_sq_id = "";
 			this.user_sa = "";
-			this.user_mode_switch = "";
-			this.category_id = "";
-			this.hashtags_id = "";
+			this.user_mode_switch = 0;
+			this.category_id = 0;
+			this.hashtags_id = 0;
 			this.free_word = "";
-			this.favorite_switch = "";
+			this.favorite_switch = 0;
 		}
 
 		public String getUser_en() {
@@ -96,27 +96,27 @@ public class USER_INFO implements Serializable {
 			this.user_sa = user_sa;
 		}
 
-		public String getUser_mode_switch() {
+		public int getUser_mode_switch() {
 			return user_mode_switch;
 		}
 
-		public void setUser_mode_switch(String user_mode_switch) {
+		public void setUser_mode_switch(int user_mode_switch) {
 			this.user_mode_switch = user_mode_switch;
 		}
 
-		public String getCategory_id() {
+		public int getCategory_id() {
 			return category_id;
 		}
 
-		public void setCategory_id(String category_id) {
+		public void setCategory_id(int category_id) {
 			this.category_id = category_id;
 		}
 
-		public String getHashtags_id() {
+		public int getHashtags_id() {
 			return hashtags_id;
 		}
 
-		public void setHashtags_id(String hashtags_id) {
+		public void setHashtags_id(int hashtags_id) {
 			this.hashtags_id = hashtags_id;
 		}
 
@@ -128,11 +128,11 @@ public class USER_INFO implements Serializable {
 			this.free_word = free_word;
 		}
 
-		public String getFavorite_switch() {
+		public int getFavorite_switch() {
 			return favorite_switch;
 		}
 
-		public void setFavorite_switch(String favorite_switch) {
+		public void setFavorite_switch(int favorite_switch) {
 			this.favorite_switch = favorite_switch;
 		}
 	}
