@@ -24,23 +24,19 @@ public class POSTERDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 
-	        // SQL文を準備する
-	        String sql1 = "SELECT * FROM POSTER "
-	        		+ "WHERE POSTER_ID = ? "
-	        		+ "AND CATEGORY_ID = ? "
-	        		+ "ORDER BY POSTED_DATE";
+	        //sql文のひな形を宣言
+	        String sql = "";
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	        PreparedStatement pStmt = conn.prepareStatement(sql1);
-	        // SQL文を完成させる
-	        if (param.getPOSTER_ID() != 0 && param.getPOSTER_ID() != null) {
-	            pStmt.setInt(1, param.getPOSTER_ID());
-	        }else {
-				pStmt.setInt(1, 0);
-			}
+	        //投稿IDとカテゴリIDを検索するときで用いるsql文を場合分けして作成
+	        if(param.getPOSTER_ID() == 0) {
+	        	sql = "select * from POSTER where CATEGORY_ID = ? order by POSTED_DATE";
+	        	pStmt.setInt(1, param.getCATEGORY_ID());
 
-
-	        pStmt.setInt(2, param.getCATEGORY_ID());
-
+	        } else if(param.getCATEGORY_ID() == 0) {
+	        	sql = "select * from POSTER where POSTER_ID = ? order by POSTED_DATE";
+	        	pStmt.setInt(1, param.getPOSTER_ID());
+	        }
 
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();

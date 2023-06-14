@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//入力：秘密の質問ID(String)
+//処理：IDに対応した秘密の質問文を探索する
+//出力：秘密の質問の文(String)
 public class USER_SQDao {
 	// ログインできるならtrueを返す
 	public String SQ_return(String id) {

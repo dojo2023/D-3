@@ -6,10 +6,12 @@ public class LOGIN_USER implements Serializable {
 	private String id;	// ログイン時のID
 
 	public LOGIN_USER() {
-		this(null);
+		super();
+		this.id = "";
 	}
 
 	public LOGIN_USER(String id) {
+		super();
 		this.id = id;
 	}
 

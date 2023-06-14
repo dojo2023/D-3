@@ -6,11 +6,13 @@ public class USER_SQ implements Serializable {
 	private String name;
 
 	public USER_SQ(String id, String name) {
+		super();
 		this.id = id;
 		this.name = name;
 	}
 
 	public USER_SQ() {
+		super();
 		this.id = "";
 		this.name = "";
 	}
