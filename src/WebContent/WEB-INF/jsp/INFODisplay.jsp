@@ -10,11 +10,11 @@
 <div class="logo"><img src="https://placehold.jp/300x50.png"></div>
 <div class="info">
 <h2>登録完了しました</h2>
-<p>ID</p>
+氏名<%= %>
 <!-- 送信ボタンを押されたときに、
 イベント（id、pw、社員番号、秘密の質問の質問回答を表示させるようにする）を実行する関数をjavascriptで記述する -->
 <p id="id"></p>
-<p>PW</p>
+PW
 <p id="pw"></p>
 <p>社員番号</p>
 <p id="en"></p>
