@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.USER_INFODao;
+import model.USER_INFO;
 
 /**
  * Servlet implementation class SettingServlet
@@ -43,12 +48,28 @@ public class SettingServlet extends HttpServlet {
 
 		if(request.getParameter("password_change") != null) {
 			//ユーザのパスワードを変更する処理
-			String new_password = request.getParameter("password"); //このパスワードに変更する
-		}
+			String new_password = request.getParameter("password");
+			//このパスワードに変更する
+			HttpSession session = request.getSession();
+			String id = session.getId();
+
+			USER_INFO data = new USER_INFO();
+			data.setUser_id(id);
+
+			USER_INFODao search = new USER_INFODao();
+			List<USER_INFO> result = search.select(data);
+
+			USER_INFO aaa = result.get(0);
+			aaa.setUser_pw(new_password);
+			boolean updateresult = search.update(aaa);
+
+
+			}
+
 		else if(request.getParameter("news_change") != null) {
 			//ユーザの新着に表示するものを変更する処理
 			String new_item = request.getParameter("radio"); //これに"フリーワード"か"カテゴリー"か"タグ"が入ってる
-			String new_content = request.getParameter("news_content"); //これに登録する単語が入ってる
+			String new_content = request.getParameter("new_content"); //これに登録する単語が入ってる
 		}
 		else if(request.getParameter("en_change") != null) {
 			//ユーザの社員番号を変更する処理
