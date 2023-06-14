@@ -76,7 +76,7 @@ public class USER_INFODao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する(名前, 社員番号, 秘密の質問id,秘密の質問の答え,ID, PW)
-			String sql = "insert into USER_INFO values (?, ?, ?, ?, ?, ?)";
+			String sql = "insert into USER_INFO(user_name,User_en,User_sq_id,User_sa,User_id,User_pw) values (?, ?, ?, ?, ?, ?)";  //中身の指定
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -164,63 +164,22 @@ public class USER_INFODao {
 			// SQL文を準備する
 			String sql = "select * from USER_INFO "
 					+ "WHERE USER_EN LIKE ? "
-					+ "AND USER_NAME LIKE ? "
-					+ "AND USER_PW LIKE ? "
 					+ "AND USER_ID  LIKE ? "
-					+ "AND USER_SQ_ID LIKE ? "
-					+ "AND USER_SA LIKE ? "
-					+ "AND USER_MODE_SWITCH = ? "
-					+ "AND CATEGORY_ID = ? "
-					+ "AND HASHTAGS_ID = ? "
-					+ "AND FREE_WORD LIKE ? "
-					+ "AND FAVORITE_SWITCH = ? ORDER BY USER_EN";
+					+ " ORDER BY USER_EN";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getUser_en() != null) {
+			if (param.getUser_en() != null && !param.getUser_en().equals("")) {
 				pStmt.setString(1, "%" + param.getUser_en() + "%");
 			}else {
 				pStmt.setString(1, "%");
 			}
 
-			if (param.getUser_name() != null) {
-				pStmt.setString(2, "%" + param.getUser_name() + "%");
+			if (param.getUser_id() != null && !param.getUser_id().equals("")) {
+				pStmt.setString(2, "%" + param.getUser_id() + "%");
 			}else {
 				pStmt.setString(2, "%");
 			}
-
-			if (param.getUser_id () != null) {
-				pStmt.setString(3, "%" + param.getUser_id () + "%");
-			}else {
-				pStmt.setString(3, "%");
-			}
-			if (param.getUser_pw() != null) {
-				pStmt.setString(4, "%" + param.getUser_pw() + "%");
-			}else {
-				pStmt.setString(4, "%");
-			}
-			if (param.getUser_sq_id() != null) {
-				pStmt.setString(5, "%" + param.getUser_sq_id() + "%");
-			}else {
-				pStmt.setString(5, "%");
-			}
-			if (param.getUser_sa() != null) {
-				pStmt.setString(6, "%" + param.getUser_sa() + "%");
-			}else {
-				pStmt.setString(6, "%");
-			}
-
-			pStmt.setInt(7, param.getUser_mode_switch());
-			pStmt.setInt(8, param.getCategory_id());
-			pStmt.setInt(9, param.getHashtags_id());
-
-			if (param.getFree_word() != null) {
-				pStmt.setString(10, "%" + param.getFree_word() + "%");
-			}else {
-				pStmt.setString(10, "%");
-			}
-
-			pStmt.setInt(11,  param.getFavorite_switch());
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
