@@ -63,8 +63,9 @@ public class USER_INFODao {
 		return loginResult;
 	}
 
+
 	// [アカウント新規登録]引数login_infoで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean insert(USER_INFO login_info) {
+	public boolean insert(String en, String name, String id, String pw, String sq, String sa) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -76,51 +77,58 @@ public class USER_INFODao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する(名前, 社員番号, 秘密の質問id,秘密の質問の答え,ID, PW)
-			String sql = "insert into USER_INFO(user_name,User_en,User_sq_id,User_sa,User_id,User_pw) values (?, ?, ?, ?, ?, ?)";  //中身の指定
+			String sql = "insert into USER_INFO(USER_NAME,USER_EN,USER_SQ_ID,USER_SA,USER_ID,"
+					+ "USER_PW,USER_MODE_SWITCH,CATEGORY_ID,HASHTAGS_ID,FREE_WORD,FAVORITE_SWITCH)"
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";  //中身の指定
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
-				pStmt.setString(1, login_info.getUser_name());
+			if (name != null && !name.equals("")) {
+				pStmt.setString(1, name);
 			}
 			else {
 				pStmt.setString(1, null);
 			}
 
-			if (login_info.getUser_en() != null && !login_info.getUser_en().equals("")) {
-				pStmt.setString(2, login_info.getUser_en());
+			if (en != null && en.equals("")) {
+				pStmt.setString(2, en);
 			}
 			else {
 				pStmt.setString(2, null);
 			}
 
-			if (login_info.getUser_sq_id() != null && !login_info.getUser_sq_id().equals("")) {
-				pStmt.setString(3, login_info.getUser_sq_id());
+			if (sq != null && !sq.equals("")) {
+				pStmt.setString(3, sq);
 			}
 			else {
 				pStmt.setString(3, null);
 			}
 
-			if (login_info.getUser_sa() != null && !login_info.getUser_sa().equals("")) {
-				pStmt.setString(4, login_info.getUser_sa());
+			if (sa != null && !sa.equals("")) {
+				pStmt.setString(4, sa);
 			}
 			else {
 				pStmt.setString(4, null);
 			}
 
-			if (login_info.getUser_id() != null && !login_info.getUser_id().equals("")) {
-				pStmt.setString(5, login_info.getUser_id());
+			if (id != null && !id.equals("")) {
+				pStmt.setString(5, id);
 			}
 			else {
 				pStmt.setString(5, null);
 			}
 
-			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
-				pStmt.setString(6, login_info.getUser_pw());
+			if (pw != null && !pw.equals("")) {
+				pStmt.setString(6, pw);
 			}
 			else {
 				pStmt.setString(6, null);
 			}
+			pStmt.setInt(7, 0);
+			pStmt.setInt(8, 0);
+			pStmt.setInt(9, 0);
+			pStmt.setString(10, "");
+			pStmt.setInt(11, 0);
 
 			//SQL文を実行する
 			if(pStmt.executeUpdate() == 1) {
