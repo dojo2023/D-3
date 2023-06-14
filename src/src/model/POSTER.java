@@ -6,14 +6,14 @@ public class POSTER implements Serializable {
 	private String TITLE;
 	private int CATEGORY_ID;
 	private String MAIN_SENTENCE;
-	private String HASHTAGS_ID;
+	private int HASHTAGS_ID;
 	private String POSTED_DATE;
 	private String ANIMAL_ID;
 	private String USER_ID;
 	private int USER_NAME_SWITCH;
 
 	public  POSTER(String TITLE, int CATEGORY_ID, String MAIN_SENTENCE,
-			String HASHTAGS_ID, String POSTED_DATE, String ANIMAL_ID, String USER_ID, int USER_NAME_SWITCH
+			int HASHTAGS_ID, String POSTED_DATE, String ANIMAL_ID, String USER_ID, int USER_NAME_SWITCH
 			) {
 		super();
 		this.TITLE = TITLE;
@@ -31,7 +31,7 @@ public class POSTER implements Serializable {
 		this.TITLE = "";
 		this.CATEGORY_ID = 0;
 		this.MAIN_SENTENCE = "";
-		this.HASHTAGS_ID = "";
+		this.HASHTAGS_ID = 0;
 		this.POSTED_DATE = "";
 		this.ANIMAL_ID = "";
 		this.USER_ID ="";
@@ -62,10 +62,10 @@ public class POSTER implements Serializable {
 	public void setMAIN_SENTENCE(String MAIN_SENTENCE) {
 		this.MAIN_SENTENCE = MAIN_SENTENCE;
 	}
-	public String getHASHTAGS_ID() {
+	public int getHASHTAGS_ID() {
 		return HASHTAGS_ID;
 	}
-	public void setHASHTAGS_ID(String HASHTAGS_ID) {
+	public void setHASHTAGS_ID(int HASHTAGS_ID) {
 		this.HASHTAGS_ID = HASHTAGS_ID;
 	}
 	public String getPOSTED_DATE() {

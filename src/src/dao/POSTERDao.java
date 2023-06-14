@@ -23,19 +23,28 @@ public class POSTERDao {
 	        // データベースに接続する
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
-	        // SQL文を準備する
-	        String sql = "SELECT * FROM POSTER "
-	                + "WHERE POSTER_ID = ? "
-	                + "AND CATEGORY_ID = ? "
-	                + "ORDER BY POSTED_DATE";
 
-	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        // SQL文を準備する
+	        String sql1 = "SELECT * FROM POSTER "
+	        		+ "WHERE POSTER_ID = ? "
+	        		+ "AND CATEGORY_ID = ? "
+	        		+ "ORDER BY POSTED_DATE";
+
+	        PreparedStatement pStmt = conn.prepareStatement(sql1);
 	        // SQL文を完成させる
-	        pStmt.setInt(1, param.getPOSTER_ID());
+	        if (param.getPOSTER_ID() != 0 && param.getPOSTER_ID() != null) {
+	            pStmt.setInt(1, param.getPOSTER_ID());
+	        }else {
+				pStmt.setInt(1, 0);
+			}
+
+
 	        pStmt.setInt(2, param.getCATEGORY_ID());
+
 
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();
+
 
 	        // 結果をリストに格納する
 	        while (rs.next()) {
@@ -44,7 +53,7 @@ public class POSTERDao {
 	            poster.setTITLE(rs.getString("TITLE"));
 	            poster.setCATEGORY_ID(rs.getInt("CATEGORY_ID"));
 	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
-	            poster.setHASHTAGS_ID(rs.getString("HASHTAGS_ID"));
+	            poster.setHASHTAGS_ID(rs.getInt("HASHTAGS_ID"));
 	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
 	            poster.setANIMAL_ID(rs.getString("ANIMAL_ID"));
 	            poster.setUSER_ID(rs.getString("USER_ID"));
@@ -94,7 +103,7 @@ public class POSTERDao {
 	        pStmt.setString(1, list.getTITLE());
 	        pStmt.setInt(2, list.getCATEGORY_ID());
 	        pStmt.setString(3, list.getMAIN_SENTENCE());
-	        pStmt.setString(4, list.getHASHTAGS_ID());
+	        pStmt.setInt(4, list.getHASHTAGS_ID());
 	        pStmt.setString(5, list.getANIMAL_ID());
 	        pStmt.setString(6, list.getUSER_ID());
 	        pStmt.setInt(7, list.getUSER_NAME_SWITCH());
