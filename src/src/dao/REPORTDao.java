@@ -42,12 +42,13 @@ public class REPORTDao {
 
 	        // 結果をリストに格納する
 	        while (rs.next()) {
-	            REPORT REPORT = new REPORT();
-	            REPORT.setREPORT_ID(rs.getInt("REPORT_ID"));
-	            REPORT.setREPLY_ID(rs.getInt("REPLY_ID"));
-	            REPORT.setPOSTER_ID(rs.getInt("POSTER_ID"));;
-	            REPORTList.add(REPORT);
+	            int reportId = rs.getInt("REPORT_ID");
+	            int replyId = rs.getInt("REPLY_ID");
+	            int posterId = rs.getInt("POSTER_ID");
+	            REPORT report = new REPORT(reportId, replyId, posterId);
+	            REPORTList.add(report);
 	        }
+
 
 	    } catch (ClassNotFoundException | SQLException e) {
 	        e.printStackTrace();

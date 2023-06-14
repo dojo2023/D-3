@@ -13,12 +13,14 @@ public class REPORT implements Serializable {
 		this.POSTER_ID = POSTER_ID;
 	}
 
-	public REPORT() {
-		super();
-		this.REPLY_ID = 0;
-		this.POSTER_ID = 0;
-
+	public REPORT(int REPORT_ID, int REPLY_ID, int POSTER_ID) {
+	    super();
+	    this.REPORT_ID = REPORT_ID;
+	    this.REPLY_ID = REPLY_ID;
+	    this.POSTER_ID = POSTER_ID;
 	}
+
+
 	public int getREPORT_ID() {
 		return REPORT_ID;
 	}

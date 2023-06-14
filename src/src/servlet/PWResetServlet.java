@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.USER_INFODao;
+import model.USER_INFO;
+
 /**
  * Servlet implementation class IDServlet
  */
