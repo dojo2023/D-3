@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.POSTER;
-import model.POSTER_HEADLINE;
 
 public class POSTERDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -26,58 +25,14 @@ public class POSTERDao {
 
 	        // SQL文を準備する
 	        String sql = "SELECT * FROM POSTER "
-	                + "WHERE POSTER_ID LIKE ? "
-	                + "AND TITLE LIKE ? "
-	                + "AND CATEGORY_ID LIKE ? "
-	                + "AND MAIN_SENTENCE LIKE ? "
-	                + "AND HASHTAGS_ID LIKE ? "
-	                + "AND POSTED_DATE LIKE ? "
-	                + "AND ANIMAL_ID LIKE ? "
-	                + "AND USER_ID LIKE ? "
-	                + "AND USER_NAME_SWITCH = ? "
+	                + "WHERE POSTER_ID = ? "
+	                + "AND CATEGORY_ID = ? "
 	                + "ORDER BY POSTED_DATE";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
-
 	        // SQL文を完成させる
 	        pStmt.setInt(1, param.getPOSTER_ID());
-	        if (param.getTITLE() != null) {
-	            pStmt.setString(2, "%" + param.getTITLE() + "%");
-	        } else {
-	            pStmt.setString(2, "%");
-	        }
-	        if (param.getCATEGORY_ID() != null) {
-	            pStmt.setString(3, "%" + param.getCATEGORY_ID() + "%");
-	        } else {
-	            pStmt.setString(3, "%");
-	        }
-	        if (param.getMAIN_SENTENCE() != null) {
-	            pStmt.setString(4, "%" + param.getMAIN_SENTENCE() + "%");
-	        } else {
-	            pStmt.setString(4, "%");
-	        }
-	        if (param.getHASHTAGS_ID() != null) {
-	            pStmt.setString(5, "%" + param.getHASHTAGS_ID() + "%");
-	        } else {
-	            pStmt.setString(5, "%");
-	        }
-	        if (param.getPOSTED_DATE() != null) {
-	            pStmt.setString(6, "%" + param.getPOSTED_DATE() + "%");
-	        } else {
-	            pStmt.setString(6, "%");
-	        }
-	        if (param.getANIMAL_ID() != null) {
-	            pStmt.setString(7, "%" + param.getANIMAL_ID() + "%");
-	        } else {
-	            pStmt.setString(7, "%");
-	        }
-	        if (param.getUSER_ID() != null) {
-	            pStmt.setString(8, "%" + param.getUSER_ID() + "%");
-	        } else {
-	            pStmt.setString(8, "%");
-	        }
-	        pStmt.setInt(9, param.getUSER_NAME_SWITCH());
-
+	        pStmt.setInt(2, param.getCATEGORY_ID());
 
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();
@@ -87,7 +42,7 @@ public class POSTERDao {
 	            POSTER poster = new POSTER();
 	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
 	            poster.setTITLE(rs.getString("TITLE"));
-	            poster.setCATEGORY_ID(rs.getString("CATEGORY_ID"));
+	            poster.setCATEGORY_ID(rs.getInt("CATEGORY_ID"));
 	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
 	            poster.setHASHTAGS_ID(rs.getString("HASHTAGS_ID"));
 	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
@@ -113,66 +68,7 @@ public class POSTERDao {
 	    return posterList;
 	}
 
-	public List<POSTER_HEADLINE> select_HEADLINE(POSTER_HEADLINE param) {
-	    Connection conn = null;
-	    List<POSTER_HEADLINE> posterHeadline = new ArrayList<POSTER_HEADLINE>();
 
-	    try {
-	        // JDPOSTERドライバを読み込む
-	        Class.forName("org.h2.Driver");
-
-	        // データベースに接続する
-	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
-
-	        // SQL文を準備する
-	        String sql = "SELECT * FROM POSTER "
-	                + "WHERE POSTER_ID LIKE ? "
-	                + "AND TITLE LIKE ? "
-	                + "AND POSTED_DATE LIKE ? "
-	                + "ORDER BY POSTER_ID";
-
-	        PreparedStatement pStmt = conn.prepareStatement(sql);
-
-	        // SQL文を完成させる
-	            pStmt.setString(1, "%" + param.getPOSTER_ID() + "%");
-
-	        if (param.getTITLE() != null) {
-	            pStmt.setString(2, "%" + param.getTITLE() + "%");
-	        } else {
-	            pStmt.setString(2, "%");
-	        }
-	        if (param.getPOSTED_DATE() != null) {
-	            pStmt.setString(3, "%" + param.getPOSTED_DATE() + "%");
-	        } else {
-	            pStmt.setString(3, "%");
-	        }
-
-	        // SQL文を実行し、結果を取得する
-	        ResultSet rs = pStmt.executeQuery();
-
-	        // 結果をリストに格納する
-	        while (rs.next()) {
-	        	POSTER_HEADLINE poster = new POSTER_HEADLINE();
-	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
-	            poster.setTITLE(rs.getString("TITLE"));
-	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
-	            posterHeadline.add(poster);
-	        }
-	    } catch (ClassNotFoundException | SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // データベース接続を閉じる
-	        if (conn != null) {
-	            try {
-	                conn.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
-
-	    return posterHeadline;
-	}
 
 
 
@@ -189,18 +85,20 @@ public class POSTERDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 	        // SQL文を準備する
+	     // SQL文を準備する
 	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, POSTED_DATE, ANIMAL_ID, USER_ID, USER_NAME_SWITCH) "
 	                + "VALUES (?, ?, ?, ?, NOW(), ?, ?, ?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
 	        pStmt.setString(1, list.getTITLE());
-	        pStmt.setString(2, list.getCATEGORY_ID());
+	        pStmt.setInt(2, list.getCATEGORY_ID());
 	        pStmt.setString(3, list.getMAIN_SENTENCE());
 	        pStmt.setString(4, list.getHASHTAGS_ID());
 	        pStmt.setString(5, list.getANIMAL_ID());
 	        pStmt.setString(6, list.getUSER_ID());
 	        pStmt.setInt(7, list.getUSER_NAME_SWITCH());
+
 
 	        // SQL文を実行する
 	        if (pStmt.executeUpdate() == 1) {

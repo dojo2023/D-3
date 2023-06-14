@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class POSTER implements Serializable {
 	private int POSTER_ID;
 	private String TITLE;
-	private String CATEGORY_ID;
+	private int CATEGORY_ID;
 	private String MAIN_SENTENCE;
 	private String HASHTAGS_ID;
 	private String POSTED_DATE;
@@ -12,7 +12,7 @@ public class POSTER implements Serializable {
 	private String USER_ID;
 	private int USER_NAME_SWITCH;
 
-	public  POSTER(String TITLE, String CATEGORY_ID, String MAIN_SENTENCE,
+	public  POSTER(String TITLE, int CATEGORY_ID, String MAIN_SENTENCE,
 			String HASHTAGS_ID, String POSTED_DATE, String ANIMAL_ID, String USER_ID, int USER_NAME_SWITCH
 			) {
 		super();
@@ -29,7 +29,7 @@ public class POSTER implements Serializable {
 	public POSTER() {
 		super();
 		this.TITLE = "";
-		this.CATEGORY_ID = "";
+		this.CATEGORY_ID = 0;
 		this.MAIN_SENTENCE = "";
 		this.HASHTAGS_ID = "";
 		this.POSTED_DATE = "";
@@ -50,10 +50,10 @@ public class POSTER implements Serializable {
 	public void setTITLE(String TITLE) {
 		this.TITLE = TITLE;
 	}
-	public String getCATEGORY_ID() {
+	public int getCATEGORY_ID() {
 		return CATEGORY_ID;
 	}
-	public void setCATEGORY_ID(String CATEGORY_ID) {
+	public void setCATEGORY_ID(int CATEGORY_ID) {
 		this.CATEGORY_ID = CATEGORY_ID;
 	}
 	public String getMAIN_SENTENCE() {
