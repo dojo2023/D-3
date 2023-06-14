@@ -75,8 +75,8 @@ public class USER_INFODao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
-			// SQL文を準備する(名前, 社員番号, 秘密の質問の答え,ID, PW)
-			String sql = "insert into USER_INFO values (?, ?, ?, ?, ?,)";
+			// SQL文を準備する(名前, 社員番号, 秘密の質問id,秘密の質問の答え,ID, PW)
+			String sql = "insert into USER_INFO values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -94,25 +94,32 @@ public class USER_INFODao {
 				pStmt.setString(2, null);
 			}
 
-			if (login_info.getUser_sa() != null && !login_info.getUser_sa().equals("")) {
-				pStmt.setString(3, login_info.getUser_sa());
+			if (login_info.getUser_sq_id() != null && !login_info.getUser_sq_id().equals("")) {
+				pStmt.setString(3, login_info.getUser_sq_id());
 			}
 			else {
 				pStmt.setString(3, null);
 			}
 
-			if (login_info.getUser_id() != null && !login_info.getUser_id().equals("")) {
-				pStmt.setString(4, login_info.getUser_id());
+			if (login_info.getUser_sa() != null && !login_info.getUser_sa().equals("")) {
+				pStmt.setString(4, login_info.getUser_sa());
 			}
 			else {
 				pStmt.setString(4, null);
 			}
 
-			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
-				pStmt.setString(5, login_info.getUser_pw());
+			if (login_info.getUser_id() != null && !login_info.getUser_id().equals("")) {
+				pStmt.setString(5, login_info.getUser_id());
 			}
 			else {
 				pStmt.setString(5, null);
+			}
+
+			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
+				pStmt.setString(6, login_info.getUser_pw());
+			}
+			else {
+				pStmt.setString(6, null);
 			}
 
 			//SQL文を実行する
@@ -277,10 +284,7 @@ public class USER_INFODao {
 			// SQL文を準備する
 			String sql = "update USER_INFO set "
 					+ "USER_EN=?, "
-					+ "USER_NAME=?,"
 					+ "USER_PW=?,"
-					+ "USER_SQ_ID=?,"
-					+ "USER_SA=?, "
 					+ "USER_MODE_SWITCH=?, "
 					+ "CATEGORY_ID=?, "
 					+ "HASHTAGS_ID=? "
@@ -290,54 +294,34 @@ public class USER_INFODao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
-				pStmt.setString(1, login_info.getUser_name());
+			if (login_info.getUser_en() != null && !login_info.getUser_en().equals("")) {
+				pStmt.setString(1, login_info.getUser_en());
 			}
 			else {
 				pStmt.setString(1, null);
 			}
 
-			if (login_info.getUser_name() != null && !login_info.getUser_name().equals("")) {
-				pStmt.setString(2, login_info.getUser_name());
+			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
+				pStmt.setString(2, login_info.getUser_pw());
 			}
 			else {
 				pStmt.setString(2, null);
 			}
 
-			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
-				pStmt.setString(3, login_info.getUser_pw());
-			}
-			else {
-				pStmt.setString(3, null);
-			}
 
-			if (login_info.getUser_sq_id() != null && !login_info.getUser_sq_id().equals("")) {
-				pStmt.setString(4, login_info.getUser_sq_id());
-			}
-			else {
-				pStmt.setString(4, null);
-			}
-
-			if (login_info.getUser_sa() != null && !login_info.getUser_sa().equals("")) {
-				pStmt.setString(5, login_info.getUser_sa());
-			}
-			else {
-				pStmt.setString(5, null);
-			}
-
-			pStmt.setInt(6, login_info.getUser_mode_switch());
-			pStmt.setInt(7, login_info.getCategory_id());
-			pStmt.setInt(8, login_info.getHashtags_id());
+			pStmt.setInt(3, login_info.getUser_mode_switch());
+			pStmt.setInt(4, login_info.getCategory_id());
+			pStmt.setInt(5, login_info.getHashtags_id());
 
 			if (login_info.getFree_word() != null && !login_info.getFree_word().equals("")) {
-				pStmt.setString(9, login_info.getFree_word());
+				pStmt.setString(6, login_info.getFree_word());
 			}
 			else {
-				pStmt.setString(9, null);
+				pStmt.setString(6, null);
 			}
 
-			pStmt.setInt(10, login_info.getFavorite_switch());
-			pStmt.setString(11, login_info.getUser_id());
+			pStmt.setInt(7, login_info.getFavorite_switch());
+			pStmt.setString(8, login_info.getUser_id());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
