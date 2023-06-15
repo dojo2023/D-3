@@ -46,6 +46,6 @@ public class LoginServlet extends HttpServlet {
 		// セッションスコープにIDを格納する
 				HttpSession session = request.getSession();
 		//クラスの生成
-				session.setAttribute("id", new LOGIN_USER(id));
+				session.setAttribute("LOGIN_USER", new LOGIN_USER(id));
 	}
 }

@@ -236,7 +236,20 @@ public class USER_INFODao {
 	}
 
 
-	//[USER_INFOのデータの再設定]引数login_infoで指定されたレコードを更新し、成功したらtrueを返す
+	/*
+	Servletでのinsertの使い方
+	①空のUSER_INFOをインスタンス化：USER_INFO user(自由な名前でok) = new USER_INFO();
+	②今ログインしているユーザのidをセッションスコープから取得する
+	  HttpSession session = request.getSession();
+	  String id(自由名) = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId();
+	③入手したidと変更したいデータを作ったuserに格納する（以下はpwを変更する例）
+	  user.setUser_id(id)
+	  user.setUser_pw(ここに変更したいpwを入れる)
+	④作成したuserをupdateに渡す(updateが定義されているdaoも宣言する)
+	  USER_INFODao user_dao(自由名) = new USER_INFODao();
+	  user_dao.update(user);
+	以上で指定したidを持つユーザのpwの変更完了
+	*/
 	public boolean update(USER_INFO login_info) {
 		Connection conn = null;
 		boolean result = false;
