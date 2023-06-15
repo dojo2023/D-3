@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +14,9 @@ import model.POSTER;
 
 public class POSTERDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<POSTER> select(POSTER param) {
+	public List<POSTER> select(int poster_id, int category_id) {
 	    Connection conn = null;
-	    List<POSTER> posterList = new ArrayList<>();
-
+	    List<POSTER> posterList = new ArrayList<POSTER>();
 	    try {
 	        // JDPOSTERドライバを読み込む
 	        Class.forName("org.h2.Driver");
@@ -23,24 +24,24 @@ public class POSTERDao {
 	        // データベースに接続する
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
-
 	        //sql文のひな形を宣言
 	        String sql = "";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        //投稿IDとカテゴリIDを検索するときで用いるsql文を場合分けして作成
-	        if(param.getPOSTER_ID() == 0) {
+	        if(poster_id == 0) {
 	        	sql = "select * from POSTER where CATEGORY_ID = ? order by POSTED_DATE";
-	        	pStmt.setInt(1, param.getCATEGORY_ID());
+	        	pStmt = conn.prepareStatement(sql);
+	        	pStmt.setInt(1, category_id);
 
-	        } else if(param.getCATEGORY_ID() == 0) {
+	        } else if(category_id == 0) {
 	        	sql = "select * from POSTER where POSTER_ID = ? order by POSTED_DATE";
-	        	pStmt.setInt(1, param.getPOSTER_ID());
+	        	pStmt = conn.prepareStatement(sql);
+	        	pStmt.setInt(1, poster_id);
 	        }
 
 	        // SQL文を実行し、結果を取得する
 	        ResultSet rs = pStmt.executeQuery();
-
 
 	        // 結果をリストに格納する
 	        while (rs.next()) {
@@ -91,8 +92,8 @@ public class POSTERDao {
 
 	        // SQL文を準備する
 	     // SQL文を準備する
-	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, POSTED_DATE, ANIMAL_ID, USER_ID, USER_NAME_SWITCH) "
-	                + "VALUES (?, ?, ?, ?, NOW(), ?, ?, ?)";
+	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, ANIMAL_ID, USER_ID, USER_NAME_SWITCH, POSTED_DATE) "
+	                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
@@ -103,6 +104,12 @@ public class POSTERDao {
 	        pStmt.setString(5, list.getANIMAL_ID());
 	        pStmt.setString(6, list.getUSER_ID());
 	        pStmt.setInt(7, list.getUSER_NAME_SWITCH());
+
+	        LocalDateTime now_date = LocalDateTime.now();
+	        DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd/ HH:mm:ss");
+	        String date = dtformat.format(now_date);
+
+	        pStmt.setString(8, date);
 
 
 	        // SQL文を実行する
