@@ -12,7 +12,7 @@ public class CATEGORYDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	public List<String> select() {
 		Connection conn = null;
-		List<String> CATEGORYList = new ArrayList<>();
+		List<String> CATEGORYList = new ArrayList<String>();
 
 		try {
 			// JDCATEGORYドライバを読み込む
@@ -22,19 +22,16 @@ public class CATEGORYDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT CATEGORY_NAME FROM CATEGORY "
-					+ "ORDER BY CATEGORY_ID";
-
+			String sql = "SELECT CATEGORY_NAME FROM CATEGORY ORDER BY CATEGORY_ID";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果をリストに格納する
-			int i = 0;
+
 			while (rs.next()) {
-				CATEGORYList.add(rs.getString(i));
-				i++;
+				CATEGORYList.add(rs.getString("CATEGORY_NAME"));
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
