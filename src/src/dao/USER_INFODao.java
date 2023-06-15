@@ -158,7 +158,7 @@ public class USER_INFODao {
 	}
 
 	//[秘密の質問]引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<USER_INFO> select(USER_INFO param) {
+	public List<USER_INFO> select(String en, String id) {
 		Connection conn = null;
 		List<USER_INFO> userList = new ArrayList<USER_INFO>();
 
@@ -177,14 +177,14 @@ public class USER_INFODao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getUser_en() != null && !param.getUser_en().equals("")) {
-				pStmt.setString(1, "%" + param.getUser_en() + "%");
+			if (en != null && !en.equals("")) {
+				pStmt.setString(1, "%" + en + "%");
 			}else {
 				pStmt.setString(1, "%");
 			}
 
-			if (param.getUser_id() != null && !param.getUser_id().equals("")) {
-				pStmt.setString(2, "%" + param.getUser_id() + "%");
+			if (id != null && !id.equals("")) {
+				pStmt.setString(2, "%" + id + "%");
 			}else {
 				pStmt.setString(2, "%");
 			}
