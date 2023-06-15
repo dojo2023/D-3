@@ -124,11 +124,11 @@ public class USER_INFODao {
 			else {
 				pStmt.setString(6, null);
 			}
-			pStmt.setInt(7, 0);
+			pStmt.setInt(7, 1);
 			pStmt.setInt(8, 0);
 			pStmt.setInt(9, 0);
 			pStmt.setString(10, "");
-			pStmt.setInt(11, 0);
+			pStmt.setInt(11, 1);
 
 			//SQL文を実行する
 			if(pStmt.executeUpdate() == 1) {
@@ -241,6 +241,10 @@ public class USER_INFODao {
 		Connection conn = null;
 		boolean result = false;
 
+		USER_INFODao user_dao = new USER_INFODao();
+		List<USER_INFO> user_list = user_dao.select("", login_info.getUser_id());
+		USER_INFO user = user_list.get(0);
+
 		try {
 			// JDUSER_INFOドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -250,14 +254,14 @@ public class USER_INFODao {
 
 			// SQL文を準備する
 			String sql = "update USER_INFO set "
-					+ "USER_EN=?, "
-					+ "USER_PW=?,"
-					+ "USER_MODE_SWITCH=?, "
-					+ "CATEGORY_ID=?, "
-					+ "HASHTAGS_ID=? "
-					+ "FREE_WORD=? "
-					+ "FAVORITE_SWITCH=? "
-					+ "where USER_ID=?";
+					+ "USER_EN = ?,"
+					+ "USER_PW = ?,"
+					+ "USER_MODE_SWITCH = ?,"
+					+ "CATEGORY_ID = ?,"
+					+ "HASHTAGS_ID = ?,"
+					+ "FREE_WORD = ?,"
+					+ "FAVORITE_SWITCH = ? "
+					+ "where USER_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -265,29 +269,50 @@ public class USER_INFODao {
 				pStmt.setString(1, login_info.getUser_en());
 			}
 			else {
-				pStmt.setString(1, null);
+				pStmt.setString(1, user.getUser_en());
 			}
 
 			if (login_info.getUser_pw() != null && !login_info.getUser_pw().equals("")) {
 				pStmt.setString(2, login_info.getUser_pw());
 			}
 			else {
-				pStmt.setString(2, null);
+				pStmt.setString(2, user.getUser_pw());
 			}
 
+			if(login_info.getUser_mode_switch() != 0) {
+				pStmt.setInt(3, login_info.getUser_mode_switch());
+			}
+			else {
+				pStmt.setInt(3, user.getUser_mode_switch());
+			}
 
-			pStmt.setInt(3, login_info.getUser_mode_switch());
-			pStmt.setInt(4, login_info.getCategory_id());
-			pStmt.setInt(5, login_info.getHashtags_id());
+			if(login_info.getCategory_id() != 0) {
+				pStmt.setInt(4, login_info.getUser_mode_switch());
+			}
+			else {
+				pStmt.setInt(4, user.getCategory_id());
+			}
+
+			if(login_info.getHashtags_id() != 0) {
+				pStmt.setInt(5, login_info.getHashtags_id());
+			}
+			else {
+				pStmt.setInt(5, user.getHashtags_id());
+			}
 
 			if (login_info.getFree_word() != null && !login_info.getFree_word().equals("")) {
 				pStmt.setString(6, login_info.getFree_word());
 			}
 			else {
-				pStmt.setString(6, null);
+				pStmt.setString(6, user.getFree_word());
 			}
 
-			pStmt.setInt(7, login_info.getFavorite_switch());
+			if(login_info.getFavorite_switch() != 0) {
+				pStmt.setInt(7, login_info.getFavorite_switch());
+			} else {
+				pStmt.setInt(7, user.getFavorite_switch());
+			}
+
 			pStmt.setString(8, login_info.getUser_id());
 
 			// SQL文を実行する
