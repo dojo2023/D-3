@@ -32,8 +32,8 @@
         <h3>新規登録</h3>
         <form action="registerServlet" method="post">
         <div>
-                <label for="registerId">氏名:</label>
-                <input type="text" id="registerId" name="registerId">
+                <label for="registerName">氏名:</label>
+                <input type="text" id="registerName" name="registerName">
             </div>
             <div>
                 <label for="registerId">ID:</label>
@@ -63,7 +63,7 @@
                 <label for="securityAnswer">質問の答え:</label>
                 <input type="text" id="securityAnswer" name="securityAnswer">
             </div>
-            <button type="submit">登録</button>
+            <button type="submit" name="submit_button" value="登録">登録</button>
         </form>
     </div>
 </html>

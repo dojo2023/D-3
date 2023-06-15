@@ -16,7 +16,7 @@
 
 	<p>確認</p>
 	<input type="text" id="pwConfirm" name="pwConfirm" placeholder="パスワードの確認">
-	<input type="submit" value="送信">
+	<input type="submit" name="reset" value="送信">
 	<a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
 	</form>
 </div>
