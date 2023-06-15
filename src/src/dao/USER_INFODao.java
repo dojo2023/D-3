@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.USER_INFO;
 
@@ -64,7 +62,21 @@ public class USER_INFODao {
 	}
 
 
-	// [アカウント新規登録]引数login_infoで指定されたレコードを登録し、成功したらtrueを返す
+	/*
+	insert関数の振る舞い
+	入力：USER_INFOテーブルのうち、新規登録時に必要な6つのデータ(String)
+	処理：USER_INFOテーブルに引数の6つのデータが入ったレコードを登録する
+	      (他のフィールドは初期値)
+	出力：挿入に成功したらtrue、失敗したらfalseが返される
+
+	Servletでのinsertの使い方
+	①insertはUSER_INFODaoで定義されているメソッドなのでUSER_INFODaoをインスタンス化する
+	  USER_INFODao user_dao(自由名) = new USER_INFODao();
+	②インスタンス化したuser_daoでinsertを実行する
+	  引数は新規登録する際に必要な6つのデータ
+	  USER_INFO user = user_dao.insert("D029", "小神野", "ogamino0817", "password", "1", "千葉");
+	以上で指定したデータが入ったレコードがUSER_INFOテーブルに格納される
+	*/
 	public boolean insert(String en, String name, String id, String pw, String sq, String sa) {
 		Connection conn = null;
 		boolean result = false;
@@ -157,10 +169,24 @@ public class USER_INFODao {
 		return result;
 	}
 
-	//[秘密の質問]引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<USER_INFO> select(String en, String id) {
+	/*
+	select関数の振る舞い
+	入力：ユーザの社員番号(String)とID(String)（必ずどちらかは空文字でもう一方には値が入ってる）
+	処理：値が入っているほうの引数でUSER_INFOテーブルに検索をかけて該当するレコードを探索
+	出力：該当したレコード(USER_INFO)
+
+	Servletでのselectの使い方
+	①selectはUSER_INFODaoで定義されているメソッドなのでUSER_INFODaoをインスタンス化する
+	  USER_INFODao user_dao(自由名) = new USER_INFODao();
+	②インスタンス化したuser_daoでselectを実行する
+	  引数はidか社員番号、探索したいデータのみいれもう一方は空文字（以下はidを探索したい例）
+	  USER_INFO user = user_dao.select("", 探索したいid);
+	以上で指定したid（か社員番号）のレコードがuserに格納される
+	*/
+
+	public USER_INFO select(String en, String id) {
 		Connection conn = null;
-		List<USER_INFO> userList = new ArrayList<USER_INFO>();
+		USER_INFO user = new USER_INFO();
 
 		try {
 			// JDUSER_INFOドライバを読み込む
@@ -193,30 +219,25 @@ public class USER_INFODao {
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				USER_INFO card = new USER_INFO(
-						rs.getString("USER_EN"), //NOT NULL
-						rs.getString("USER_NAME"),//NOT NULL
-						rs.getString("USER_ID"),
-						rs.getString("USER_PW"),//NOT NULL
-						rs.getString("USER_SQ_ID"),
-						rs.getString("USER_SA"),//NOT NULL
-						rs.getInt("USER_MODE_SWITCH"),
-						rs.getInt("CATEGORY_ID"),//NOT NULL
-						rs.getInt("HASHTAGS_ID"),
-						rs.getString("FREE_WORD"),
-						rs.getInt("FAVORITE_SWITCH")
-						);
-				userList.add(card);
+			if(rs.next()) {
+					user.setUser_en(rs.getString("USER_EN"));
+					user.setUser_name(rs.getString("USER_NAME"));
+					user.setUser_id(rs.getString("USER_ID"));
+					user.setUser_pw(rs.getString("USER_PW"));
+					user.setUser_sq_id(rs.getString("USER_SQ_ID"));
+					user.setUser_sa(rs.getString("USER_SA"));
+					user.setUser_mode_switch(rs.getInt("USER_MODE_SWITCH"));
+					user.setCategory_id(rs.getInt("CATEGORY_ID"));
+					user.setHashtags_id(rs.getInt("HASHTAGS_ID"));
+					user.setFree_word(rs.getString("FREE_WORD"));
+					user.setFavorite_switch(rs.getInt("FAVORITE_SWITCH"));
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			userList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			userList = null;
 		}
 		finally {
 			// データベースを切断
@@ -226,18 +247,23 @@ public class USER_INFODao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					userList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return userList;
+		return user;
 	}
 
-
 	/*
-	Servletでのinsertの使い方
+	update関数の振る舞い
+	入力：updateしたいidと他データが入ったUSER_INFO(他は初期値)
+	処理：idを元にデータを更新したいテーブルをピックアップ
+	      その後入力されたUSER_INFOのフィールドのうち値が入っているフィールドをその値に更新
+	      （初期値が入っているフィールドはなにもしない）
+	出力：更新に成功したらtrue、失敗したらfalseが返される
+
+	Servletでのupdateの使い方
 	①空のUSER_INFOをインスタンス化：USER_INFO user(自由な名前でok) = new USER_INFO();
 	②今ログインしているユーザのidをセッションスコープから取得する
 	  HttpSession session = request.getSession();
@@ -247,17 +273,16 @@ public class USER_INFODao {
 	  user.setUser_pw(ここに変更したいpwを入れる)
 	④作成したuserをupdateに渡す(updateが定義されているdaoも宣言する)
 	  USER_INFODao user_dao(自由名) = new USER_INFODao();
-	  user_dao.update(user);
+	  boolean result(自由名) = user_dao.update(user);
 	以上で指定したidを持つユーザのpwの変更完了
+	情報の変更が成功していたならresultにはtrueが、失敗していたならfalseが格納されている
 	*/
 	public boolean update(USER_INFO login_info) {
 		Connection conn = null;
 		boolean result = false;
 
 		USER_INFODao user_dao = new USER_INFODao();
-		List<USER_INFO> user_list = user_dao.select("", login_info.getUser_id());
-		USER_INFO user = user_list.get(0);
-
+		USER_INFO user = user_dao.select("", login_info.getUser_id());
 		try {
 			// JDUSER_INFOドライバを読み込む
 			Class.forName("org.h2.Driver");
