@@ -16,6 +16,7 @@
 			<option value="4">秘密の質問4</option>
 			<option value="5">秘密の質問5</option>
 		</select><br> 秘密の回答 <input type="text" name="answer"><br>
+
 		<% String idf = (String)request.getAttribute("idf");
 		if(idf.equals("0")) {%>
 		<!-- pw再設定画面へ送信する -->

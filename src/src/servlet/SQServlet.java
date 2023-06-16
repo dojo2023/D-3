@@ -8,13 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.IdpwDAO;
 import dao.USER_INFODao;
 import dao.USER_SQDao;
-import model.Idpw;
-import model.LoginUser;
 import model.USER_INFO;
 
 /**
@@ -47,30 +43,31 @@ public class SQServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String en= request.getParameter("en");
 
+		String sq_id= "";
 		//検索処理
-		USER_INFODao sqDao = new USER_INFODao();
-		if ()
 
+		if(idf.equals("1")){
+			USER_INFODao sqDao = new USER_INFODao();
+			USER_INFO user = sqDao.select(en, "");
 
-		/*
-		SQServletは
-		1.PWを忘れた→ID入力→秘密の質問回答→PW再設定
-		2.IDを忘れた→社員番号入力→秘密の質問回答→ID表示
-		という2つの流れで呼び出されるため
-		それぞれをidfが0(PW再設定)の時と1(ID表示)の時で区別する
-		 */
-		if(idf.equals("0")) {
-			request.setAttribute("idf", idf);
-			//pw再設定用への処理
-			response.sendRedirect("/WebApp_GENDA/PWResetServlet");
-		} else if(idf.equals("1")) {
-			request.setAttribute("idf", idf);
-			//id表示画面への処理
-			response.sendRedirect("/WebApp_GENDA/INFODisplayServlet");
+			 sq_id = user.getUser_sq_id();
+		}else if(idf.equals("2")) {
+			USER_INFODao sqDao = new USER_INFODao();
+			USER_INFO user = sqDao.select("", id);
+
+			 sq_id = user.getUser_sq_id();
 		}
-	}
 
-	//結果ページにフォーワードする
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sq.jsp");
-	dispatcher.forward(request, response);
+		USER_SQDao sq = new USER_SQDao();
+		String sq_name = sq.SQ_return(sq_id);
+
+
+		request.setAttribute("sq_name", sq_name); // sq_id をリクエストスコープに設定
+		request.setAttribute("idf", idf); // idf をリクエストスコープに設定
+
+	//結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sq.jsp");
+	    dispatcher.forward(request, response);
 }
+}
+

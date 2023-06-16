@@ -1,29 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PW忘れた人が見る画面</title>
+<title>PW忘れ</title>
 </head>
 <body>
-<header>
-        <div class="logo">
-            <img src="https://placehold.jp/300x50.png" alt="ロゴ">
-        </div>
-    </header>
+	<div class="logo">
+		<img src="https://placehold.jp/300x50.png">
+	</div>
 
-    <div class="password-reset">
-        <form action="/PwReset.java" method="post">
-            <label for="id">IDを入力してください:</label>
-            <input type="text" id="id" name="id" placeholder="IDを入力してください" required>
-
-            <input type="submit" value="送信">
-
-            <a href="login.jsp">ログイン画面に戻る</a>
-        </form>
-    </div>
-
-</body>
+	<div class="pwReset">
+		<form action="WebApp_GENDA/SQServlet.java" method="POST">
+			<p>IDを入力してください</p>
+			<input type="text" name="id" placeholder="IDを入力してください"> <input
+				type="hidden" name="idf" value=2> <input type="submit"
+				value="送信"> <a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
+		</form>
+	</div>
 </body>
 </html>
