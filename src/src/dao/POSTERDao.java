@@ -55,7 +55,11 @@ public class POSTERDao {
 	            poster.setTITLE(rs.getString("TITLE"));
 	            poster.setCATEGORY_ID(rs.getInt("CATEGORY_ID"));
 	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
-	            poster.setHASHTAGS_ID(rs.getInt("HASHTAGS_ID"));
+	            poster.setHASHTAGS_ID1(rs.getInt("HASHTAGS_ID1"));
+	            poster.setHASHTAGS_ID2(rs.getInt("HASHTAGS_ID2"));
+	            poster.setHASHTAGS_ID3(rs.getInt("HASHTAGS_ID3"));
+	            poster.setHASHTAGS_ID4(rs.getInt("HASHTAGS_ID4"));
+	            poster.setHASHTAGS_ID5(rs.getInt("HASHTAGS_ID5"));
 	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
 	            poster.setANIMAL_ID(rs.getString("ANIMAL_ID"));
 	            poster.setUSER_ID(rs.getString("USER_ID"));
@@ -99,24 +103,30 @@ public class POSTERDao {
 
 	        // SQL文を準備する
 	     // SQL文を準備する
-	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE, HASHTAGS_ID, ANIMAL_ID, USER_ID, USER_NAME_SWITCH, POSTED_DATE) "
-	                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        String sql = "INSERT INTO POSTER (TITLE, CATEGORY_ID, MAIN_SENTENCE,"
+	        		+ "HASHTAGS_ID1, HASHTAGS_ID2, HASHTAGS_ID3, HASHTAGS_ID4, HASHTAGS_ID5,"
+	        		+ "ANIMAL_ID, USER_ID, USER_NAME_SWITCH, POSTED_DATE) "
+	                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を完成させる
 	        pStmt.setString(1, list.getTITLE());
 	        pStmt.setInt(2, list.getCATEGORY_ID());
 	        pStmt.setString(3, list.getMAIN_SENTENCE());
-	        pStmt.setInt(4, list.getHASHTAGS_ID());
-	        pStmt.setString(5, list.getANIMAL_ID());
-	        pStmt.setString(6, list.getUSER_ID());
-	        pStmt.setInt(7, list.getUSER_NAME_SWITCH());
+	        pStmt.setInt(4, list.getHASHTAGS_ID1());
+	        pStmt.setInt(5, list.getHASHTAGS_ID2());
+	        pStmt.setInt(6, list.getHASHTAGS_ID3());
+	        pStmt.setInt(7, list.getHASHTAGS_ID4());
+	        pStmt.setInt(8, list.getHASHTAGS_ID5());
+	        pStmt.setString(9, list.getANIMAL_ID());
+	        pStmt.setString(10, list.getUSER_ID());
+	        pStmt.setInt(11, list.getUSER_NAME_SWITCH());
 
 	        LocalDateTime now_date = LocalDateTime.now();
 	        DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd/ HH:mm:ss");
 	        String date = dtformat.format(now_date);
 
-	        pStmt.setString(8, date);
+	        pStmt.setString(12, date);
 
 
 	        // SQL文を実行する

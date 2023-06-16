@@ -109,7 +109,7 @@ public class CATEGORYDao {
 	//入力：カテゴリID(String)
 	//処理：入力されたカテゴリIDに対応したカテゴリ名をカテゴリデータベースから探索する
 	//出力：入力されたカテゴリIDに対応したカテゴリ名(String)
-	public String get_name(int CATEGORY_ID) {
+	public String get_categoryname(int CATEGORY_ID) {
 		Connection conn = null;
 		String category_name = "";
 
