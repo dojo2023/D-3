@@ -39,27 +39,28 @@ public class SQServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idf = request.getParameter("idf");
+		String question = request.getParameter("question");
+		String answer= request.getParameter("answer");
 		/*
 		SQServletは
 		1.PWを忘れた→ID入力→秘密の質問回答→PW再設定
 		2.IDを忘れた→社員番号入力→秘密の質問回答→ID表示
 		という2つの流れで呼び出されるため
-		それぞれをitfが0(PW再設定)の時と1(ID表示)の時で区別する
+		それぞれをidfが0(PW再設定)の時と1(ID表示)の時で区別する
 		 */
 		if(idf.equals("0")) {
-			request.setAttribute("idf", idf);
+//			request.setAttribute("idf", idf);
+			//pw再設定用への処理
+			if ()
+			response.sendRedirect("/WebApp_GENDA/PWResetServlet");
 		} else if(idf.equals("1")) {
-			request.setAttribute("idf", idf);
+//			request.setAttribute("idf", idf);
+			//id表示画面への処理
+			response.sendRedirect("/WebApp_GENDA/INFODisplayServlet");
 		}
-
-		USER_INFODao sq_id = new  USER_INFODao();
-
-
-		}
-
-		//結果ページにフォーワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sq.jsp");
-		dispatcher.forward(request, response);
 	}
 
+	//結果ページにフォーワードする
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/sq.jsp");
+	dispatcher.forward(request, response);
 }
