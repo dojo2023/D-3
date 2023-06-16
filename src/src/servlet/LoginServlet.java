@@ -1,6 +1,7 @@
+//GENDA
 package servlet;
 import java.io.IOException;
-
+​
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+//49行目を作った時に一緒に作成、ログインユーザーのモデルをインポート
 import model.LOGIN_USER;
+import dao.USER_INFODao;
 /**
  * Servlet implementation class LoginServlet
  */
@@ -45,7 +48,17 @@ public class LoginServlet extends HttpServlet {
 				String pw = request.getParameter("PW");
 		// セッションスコープにIDを格納する
 				HttpSession session = request.getSession();
-		//クラスの生成
-				session.setAttribute("LOGIN_USER", new LOGIN_USER(id));
+		//ログインのためのクラスの生成
+		        session.setAttribute("LOGIN_USER", new LOGIN_USER(id));
+
+	    //以下は全部6/14以降に書き足した分
+	    // ログイン処理を行う
+				USER_INFODao iDao = new USER_INFODao();
+				if (iDao.isLoginOK(id, pw)) {	// ログイン成功
+					// トップサーブレットにリダイレクトする
+					response.sendRedirect("/WebAppGenda/TopServlet");
+				}else {
+				    response.sendRedirect("/WebAppGenda/LoginServlet");
+				}
+				}
 	}
-}
