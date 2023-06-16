@@ -5,16 +5,23 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.REPLY;
 
 public class REPLYDao {
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<REPLY> select(REPLY param) {
+	//入力：返信IDと投稿ID(int)
+	//      検索したいほうのみにデータを入力し、もう一方には0を入れて入力する
+	//      例：29という返信idの人を検索したい→select(29, 0)
+	//処理：入力されたデータのうち値が入っている（0以外のデータが入っている）方を検索する
+	//      REPLYデータベース内を検索し、該当したデータを全て取り出す
+	//出力：検索した値と一致したREPLYデータをリストで返す（List<REPLY>）
+	public List<REPLY> select(int reply_id, int poster_id) {
 	    Connection conn = null;
-	    List<REPLY> REPLYList = new ArrayList<>();
+	    List<REPLY> REPLYList = new ArrayList<REPLY>();
 
 	    try{
 	        // JDBCドライバを読み込む
@@ -22,57 +29,18 @@ public class REPLYDao {
 
 	        // データベースに接続する
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
-
-	        // SQL文を準備する(返信の内容を表示する)
-	        String sql = "SELECT * FROM REPLY "
-	                + "WHERE REPLY_ID LIKE ? "
-	                + "AND POSTER_ID LIKE ? "
-	                + "AND REPLY_SENTENCE LIKE ? "
-	                + "AND REPLIED_DATE LIKE ? "
-	                + "AND USER_NAME_SWITCH = ? "
-	                + "AND USER_ID LIKE ? "
-	                + "AND ANIMAL_ID LIKE ? ";
-
+	        String sql = "";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	        // SQL文を完成させる
-            pStmt.setString(1, "%" + param.getREPLY_ID() + "%");
-
-            pStmt.setString(2, "%" + param.getPOSTER_ID() + "%");
-
-        if (param.getREPLY_SENTENCE() != null) {
-            pStmt.setString(3, "%" + param.getREPLY_SENTENCE() + "%");
-        } else {
-            pStmt.setString(3, "%");
-        }
-
-        if (param.getREPLIED_DATE() != null) {
-            pStmt.setString(4, "%" + param.getREPLIED_DATE() + "%");
-        } else {
-            pStmt.setString(4, "%");
-        }
-
-        if (param.getREPLIED_DATE() != null) {
-            pStmt.setString(5, "%" + param.getREPLIED_DATE() + "%");
-        } else {
-            pStmt.setString(5, "%");
-        }
-
-        if (param.getUSER_ID() != null) {
-            pStmt.setString(6, "%" + param.getUSER_ID() + "%");
-        } else {
-            pStmt.setString(6, "%");
-        }
-
-        if (param.getANIMAL_ID() != null) {
-            pStmt.setString(7, "%" + param.getANIMAL_ID() + "%");
-        } else {
-            pStmt.setString(7, "%");
-        }
-
-        pStmt.setString(8, "%" + param.getUSER_NAME_SWITCH() + "%");
-
-
+	        if(reply_id == 0) {
+	        	sql = "SELECT * FROM REPLY WHERE POSTER_ID = ?";
+	        	pStmt = conn.prepareStatement(sql);
+	        	pStmt.setInt(1, poster_id);
+	        } else if(poster_id == 0) {
+	        	sql = "SELECT * FROM REPLY WHERE REPLY_ID = ?";
+	        	pStmt = conn.prepareStatement(sql);
+	        	pStmt.setInt(1, reply_id);
+	        }
 
      // SQL文を実行し、結果を取得する
         ResultSet rs = pStmt.executeQuery();
@@ -83,10 +51,10 @@ public class REPLYDao {
             REPLY.setREPLY_ID(rs.getInt("REPLY_ID"));
             REPLY.setPOSTER_ID(rs.getInt("POSTER_ID"));
             REPLY.setREPLY_SENTENCE(rs.getString("REPLY_SENTENCE"));
-            REPLY.setREPLY_SENTENCE(rs.getString("REPLIED_DATE"));
-            REPLY.setREPLY_SENTENCE(rs.getString("USER_NAME_SWITCH"));
-            REPLY.setREPLY_SENTENCE(rs.getString("USER_ID"));
-            REPLY.setREPLY_SENTENCE(rs.getString("ANIMAL_ID"));
+            REPLY.setREPLIED_DATE(rs.getString("REPLIED_DATE"));
+            REPLY.setUSER_NAME_SWITCH(rs.getInt("USER_NAME_SWITCH"));
+            REPLY.setUSER_ID(rs.getString("USER_ID"));
+            REPLY.setANIMAL_ID(rs.getString("ANIMAL_ID"));
             REPLYList.add(REPLY);
         }
 
@@ -108,8 +76,9 @@ public class REPLYDao {
 
 	}
 
-	// 返信を投稿する（REPLY_ID、POSTER_IDが投稿時に付与される。
-	//また、USER_NAME_SWITCHの数値によってUSER_ID、ANIMAL_IDが付与される。）
+	//入力：REPLY型のデータ
+	//処理：入力されたREPLYのデータをREPLYデータベースに格納する
+	//出力：格納成功したらtrue、失敗したらfalseを返す
 	public boolean insert(REPLY list) {
 	    Connection conn = null;
 	    boolean result = false;
@@ -122,17 +91,23 @@ public class REPLYDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 	        // SQL文を準備する
-	        String sql = "INSERT INTO REPLY (REPLY_ID, POSTER_ID, REPLY_SENTENCE, REPLIED_DATE, USER_NAME_SWITCH, USER_ID, ANIMAL_ID) "
-	                + "VALUES (?, ?, ?, NOW(), ?, ?, ?)";
+	        String sql = "INSERT INTO REPLY (POSTER_ID, REPLY_SENTENCE,"
+	        		+ "USER_NAME_SWITCH, USER_ID, ANIMAL_ID, REPLIED_DATE) "
+	                + "VALUES (?, ?, ?, ?, ?, ?)";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	     // SQL文を完成させる
-	        pStmt.setInt(1, list.getREPLY_ID());
-	        pStmt.setInt(2, list.getPOSTER_ID());
-	        pStmt.setString(3, list.getREPLY_SENTENCE());
-	        pStmt.setInt(4, list.getUSER_NAME_SWITCH());
-	        pStmt.setString(5, list.getUSER_ID());
-	        pStmt.setString(6, list.getANIMAL_ID());
+	        pStmt.setInt(1, list.getPOSTER_ID());
+	        pStmt.setString(2, list.getREPLY_SENTENCE());
+	        pStmt.setInt(3, list.getUSER_NAME_SWITCH());
+	        pStmt.setString(4, list.getUSER_ID());
+	        pStmt.setString(5, list.getANIMAL_ID());
+
+	        LocalDateTime now_date = LocalDateTime.now();
+	        DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd/ HH:mm:ss");
+	        String date = dtformat.format(now_date);
+
+	        pStmt.setString(6, date);
 
 	     // SQL文を実行する
 	        if (pStmt.executeUpdate() == 1) {
@@ -155,8 +130,9 @@ public class REPLYDao {
 	    return result;
 	}
 
-	// 引数で指定されたレコードを削除し、成功したらtrueを返す(投稿の削除)
-	// （REPLY_IDで削除したい投稿を指定し、削除する）
+	//入力：消去したいREPLYデータのID
+	//処理：入力されたREPLY_IDに対応したデータをREPLYデータベースから消去する
+	//出力：消去成功したらtrue、失敗したらfalseを返す
 		public boolean delete(int REPLY_ID) {
 			Connection conn = null;
 			boolean result = false;
@@ -169,7 +145,7 @@ public class REPLYDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 				// SQL文を準備する
-				String sql = "delete from POSTER where POSTER_ID=?";
+				String sql = "delete from REPLY where REPLY_ID = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -202,5 +178,3 @@ public class REPLYDao {
 		}
 
 }
-
-

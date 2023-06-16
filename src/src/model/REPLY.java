@@ -11,13 +11,11 @@ public class REPLY implements Serializable {
 	private String ANIMAL_ID;
 
 
-	public  REPLY(int REPLY_ID, int POSTER_ID, String REPLY_SENTENCE, String REPLIED_DATE,
+	public  REPLY(int POSTER_ID, String REPLY_SENTENCE,
 			       int USER_NAME_SWITCH, String USER_ID, String ANIMAL_ID) {
 		super();
-		this.REPLY_ID = REPLY_ID;
 		this.POSTER_ID = POSTER_ID;
 		this.REPLY_SENTENCE = REPLY_SENTENCE;
-		this.REPLIED_DATE = REPLIED_DATE;
 		this.USER_NAME_SWITCH = USER_NAME_SWITCH;
 		this.USER_ID = USER_ID;
 		this.ANIMAL_ID = ANIMAL_ID;
