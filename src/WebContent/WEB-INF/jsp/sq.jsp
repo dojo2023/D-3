@@ -20,11 +20,11 @@
 		if(idf.equals("0")) {%>
 		<!-- pw再設定画面へ送信する -->
 		<input type="submit" name="submit_button" value="送信"
-			formaction="/WebApp_GENDA/PEResetServlet">
+			formaction="/WebApp_GENDA/PWResetServlet">
 		<% } else if(idf.equals("1")) { %>
 		<!-- id表示画面へ送信する -->
 		<input type="submit" name="submit_button" value="送信"
-			formaction="/WebApp_GENDA/IDDisplayServlet">
+			formaction="/WebApp_GENDA/INFODisplayServlet">
 		<% } %>
 	</form>
 	<a href="/WebApp_GENDA/LoginServlet">ログイン画面に戻る</a>
