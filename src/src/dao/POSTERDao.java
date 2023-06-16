@@ -13,7 +13,12 @@ import java.util.List;
 import model.POSTER;
 
 public class POSTERDao {
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	//入力：投稿IDとカテゴリID(int)
+	//      検索したいほうのみにデータを入力し、もう一方には0を入れて入力する
+	//      例：29というidの人を検索したい→select(29, 0)
+	//処理：入力されたデータのうち値が入っている（0以外のデータが入っている）方を検索する
+	//      POSTERデータベース内を検索し、該当したデータを全て取り出す
+	//出力：検索した値と一致したPOSTERデータをリストで返す（List<POSTER>）
 	public List<POSTER> select(int poster_id, int category_id) {
 	    Connection conn = null;
 	    List<POSTER> posterList = new ArrayList<POSTER>();
@@ -78,7 +83,9 @@ public class POSTERDao {
 
 
 
-	// 引数listで指定されたレコードを登録し、成功したらtrueを返す
+	//入力：POSTER型のデータ
+	//処理：入力されたPOSTERのデータをPOSTERデータベースに格納する
+	//出力：格納成功したらtrue、失敗したらfalseを返す
 	public boolean insert(POSTER list) {
 	    Connection conn = null;
 	    boolean result = false;
@@ -134,7 +141,9 @@ public class POSTERDao {
 	}
 
 
-	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
+	//入力：消去したいPOSTERデータのID
+	//処理：入力されたPOSTERIDに対応したデータをPOSTERデータベースから消去する
+	//出力：消去成功したらtrue、失敗したらfalseを返す
 	public boolean delete(int POSTER_ID) {
 		Connection conn = null;
 		boolean result = false;
