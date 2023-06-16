@@ -109,17 +109,34 @@ public class SettingServlet extends HttpServlet {
 			data4.setUser_en(new_en);
 			USER_INFODao search = new USER_INFODao();//USER_INFODaoに新しいインスタンスsearchを作成
 			boolean result = search.update(data4);
-		}
-
-		else if(request.getParameter("grant") != null) {
-			//ユーザの管理者権限を付与する処理
-			String user_id = request.getParameter("admin");//このIDのユーザに管理者権限を付与する
 
 		}
-		else if(request.getParameter("revoke") != null) {
-			//ユーザの管理者権限を剥奪する処理
-			String user_id = request.getParameter("admin"); //このIDのユーザに管理者権限を剥奪する
-		}
+
+		if (request.getParameter("grant") != null) {
+		    // ユーザの管理者権限を付与する処理
+		    String user_id = request.getParameter("admin"); // このIDのユーザに管理者権限を付与する
+
+		    USER_INFODao search = new USER_INFODao(); // 新しいUSER_INFODaoオブジェクトのインスタンスを作成
+		    USER_INFO data5 = new USER_INFO(); // 新しいUSER_INFOオブジェクトのインスタンスを作成
+		    data5.setUser_id(id); // セッションIDをdata5オブジェクトのユーザIDとして設定
+		    data5.setUser_en(user_id); // ユーザの管理者権限を設定
+
+		    boolean result = search.update(data5); // ユーザ情報をデータベースに更新
+
+
+		} else if (request.getParameter("revoke") != null) {
+		    // ユーザの管理者権限を剥奪する処理
+		    String user_id = request.getParameter("admin"); // このIDのユーザに管理者権限を剥奪する
+
+		    USER_INFODao search = new USER_INFODao(); // 新しいUSER_INFODaoオブジェクトのインスタンスを作成
+		    USER_INFO data6 = new USER_INFO(); // 新しいUSER_INFOオブジェクトのインスタンスを作成
+		    data6.setUser_id(id); // セッションIDをdata6オブジェクトのユーザIDとして設定
+		    data6.setUser_en(null); // ユーザの管理者権限を剥奪（nullに設定）
+
+		    boolean result = search.update(data6); // ユーザ情報をデータベースに更新
+
+
+
 
 		request.setAttribute("SQ", check);
 
@@ -128,4 +145,4 @@ public class SettingServlet extends HttpServlet {
 
 	}
 
-}
+	}}
