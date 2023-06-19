@@ -83,10 +83,6 @@ public class POSTERDao {
 	    return posterList;
 	}
 
-
-
-
-
 	//入力：POSTER型のデータ
 	//処理：入力されたPOSTERのデータをPOSTERデータベースに格納する
 	//出力：格納成功したらtrue、失敗したらfalseを返す
