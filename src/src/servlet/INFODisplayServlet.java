@@ -79,6 +79,8 @@ public class INFODisplayServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			String id = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId();
 
+			String ans = request.getParameter("ansewr");
+
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
 			// リクエストスコープに取得したIDを格納
