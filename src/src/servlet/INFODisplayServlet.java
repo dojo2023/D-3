@@ -45,7 +45,7 @@ public class INFODisplayServlet extends HttpServlet {
 		// 新規登録の場合（新規登録画面で登録ボタンを押したときに表示される）
 		/*新規登録のタブで登録ボタンが押されたら、新規登録の際に記入された、氏名、ID、パスワード、
 		 * 社員番号、秘密の質問とその回答*を取得する*/
-		if(request.getParameter("submit_button").equals("登録") && request.getParameter("idf").equals("1")) {
+		if(request.getParameter("submit_button").equals("登録")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
@@ -75,22 +75,33 @@ public class INFODisplayServlet extends HttpServlet {
 		// IDを忘れた場合に表示（IDを忘れた場合の画面から秘密の質問画面に推移したのち
 		//送信ボタンを押したときに表示される）
 		/* 秘密の質問画面の送信ボタンを押したらセッションスコープからLOGIN_USER型のLOGIN＿USER属性がもつidを取得*/
-		else if(request.getParameter("submit_button").equals("送信")) {
+		else if(request.getParameter("submit_button").equals("送信") && request.getParameter("idf").equals("1")) {
 			HttpSession session = request.getSession();
 			String id = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId();
 
+			//入力した質問の答えとuser_idを元に取り出した質問の答えが一致しているか確認し、合っていればそのuser_idをリクエストスコープに格納し、間違っていいればログインページへリダイレクトする
 			String ans = request.getParameter("ansewr");
+			String user_sa = "";
+			USER_INFODao saDao = new USER_INFODao();
+			USER_INFO user = saDao.select("", id);
+			user_sa = user.getUser_sa() ;
 
-			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
+			if (ans == user_sa) {
+				request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
-			// リクエストスコープに取得したIDを格納
-			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
-			request.setAttribute("id", id);
-
+				// リクエストスコープに取得したIDを格納
+				//（INFODisplay.jspでリクエストスコープを利用ため）
+				request.setAttribute("id", id);
+			}
+			else {
+				response.sendRedirect("login.jsp");
+			}
 		}
+
+
 		// PWを忘れた場合に表示（PW再設定画面で送信ボタンを押したときに表示されるもの）
 		/* PW再設定画面で送信ボタンを押したら、入力された新しいパスワードを受け取り、新しいパスワードを登録する。*/
-		else if(request.getParameter("reset").equals("送信")) {
+		else if(request.getParameter("reset").equals("送信") && request.getParameter("idf").equals("3")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 

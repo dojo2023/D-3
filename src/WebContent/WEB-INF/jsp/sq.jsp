@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	<%
+	//秘密の質問の内容をリクエストスコープから取ってくる
+	String sq_name = (String) request.getAttribute("sq_name");
+	%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,23 +15,20 @@
 <body>
 	<header> 中庭掲示板 </header>
 	<form method="POST">
-		秘密の質問 <select name="question">
-			<option value="1">秘密の質問1</option>
-			<option value="2">秘密の質問2</option>
-			<option value="3">秘密の質問3</option>
-			<option value="4">秘密の質問4</option>
-			<option value="5">秘密の質問5</option>
-		</select><br> 秘密の回答 <input type="text" name="answer"><br>
+		<div id="question">
+		<p>秘密の質問<%=sq_name%>
+		</div><br>
+		 秘密の回答 <input type="text" name="answer"><br>
 
 		<% String idf = (String)request.getAttribute("idf");
-		if(idf.equals("0")) {%>
-		<!-- pw再設定画面へ送信する -->
-		<input type="submit" name="submit_button" value="送信"
-			formaction="/WebApp_GENDA/PWResetServlet">
-		<% } else if(idf.equals("1")) { %>
+		if(idf.equals("1")) { %>
 		<!-- id表示画面へ送信する -->
 		<input type="submit" name="submit_button" value="送信"
 			formaction="/WebApp_GENDA/INFODisplayServlet">
+		<% }else if (idf.equals("2")) {%>
+		<!-- pw再設定画面へ送信する -->
+		<input type="submit" name="submit_button" value="送信"
+			formaction="/WebApp_GENDA/PWResetServlet">
 		<% } %>
 	</form>
 	<a href="/WebApp_GENDA/LoginServlet">ログイン画面に戻る</a>

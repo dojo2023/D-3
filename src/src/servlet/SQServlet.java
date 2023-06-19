@@ -53,7 +53,8 @@ public class SQServlet extends HttpServlet {
 			USER_INFO user = sqDao.select(en, "");
 
 			sq_id = user.getUser_sq_id();
-		}else if(idf.equals("2")) {
+		}
+		else if(idf.equals("2")) {
 			USER_INFODao sqDao = new USER_INFODao();
 			USER_INFO user = sqDao.select("", id);
 
