@@ -6,8 +6,7 @@ public class REPORT implements Serializable {
 	private int REPLY_ID;
 	private int POSTER_ID;
 
-	public  REPORT(int REPLY_ID, int POSTER_ID
-			) {
+	public  REPORT(int REPLY_ID, int POSTER_ID) {
 		super();
 		this.REPLY_ID = REPLY_ID;
 		this.POSTER_ID = POSTER_ID;

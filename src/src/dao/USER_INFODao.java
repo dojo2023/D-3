@@ -61,7 +61,6 @@ public class USER_INFODao {
 		return loginResult;
 	}
 
-
 	/*
 	insert関数の振る舞い
 	入力：USER_INFOテーブルのうち、新規登録時に必要な6つのデータ(String)

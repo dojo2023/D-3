@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class HASHTAGSDao {
 	//入力：挿入したいハッシュタグの名前(String型)
 	//処理：受け取った名前が既にHASHTAGSデータベースにあるか探索
