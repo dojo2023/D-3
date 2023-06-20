@@ -8,10 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.USER_INFODao;
-import model.LOGIN_USER;
 import model.USER_INFO;
 
 /**
@@ -42,28 +40,28 @@ public class PWServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 
-		if(request.getParameter("submit_button").equals("送信") && request.getParameter("idf").equals("2")) {
-			HttpSession session = request.getSession();
-			String id = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId();
+
 
 			//入力した質問の答えとuser_idを元に取り出した質問の答えが一致しているか確認し、合っていればそのuser_idをリクエストスコープに格納し、間違っていいればログインページへリダイレクトする
-			String ans = request.getParameter("ansewr");
+			request.setCharacterEncoding("UTF-8");
+			String ans = request.getParameter("answer");
+			String id = request.getParameter("id");
 			String user_sa = "";
 			USER_INFODao saDao = new USER_INFODao();
 			USER_INFO user = saDao.select("", id);
-			user_sa = user.getUser_sa() ;
+			user_sa = user.getUser_sa();
 
-			if (ans == user_sa) {
+			if (ans.equals(user_sa)) {
 				// PW忘れた人用のページにフォワード
+				request.setAttribute("id", user.getUser_id());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pwReset.jsp");
 				dispatcher.forward(request, response);
 			}
 			else {
-				response.sendRedirect("login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				dispatcher.forward(request, response);
 			}
-		}
 	}
 
 }

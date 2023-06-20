@@ -56,7 +56,7 @@ public class SQServlet extends HttpServlet {
 			String id = request.getParameter("id");
 			USER_INFODao sqDao = new USER_INFODao();
 			USER_INFO user = sqDao.select("", id);
-			if(user.getUser_id().equals("")) {
+			if(user.getUser_en().equals("")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 				dispatcher.forward(request, response);
 			}

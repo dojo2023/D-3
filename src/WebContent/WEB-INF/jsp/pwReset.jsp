@@ -9,17 +9,18 @@
 <body>
 <div><img src="https://placehold.jp/300x50.png"></div>
 
-<div class="pwReset">
-	<form action="/WebApp_GENDA/SQServlet" method="POST">
+<form action="/WebApp_GENDA/INFODisplayServlet" method="POST">
+	<% String id = (String)request.getAttribute("id"); %>
+	<input type="hidden" name="id" value="${id}">
 	<p>新規パスワードを入力して下さい</p>
-	<input type="text" id="pwReset" name="pwReset" placeholder="新規パスワード">
+	<input type="text" name="newPassword" placeholder="新規パスワード">
 
 	<p>確認</p>
-	<input type="text" id="pwConfirm" name="pwConfirm" placeholder="パスワードの確認">
+	<input type="text" name="confirmPassword" placeholder="パスワードの確認">
+	<input type="hidden" name="idf" value="2">
 	<input type="submit" name="reset" value="送信">
-	<a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
-	</form>
-</div>
+	<a href="/WebApp_GENDA/LoginServlet">ログインへ戻る</a>
+</form>
 
 </body>
 </html>

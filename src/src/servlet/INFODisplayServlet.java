@@ -8,10 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.USER_INFODao;
-import model.LOGIN_USER;
 import model.USER_INFO;
 
 /**
@@ -30,8 +28,6 @@ public class INFODisplayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 決定した個人情報を表示するページにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -43,8 +39,9 @@ public class INFODisplayServlet extends HttpServlet {
 		// 新規登録の場合（新規登録画面で登録ボタンを押したときに表示される）
 		/*新規登録のタブで登録ボタンが押されたら、新規登録の際に記入された、氏名、ID、パスワード、
 		 * 社員番号、秘密の質問とその回答*を取得する*/
+		String idf = request.getParameter("idf");
 
-		if(request.getParameter("idf").equals("0")) {
+		if(idf.equals("0")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
@@ -56,7 +53,7 @@ public class INFODisplayServlet extends HttpServlet {
 			String securityQuestion = request.getParameter("securityQuestion"); // 「securityQuestion」というname属性をもつテキストボックスから秘密の質問を取得し、String型の変数securityQuestionに代入
 			String securityAnswer = request.getParameter("securityAnswer"); // 「securityAnswer」というname属性をもつテキストボックスから秘密の質問の回答を取得し、String型の変数securityAnswerに代入
 
-			if(registerPassword.equals(confirmPassword)) {
+			if(!registerPassword.equals(confirmPassword)) {
 				response.sendRedirect("/WebApp_GENDA/LoginServlet");
 			}
 
@@ -72,6 +69,7 @@ public class INFODisplayServlet extends HttpServlet {
 			request.setAttribute("employeeNumber", employeeNumber);
 			request.setAttribute("securityQuestion", securityQuestion);
 			request.setAttribute("securityAnswer", securityAnswer);
+			request.setAttribute("idf", idf);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
 			dispatcher.forward(request, response);
@@ -81,7 +79,7 @@ public class INFODisplayServlet extends HttpServlet {
 		// IDを忘れた場合に表示（IDを忘れた場合の画面から秘密の質問画面に推移したのち
 		//送信ボタンを押したときに表示される）
 		/* 秘密の質問画面の送信ボタンを押したらセッションスコープからLOGIN_USER型のLOGIN＿USER属性がもつidを取得*/
-		else if(request.getParameter("idf").equals("1")) {
+		else if(idf.equals("1")) {
 
 			request.setCharacterEncoding("UTF-8");
 
@@ -99,6 +97,7 @@ public class INFODisplayServlet extends HttpServlet {
 				// リクエストスコープに取得したIDを格納
 				//（INFODisplay.jspでリクエストスコープを利用ため）
 				request.setAttribute("id", user.getUser_id());
+				request.setAttribute("idf", idf);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -111,24 +110,30 @@ public class INFODisplayServlet extends HttpServlet {
 
 		// PWを忘れた場合に表示（PW再設定画面で送信ボタンを押したときに表示されるもの）
 		/* PW再設定画面で送信ボタンを押したら、入力された新しいパスワードを受け取り、新しいパスワードを登録する。*/
-		else if(request.getParameter("idf").equals("2")) {
+		else if(idf.equals("2")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
-			String pwReset = request.getParameter("pwReset"); // 「pwReset」というname属性をもつテキストボックスから新しいパスワードを取得し、String型の変数pwResetに代入
+			String newPassword = request.getParameter("newPassword"); // 「pwReset」というname属性をもつテキストボックスから新しいパスワードを取得し、String型の変数pwResetに代入
+			String confirmPassword = request.getParameter("confirmPassword");
+			String id = request.getParameter("id");
+			if(!newPassword.equals(confirmPassword)) {
+				response.sendRedirect("/WebApp_GENDA/LoginServlet");
+			}
 
 			USER_INFO user = new USER_INFO(); // USER_INFO型の変数userを定義し、空のUSER_INFOを代入
-			HttpSession session = request.getSession(); // セッションスコープにアクセス
-			String id = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId(); // セッションスコープからLOGIN_USER型のLOGIN＿USER属性がもつidを取得し、String型の変数idに代入（誰がパスワードを変えるのか特定）
 			user.setUser_id(id); // 変数userのもつidにセッションスコープから取得したidを代入
-			user.setUser_pw(pwReset); // 変数userのもつpwに更新したいpwResetを代入
+			user.setUser_pw(newPassword); // 変数userのもつpwに更新したいpwResetを代入
 
 			USER_INFODao user_dao = new USER_INFODao(); // USER_INFODao型の変数user_daoを定義し、空のUSER_INFODaoを代入
 			user_dao.update(user); // user_daoのidとpwを更新（idは誰を更新するのかの識別に使ったため、更新されるのはpwのみ）
 
 			// リクエストスコープに取得したpwResetを格納
 			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
-			request.setAttribute("pw", pwReset);
+			request.setAttribute("pw", newPassword);
+			request.setAttribute("idf", idf);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 

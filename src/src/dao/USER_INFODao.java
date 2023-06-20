@@ -101,7 +101,7 @@ public class USER_INFODao {
 				pStmt.setString(1, null);
 			}
 
-			if (en != null && en.equals("")) {
+			if (en != null && !en.equals("")) {
 				pStmt.setString(2, en);
 			}
 			else {
