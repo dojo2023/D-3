@@ -15,8 +15,7 @@
 	<input type="text" id="pwReset" name="pwReset" placeholder="新規パスワード">
 
 	<p>確認</p>
-	<input type="text" id="pwConfirm" name="pwConfirm" placeholder="パスワードの確認"> <input
-				type="hidden" name="idf" value=3>
+	<input type="text" id="pwConfirm" name="pwConfirm" placeholder="パスワードの確認">
 	<input type="submit" name="reset" value="送信">
 	<a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
 	</form>

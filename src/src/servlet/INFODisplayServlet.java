@@ -101,7 +101,7 @@ public class INFODisplayServlet extends HttpServlet {
 
 		// PWを忘れた場合に表示（PW再設定画面で送信ボタンを押したときに表示されるもの）
 		/* PW再設定画面で送信ボタンを押したら、入力された新しいパスワードを受け取り、新しいパスワードを登録する。*/
-		else if(request.getParameter("reset").equals("送信") && request.getParameter("idf").equals("3")) {
+		else if(request.getParameter("reset").equals("送信")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
