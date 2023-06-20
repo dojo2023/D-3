@@ -203,13 +203,13 @@ public class USER_INFODao {
 
 			// SQL文を完成させる
 			if (en != null && !en.equals("")) {
-				pStmt.setString(1, "%" + en + "%");
+				pStmt.setString(1, en);
 			}else {
 				pStmt.setString(1, "%");
 			}
 
 			if (id != null && !id.equals("")) {
-				pStmt.setString(2, "%" + id + "%");
+				pStmt.setString(2, id);
 			}else {
 				pStmt.setString(2, "%");
 			}
