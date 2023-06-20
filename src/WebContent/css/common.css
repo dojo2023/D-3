@@ -1,0 +1,9 @@
+@charset "UTF-8";
+/* ----------全体設定---------- */
+html{
+    font-family:Senobi Gothic; /*font-family:ページ全体のフォントを指定*/
+    }
+body {
+        background-color: #8BA0B7; /*背景色*/
+        color: #294E76; /*文字色*/
+      }
