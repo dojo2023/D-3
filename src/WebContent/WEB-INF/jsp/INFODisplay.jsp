@@ -62,25 +62,5 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 
 		<a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
 	</div>
-
-
-
-
-	<!-- 新規登録完了の場合、IDを忘れた場合、PWを忘れた場合でそれぞれ表示するものを分岐するためのjavascript -->
-	<script type="text/javascript">
-		// 新規登録の時に表示する
-		if (request.getParameter("submit_button").equals("登録")) {
-			document.getElementByID("newDisplay");
-		}
-		// IDを忘れた時に表示する
-		else if (request.getParameter("submit_button").equals("送信")
-				&& request.getParameter("idf").equals("1")) {
-			document.getElementByID("idDisplay");
-		}
-		// パスワードを忘れたときに表示する
-		else if (request.getParameter("reset").equals("送信")) {
-			document.getElementByID("pwDisplay");
-		}
-	</script>
 </body>
 </html>
