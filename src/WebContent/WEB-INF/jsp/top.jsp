@@ -27,10 +27,10 @@
   </nav>
   <nav>
     <ul>
-<li><a href = "">質問</a></li>
-<li><a href = "">交流</a></li>
-<li><a href = "">応募</a></li>
-</ul>
-  </nav>
+        <li><a href="CategoryServlet?category=質問">質問</a></li>
+        <li><a href="CategoryServlet?category=交流">交流</a></li>
+        <li><a href="CategoryServlet?category=応募">応募</a></li>
+    </ul>
+</nav>
 </body>
 </html>

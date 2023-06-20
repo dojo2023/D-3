@@ -28,4 +28,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/localFont/MODI_Senobi-Gothic_2017_0702</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Users/user/AppData/Local/Temp/zip-681862258/MODI_Senobi-Gothic_2017_0702</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -8,10 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.POSTERDao;
-import model.POSTER;
 
 /**
  * Servlet implementation class ReplyServlet
@@ -42,13 +38,9 @@ public class ReplyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 
-		// 元の投稿を取得する
-		POSTERDao poster = new POSTER();
-		HttpSession session = request.getSession();
-		int poster = ((POSTER)session.getAttribute("POSTER")).getPOSTER_ID();
+		
 
 
+		}
 
 	}
-
-}
