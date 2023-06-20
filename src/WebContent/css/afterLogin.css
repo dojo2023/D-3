@@ -1,8 +1,7 @@
 @charset "UTF-8";
 /* ----------全体設定---------- */
 html{
-	font-family: 'MyFont';
-	src: local('Senobi Gothic');
+	font-family: 'Senobi Gothic';
 }
 body {
         background-color: #8BA0B7; /*背景色*/

@@ -3,7 +3,9 @@
 <html>
 <head>
     <title>ログイン / 新規登録</title>
+    <link rel="stylesheet" href="./css/afterLogin.css">
 </head>
+
 <body>
     <h2>ログイン / 新規登録</h2>
     <div class="tab-container">
