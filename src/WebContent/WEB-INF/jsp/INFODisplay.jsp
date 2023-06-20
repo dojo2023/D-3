@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-// 新規登録完了時に表示する氏名、ID、PW、社員番号、秘密の質問とその回答をリクエストスコープから取得（INFODisplayServlet.javaで格納してある）
+	// 新規登録完了時に表示する氏名、ID、PW、社員番号、秘密の質問とその回答をリクエストスコープから取得（INFODisplayServlet.javaで格納してある）
 String registerName = (String) request.getAttribute("registerName"); // INFODisplayServletでリクエストスコープに格納した「registerName（氏名）」を取得
 String registerId = (String) request.getAttribute("registerId"); // INFODisplayServletでリクエストスコープに格納した「registerId（ID）」を取得
 String registerPassword = (String) request.getAttribute("registerPassword"); // INFODisplayServletでリクエストスコープに格納した「registerPassword（PW）」を取得
@@ -30,6 +30,7 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 	<div class="info">
 		<h2>登録完了しました</h2>
 		<!-- 新規登録の場合に表示するもの -->
+		<% if (("idf").equals("0")) { %>
 		<div id="newDisplay">
 			<p>氏名<%=registerName%></p>
 
@@ -43,18 +44,26 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 
 			<p>秘密の質問の回答<%=securityAnswer%></p>
 		</div>
+		<% } %>
 
+		<% if (("idf").equals("1")) { %>
 		<!-- IDを忘れた場合に表示するもの -->
 		<div id="idDisplay">
 			<p>ID<%=id%></p>
 		</div>
+		<% } %>
 
+		<% if (("idf").equals("2")) { %>
 		<!-- PWを忘れた場合に表示するもの -->
 		<div id="pwDisplay">
 			<p>再設定したパスワード<%=pw%></p>
 		</div>
+		<% } %>
+
 		<a href="/WEB-INF/jsp/login.jsp">ログインへ戻る</a>
 	</div>
+
+
 
 
 	<!-- 新規登録完了の場合、IDを忘れた場合、PWを忘れた場合でそれぞれ表示するものを分岐するためのjavascript -->
