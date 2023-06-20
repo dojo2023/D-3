@@ -52,10 +52,14 @@ public class INFODisplayServlet extends HttpServlet {
 			String registerName = request.getParameter("registerName"); // 「registerName」というname属性をもつテキストボックスから氏名を取得し、String型の変数registerNameに代入
 			String registerId = request.getParameter("registerId"); // 「registerId」というname属性をもつテキストボックスからidを取得し、String型の変数registerIdに代入
 			String registerPassword = request.getParameter("registerPassword"); // 「registerPassword」というname属性をもつテキストボックスからパスワードを取得し、String型の変数registerPasswordに代入
+			String confirmPassword = request.getParameter("confirmPassword");
 			String employeeNumber = request.getParameter("employeeNumber"); // 「employeeNumber」というname属性をもつテキストボックスから社員番号を取得し、String型の変数employeeNumberに代入
 			String securityQuestion = request.getParameter("securityQuestion"); // 「securityQuestion」というname属性をもつテキストボックスから秘密の質問を取得し、String型の変数securityQuestionに代入
 			String securityAnswer = request.getParameter("securityAnswer"); // 「securityAnswer」というname属性をもつテキストボックスから秘密の質問の回答を取得し、String型の変数securityAnswerに代入
 
+			if(registerPassword.equals(confirmPassword)) {
+				response.sendRedirect("/WebApp_GENDA/LoginServlet");
+			}
 
 			USER_INFODao dao = new USER_INFODao(); // 「USER_INFODao」という型を作り、「dao1」という変数に新しく空のUSER_INFODao()を定義
 
@@ -69,6 +73,9 @@ public class INFODisplayServlet extends HttpServlet {
 			request.setAttribute("employeeNumber", employeeNumber);
 			request.setAttribute("securityQuestion", securityQuestion);
 			request.setAttribute("securityAnswer", securityAnswer);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
+			dispatcher.forward(request, response);
 		}
 
 

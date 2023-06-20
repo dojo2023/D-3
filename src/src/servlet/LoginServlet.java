@@ -56,9 +56,9 @@ public class LoginServlet extends HttpServlet {
 				USER_INFODao iDao = new USER_INFODao();
 				if (iDao.isLoginOK(id, pw)) {	// ログイン成功
 					// トップサーブレットにリダイレクトする
-					response.sendRedirect("/WebAppGenda/TopServlet");
+					response.sendRedirect("/WebApp_GENDA/TopServlet");
 				}else {
-				    response.sendRedirect("/WebAppGenda/LoginServlet");
-				}
+				    response.sendRedirect("/WebApp_GENDA/LoginServlet");
 				}
 	}
+}
