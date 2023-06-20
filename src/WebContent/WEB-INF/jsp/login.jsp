@@ -13,55 +13,55 @@
 
     <div id="login" class="tab-content">
         <h3>ログイン</h3>
-        <form action="loginServlet" method="post">
+        <form action="/WebApp_GENDA/LoginServlet" method="post">
             <div>
-                <label for="loginId">ID:</label>
-                <input type="text" id="loginId" name="loginId">
+                <label>ID:</label>
+                <input type="text" name="ID">
             </div>
             <div>
-                <label for="loginPassword">パスワード:</label>
-                <input type="password" id="loginPassword" name="loginPassword">
+                <label>パスワード:</label>
+                <input type="password" name="PW">
             </div>
             <button type="submit">ログイン</button>
-            <a href="id.jsp">IDを忘れた場合</a>
-            <a href="pw.jsp">パスワードを忘れた場合</a>
+            <a href="/WebApp_GENDA/IDServlet">IDを忘れた場合</a>
+            <a href="/WebApp_GENDA/PWServlet">パスワードを忘れた場合</a>
         </form>
     </div>
 
     <div id="register" class="tab-content">
         <h3>新規登録</h3>
-        <form action="registerServlet" method="post">
+        <form action="/WebApp_GENDA/INFODisplayServlet" method="post">
         <div>
-                <label for="registerName">氏名:</label>
-                <input type="text" id="registerName" name="registerName">
+                <label>氏名:</label>
+                <input type="text" name="registerName">
             </div>
             <div>
-                <label for="registerId">ID:</label>
-                <input type="text" id="registerId" name="registerId">
+                <label>ID:</label>
+                <input type="text" name="registerId">
             </div>
             <div>
-                <label for="registerPassword">パスワード:</label>
-                <input type="password" id="registerPassword" name="registerPassword">
+                <label>パスワード:</label>
+                <input type="password" name="registerPassword">
             </div>
             <div>
-                <label for="confirmPassword">パスワード確認:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword">
+                <label>パスワード確認:</label>
+                <input type="password" name="confirmPassword">
             </div>
             <div>
-                <label for="employeeNumber">社員番号:</label>
-                <input type="text" id="employeeNumber" name="employeeNumber">
+                <label>社員番号:</label>
+                <input type="text" name="employeeNumber">
             </div>
             <div>
-                <label for="securityQuestion">秘密の質問:</label>
-                <select id="securityQuestion" name="securityQuestion">
+                <label>秘密の質問:</label>
+                <select name="securityQuestion">
                     <option value="1">母の旧姓は？</option>
                     <option value="2">初めて飼ったペットの名前は？</option>
                     <option value="3">初めて作った料理の名前は？</option>
                 </select>
             </div>
             <div>
-                <label for="securityAnswer">質問の答え:</label>
-                <input type="text" id="securityAnswer" name="securityAnswer">
+                <label >質問の答え:</label>
+                <input type="text" name="securityAnswer">
             </div>
             <button type="submit" name="submit_button" value="登録">登録</button>
         </form>

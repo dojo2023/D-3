@@ -31,10 +31,6 @@ public class SQServlet extends HttpServlet {
 			response.sendRedirect("/WebApp_GENDA/LoginServlet");
 			return;
 		}
-
-		// 秘密の質問ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WebApp_GENDA/jsp/sq.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -42,23 +38,30 @@ public class SQServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idf = request.getParameter("idf");
-		String id = request.getParameter("id");
-		String en= request.getParameter("en");
-
-		String sq_id= "";
+		String sq_id = "";
 		//検索処理
 
 		if(idf.equals("1")){
+			String en = request.getParameter("en");
 			USER_INFODao sqDao = new USER_INFODao();
 			USER_INFO user = sqDao.select(en, "");
-
+			if(user.getUser_id().equals("")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				dispatcher.forward(request, response);
+			}
 			sq_id = user.getUser_sq_id();
+			request.setAttribute("en", en);
 		}
 		else if(idf.equals("2")) {
+			String id = request.getParameter("id");
 			USER_INFODao sqDao = new USER_INFODao();
 			USER_INFO user = sqDao.select("", id);
-
+			if(user.getUser_id().equals("")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				dispatcher.forward(request, response);
+			}
 			sq_id = user.getUser_sq_id();
+			request.setAttribute("id", id);
 		}
 
 		USER_SQDao sq = new USER_SQDao();

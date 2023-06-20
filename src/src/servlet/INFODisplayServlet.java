@@ -23,16 +23,14 @@ public class INFODisplayServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public INFODisplayServlet() {
-		super();
-	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 決定した個人情報を表示するページにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -40,12 +38,13 @@ public class INFODisplayServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+
 
 		// 新規登録の場合（新規登録画面で登録ボタンを押したときに表示される）
 		/*新規登録のタブで登録ボタンが押されたら、新規登録の際に記入された、氏名、ID、パスワード、
 		 * 社員番号、秘密の質問とその回答*を取得する*/
-		if(request.getParameter("submit_button").equals("登録")) {
+
+		if(request.getParameter("idf").equals("0")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
@@ -82,33 +81,37 @@ public class INFODisplayServlet extends HttpServlet {
 		// IDを忘れた場合に表示（IDを忘れた場合の画面から秘密の質問画面に推移したのち
 		//送信ボタンを押したときに表示される）
 		/* 秘密の質問画面の送信ボタンを押したらセッションスコープからLOGIN_USER型のLOGIN＿USER属性がもつidを取得*/
-		else if(request.getParameter("submit_button").equals("送信") && request.getParameter("idf").equals("1")) {
-			HttpSession session = request.getSession();
-			String id = ((LOGIN_USER)session.getAttribute("LOGIN_USER")).getId();
+		else if(request.getParameter("idf").equals("1")) {
+
+			request.setCharacterEncoding("UTF-8");
 
 			//入力した質問の答えとuser_idを元に取り出した質問の答えが一致しているか確認し、合っていればそのuser_idをリクエストスコープに格納し、間違っていいればログインページへリダイレクトする
-			String ans = request.getParameter("ansewr");
+			String ans = request.getParameter("answer");
+			String en = request.getParameter("en");
 			String user_sa = "";
 			USER_INFODao saDao = new USER_INFODao();
-			USER_INFO user = saDao.select("", id);
-			user_sa = user.getUser_sa() ;
+			USER_INFO user = saDao.select(en, "");
+			user_sa = user.getUser_sa();
 
-			if (ans == user_sa) {
-				request.setCharacterEncoding("UTF-8"); // 文字コードの設定
+			if (ans.equals(user_sa)) {
+				 // 文字コードの設定
 
 				// リクエストスコープに取得したIDを格納
 				//（INFODisplay.jspでリクエストスコープを利用ため）
-				request.setAttribute("id", id);
+				request.setAttribute("id", user.getUser_id());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
+				dispatcher.forward(request, response);
 			}
 			else {
-				response.sendRedirect("login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				dispatcher.forward(request, response);
 			}
 		}
 
 
 		// PWを忘れた場合に表示（PW再設定画面で送信ボタンを押したときに表示されるもの）
 		/* PW再設定画面で送信ボタンを押したら、入力された新しいパスワードを受け取り、新しいパスワードを登録する。*/
-		else if(request.getParameter("reset").equals("送信")) {
+		else if(request.getParameter("idf").equals("2")) {
 
 			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
@@ -127,8 +130,6 @@ public class INFODisplayServlet extends HttpServlet {
 			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
 			request.setAttribute("pw", pwReset);
 		}
-
-
 	}
 
 }
