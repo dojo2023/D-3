@@ -47,40 +47,6 @@
             margin-bottom: 10px;
         }
     </style>
-    <script>
-        function openModal() {
-            var modal = document.getElementById("newPostModal");
-            modal.classList.add("show");
-        }
-
-        function closeModal() {
-            var modal = document.getElementById("newPostModal");
-            modal.classList.remove("show");
-        }
-
-        function setLinkTitle() {
-            var linkTitle = document.getElementById("post-title").value;
-            var linkElement = document.getElementById("link-title");
-            linkElement.textContent = linkTitle;
-
-            var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes;
-
-            var postTimeElement = document.getElementById("post-time");
-            postTimeElement.textContent = formattedTime;
-
-            closeModal();
-        }
-
-        document.querySelector('#frm').addEventListener('submit', (event) => {
-            const res = window.confirm('本当に投稿してもいいですか？');
-            if (res === false) {
-                event.preventDefault();
-            }
-        }, false);
-    </script>
 
 </head>
 <body>
@@ -94,11 +60,15 @@
     </div>
 </header>
 
+
+
 <div class="category">
-    <form action="category.jsp" method="post">
+    <form action="" method="post">
         <label for="category-select">カテゴリ:</label>
+
     </form>
 </div>
+
 
 <div class="search">
     <form action="" method="get">
@@ -111,30 +81,6 @@
     <p><a href="javascript:openModal()">新規投稿</a></p>
 </div>
 
-<div class="posts">
-    <!-- 投稿の一覧表示 -->
-    <div class="post">
-        <h3 class="create-post"><a href="" id="link1"><span id="link-title1"></span></a></h3>
-        <p> <span id="post-time1"></span></p>
-    </div>
-   <div class="post">
-        <h3 class="create-post"><a href="" id="link2"><span id="link-title2"></span></a></h3>
-        <p><span id="post-time2"></span></p>
-    </div>
-   <div class="post">
-        <h3 class="create-post"><a href="" id="link3"><span id="link-title3"></span></a></h3>
-        <p><span id="post-time3"></span></p>
-    </div>
-    <div class="post">
-        <h3 class="create-post"><a href="" id="link4"><span id="link-title4"></span></a></h3>
-        <p><span id="post-time4"></span></p>
-    </div>
-    <div class="post">
-        <h3 class="create-post"><a href="" id="link5"><span id="link-title5"></span></a></h3>
-        <p><span id="post-time5"></span></p>
-    </div>
-    <!-- 追加の投稿をここに繰り返し表示 -->
-</div>
 
 <div class="pagination">
     <!-- ページボタンの表示 -->
@@ -150,11 +96,12 @@
 <!-- 新規投稿のモーダルウィンドウ -->
 <div id="newPostModal" class="modal">
     <div class="modal-content">
-        <form action="" id="frm" method="post" onsubmit="return setLinkTitle()">
+        <form action="PosterServlet"  method="post" onsubmit="return setLinkTitle()">
             <label for="post-title">タイトル:</label>
             <input type="text" id="post-title" name="title" required>
 
-            <label for="post-category">カテゴリ:</label>
+
+            <label>カテゴリ:</label>
 
             <p>匿名または実名:</p>
             <input type="radio" id="anonymous" name="author" value="anonymous" checked>
@@ -181,7 +128,8 @@
 </div>
 
 <script>
-    function openModal() {
+
+ function openModal() {
         var modal = document.getElementById("newPostModal");
         modal.style.display = "flex";
         setTimeout(function () {
@@ -190,6 +138,14 @@
     }
 
     function closeModal() {
+        document.getElementById("post-title").value = "";
+        document.getElementById("post-content").value = "";
+
+        var hashtags = document.getElementsByClassName("hashtags")[0].getElementsByTagName("input");
+        for (var i = 0; i < hashtags.length; i++) {
+            hashtags[i].value = "";
+            }
+
         var modal = document.getElementById("newPostModal");
         modal.classList.remove("show");
         setTimeout(function () {
@@ -197,34 +153,7 @@
         }, 300);
     }
 
-    function setLinkTitle() {
-        var linkTitle = document.getElementById("post-title").value;
-        var linkElement = document.getElementById("link-title1");
-        linkElement.textContent = linkTitle;
 
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes;
-
-        var postTimeElement = document.getElementById("post-time1");
-        postTimeElement.textContent = formattedTime;
-
-        closeModal(); // 追加: 投稿後にモーダルを閉じる
-
-        return false; // 追加: フォームのデフォルトの送信をキャンセル
-    }
-
-    document.querySelector("#btn").addEventListener("click", () => {
-        document.querySelector("#frm").requestSubmit();
-    }, false);
-
-    document.querySelector("#frm").addEventListener("submit", (event) => {
-        const res = window.confirm("本当に投稿してもいいですか？");
-        if (res === false) {
-            event.preventDefault();
-        }
-    }, false);
 </script>
 
 </body>
