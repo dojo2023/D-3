@@ -2325,3 +2325,35 @@ INSERT INTO "PUBLIC"."REPORT"("REPORT_ID","REPLY_ID","POSTER_ID")VALUES(?,?,?) [
 org.h2.jdbc.JdbcSQLDataException: データ変換中にエラーが発生しました "'' (REPORT: ""REPORT_ID"" INT DEFAULT NEXT VALUE FOR ""PUBLIC"".""SYSTEM_SEQUENCE_626BF8D0_6451_4579_BC1D_DE7A0D13F138"" NOT NULL NULL_TO_DEFAULT SEQUENCE ""PUBLIC"".""SYSTEM_SEQUENCE_626BF8D0_6451_4579_BC1D_DE7A0D13F138"")"
 Data conversion error converting "'' (REPORT: ""REPORT_ID"" INT DEFAULT NEXT VALUE FOR ""PUBLIC"".""SYSTEM_SEQUENCE_626BF8D0_6451_4579_BC1D_DE7A0D13F138"" NOT NULL NULL_TO_DEFAULT SEQUENCE ""PUBLIC"".""SYSTEM_SEQUENCE_626BF8D0_6451_4579_BC1D_DE7A0D13F138"")"; SQL statement:
 INSERT INTO "PUBLIC"."REPORT"("REPORT_ID","REPLY_ID","POSTER_ID")VALUES(?,?,?) [22018-200]
+2023-06-20 10:29:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW TABLE[*] USER_SQ"
+Syntax error in SQL statement "SHOW TABLE[*] USER_SQ"; SQL statement:
+SHOW TABLE USER_SQ [42000-200]
+2023-06-20 10:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW TABLES USER_SQ[*]"
+Syntax error in SQL statement "SHOW TABLES USER_SQ[*]"; SQL statement:
+SHOW TABLES USER_SQ [42000-200]
+2023-06-20 11:37:21 jdbc[4]: null
+org.h2.message.DbException: アプリケーションにより閉じられていない接続がガベージコレクトされました
+The connection was not closed by the application and is garbage collected [90018-200]
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:245)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:186)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:309)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:289)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:785)
+	at org.h2.server.web.WebApp.login(WebApp.java:1008)
+	at org.h2.server.web.WebApp.process(WebApp.java:223)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebThread.process(WebThread.java:139)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: アプリケーションにより閉じられていない接続がガベージコレクトされました
+The connection was not closed by the application and is garbage collected [90018-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 16 more
