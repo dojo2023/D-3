@@ -76,9 +76,24 @@ public class USER_INFODao {
 	  USER_INFO user = user_dao.insert("D029", "小神野", "ogamino0817", "password", "1", "千葉");
 	以上で指定したデータが入ったレコードがUSER_INFOテーブルに格納される
 	*/
-	public boolean insert(String en, String name, String id, String pw, String sq, String sa) {
+	public String insert(String en, String name, String id, String pw, String sq, String sa) {
 		Connection conn = null;
-		boolean result = false;
+		String result = "false";
+
+		USER_INFODao user_dao = new USER_INFODao();
+		USER_INFO user_en = user_dao.select(en, "");
+		USER_INFO user_id = user_dao.select("", id);
+
+		if(!user_en.getUser_en().equals("") && !user_id.getUser_id().equals("")) {
+			result = "入力した社員番号とIDは既に使われています。";
+			return result;
+		} else if(!user_en.getUser_en().equals("")) {
+			result = "入力した社員番号は既に使われています。";
+			return result;
+		} else if(!user_id.getUser_id().equals("")) {
+			result = "入力したIDは既に使われています。";
+			return result;
+		}
 
 		try {
 			// JDBCドライバを読み込む
@@ -143,7 +158,7 @@ public class USER_INFODao {
 
 			//SQL文を実行する
 			if(pStmt.executeUpdate() == 1) {
-				result = true;
+				result = "true";
 			}
 		}
 		catch (SQLException e) {

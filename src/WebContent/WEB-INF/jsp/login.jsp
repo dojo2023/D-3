@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 
     <div id="register" class="tab-content">
         <h3>新規登録</h3>
-        <form action="/WebApp_GENDA/INFODisplayServlet" method="post">
+        <form action="/WebApp_GENDA/InformationCheckServlet" method="post">
             <label>氏名:</label>
             <input type="text" name="registerName">
             <label>ID:</label>
@@ -41,13 +42,15 @@
             <input type="text" name="employeeNumber">
             <label>秘密の質問:</label>
             <select name="securityQuestion">
-                <option value="1">母の旧姓は？</option>
-                <option value="2">初めて飼ったペットの名前は？</option>
-                <option value="3">初めて作った料理の名前は？</option>
+            <% String[] sq_list = (String[])request.getAttribute("sq_list"); %>
+                <option value="1"><%= sq_list[0] %></option>
+                <option value="2"><%= sq_list[1] %></option>
+                <option value="3"><%= sq_list[2] %></option>
+                <option value="4"><%= sq_list[3] %></option>
+                <option value="5"><%= sq_list[4] %></option>
             </select>
             <label>質問の答え:</label>
             <input type="text" name="securityAnswer">
-            <input type="hidden" name="idf" value="0">
             <button type="submit" name="submit_button" value="登録">登録</button>
         </form>
     </div>

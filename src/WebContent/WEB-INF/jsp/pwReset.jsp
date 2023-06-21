@@ -19,7 +19,7 @@
 	<input type="text" name="confirmPassword" placeholder="パスワードの確認">
 	<input type="hidden" name="idf" value="2">
 	<input type="submit" name="reset" value="送信">
-	<a href="/WebApp_GENDA/LoginServlet">ログインへ戻る</a>
+	<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>
 </form>
 
 </body>

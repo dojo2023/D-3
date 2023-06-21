@@ -34,6 +34,6 @@
 			formaction="/WebApp_GENDA/PWServlet">
 		<% } %>
 	</form>
-	<a href="/WebApp_GENDA/LoginServlet">ログイン画面に戻る</a>
+	<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>
 </body>
 </html>

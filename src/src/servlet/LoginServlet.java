@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.USER_INFODao;
+import dao.USER_SQDao;
 //49行目を作った時に一緒に作成、ログインユーザーのモデルをインポート
 import model.LOGIN_USER;
 /**
@@ -31,7 +32,11 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		USER_SQDao sq_dao = new USER_SQDao();
+		String[] sq_list = {sq_dao.SQ_return("1"), sq_dao.SQ_return("2"), sq_dao.SQ_return("3"), sq_dao.SQ_return("4"), sq_dao.SQ_return("5")};
+		request.setAttribute("sq_list", sq_list);
+
 		// ログインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
@@ -58,7 +63,9 @@ public class LoginServlet extends HttpServlet {
 					// トップサーブレットにリダイレクトする
 					response.sendRedirect("/WebApp_GENDA/TopServlet");
 				}else {
-				    response.sendRedirect("/WebApp_GENDA/LoginServlet");
+					request.setAttribute("err_sen","IDまたはパスワードが違います。");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+					dispatcher.forward(request, response);
 				}
 	}
 }

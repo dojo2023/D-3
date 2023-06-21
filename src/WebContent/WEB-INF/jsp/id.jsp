@@ -16,7 +16,7 @@
 			<input type="text" name="en" placeholder="社員番号を入力してください">
 			<input type="hidden" name="idf" value="1">
 			<input type="submit" value="送信">
-			<a href="/WebApp_GENDA/LoginServlet">ログインへ戻る</a>
+			<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>
 		</form>
 </body>
 </html>

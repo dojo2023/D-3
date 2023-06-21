@@ -7,10 +7,10 @@ String registerName = (String) request.getAttribute("registerName"); // INFODisp
 String registerId = (String) request.getAttribute("registerId"); // INFODisplayServletでリクエストスコープに格納した「registerId（ID）」を取得
 String registerPassword = (String) request.getAttribute("registerPassword"); // INFODisplayServletでリクエストスコープに格納した「registerPassword（PW）」を取得
 String employeeNumber = (String) request.getAttribute("employeeNumber"); // INFODisplayServletでリクエストスコープに格納した「employeeNumber（社員番号）」を取得
-String SQsentence = (String) request.getAttribute("SQsentence"); // INFODisplayServletでリクエストスコープに格納した「securityQuestion（秘密の質問）」を取得
+String securityQuestion = (String) request.getAttribute("securityQuestion"); // INFODisplayServletでリクエストスコープに格納した「securityQuestion（秘密の質問）」を取得
+String SQsentence = (String) request.getAttribute("SQsentence");
 String securityAnswer = (String) request.getAttribute("securityAnswer"); // INFODisplayServletでリクエストスコープに格納した「securityAnswer（秘密の質問の回答）」を取得
 String idf = (String) request.getAttribute("idf");
-String headline = (String) request.getAttribute("headline");
 
 // ID忘れの際に表示するIDをリクエストスコープから取得（INFODisplayServlet.javaで格納してある）
 String id = (String) request.getAttribute("id"); // INFODisplayServletでリクエストスコープに格納した「id（ID）」を取得
@@ -23,13 +23,13 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <html>
 <head>
 <meta charset="UTF-8">
-<title> ユーザ情報の表示 </title>
+<title> 入力情報の確認 </title>
 </head>
 <body>
 	<div class="logo">
 		<img src="https://placehold.jp/300x50.png">
 	</div>
-		<h2><%=headline%></h2>
+		<h2> 入力した情報は以下でお間違いないですか？ </h2>
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
 		<div id="newDisplay">
@@ -44,20 +44,24 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 			<p> 秘密の質問：<%=SQsentence%> </p>
 
 			<p>秘密の質問の回答：<%=securityAnswer%></p>
-		</div>
-		<% } %>
-
-		<% if (idf.equals("1")) { %>
-		<!-- IDを忘れた場合に表示するもの -->
-		<div id="idDisplay">
-			<p>ID：<%=id%></p>
+			<form>
+				<input type="hidden" name="registerName" value="${registerName}">
+				<input type="hidden" name="registerId" value="${registerId}">
+				<input type="hidden" name="registerPassword" value="${registerPassword}">
+				<input type="hidden" name="employeeNumber" value="${employeeNumber}">
+				<input type="hidden" name="securityQuestion" value="${securityQuestion}">
+				<input type="hidden" name="securityAnswer" value="${securityAnswer}">
+				<input type="hidden" name="idf" value="${idf}">
+				<input type="submit" name="submit_button" value="登録" formmethod="POST" formaction="/WebApp_GENDA/INFODisplayServlet">
+				<input type="submit" name="cancel_button" value="キャンセル" formmethod="GET" formaction="/WebApp_GENDA/LoginServlet">
+			</form>
 		</div>
 		<% } %>
 
 		<% if (idf.equals("2")) { %>
 		<!-- PWを忘れた場合に表示するもの -->
 		<div id="pwDisplay">
-			<p>再設定したパスワード：<%=pw%></p>
+			<p>再設定するパスワード：<%=pw%></p>
 		</div>
 		<% } %>
 

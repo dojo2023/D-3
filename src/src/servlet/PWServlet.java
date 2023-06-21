@@ -59,7 +59,8 @@ public class PWServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				request.setAttribute("err_sen", "秘密の質問の回答が違います。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}
 	}
