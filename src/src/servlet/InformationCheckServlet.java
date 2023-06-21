@@ -52,6 +52,12 @@ public class InformationCheckServlet extends HttpServlet {
 		String SQsentence = sq_dao.SQ_return(securityQuestion);
 
 		if(!registerPassword.equals(confirmPassword)) {
+			request.setAttribute("registerName", registerName);
+			request.setAttribute("registerId", registerId);
+			request.setAttribute("employeeNumber", employeeNumber);
+			request.setAttribute("securityQuestion", securityQuestion);
+			request.setAttribute("securityAnswer", securityAnswer);
+			request.setAttribute("err_idf", "5");
 			request.setAttribute("err_sen", "入力した2つのパスワードが一致していません。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);

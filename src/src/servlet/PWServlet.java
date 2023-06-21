@@ -53,13 +53,15 @@ public class PWServlet extends HttpServlet {
 			user_sa = user.getUser_sa();
 
 			if (ans.equals(user_sa)) {
-				// PW忘れた人用のページにフォワード
 				request.setAttribute("id", user.getUser_id());
+				request.setAttribute("ans", ans);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pwReset.jsp");
 				dispatcher.forward(request, response);
 			}
 			else {
 				request.setAttribute("err_sen", "秘密の質問の回答が違います。");
+				request.setAttribute("err_idf", "3");
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}

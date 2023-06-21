@@ -12,11 +12,13 @@
 <form action="/WebApp_GENDA/INFODisplayServlet" method="POST">
 	<% String id = (String)request.getAttribute("id"); %>
 	<input type="hidden" name="id" value="${id}">
+	<% String ans = (String)request.getAttribute("ans"); %>
+	<input type="hidden" name="ans" value="${ans}">
 	<p>新規パスワードを入力して下さい</p>
-	<input type="text" name="newPassword" placeholder="新規パスワード">
+	<input type="text" name="newPassword" placeholder="新規パスワード" required>
 
 	<p>確認</p>
-	<input type="text" name="confirmPassword" placeholder="パスワードの確認">
+	<input type="text" name="confirmPassword" placeholder="パスワードの確認" required>
 	<input type="hidden" name="idf" value="2">
 	<input type="submit" name="reset" value="送信">
 	<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>

@@ -13,7 +13,7 @@
 
 		<form action="/WebApp_GENDA/SQServlet" method="POST">
 			<p>IDを入力してください</p>
-			<input type="text" name="id" placeholder="IDを入力してください">
+			<input type="text" name="id" placeholder="IDを入力してください" required>
 			<input type="hidden" name="idf" value="2">
 			<input type="submit" value="送信">
 			<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>

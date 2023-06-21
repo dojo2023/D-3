@@ -47,6 +47,7 @@ public class SQServlet extends HttpServlet {
 			USER_INFO user = sqDao.select(en, "");
 			if(user.getUser_id().equals("")) {
 				request.setAttribute("err_sen", "未登録の社員番号が入力されました。");
+				request.setAttribute("err_idf", "0");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -59,6 +60,7 @@ public class SQServlet extends HttpServlet {
 			USER_INFO user = sqDao.select("", id);
 			if(user.getUser_en().equals("")) {
 				request.setAttribute("err_sen", "未登録のIDが入力されました。");
+				request.setAttribute("err_idf", "1");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}

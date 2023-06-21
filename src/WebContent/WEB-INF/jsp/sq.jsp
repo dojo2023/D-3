@@ -16,7 +16,7 @@
 	<header> 中庭掲示板 </header>
 	<p>秘密の質問</p><br><%=sq_name%>
 	<form method="POST">
-		 秘密の回答 <input type="text" name="answer"><br>
+		 秘密の回答 <input type="text" name="answer" required><br>
 
 		<% String idf = (String)request.getAttribute("idf");
 		if(idf.equals("1")) { %>
@@ -29,7 +29,7 @@
 		<% }else if (idf.equals("2")) {%>
 			<!-- pw再設定画面へ送信する -->
 			<% String id = (String)request.getAttribute("id"); %>
-			<input type="hidden" name="id" value=${id}>
+			<input type="hidden" name="id" value="${id}">
 			<input type="submit" name="submit_button" value="送信"
 			formaction="/WebApp_GENDA/PWServlet">
 		<% } %>

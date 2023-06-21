@@ -122,6 +122,8 @@ public class INFODisplayServlet extends HttpServlet {
 			}
 			else {
 				request.setAttribute("err_sen", "秘密の質問の回答が違います。");
+				request.setAttribute("err_idf", "2");
+				request.setAttribute("en", en);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -137,8 +139,12 @@ public class INFODisplayServlet extends HttpServlet {
 			String newPassword = request.getParameter("newPassword"); // 「pwReset」というname属性をもつテキストボックスから新しいパスワードを取得し、String型の変数pwResetに代入
 			String confirmPassword = request.getParameter("confirmPassword");
 			String id = request.getParameter("id");
+			String ans = request.getParameter("ans");
 			if(!newPassword.equals(confirmPassword)) {
 				request.setAttribute("err_sen", "入力した2つのパスワードが一致していません。");
+				request.setAttribute("err_idf", "4");
+				request.setAttribute("id", id);
+				request.setAttribute("ans", ans);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}
