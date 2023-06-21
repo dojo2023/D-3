@@ -61,37 +61,40 @@
 </header>
 
 
+<!-- カテゴリー表示 -->
+	<div class="category">
+    	<p>カテゴリ:<p>
 
-<div class="category">
-    <form action="" method="post">
-        <label for="category-select">カテゴリ:</label>
+    	<c:forEach var="categoryName" items="${category_name}">
+        <form>
+            <input type="hidden" name="c_name" value="${categoryName}">
+        </form>
+    	</c:forEach>
+	</div>
 
-    </form>
-</div>
 
-
-<div class="search">
-    <form action="" method="get">
+	<div class="search">
+    	<form action="" method="get">
         <input type="text" name="keyword" placeholder="キーワードを入力してください">
         <button type="submit">検索</button>
     </form>
-</div>
+	</div>
 
-<div class="create-post">
-    <p><a href="javascript:openModal()">新規投稿</a></p>
-</div>
+	<div class="create-post">
+    	<p><a href="javascript:openModal()">新規投稿</a></p>
+	</div>
 
 
-<div class="pagination">
     <!-- ページボタンの表示 -->
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <!-- 必要な数のページボタンを表示 -->
-</div>
+	<div class="pagination">
+    	<a href="#">1</a>
+    	<a href="#">2</a>
+    	<a href="#">3</a>
+    	<a href="#">4</a>
+    	<a href="#">5</a>
+    	<a href="#">6</a>
+	</div>
+	<!-- 必要な数のページボタンを表示 -->
 
 <!-- 新規投稿のモーダルウィンドウ -->
 <div id="newPostModal" class="modal">
@@ -101,31 +104,39 @@
             <input type="text" id="post-title" name="title" required>
 
 
-            <label>カテゴリ:</label>
+	<div class="category">
+    	<p>カテゴリ:<p>
 
-            <p>匿名または実名:</p>
-            <input type="radio" id="anonymous" name="author" value="anonymous" checked>
-            <label for="anonymous">匿名</label>
-            <input type="radio" id="realname" name="author" value="realname">
-            <label for="realname">実名</label>
+    	<c:forEach var="categoryName" items="${category_name}">
+        <form>
+            <input type="hidden" name="c_name" value="${categoryName}">
+        </form>
+    	</c:forEach>
+	</div>
 
-            <div class="hashtags">
-                <p>ハッシュタグ :</p>
-                <input type="text" name="hashtag1" maxlength="20">
-                <input type="text" name="hashtag2" maxlength="20">
-                <input type="text" name="hashtag3" maxlength="20">
-                <input type="text" name="hashtag4" maxlength="20">
-                <input type="text" name="hashtag5" maxlength="20">
-            </div>
+	<p>匿名または実名:</p>
+    	<input type="radio" id="anonymous" name="author" value="anonymous" checked>
+    	<label for="anonymous">匿名</label>
+    	<input type="radio" id="realname" name="author" value="realname">
+        <label for="realname">実名</label>
 
-            <label for="post-content">本文:</label>
+    <div class="hashtags">
+         <p>ハッシュタグ :</p>
+         	<input type="text" name="hashtag1" maxlength="20">
+            <input type="text" name="hashtag2" maxlength="20">
+            <input type="text" name="hashtag3" maxlength="20">
+            <input type="text" name="hashtag4" maxlength="20">
+            <input type="text" name="hashtag5" maxlength="20">
+     </div>
+
+     <label for="post-content">本文:</label>
             <textarea id="post-content" name="content" rows="5" required></textarea>
 
             <button type="submit" onclick="setLinkTitle()">投稿</button>
-        </form>
+      </form>
         <button type="button" id="btn" onclick="closeModal()">キャンセル</button>
+        </div>
     </div>
-</div>
 
 <script>
 

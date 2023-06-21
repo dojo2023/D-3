@@ -40,9 +40,17 @@ public class PosterServlet extends HttpServlet {
     	String CATEGORY_NAME = "カテゴリ名1";
 
     	// 検索処理を行う、質問だけ取り出す。応募だけ取り出す処理
-    			POSTERDao dao = new POSTERDao();
+    	//そのカテゴリー名の一覧を持ってきたいから、POSTERDaoを使う
+    	//
 
-    			 List<POSTER> post = dao.select(0, 1);
+    			POSTERDao dao = new POSTERDao();
+    			List<POSTER> post = dao.select(0, 1);
+
+    			POSTERDao C_dao = new POSTERDao();
+    			List<String> result = C_dao.select();
+
+    		//画面の上部にカテゴリを表示させるために、jspに送るコード
+				request.setAttribute("category_name", result);
 
 
     			// 取得した投稿をリクエストスコープに保存
@@ -50,11 +58,14 @@ public class PosterServlet extends HttpServlet {
     			 request.setAttribute("posterList", post);
     			 request.setAttribute("categoryname", CATEGORY_NAME);
 
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/poster.jsp");
         dispatcher.forward(request, response);
     }
 
-    /**
+
+
+	/**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
