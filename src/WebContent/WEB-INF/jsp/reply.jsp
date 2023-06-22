@@ -4,10 +4,14 @@
 	pageEncoding="UTF-8"%>
 
 <%
-POSTER posterList = (POSTER) request.getAttribute("posterList");
+//リクエストスコープからデータを取得
+POSTER poster = (POSTER) request.getAttribute("posterList");
+POSTER reply  = (POSTER) request.getAttribute("replyList");
 String id = (String) request.getAttribute("id");
 String postUserId = (String) request.getAttribute("postUserId");
 String replyUserId = (String) request.getAttribute("replyUserId");
+int userNameSwitch = (int) request.getAttribute("userNameSwitch");
+//どこのページから遷移してきたかを確認する際に使用
 String referer = request.getHeader("Referer");
 %>
 
@@ -26,51 +30,36 @@ String referer = request.getHeader("Referer");
 	%>
 	<div id="newPostModal" class="modal">
 		<div class="modal-content">
-			<p id="post-title">タイトル:${posterList.TITLE}</p>
+			<p id="post-title">タイトル:<%=posterList.getTITLE() %></p>
 
-			<p id="category">カテゴリ:${posterList.CATEGORY_ID}</p>
+			<p id="category">カテゴリ:<%=posterList.getCATEGORY_ID()%></p>
 
-			<%if (userNameSwitch == 0) {
-				%>
+			<%if (userNameSwitch == 0) {%>
 			<p id="post-user_name">
-				投稿者名:
-				<!-- ${} -->
-				実名
+				投稿者名:実名
 			</p>
-			<%
-			}else if(userNameSwitch == 1){
-				%>
+			<%}else if(userNameSwitch == 1){%>
 			<p id="post-user_name">
-				投稿者名:
-				<!-- ${} -->
-				匿名
+				投稿者名:匿名
 			</p>
-			<%
-			}
-			%>
+			<%}%>
 
-			<p id="post-time">投稿日時:${posterList.POSTED_DATE}</p>
+			<p id="post-time">投稿日時:<%=posterList.getPOSTED_DATE()%></p>
 
-			<%
-				if (id.equals(postUserId)) {
-			%>
+			<%if (id.equals(postUserId)) {%>
 			<form action="ReplyServlet" method="post">
 				<input type="hidden" name="delete_post_id" value="削除する投稿ID">
 				<button type="submit">削除</button>
 			</form>
-			<%
-				} else if (!id.equals(postUserId)) {
-			%>
+			<%} else if (!id.equals(postUserId)) {%>
 			<form action="ReportServlet" method="post">
 				<input type="hidden" name="report_post_id" value="通報する投稿ID">
 				<button type="submit">通報</button>
 			</form>
-			<%
-				}
-			%>
-			<p id="hashtags">ハッシュタグ:${posterList.HASHTAGS_ID1}${posterList.HASHTAGS_ID2}${posterList.HASHTAGS_ID3}${posterList.HASHTAGS_ID4}${posterList.HASHTAGS_ID5}</p>
+			<%}%>
+			<p id="hashtags">ハッシュタグ:<%=posterList.getHASHTAGS_ID1()%><%=posterList.getHASHTAGS_ID2()%><%=posterList.getHASHTAGS_ID3()%><%=posterList.getHASHTAGS_ID4()%><%=posterList.getHASHTAGS_ID5()%></p>
 
-			<p id="post-content">本文：${posterList.MAIN_SENTENCE}</p>
+			<p id="post-content">本文：<%=posterList.getMAIN_SENTENCE()%></p>
 		</div>
 	</div>
 
@@ -94,46 +83,31 @@ String referer = request.getHeader("Referer");
 		<!-- 返信文の表示・匿名or実名の表示、削除or通報ボタンの表示 -->
 		<c:forEach items="${replyList}" var="reply">
 			<div class="reply_list">
-				<p id="reply_time">返信日時：${reply.REPLIED_DATE}</p>
+				<p id="reply_time">返信日時：<%=reply.getREPLIED_DATE()%></p>
 
-				<p id="reply-content">${reply.REPLY_SENTENCE}</p>
+				<p id="reply-content"><%=reply.getREPLY_SENTENCE()%></p>
 
-				<%if (userNameSwitch == 0) {
-				%>
+				<%if (userNameSwitch == 0) {%>
 				<p id="post-user_name">
-					投稿者名:
-					<!-- ${} -->
-					実名
+					投稿者名:実名
 				</p>
-				<%
-			}else if(userNameSwitch == 1){
-				%>
+				<%}else if(userNameSwitch == 1){%>
 				<p id="post-user_name">
-					投稿者名:
-					<!-- ${} -->
-					匿名
+					投稿者名:匿名
 				</p>
-				<%
-			}
-			%>
+				<%}%>
 
-				<%
-				if (id.equals(postUserId)) {
-			%>
+				<%if (id.equals(postUserId)) {%>
 				<form action="ReplyServlet" method="post">
 					<input type="hidden" name="delete_post_id" value="削除する投稿ID">
 					<button type="submit">削除</button>
 				</form>
-				<%
-				} else if (!id.equals(postUserId)) {
-			%>
+				<%} else if (!id.equals(postUserId)) {%>
 				<form action="ReportServlet" method="post">
 					<input type="hidden" name="report_post_id" value="通報する投稿ID">
 					<button type="submit">通報</button>
 				</form>
-				<%
-				}
-			%>
+				<%}%>
 			</div>
 		</c:forEach>
 	</div>
@@ -143,78 +117,53 @@ String referer = request.getHeader("Referer");
 	%>
 	<div id="newPostModal" class="modal">
 		<div class="modal-content">
-			<p id="post-title">タイトル:${posterList.TITLE}</p>
+			<p id="post-title">タイトル:<%=posterList.getTITLE() %></p>
 
-			<p id="category">カテゴリ:${posterList.CATEGORY_ID}</p>
+			<p id="category">カテゴリ:<%=posterList.getCATEGORY_ID()%></p>
 
-			<p id="post-user-id">投稿者ID：${postUserId}</p>
+			<p id="post-user-id">投稿者ID：<%=postUserId %></p>
 
-			<%if (userNameSwitch == 0) {
-				%>
+			<%if (userNameSwitch == 0) {%>
 			<p id="post-user_name">
-				投稿者名:
-				<!-- ${} -->
-				実名
+				投稿者名:実名
 			</p>
-			<%
-			}else if(userNameSwitch == 1){
-				%>
+			<%}else if(userNameSwitch == 1){%>
 			<p id="post-user_name">
-				投稿者名:
-				<!-- ${} -->
-				匿名
+				投稿者名:匿名
 			</p>
-			<%
-			}
-			%>
+			<%}%>
 
-			<p id="post-time">投稿日時:${posterList.POSTED_DATE}</p>
+			<p id="post-time">投稿日時:<%=posterList.getPOSTED_DATE%></p>
 
 			<form action="ReportServlet" method="post">
 				<input type="hidden" name="Identify_name" value="USER_NAME_SWITCH変更">
 				<button type="submit">匿名はがしちゃうよ</button>
 			</form>
 
-			<p id="hashtags">ハッシュタグ:
-			<p id="hashtags">ハッシュタグ:${posterList.HASHTAGS_ID1}${posterList.HASHTAGS_ID2}${posterList.HASHTAGS_ID3}${posterList.HASHTAGS_ID4}${posterList.HASHTAGS_ID5}</p>
+			<p id="hashtags">ハッシュタグ:<%=posterList.getHASHTAGS_ID1()%><%=posterList.getHASHTAGS_ID2()%><%=posterList.getHASHTAGS_ID3()%><%=posterList.getHASHTAGS_ID4()%><%=posterList.getHASHTAGS_ID5()%></p>
 
-			<p id="post-content">本文：${posterList.MAIN_SENTENCE}</p>
+			<p id="post-content">本文：<%=posterList.getMAIN_SENTENCE()%></p>
 		</div>
 
-		<c:forEach items="${replyList}" var="reply">
+		<c:forEach items="<%=replyList%>" var="reply">
 			<div class="reply_list">
-				<% if (REPORTデータベースに格納されている返信ID.contains(返信ID)) {
-				%>
-				<!-- 通報された返信の！マーク -->
-				<img src="">
-				<%
-				}
-			 %>
 
-				<p id="reply_time">返信日時：${reply.REPLIED_DATE}</p>
 
-				<p id="reply-content">${reply.REPLY_SENTENCE}</p>
+				<p id="reply_time">返信日時：<%=replyList.getREPLIED_DATE()%></p>
 
-				<p id="reply-user-id">返信者ID：${replyUserId}</p>
+				<p id="reply-content"><%=replyList.getREPLY_SENTENCE()%></p>
 
-				<%if (userNameSwitch == 0) {
-				%>
-				<p id="post-user_name">
-					投稿者名:
-					<!-- ${} -->
-					実名
-				</p>
-				<%
-			}else if(userNameSwitch == 1){
-				%>
-				<p id="post-user_name">
-					投稿者名:
-					<!-- ${} -->
-					匿名
-				</p>
-			<%
-			}
-			%>
+				<p id="reply-user-id">返信者ID：<%=replyUserId()%></p>
+
+				<%if (userNameSwitch == 0) {%>
+			<p id="post-user_name">
+				投稿者名:実名
+			</p>
+			<%}else if(userNameSwitch == 1){%>
+			<p id="post-user_name">
+				投稿者名:匿名
+			</p>
+			<%}%>
 				<form action="ReportServlet" method="post">
 					<input type="hidden" name="Identify_name"
 						value="USER_NAME_SWITCH変更">
