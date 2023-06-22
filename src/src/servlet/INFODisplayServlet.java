@@ -59,18 +59,45 @@ public class INFODisplayServlet extends HttpServlet {
 			String result = dao.insert(employeeNumber, registerName, registerId, registerPassword, securityQuestion, securityAnswer);
 			if(result.equals("false")) {
 				request.setAttribute("err_sen", "ユーザ情報の登録に失敗しました。");
+				request.setAttribute("err_idf", "9");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
-			} else if(result.equals("入力した社員番号とIDは既に使われています。")) {
+			}
+			else if(result.equals("入力した社員番号とIDは既に使われています。")) {
 				request.setAttribute("err_sen", result);
+				request.setAttribute("err_idf", "6");
+
+				request.setAttribute("registerName", registerName);
+				request.setAttribute("registerPassword", registerPassword);
+				request.setAttribute("securityQuestion", securityQuestion);
+				request.setAttribute("securityAnswer", securityAnswer);
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
-			} else if(result.equals("入力した社員番号は既に使われています。")) {
+			}
+			else if(result.equals("入力した社員番号は既に使われています。")) {
 				request.setAttribute("err_sen", result);
+				request.setAttribute("err_idf", "7");
+
+				request.setAttribute("registerName", registerName);
+				request.setAttribute("registerId", registerId);
+				request.setAttribute("registerPassword", registerPassword);
+				request.setAttribute("securityQuestion", securityQuestion);
+				request.setAttribute("securityAnswer", securityAnswer);
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
-			} else if(result.equals("入力したIDは既に使われています。")) {
+			}
+			else if(result.equals("入力したIDは既に使われています。")) {
 				request.setAttribute("err_sen", result);
+				request.setAttribute("err_idf", "8");
+
+				request.setAttribute("registerName", registerName);
+				request.setAttribute("registerPassword", registerPassword);
+				request.setAttribute("employeeNumber", employeeNumber);
+				request.setAttribute("securityQuestion", securityQuestion);
+				request.setAttribute("securityAnswer", securityAnswer);
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -154,8 +181,14 @@ public class INFODisplayServlet extends HttpServlet {
 			user.setUser_pw(newPassword); // 変数userのもつpwに更新したいpwResetを代入
 
 			USER_INFODao user_dao = new USER_INFODao(); // USER_INFODao型の変数user_daoを定義し、空のUSER_INFODaoを代入
-			user_dao.update(user); // user_daoのidとpwを更新（idは誰を更新するのかの識別に使ったため、更新されるのはpwのみ）
+			boolean result = user_dao.update(user); // user_daoのidとpwを更新（idは誰を更新するのかの識別に使ったため、更新されるのはpwのみ）
 
+			if(result == false) {
+				request.setAttribute("err_sen", "ユーザ情報の登録に失敗しました。");
+				request.setAttribute("err_idf", "9");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+				dispatcher.forward(request, response);
+			}
 			// リクエストスコープに取得したpwResetを格納
 			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
 			request.setAttribute("pw", newPassword);
