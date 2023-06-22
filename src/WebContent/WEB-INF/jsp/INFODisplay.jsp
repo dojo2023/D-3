@@ -26,6 +26,7 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <title> ユーザ情報の表示 </title>
 </head>
 <body>
+<div class="box">
 	<div class="logo">
 		<img src="https://placehold.jp/300x50.png">
 	</div>
@@ -33,34 +34,35 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
 		<div id="newDisplay">
-			<p>氏名：<%=registerName%></p>
+			<p class="name">氏名：<%=registerName%></p>
 
-			<p>ID：<%=registerId%></p>
+			<p class="userId">ID：<%=registerId%></p>
 
-			<p>パスワード：<%=registerPassword%></p>
+			<p class="pw">パスワード：<%=registerPassword%></p>
 
-			<p>社員番号：<%=employeeNumber%></p>
+			<p class="en">社員番号：<%=employeeNumber%></p>
 
-			<p> 秘密の質問：<%=SQsentence%> </p>
+			<p class="sq"> 秘密の質問：<%=SQsentence%> </p>
 
-			<p>秘密の質問の回答：<%=securityAnswer%></p>
+			<p  class="sa">秘密の質問の回答：<%=securityAnswer%></p>
 		</div>
 		<% } %>
 
 		<% if (idf.equals("1")) { %>
 		<!-- IDを忘れた場合に表示するもの -->
 		<div id="idDisplay">
-			<p>ID：<%=id%></p>
+			<p class="text">ID：<%=id%></p>
 		</div>
 		<% } %>
 
 		<% if (idf.equals("2")) { %>
 		<!-- PWを忘れた場合に表示するもの -->
 		<div id="pwDisplay">
-			<p>再設定したパスワード：<%=pw%></p>
+			<p class="text">再設定したパスワード：<%=pw%></p>
 		</div>
 		<% } %>
 
-		<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>
+		<a href="/WebApp_GENDA/LoginServlet" class="loginBack">ログイン画面へ戻る</a>
+</div>
 </body>
 </html>
