@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>掲示板</title>
+    <link rel="stylesheet" href="./css/beforeLogin.css">
     <style>
         /* 共通のスタイル */
         /* 省略 */
