@@ -8,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.USER_INFODao;
+import model.LOGIN_USER;
+import model.USER_INFO;
 
 /**
  * Servlet implementation class OgaminoTestServlet
@@ -28,9 +33,17 @@ public class OgaminoTestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_test.jsp");
-		dispatcher.forward(request, response);
+
+		String id = "idd";
+		HttpSession session = request.getSession();
+        session.setAttribute("LOGIN_USER", new LOGIN_USER(id));
+		USER_INFODao userDao = new USER_INFODao();
+		USER_INFO user = userDao.select("", id);
+		request.setAttribute("userMode", user.getUser_mode_switch());
+		request.setAttribute("message", "");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+        dispatcher.forward(request, response);
+
 	}
 
 	/**
@@ -38,37 +51,16 @@ public class OgaminoTestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-		String check = "default";
 
-		if(request.getParameter("a") != null) {
-			check = request.getParameter("aa");
-		}
+		USER_INFODao u_dao = new USER_INFODao();
+		USER_INFO result = u_dao.select("ds", "");
 
-		else if(request.getParameter("b") != null) {
-			check = request.getParameter("bb");
-		}
 
-		else if(request.getParameter("c") != null) {
-			if(request.getParameter("fuyo") != null) {
-				check = "fuyo";
-			}
-			if(request.getParameter("kaizyo") != null) {
-				check = "kaizyo";
-			}
-		}
-
-		else if(request.getParameter("f") != null) {
-			if(request.getParameter("ra") != null) {
-				check = request.getParameter("ra");
-			} else {
-				check = "dame";
-			}
-		}
-
-		request.setAttribute("SQ", check);
+		request.setAttribute("SQ", result);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
 		dispatcher.forward(request, response);
+
+
 	}
 }

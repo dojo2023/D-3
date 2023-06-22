@@ -18,7 +18,7 @@
 
 	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
 	        お気に入りワードの登録
-	        <input type="radio" name="item" value="タグ">ハッシュタグ
+	        <input type="radio" name="item" value="タグ" checked>ハッシュタグ
 	        <input type="radio" name="item" value="カテゴリー">カテゴリー
 	        <input type="radio" name="item" value="フリーワード">フリーワード<br>
 	        <input type="text" name="newsContent" required>
@@ -35,7 +35,7 @@
 	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
 	        管理者権限<br>
 	        権限の与奪 対象ID：<input type="text" name="userId" required>
-	        <input type="submit" name="grant" value="付与">
+	        <input inte="submit" name="grant" value="付与">
 	        <input type="submit" name="revoke" value="剥奪">
 	    </form><br><br>
 

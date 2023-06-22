@@ -21,9 +21,10 @@ public class HASHTAGSDao {
 		List<String> h_name = h_dao.select();
 
 		for(int i = 0; i < h_name.size(); i++) {
-			if(hashtag_name.equals(h_name.get(i)))
+			if(hashtag_name.equals(h_name.get(i))) {
 				result = true;
 				return result;
+			}
 		}
 
 		try {
@@ -34,7 +35,7 @@ public class HASHTAGSDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO HASHTAGS(HASHTAGS_NAME) VALUES(?)";
+			String sql = "INSERT INTO HASHTAGS (HASHTAGS_NAME) VALUES (?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -79,7 +80,7 @@ public class HASHTAGSDao {
 	//出力：HASHTAGSデータベース内の全てのHASHTAGS_NAMEが格納されたString型のList
 	public List<String> select() {
 	    Connection conn = null;
-	    List<String> hashtag_name = new ArrayList<String>();
+	    List<String> hashtag_name = new ArrayList<>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -89,7 +90,7 @@ public class HASHTAGSDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 			// SQL文を準備する
-	        String sql = "SELECT HASHTAGS_NAME FROM HASHTAGS";
+	        String sql = "SELECT * FROM HASHTAGS";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        // SQL文を実行し、結果を取得する
@@ -170,5 +171,57 @@ public class HASHTAGSDao {
 
 		// 結果を返す
 		return htag_name;
+	}
+
+	//入力：HASHTAGSの名前（String型）
+	//処理：入力された名前に対応したHASHTAGSのIDを探索して取り出す
+	//出力：指定したHASHTAGS_NAMEに対応したHASHTAGS_ID(int型)
+	public int getHtagId(String htagName) {
+		Connection conn = null;
+		int htagId = 0;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+			// SQL文を準備する
+			String sql = "SELECT * FROM HASHTAGS WHERE HASHTAGS_NAME LIKE ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, htagName);
+
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+
+			// SQL文を実行する
+			rs.next();
+			htagId = rs.getInt("HASHTAGS_ID");
+
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return htagId;
 	}
 }

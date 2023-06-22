@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CATEGORYDao;
+import dao.HASHTAGSDao;
 import dao.USER_INFODao;
+import model.LOGIN_USER;
 import model.USER_INFO;
 
 /**
@@ -32,7 +35,13 @@ public class SettingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		HttpSession session = request.getSession();
+		String id = ((LOGIN_USER)(session.getAttribute("LOGIN_USER"))).getId();
+		USER_INFODao userDao = new USER_INFODao();
+		USER_INFO user = userDao.select("", id);
+		request.setAttribute("userMode", user.getUser_mode_switch());
+		request.setAttribute("message", "");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
         dispatcher.forward(request, response);
 	}
@@ -44,7 +53,10 @@ public class SettingServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		String id = session.getId();
+		String id = ((LOGIN_USER)(session.getAttribute("LOGIN_USER"))).getId();
+		USER_INFODao userModeDao = new USER_INFODao();
+		USER_INFO userMode = userModeDao.select("", id);
+		request.setAttribute("userMode", userMode.getUser_mode_switch());
 		String message = "";
 
 		if(request.getParameter("passwordChange") != null) {
@@ -79,41 +91,89 @@ public class SettingServlet extends HttpServlet {
 			}
 		}
 
-		else if(request.getParameter("news_change") != null) {
+		else if(request.getParameter("newsChange") != null) {
 
 			if (request.getParameter("item").equals("タグ")){
 				String newTag = request.getParameter("newsContent");
-
-
+				HASHTAGSDao hDao = new HASHTAGSDao();
+				boolean result = hDao.insert(newTag);
+				if(result = false) {
+					message = "ハッシュタグの登録に失敗しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				}
 
 				USER_INFO user = new USER_INFO();
 				user.setUser_id(id);
-				USER_INFODao user_dao = new USER_INFODao();
-				boolean result = user_dao.update(user);
+				user.setHashtags_id(hDao.getHtagId(newTag));
+				user.setFavorite_switch(3);
+				USER_INFODao userDao = new USER_INFODao();
+				result = userDao.update(user);
 				if(result) {
+					message = "新着情報に表示する投稿を #" + newTag + " がついているものに設定しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
 				} else {
-
+					message = "新着情報に表示する投稿の設定に失敗しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
 				}
 			}
 
 			else if (request.getParameter("item").equals("カテゴリー")){
-				String newcategory = request.getParameter("news_content");
-				USER_INFO data2 = new USER_INFO();
-				data2.setUser_id(id);
-				data2.setFree_word(newcategory);
+				String newCategory = request.getParameter("newsContent");
+				CATEGORYDao cDao = new CATEGORYDao();
+				int cId = cDao.getCategoryId(newCategory);
+				if(cId == 0) {
+					message = "入力したカテゴリは未登録です。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				}
 
-				USER_INFODao search = new USER_INFODao();
-				boolean result = search.update(data2);
+				USER_INFO user = new USER_INFO();
+				user.setUser_id(id);
+				user.setCategory_id(cId);
+				user.setFavorite_switch(2);
+				USER_INFODao userDao = new USER_INFODao();
+				boolean result = userDao.update(user);
+				if(result) {
+					message = "新着情報に表示する投稿をカテゴリ：" + newCategory + "の投稿に設定しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				} else {
+					message = "新着情報に表示する投稿の設定に失敗しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				}
 			}
 
 			else if (request.getParameter("item").equals("フリーワード")){
-				String newtag = request.getParameter("news_content");
-				USER_INFO data3 = new USER_INFO();
-				data3.setUser_id(id);
-				data3.setFree_word(newtag);
+				String freeWord = request.getParameter("newsContent");
+				USER_INFO user = new USER_INFO();
+				user.setUser_id(id);
+				user.setFree_word(freeWord);
+				user.setFavorite_switch(4);
 
-				USER_INFODao search = new USER_INFODao();
-				boolean result = search.update(data3);
+				USER_INFODao userDao = new USER_INFODao();
+				boolean result = userDao.update(user);
+
+				if(result) {
+					message = "新着情報に表示する投稿を「" + freeWord + "」を含むものに設定しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				} else {
+					message = "新着情報に表示する投稿の設定に失敗しました。";
+					request.setAttribute("message", message);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+					dispatcher.forward(request, response);
+				}
 			}
 		}
 
