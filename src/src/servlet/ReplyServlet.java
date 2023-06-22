@@ -47,13 +47,29 @@ public class ReplyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 
-		// 誰がどの状態（一般・一般管理者・ガチ管理者）でログインしているか確認する
+
+		// 誰がどの状態（一般・管理者）でログインしているか確認する
 		HttpSession session = request.getSession(); //セッションスコープにアクセス
 		USER_INFO userInfo = (USER_INFO)session.getAttribute("USER_INFO"); // セッションスコープに格納されているUSER_INFOの値をPOSTER型の変数userInfoに代入
-		int userModeSwitch = userInfo.getUser_mode_switch(); // int型の変数userModeSwitchにuserInfoが持っているuser_mode_switchの値を代入
+		int userModeSwitch = userInfo.getUser_mode_switch();// int型の変数userModeSwitchにuserInfoが持っているuser_mode_switchの値を代入
+
+
+		//匿名か実名かを確認する
+		POSTER posterList0 = (POSTER)session.getAttribute("POSTER");
+		REPLY replyList0 = (REPLY)session.getAttribute("REPLY");
+		int userNameSwitch = posterList0.getUSER_NAME_SWITCH();
+		request.setAttribute("userNameSwitch", userNameSwitch);
+		//現在ログインしているidと投稿者のidと返信者のidを取得し、リクエストスコープに格納
+		String id = session.getId();
+		String postUserId = posterList0.getUSER_ID();
+		String replyUserId = replyList0.getUSER_ID();
+		request.setAttribute("id", id);
+		request.setAttribute("postUserId", postUserId);
+		request.setAttribute("replyUserId", replyUserId);
+
 
 		// 以下の分岐は一般・一般管理者・ガチ管理者のどの状態で動かしているかで分岐
-		if(userModeSwitch == 1 || userModeSwitch == 2) {
+		if(userModeSwitch == 1) {
 			// 掲示板画面から来た場合
 			// 投稿内容を受け取る
 			POSTERDao pDao = new POSTERDao(); // POSTERDaoを使えるようにする（インスタンス化）
@@ -75,7 +91,7 @@ public class ReplyServlet extends HttpServlet {
 
 		}
 
-		else if(userModeSwitch == 3) {
+		else if(userModeSwitch == 2) {
 			// 通報画面から来た場合
 			// 通報された投稿の内容を受け取る
 			POSTERDao pDao = new POSTERDao(); // POSTERDaoを使えるようにする（インスタンス化）

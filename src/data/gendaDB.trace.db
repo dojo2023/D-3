@@ -2417,3 +2417,7 @@ No data is available [2000-199]
 2023-06-22 11:38:32 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: 有効なデータがありません
 No data is available [2000-199]
+2023-06-22 13:23:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "CATEGORY_NAME" が見つかりません
+Table "CATEGORY_NAME" not found; SQL statement:
+select * from CATEGORY_NAME where 1 [42102-200]
