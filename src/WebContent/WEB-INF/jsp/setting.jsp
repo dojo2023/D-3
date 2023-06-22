@@ -16,32 +16,34 @@
 	        </div>
 	    </header>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="post">
-	        <label>パスワード:</label>
-	        <input type="password" name="password" required>
-	        <input type="submit" value="送信" name="password_change">
-	    </form>
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	        お気に入りワードの登録
+	        <input type="radio" name="item" value="タグ">ハッシュタグ
+	        <input type="radio" name="item" value="カテゴリー">カテゴリー
+	        <input type="radio" name="item" value="フリーワード">フリーワード<br>
+	        <input type="text" name="newsContent" required>
+	        <input type="submit" value="登録" name="newsChange">
+	    </form><br><br>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="post">
-	        <label>新着:</label>
-	        <input type="radio" name="radio" value="フリーワード">フリーワード
-	        <input type="radio" name="radio" value="カテゴリー">カテゴリー
-	        <input type="radio" name="radio" value="タグ">タグ
-	        <input type="text" name="news_content" required>
-	        <input type="submit" value="送信" name="news_change">
-	    </form>
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	        PWの変更<br>
+	        現在のPW：<input type="password" name="nowPassword" required><br>
+	        新しいPW：<input type="password" name="newPassword" required>
+	        <input type="submit" value="変更" name="passwordChange">
+	    </form><br><br>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="post">
-	        <label>社員番号:</label>
-	        <input type="text" name="user_en" required>
-	        <input type="submit" value="送信" name="en_change">
-	    </form>
-
-	    <form action="/WebApp_GENDA/SettingServlet" method="post">
-	        <label>管理者権限:</label>
-	        <input type="text" name="admin" required>
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	        管理者権限<br>
+	        権限の与奪 対象ID：<input type="text" name="userId" required>
 	        <input type="submit" name="grant" value="付与">
-	        <input type="submit" name="revoke" value="解除">
-	    </form>
+	        <input type="submit" name="revoke" value="剥奪">
+	    </form><br><br>
+
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	        社員番号の変更 対象ID：<input type="text" name="userId" required><br>
+	        現在の社員番号：<input type="text" name="nowEn" required><br>
+	        新しい社員番号：<input type="text" name="newEn" required>
+	        <input type="submit" value="変更" name="enChange">
+	    </form><br><br>s
 	</body>
 </html>
