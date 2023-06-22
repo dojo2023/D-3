@@ -60,87 +60,104 @@
     </div>
 </header>
 
-
 <!-- カテゴリー表示 -->
-	<div class="category">
-    	<p>カテゴリ:<p>
+		<div class="category">
+   			 <p>カテゴリ:</p>
+ 				 <%
+				List<String> categoryNames = (List<String>) request.getAttribute("category_name");
 
-    	<c:forEach var="categoryName" items="${category_name}">
-        <form>
-            <input type="hidden" name="c_name" value="${categoryName}">
-        </form>
-    	</c:forEach>
-	</div>
+				for (int i = 0; i < categoryNames.size(); i++) {
+    			String C_name = categoryNames.get(i);
+			%>
+				<%String category_name = (String)request.getAttribute("category_name"); %>
+    			<input type="hidden" name="c_name" value="<%= C_name %>">
+				<%
+				}
+				%>
+		</div>
 
-
-	<div class="search">
-    	<form action="" method="get">
+<div class="search">
+    <form action="" method="get">
         <input type="text" name="keyword" placeholder="キーワードを入力してください">
         <button type="submit">検索</button>
     </form>
-	</div>
+</div>
 
-	<div class="create-post">
-    	<p><a href="javascript:openModal()">新規投稿</a></p>
-	</div>
+<div class="create-post">
+    <p><a href="javascript:openModal()">新規投稿</a></p>
+</div>
+<ul>
+    <%
+    List<POSTER> p_list = (List<POSTER>) request.getAttribute("posterList");
+    for (int i = 0; i < p_list.size(); i++) {
+        POSTER post = p_list.get(i);
+    %>
+    <li>
+        <a><%= post.getTitle() %></a>
+        <%= post.getDate() %>
+    </li>
+    <% } %>
+</ul>
 
-
-    <!-- ページボタンの表示 -->
-	<div class="pagination">
-    	<a href="#">1</a>
-    	<a href="#">2</a>
-    	<a href="#">3</a>
-    	<a href="#">4</a>
-    	<a href="#">5</a>
-    	<a href="#">6</a>
-	</div>
-	<!-- 必要な数のページボタンを表示 -->
+<!-- ページボタンの表示 -->
+<div class="pagination">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+</div>
+<!-- 必要な数のページボタンを表示 -->
 
 <!-- 新規投稿のモーダルウィンドウ -->
 <div id="newPostModal" class="modal">
     <div class="modal-content">
         <form action="PosterServlet"  method="post" onsubmit="return setLinkTitle()">
             <label for="post-title">タイトル:</label>
-            <input type="text" id="post-title" name="title" required>
+            <input type="text" name="title" required>
 
+            <div class="category">
+                <p>カテゴリ:</p>
+                <%
+				List<String> categoryNames = (List<String>) request.getAttribute("category_name");
 
-	<div class="category">
-    	<p>カテゴリ:<p>
+				for (int i = 0; i < categoryNames.size(); i++) {
+    			String C_name = categoryNames.get(i);
+			%>
+				<%String category_name = (String)request.getAttribute("category_name"); %>
+    			<input type="hidden" name="c_name" value="<%= C_name %>">
+				<%
+				}
+				%>
+            </div>
 
-    	<c:forEach var="categoryName" items="${category_name}">
-        <form>
-            <input type="hidden" name="c_name" value="${categoryName}">
-        </form>
-    	</c:forEach>
-	</div>
+            <p>匿名または実名:</p>
+            <input type="radio" id="anonymous" name="author" value="anonymous" checked>
+            <label for="anonymous">匿名</label>
+            <input type="radio" id="realname" name="author" value="realname">
+            <label for="realname">実名</label>
 
-	<p>匿名または実名:</p>
-    	<input type="radio" id="anonymous" name="author" value="anonymous" checked>
-    	<label for="anonymous">匿名</label>
-    	<input type="radio" id="realname" name="author" value="realname">
-        <label for="realname">実名</label>
+            <div class="hashtags">
+                <p>ハッシュタグ:</p>
+                <input type="text" name="hashtag1" maxlength="20">
+                <input type="text" name="hashtag2" maxlength="20">
+                <input type="text" name="hashtag3" maxlength="20">
+                <input type="text" name="hashtag4" maxlength="20">
+                <input type="text" name="hashtag5" maxlength="20">
+            </div>
 
-    <div class="hashtags">
-         <p>ハッシュタグ :</p>
-         	<input type="text" name="hashtag1" maxlength="20">
-            <input type="text" name="hashtag2" maxlength="20">
-            <input type="text" name="hashtag3" maxlength="20">
-            <input type="text" name="hashtag4" maxlength="20">
-            <input type="text" name="hashtag5" maxlength="20">
-     </div>
-
-     <label for="post-content">本文:</label>
+            <label for="post-content">本文:</label>
             <textarea id="post-content" name="content" rows="5" required></textarea>
 
             <button type="submit" onclick="setLinkTitle()">投稿</button>
-      </form>
+        </form>
         <button type="button" id="btn" onclick="closeModal()">キャンセル</button>
-        </div>
     </div>
+</div>
 
 <script>
-
- function openModal() {
+    function openModal() {
         var modal = document.getElementById("newPostModal");
         modal.style.display = "flex";
         setTimeout(function () {
@@ -155,7 +172,7 @@
         var hashtags = document.getElementsByClassName("hashtags")[0].getElementsByTagName("input");
         for (var i = 0; i < hashtags.length; i++) {
             hashtags[i].value = "";
-            }
+        }
 
         var modal = document.getElementById("newPostModal");
         modal.classList.remove("show");
@@ -163,8 +180,6 @@
             modal.style.display = "none";
         }, 300);
     }
-
-
 </script>
 
 </body>

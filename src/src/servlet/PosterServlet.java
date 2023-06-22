@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CATEGORYDao;
 import dao.POSTERDao;
 import model.POSTER;
 
@@ -31,41 +32,31 @@ public class PosterServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-
-
-
-
         // 必要な処理や画面遷移などを行う
+    	//カテゴリ名を決める
     	String CATEGORY_NAME = "カテゴリ名1";
 
-    	// 検索処理を行う、質問だけ取り出す。応募だけ取り出す処理
-    	//そのカテゴリー名の一覧を持ってきたいから、POSTERDaoを使う
-    	//
-
-    			POSTERDao dao = new POSTERDao();
-    			List<POSTER> post = dao.select(0, 1);
-
-    			POSTERDao C_dao = new POSTERDao();
-    			List<String> result = C_dao.select();
-
-    		//画面の上部にカテゴリを表示させるために、jspに送るコード
-				request.setAttribute("category_name", result);
+        // カテゴリ名の一覧を取得する処理
+        CATEGORYDao categoryDao = new CATEGORYDao();
+        String categoryName = categoryDao.get_categoryname(0);
 
 
-    			// 取得した投稿をリクエストスコープに保存
-    			// 検索結果をリクエストスコープに格納する
-    			 request.setAttribute("posterList", post);
-    			 request.setAttribute("categoryname", CATEGORY_NAME);
 
+        // 検索処理を行う、質問だけ取り出す。応募だけ取り出す処理
+        POSTERDao dao = new POSTERDao();
+        List<POSTER> post = dao.select(0, 1);
+
+
+        // 取得した投稿をリクエストスコープに保存
+        request.setAttribute("posterList", post);
+        request.setAttribute("categoryname", CATEGORY_NAME);
+        request.setAttribute("categoryName", categoryName);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/poster.jsp");
         dispatcher.forward(request, response);
     }
 
-
-
-	/**
+    /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
