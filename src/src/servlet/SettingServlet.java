@@ -43,40 +43,60 @@ public class SettingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		String check = "NoChange";
 		HttpSession session = request.getSession();
 		String id = session.getId();
-		if(request.getParameter("password_change") != null) {//password_changeというパラメーターがリクエストに含まれているかのチェック
-			//含まれていれば、ユーザーがパスワードの変更を要求している
+		String message = "";
 
-			String new_password = request.getParameter("password");//ユーザのパスワードを変更する処理
-			//新しいパスワードを取得
-			//リクエストパラメーターからpasswordを取得して、new_passwordに格納
+		if(request.getParameter("passwordChange") != null) {
 
-			//このパスワードに変更する
+			String nowPassword = request.getParameter("nowPassword");
+			String newPassword = request.getParameter("newPassword");
 
-			USER_INFO data = new USER_INFO();//USER_INFOに新しいインスタンスdataを作成
-			data.setUser_id(id);//セッションIDを data オブジェクトのユーザIDとして設定
-			data.setUser_pw(new_password);
-			USER_INFODao search = new USER_INFODao();//USER_INFODaoに新しいインスタンスsearchを作成
-			boolean result = search.update(data);
-
-
+			USER_INFODao userDao = new USER_INFODao();
+			USER_INFO user = userDao.select("", id);
+			if(!nowPassword.equals(user.getUser_pw())) {
+				message = "入力されたパスワードが違います。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
 			}
+
+			USER_INFO newUser = new USER_INFO();
+			newUser.setUser_id(id);
+			newUser.setUser_pw(newPassword);
+
+			boolean result = userDao.update(newUser);
+			if(result) {
+				message = "パスワードを" + newPassword + "に変更しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				message = "パスワードの変更に失敗しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
 
 		else if(request.getParameter("news_change") != null) {
-			//ユーザの新着に表示するものを変更する処理
-			if (request.getParameter("radio").equals("フリーワード")){
-				String newfreeword = request.getParameter("news_content");
-				USER_INFO data1 = new USER_INFO();
-				data1.setUser_id(id);
-				data1.setFree_word(newfreeword);
 
-				USER_INFODao search = new USER_INFODao();
-				boolean result = search.update(data1);
+			if (request.getParameter("item").equals("タグ")){
+				String newTag = request.getParameter("newsContent");
+
+
+
+				USER_INFO user = new USER_INFO();
+				user.setUser_id(id);
+				USER_INFODao user_dao = new USER_INFODao();
+				boolean result = user_dao.update(user);
+				if(result) {
+				} else {
+
+				}
 			}
 
-			else if (request.getParameter("radio").equals("カテゴリー")){
+			else if (request.getParameter("item").equals("カテゴリー")){
 				String newcategory = request.getParameter("news_content");
 				USER_INFO data2 = new USER_INFO();
 				data2.setUser_id(id);
@@ -86,7 +106,7 @@ public class SettingServlet extends HttpServlet {
 				boolean result = search.update(data2);
 			}
 
-			else if (request.getParameter("radio").equals("タグ")){
+			else if (request.getParameter("item").equals("フリーワード")){
 				String newtag = request.getParameter("news_content");
 				USER_INFO data3 = new USER_INFO();
 				data3.setUser_id(id);
@@ -97,52 +117,90 @@ public class SettingServlet extends HttpServlet {
 			}
 		}
 
-		else if(request.getParameter("en_change") != null) {
+		else if(request.getParameter("enChange") != null) {
 			//ユーザの社員番号を変更する処理
 
-			String new_en = request.getParameter("user_en");
+			String userId = request.getParameter("userId");
+			String nowEn = request.getParameter("nowEn");
+			USER_INFODao userDao = new USER_INFODao();
+			USER_INFO user = userDao.select(userId, "");
 
-			//この社員番号に変更する
+			if(user.getUser_id().equals("")) {
+				message = "入力されたIDは未登録です。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
+			if(!nowEn.equals(user.getUser_en())) {
+				message = "入力された社員番号は未登録です。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
+			String newEn = request.getParameter("newEn");
+			USER_INFO newUser = new USER_INFO();
+			newUser.setUser_id(userId);
+			newUser.setUser_en(newEn);
+			boolean result = userDao.update(newUser);
 
-			USER_INFO data4 = new USER_INFO();//USER_INFOに新しいインスタンスdataを作成
-			data4.setUser_id(id);//セッションIDを data オブジェクトのユーザIDとして設定
-			data4.setUser_en(new_en);
-			USER_INFODao search = new USER_INFODao();//USER_INFODaoに新しいインスタンスsearchを作成
-			boolean result = search.update(data4);
+			if(result) {
+				message = "ID：" + userId + " の社員番号を" + newEn + "に変更しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				message = "社員番号の変更に失敗しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
 
 		}
 
 		if (request.getParameter("grant") != null) {
-		    // ユーザの管理者権限を付与する処理
-		    String user_id = request.getParameter("admin"); // このIDのユーザに管理者権限を付与する
 
-		    USER_INFODao search = new USER_INFODao(); // 新しいUSER_INFODaoオブジェクトのインスタンスを作成
-		    USER_INFO data5 = new USER_INFO(); // 新しいUSER_INFOオブジェクトのインスタンスを作成
-		    data5.setUser_id(id); // セッションIDをdata5オブジェクトのユーザIDとして設定
-		    data5.setUser_en(user_id); // ユーザの管理者権限を設定
+		    String userId = request.getParameter("userId");
 
-		    boolean result = search.update(data5); // ユーザ情報をデータベースに更新
+		    USER_INFODao userDao = new USER_INFODao();
+		    USER_INFO user = new USER_INFO();
+		    user.setUser_id(userId);
+		    user.setUser_mode_switch(2);
+		    boolean result = userDao.update(user);
 
+		    if(result) {
+		    	message = "ID：" + userId + " に管理者権限を付与しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+		    } else {
+		    	message = "管理者権限の付与に失敗しました。IDを間違えている可能性があります。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+		    }
 
 		} else if (request.getParameter("revoke") != null) {
-		    // ユーザの管理者権限を剥奪する処理
-		    String user_id = request.getParameter("admin"); // このIDのユーザに管理者権限を剥奪する
 
-		    USER_INFODao search = new USER_INFODao(); // 新しいUSER_INFODaoオブジェクトのインスタンスを作成
-		    USER_INFO data6 = new USER_INFO(); // 新しいUSER_INFOオブジェクトのインスタンスを作成
-		    data6.setUser_id(id); // セッションIDをdata6オブジェクトのユーザIDとして設定
-		    data6.setUser_en(null); // ユーザの管理者権限を剥奪（nullに設定）
+			String userId = request.getParameter("userId");
 
-		    boolean result = search.update(data6); // ユーザ情報をデータベースに更新
+		    USER_INFODao userDao = new USER_INFODao();
+		    USER_INFO user = new USER_INFO();
+		    user.setUser_id(userId);
+		    user.setUser_mode_switch(1);
+		    boolean result = userDao.update(user);
 
+		    if(result) {
+		    	message = "ID：" + userId + " の管理者権限を剥奪しました。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+		    } else {
+		    	message = "管理者権限の剥奪に失敗しました。IDを間違えている可能性があります。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+		    }
 
-
-
-		request.setAttribute("SQ", check);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ogamino_success.jsp");
-		dispatcher.forward(request, response);
-
+		}
 	}
-
-	}}
+}
