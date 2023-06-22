@@ -15,9 +15,9 @@
 
 
 		<form action="/WebApp_GENDA/SQServlet" method="POST">
-			<p class="title">PWをお忘れの方</p>
+			<h2>PWをお忘れの方</h2>
 			<p class="message">IDを入力してください</p>
-			<p class="idText">ID<input type="text" name="id" class="text" placeholder="IDを入力してください" required></p>
+			<p class="text">ID<input type="text" name="id" class="textbox" placeholder="IDを入力してください" required></p>
 			<input type="hidden" name="idf" value="2">
 			<input type="submit" class="bottom" value="送信">
 			<a href="/WebApp_GENDA/LoginServlet" class="loginBack">ログイン画面へ戻る</a>

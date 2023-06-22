@@ -14,7 +14,18 @@ body {
         color: #294E76; /*文字色*/
       }
 
+.flex {
+	display:flex;
+}
+
+.pageLeft {
+	width: 540px;
+    height: 700px;
+}
+/* それぞれの要素を囲んでる大枠の部分の設定 */
 .box {
+	  float:left;
+	  width: 10%;
 	  background-color: #F3F3F3;
 	  position: relative;
       justify-content: center;
@@ -25,30 +36,35 @@ body {
       border: solid 0px #F3F3F3;
        }
 
+/* ロゴに関する部分の設定 */
 .logo {
 	position: absolute;
 	left: 60%;
 }
 
+/* 「ログインへ戻る」部分の設定 */
 .loginBack {
 	position: absolute;
-	top: 8%;
-	left: 69%;
+	top: 16%;
+	left: 71%;
 }
 
-.text {
+/* テキストボックスに関する部分の設定 */
+.textbox {
 	border: none;
 	background-color: #F3F3F3;
 	font-size: 30.761px;
 	}
 
-.title {
+/* h2タグに関する部分の設定 */
+h2 {
 	position: absolute;
     left: 12%;
 	font-size: 44px;
     letter-spacing: -6.16px;
 }
 
+/* messageクラスに関する部分の設定 */
 .message {
 	position: absolute;
 	top: 20%;
@@ -56,7 +72,8 @@ body {
 	font-size: 33px;
 }
 
-.idText {
+/* textクラスとtext2クラスに関する部分の設定 */
+.text, .text2 {
 	position: absolute;
 	top: 40%;
 	left: 12%;
@@ -69,7 +86,8 @@ body {
 	width: 641.857px;
 }
 
-.bottom {
+/* bottomクラスとbottom2クラスに関する部分の設定 */
+.bottom, bottom2 {
 	position: absolute;
 	top: 80%;
 	left: 40%;
@@ -85,5 +103,66 @@ body {
 }
 
 
+/* 秘密の質問画面、PW再設定画面のみ */
+/* textクラスに関する部分の設定 */
+.text {
+	position: absolute;
+	top: 40%;
+	left: 12%;
+}
 
+/* text2クラスに関する部分の設定 */
+.text2{
+	position: absolute;
+	top: 50%;
+	left: 12%;
+}
 
+/* 入力確認画面のみ */
+/* nameクラスに関する部分の設定 */
+.name {
+	position: absolute;
+	top: 25%;
+	left: 12%;
+}
+
+/* userIdクラスに関する部分の設定 */
+.userId {
+	position: absolute;
+	top: 35%;
+	left: 12%;
+}
+
+/* pwクラスに関する部分の設定 */
+.pw {
+	position: absolute;
+	top: 45%;
+	left: 12%;
+}
+
+/* enクラスに関する部分の設定 */
+.en {
+	position: absolute;
+	top: 55%;
+	left: 12%;
+}
+
+/* sqクラスに関する部分の設定 */
+.sq {
+	position: absolute;
+	top: 65%;
+	left: 12%;
+}
+
+/* saクラスに関する部分の設定 */
+.sa {
+	position: absolute;
+	top: 40%;
+	left: 12%;
+}
+
+/* bottom2クラスに関する部分の設定 */
+.bottom2 {
+	float: left;
+	width: 25%;
+}
