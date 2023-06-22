@@ -1,9 +1,89 @@
 @charset "UTF-8";
+/* ログインする前のcss */
 /* ----------全体設定---------- */
 html{
     font-family:Senobi Gothic; /*font-family:ページ全体のフォントを指定*/
+    display: inline-flex;
+    height: 900px;
+    padding: 100px 99px 100px 103px;
+    justify-content: flex-end;
+    align-items: flex-start;
     }
 body {
         background-color: #8BA0B7; /*背景色*/
         color: #294E76; /*文字色*/
       }
+
+.box {
+	  background-color: #F3F3F3;
+	  position: relative;
+      justify-content: center;
+      align-items: center;
+      width: 858px;
+      height: 700px;
+      flex-shrink: 0;
+      border: solid 0px #F3F3F3;
+       }
+
+.logo {
+	position: absolute;
+	left: 60%;
+}
+
+.loginBack {
+	position: absolute;
+	top: 8%;
+	left: 69%;
+}
+
+.text {
+	border: none;
+	background-color: #F3F3F3;
+	font-size: 30.761px;
+	}
+
+.title {
+	position: absolute;
+    left: 12%;
+	font-size: 44px;
+    letter-spacing: -6.16px;
+}
+
+.message {
+	position: absolute;
+	top: 20%;
+	left: 12%;
+	font-size: 33px;
+}
+
+.idText {
+	position: absolute;
+	top: 40%;
+	left: 12%;
+	font-size: 30.761px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.bottom {
+	position: absolute;
+	top: 80%;
+	left: 40%;
+	width: 188.704px;
+    height: 71.256px;
+	border-radius: 67.475px;
+	border: 5px solid #294E76;
+    background: #FFF;
+    color: #294E76;
+    text-align: center;
+    font-size: 33.738px;
+    font-family: Senobi Gothic;
+}
+
+
+
+
