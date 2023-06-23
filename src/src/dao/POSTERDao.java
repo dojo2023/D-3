@@ -262,7 +262,7 @@ public class POSTERDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 
-	        String sql = "SELECT * FROM POSTER WHERE HASHTAGS_ID1 = ? OR HASHTAGS_ID2 = ? OR HASHTAGS_ID3 = ? OR HASHTAGS_ID4 = ? OR HASHTAGS_ID5 = ? ORORDER BY POSTED_DATE";
+	        String sql = "SELECT * FROM POSTER WHERE HASHTAGS_ID1 = ? OR HASHTAGS_ID2 = ? OR HASHTAGS_ID3 = ? OR HASHTAGS_ID4 = ? OR HASHTAGS_ID5 = ? ORDER BY POSTED_DATE";
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 	        pStmt.setInt(1, hashtags);
 	        pStmt.setInt(2, hashtags);
