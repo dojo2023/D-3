@@ -10,10 +10,8 @@
 	        <div class="logo">
 	            <img src="https://placehold.jp/300x50.png" alt="ロゴ">
 	        </div>
-	        <div class="botton-icon">
-	            <a><img src="https://placehold.jp/50x50.png" alt="ロゴ"></a>
-	            <a><img src="https://placehold.jp/50x50.png" alt="ロゴ"></a>
-	        </div>
+	            <a href="/WebApp_GENDA/TopServlet">中庭掲示板ロゴ（ページ左上のやつ）</a>
+	            <a href="/WebApp_GENDA/LogoutServlet">ログアウト</a>
 	    </header>
 	    <% String message = (String)request.getAttribute("message"); %>
 	    <%= message %>

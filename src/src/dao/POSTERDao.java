@@ -195,6 +195,10 @@ public class POSTERDao {
 		return result;
 	}
 
+	//入力：検索したい単語か文（String型）
+	//処理：入力された文をPOSTERデータベースの全ての本文に対して検索し、
+	//      その文が入っているPOSTERデータをリストにして返す
+	//出力：検索に合致したPOSTERデータのリスト（List<POSTER>型）
 	public List<POSTER> searchWord(String freeWord) {
 	    Connection conn = null;
 	    List<POSTER> posterList = new ArrayList<POSTER>();
@@ -244,7 +248,62 @@ public class POSTERDao {
 	            }
 	        }
 	    }
+	    return posterList;
+	}
 
+	public List<POSTER> searchHashtags(int hashtags) {
+	    Connection conn = null;
+	    List<POSTER> posterList = new ArrayList<POSTER>();
+	    try {
+	        // JDPOSTERドライバを読み込む
+	        Class.forName("org.h2.Driver");
+
+	        // データベースに接続する
+	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+
+	        String sql = "SELECT * FROM POSTER WHERE HASHTAGS_ID1 = ? OR HASHTAGS_ID2 = ? OR HASHTAGS_ID3 = ? OR HASHTAGS_ID4 = ? OR HASHTAGS_ID5 = ? ORORDER BY POSTED_DATE";
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+	        pStmt.setInt(1, hashtags);
+	        pStmt.setInt(2, hashtags);
+	        pStmt.setInt(3, hashtags);
+	        pStmt.setInt(4, hashtags);
+	        pStmt.setInt(5, hashtags);
+
+	        // SQL文を実行し、結果を取得する
+	        ResultSet rs = pStmt.executeQuery();
+
+	        // 結果をリストに格納する
+	        while (rs.next()) {
+	            POSTER poster = new POSTER();
+	            poster.setPOSTER_ID(rs.getInt("POSTER_ID"));
+	            poster.setTITLE(rs.getString("TITLE"));
+	            poster.setCATEGORY_ID(rs.getInt("CATEGORY_ID"));
+	            poster.setMAIN_SENTENCE(rs.getString("MAIN_SENTENCE"));
+	            poster.setHASHTAGS_ID1(rs.getInt("HASHTAGS_ID1"));
+	            poster.setHASHTAGS_ID2(rs.getInt("HASHTAGS_ID2"));
+	            poster.setHASHTAGS_ID3(rs.getInt("HASHTAGS_ID3"));
+	            poster.setHASHTAGS_ID4(rs.getInt("HASHTAGS_ID4"));
+	            poster.setHASHTAGS_ID5(rs.getInt("HASHTAGS_ID5"));
+	            poster.setPOSTED_DATE(rs.getString("POSTED_DATE"));
+	            poster.setANIMAL_ID(rs.getString("ANIMAL_ID"));
+	            poster.setUSER_ID(rs.getString("USER_ID"));
+	            poster.setUSER_NAME_SWITCH(rs.getInt("USER_NAME_SWITCH"));
+	            posterList.add(poster);
+	        }
+
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // データベース接続を閉じる
+	        if (conn != null) {
+	            try {
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 	    return posterList;
 	}
 }
