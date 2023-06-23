@@ -1,9 +1,57 @@
 @charset "UTF-8";
+/* ログインした後のcss */
 /* ----------全体設定---------- */
-html{
-	font-family: 'Senobi Gothic';
+html {
+	font-family: Senobi Gothic; /*font-family:ページ全体のフォントを指定*/
+	color: #294E76; /*文字色*/
+	display: inline-flex;
+	height: 900px;
+	padding: 100px 99px 100px 103px;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
+
 body {
-        background-color: #8BA0B7; /*背景色*/
-        color: #294E76; /*文字色*/
-      }
+  background-color: #F3F3F3;
+}
+
+header {
+  background-color: #EAEAEA;
+}
+
+.logo {
+  width: 325.066px;
+  height: 148.077px;
+  flex-shrink: 0;
+}
+
+.setting-icon {
+  width: 165.131px;
+  height: 101.922px;
+  flex-shrink: 0;
+}
+
+.report-icon {
+  width: 165.131px;
+  height: 93.922px;
+  flex-shrink: 0;
+}
+
+.header-text {
+  color: #294E76;
+  text-align: center;
+  font-size: 90.434px;
+  font-family: "Senobi Gothic",;
+  font-weight: 700;
+  line-height: 86.964px;
+}
+
+
+.header-subtext {
+  color: #294E76;
+  text-align: center;
+  font-size: 90.434px;
+  font-family: "Senobi Gothic";
+  font-weight: 700;
+  line-height: 86.964px;
+}
