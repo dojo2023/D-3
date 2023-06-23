@@ -113,7 +113,7 @@ public class INFODisplayServlet extends HttpServlet {
 			request.setAttribute("SQsentence", SQsentence);
 			request.setAttribute("securityAnswer", securityAnswer);
 			request.setAttribute("idf", idf);
-			request.setAttribute("headline", "登録完了");
+			request.setAttribute("headline", "以下の情報が登録されました");
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
 			dispatcher.forward(request, response);
@@ -193,7 +193,7 @@ public class INFODisplayServlet extends HttpServlet {
 			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
 			request.setAttribute("pw", newPassword);
 			request.setAttribute("idf", idf);
-			request.setAttribute("headline", "再設定されたパスワードの表示");
+			request.setAttribute("headline", "再設定したパスワード");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
 			dispatcher.forward(request, response);
 		}

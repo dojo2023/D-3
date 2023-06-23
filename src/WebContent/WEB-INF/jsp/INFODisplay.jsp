@@ -24,12 +24,12 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <head>
 <meta charset="UTF-8">
 <title> ユーザ情報の表示 </title>
+<link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
-<body>
+<body class="flex">
+<img src="./images/beforeLogin-left.png" class="pageLeft">
 <div class="box">
-	<div class="logo">
-		<img src="https://placehold.jp/300x50.png">
-	</div>
+	<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 		<h2><%=headline%></h2>
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
@@ -61,8 +61,6 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 			<p class="text">再設定したパスワード：<%=pw%></p>
 		</div>
 		<% } %>
-
-		<a href="/WebApp_GENDA/LoginServlet" class="loginBack">ログイン画面へ戻る</a>
 </div>
 </body>
 </html>

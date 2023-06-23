@@ -24,27 +24,29 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <head>
 <meta charset="UTF-8">
 <title> 入力情報の確認 </title>
+<link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
-<body>
-	<div class="logo">
-		<img src="https://placehold.jp/300x50.png">
-	</div>
-		<h2> 入力した情報は以下でお間違いないですか？ </h2>
+<body class="flex">
+<img src="./images/beforeLogin-left.png" class="pageLeft">
+<div class="box">
+		<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
+
+		<h2> お間違いないですか？ </h2>
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
 		<div id="newDisplay">
-			<p>氏名：<%=registerName%></p>
+			<p class="name">氏名：<%=registerName%></p>
 
-			<p>ID：<%=registerId%></p>
+			<p class="userId">ID：<%=registerId%></p>
 
-			<p>パスワード：<%=registerPassword%></p>
+			<p class="pw">パスワード：<%=registerPassword%></p>
 
-			<p>社員番号：<%=employeeNumber%></p>
+			<p class="en">社員番号：<%=employeeNumber%></p>
 
-			<p> 秘密の質問：<%=SQsentence%> </p>
+			<p class="sq"> 秘密の質問：<%=SQsentence%> </p>
 
-			<p>秘密の質問の回答：<%=securityAnswer%></p>
-			<form>
+			<p class="sa">秘密の質問の回答：<%=securityAnswer%></p>
+			<form class="flex">
 				<input type="hidden" name="registerName" value="${registerName}">
 				<input type="hidden" name="registerId" value="${registerId}">
 				<input type="hidden" name="registerPassword" value="${registerPassword}">
@@ -52,8 +54,8 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 				<input type="hidden" name="securityQuestion" value="${securityQuestion}">
 				<input type="hidden" name="securityAnswer" value="${securityAnswer}">
 				<input type="hidden" name="idf" value="${idf}">
-				<input type="submit" name="submit_button" value="登録" formmethod="POST" formaction="/WebApp_GENDA/INFODisplayServlet">
-				<input type="submit" name="cancel_button" value="キャンセル" formmethod="GET" formaction="/WebApp_GENDA/LoginServlet">
+				<input type="submit" name="submit_button" class="submit"  value="登録" formmethod="POST" formaction="/WebApp_GENDA/INFODisplayServlet">
+				<input type="submit" name="cancel_button" class="cancel" value="キャンセル" formmethod="GET" formaction="/WebApp_GENDA/LoginServlet">
 			</form>
 		</div>
 		<% } %>
@@ -61,10 +63,11 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 		<% if (idf.equals("2")) { %>
 		<!-- PWを忘れた場合に表示するもの -->
 		<div id="pwDisplay">
-			<p>再設定するパスワード：<%=pw%></p>
+			<p class="text">再設定するパスワード：<%=pw%></p>
 		</div>
 		<% } %>
 
-		<a href="/WebApp_GENDA/LoginServlet">ログイン画面へ戻る</a>
+
+</div>
 </body>
 </html>

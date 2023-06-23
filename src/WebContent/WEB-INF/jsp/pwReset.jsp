@@ -7,9 +7,10 @@
 <title>PW再設定画面</title>
 <link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
-<body>
+<body class="flex">
+<img src="./images/beforeLogin-left.png" class="pageLeft">
 <div class="box">
-<div class="logo"><img src="https://placehold.jp/300x50.png"></div>
+<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 
 <form action="/WebApp_GENDA/INFODisplayServlet" method="POST">
 	<h2>PWの再設定</h2>
@@ -18,13 +19,12 @@
 	<% String ans = (String)request.getAttribute("ans"); %>
 	<input type="hidden" name="ans" value="${ans}">
 	<p class="message">任意のPWを入力してください</p>
-	<p class="text">新しいPW
+	<p class="newPw">新しいPW
 	<input type="text" name="newPassword" class="textbox" placeholder="新規パスワード" required></p>
-	<p class="text2">PW（確認用）
+	<p class="checkPw">PW（確認用）
 	<input type="text" name="confirmPassword" class="textbox" placeholder="パスワードの確認" required></p>
 	<input type="hidden" name="idf" value="2">
-	<input type="submit" name="reset" class="bottom" value="送信">
-	<a href="/WebApp_GENDA/LoginServlet" class="loginBack">ログイン画面へ戻る</a>
+	<input type="submit" name="reset" class="button" value="送信">
 </form>
 </div>
 </body>
