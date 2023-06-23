@@ -183,7 +183,7 @@ public class SettingServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			String nowEn = request.getParameter("nowEn");
 			USER_INFODao userDao = new USER_INFODao();
-			USER_INFO user = userDao.select(userId, "");
+			USER_INFO user = userDao.select("", userId);
 
 			if(user.getUser_id().equals("")) {
 				message = "入力されたIDは未登録です。";
@@ -192,12 +192,29 @@ public class SettingServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			if(!nowEn.equals(user.getUser_en())) {
-				message = "入力された社員番号は未登録です。";
+				message = "入力されたIDと社員番号が一致しません。";
 				request.setAttribute("message", message);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
+
 			String newEn = request.getParameter("newEn");
+			USER_INFO searchUser = userDao.select(newEn, "");
+			if(nowEn.equals(newEn)) {
+				message = "入力された2つの社員番号が同じものです。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
+
+			if(!searchUser.getUser_en().equals("")) {
+				message = "入力された社員番号は既に使われています。";
+				request.setAttribute("message", message);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
+				dispatcher.forward(request, response);
+			}
+
+
 			USER_INFO newUser = new USER_INFO();
 			newUser.setUser_id(userId);
 			newUser.setUser_en(newEn);

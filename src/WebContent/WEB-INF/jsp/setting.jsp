@@ -15,6 +15,8 @@
 	            <a><img src="https://placehold.jp/50x50.png" alt="ロゴ"></a>
 	        </div>
 	    </header>
+	    <% String message = (String)request.getAttribute("message"); %>
+	    <%= message %>
 
 	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
 	        お気に入りワードの登録
@@ -25,25 +27,70 @@
 	        <input type="submit" value="登録" name="newsChange">
 	    </form><br><br>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST" name="pwChangeForm" onsubmit="return checkPw()">
 	        PWの変更<br>
 	        現在のPW：<input type="password" name="nowPassword" required><br>
 	        新しいPW：<input type="password" name="newPassword" required>
 	        <input type="submit" value="変更" name="passwordChange">
 	    </form><br><br>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST" name="adminForm">
 	        管理者権限<br>
 	        権限の与奪 対象ID：<input type="text" name="userId" required>
-	        <input inte="submit" name="grant" value="付与">
-	        <input type="submit" name="revoke" value="剥奪">
+	        <input type="submit" name="grant" value="付与" onsubmit="return checkAdminGrant()">
+	        <input type="submit" name="revoke" value="剥奪" onsubmit="return checkAdminRevoke()">
 	    </form><br><br>
 
-	    <form action="/WebApp_GENDA/SettingServlet" method="POST">
+	    <form action="/WebApp_GENDA/SettingServlet" method="POST" name="enForm" onsubmit="return checkEn()">
 	        社員番号の変更 対象ID：<input type="text" name="userId" required><br>
 	        現在の社員番号：<input type="text" name="nowEn" required><br>
 	        新しい社員番号：<input type="text" name="newEn" required>
 	        <input type="submit" value="変更" name="enChange">
-	    </form><br><br>s
+	    </form><br><br>
+	    <script>
+	    	"use strict";
+
+	    	function checkPw() {
+				const nowPassword = pwChangeForm.nowPassword.value;
+				const newPassword = pwChangeForm.newPassword.value;
+				if(window.confirm("パスワードを「" + nowPassword + "」から「" + newPassword + "」に変更します。よろしいですか？")) {
+					return true;
+				} else {
+					return false;
+				}
+	    	}
+
+	    	const grantButton = adminForm.grant;
+	    	const revokeButton = adminForm.revoke;
+
+	    	grantButton.addEventListener("click", () => {
+	    		const userId = adminForm.userId.value;
+	    		if(window.confirm("「" + userId + "」に管理者権限を付与します。よろしいですか？")) {
+					return true;
+				} else {
+					return false;
+				}
+	    	});
+
+	    	revokeButton.addEventListener("click", () => {
+	    		const userId = adminForm.userId.value;
+	    		if(window.confirm("「" + userId + "」の管理者権限を剥奪します。よろしいですか？")) {
+					return true;
+				} else {
+					return false;
+				}
+	    	});
+
+	    	function checkEn() {
+				const userId = enForm.userId.value;
+				const nowEn = enForm.nowEn.value;
+				const newEn = enForm.newEn.value;
+				if(window.confirm("「" + userId + "」の社員番号を「" + nowEn + "」から「" + newEn + "」に変更します。よろしいですか？")) {
+					return true;
+				} else {
+					return false;
+				}
+	    	}
+	    </script>
 	</body>
 </html>

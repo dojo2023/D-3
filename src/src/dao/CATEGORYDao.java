@@ -153,4 +153,55 @@ public class CATEGORYDao {
 
 	}
 
+	//入力：CATEGORYの名前（String型）
+		//処理：入力された名前に対応したCATEGORYのIDを探索して取り出す
+		//出力：指定したCATEGORY_NAMEに対応したCATEGORY_ID(int型)
+		public int getCategoryId(String categoryName) {
+			Connection conn = null;
+			int categoryId = 0;
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
+
+				// SQL文を準備する
+				String sql = "SELECT * FROM CATEGORY WHERE CATEGORY_NAME LIKE ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+				pStmt.setString(1, categoryName);
+
+				// SELECT文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+
+				// SQL文を実行する
+				rs.next();
+				categoryId = rs.getInt("CATEGORY_ID");
+
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 結果を返す
+			return categoryId;
+		}
 }
