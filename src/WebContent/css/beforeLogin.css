@@ -1,11 +1,10 @@
 @charset "UTF-8";
+@media all and (-ms-high-contrast:none) {
 /* ログインする前のcss */
 /* ----------全体設定---------- */
 html{
     font-family:Senobi Gothic; /*font-family:ページ全体のフォントを指定*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     }
 
 /* 画面サイズに関すること */
@@ -58,6 +57,7 @@ body {
 	outline: none;
 	background-color: #F3F3F3;
 	font-size: 30.761px;
+	flex-shrink: 0;
 	}
 
 /* プレースホルダーの書式設定 */
@@ -71,6 +71,7 @@ h2 {
     left: 12%;
 	font-size: 40px;
     letter-spacing: -6.16px;
+    flex-shrink: 0;
 }
 
 /* messageクラスに関する部分の設定 */
@@ -79,6 +80,7 @@ h2 {
 	top: 20%;
 	left: 12%;
 	font-size: 33px;
+	flex-shrink: 0;
 }
 
 /* textクラスとtext2クラスに関する部分の設定 */
@@ -110,6 +112,7 @@ h2 {
     font-size: 33.738px;
     font-family: Senobi Gothic;
     display:inline-block;
+    flex-shrink: 0;
 }
 
 
@@ -301,3 +304,165 @@ h2 {
 	height: 161.29px;
 	flex-shrink: 0;
 }
+
+/* ログイン画面に関するcss */
+.login-html {
+  display: flex;
+  height: 86%;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 3%;
+  background-color: #fff;
+}
+
+.left-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+
+.right-content {
+  width: 10%;
+	  background-color: #F3F3F3;
+	  position: relative;
+      justify-content: center;
+      align-items: center;
+      width: 858px;
+      height: 700px;
+      flex-shrink: 0;
+      border: solid 0px #F3F3F3;
+
+}
+
+.right-content .tab {
+  margin-bottom: 10px;
+}
+/*42~51*/
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position:absolute;
+  transform:rotateY(180deg);
+  backface-visibility:hidden;
+
+}
+/*55~58*/
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+  display:none;
+}
+/*61~64*/
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+  text-transform:uppercase;
+}
+/*66~73*/
+.login-html .tab{
+  font-size:22px;
+  margin-right:15px;
+  padding-bottom:5px;
+  margin:0 15px 10px 0;
+  display:inline-block;
+  border-bottom:2px solid transparent;
+}
+/*76~78*/
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+  border-color:#1161ee;
+}
+.login-form{
+  min-height:345px;
+  position:relative;
+  perspective:1000px;
+  transform-style:preserve-3d;
+}
+.login-form .group{
+  margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group /*.button*/{
+  width:100%;
+
+  display:block;
+}
+.login-form .group .input,
+.login-form .group /*.button*/{
+  border: none;
+  padding: 15px 20px;
+  /* border-radius: 25px; */
+  /* background: rgba(255,255,255,.1); */
+  border-bottom: 2px solid #999;
+  padding: 5px 10px;
+  outline: none;
+}
+.login-form .group input[data-type="password"]{
+  /*text-security:circle;*/
+  -webkit-text-security:circle;
+}
+.login-form .group .label{
+
+  font-size:12px;
+}
+.login-form .group .button {
+  background: #ffffff;
+  border-radius: 40px;
+  width: 38%;
+  padding: 10px;
+  border: solid 4px #8BA0B7;
+}
+.login-form .group label .icon{
+  width:15px;
+  height:15px;
+  border-radius:2px;
+  position:relative;
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+  content:'';
+  width:10px;
+  height:2px;
+  background:#fff;
+  position:absolute;
+  transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+  left:3px;
+  width:5px;
+  bottom:6px;
+  transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+  top:6px;
+  right:0;
+  transform:scale(0) rotate(0);
+}
+
+.login-form .group .check:checked + label .icon{
+  background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+  transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+  transform:scale(1) rotate(-45deg);
+}
+/*158~162*/
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+  transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+  transform:rotate(0);
+}
+
+}
+
