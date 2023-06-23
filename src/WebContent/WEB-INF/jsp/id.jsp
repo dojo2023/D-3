@@ -10,8 +10,8 @@
 <body class="flex">
 <img src="./images/beforeLogin-left.png" class="pageLeft">
 <div class="box">
-	<div class="logo">
-		<img src="./images/logo.png">
+	<div >
+		<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 	</div>
 
 
@@ -20,8 +20,7 @@
 			<p class="message">社員番号を入力してください</p>
 			<p class="text">社員番号<input type="text" name="en" class="textbox" placeholder="社員番号を入力してください" required></p>
 			<input type="hidden" name="idf" value="1">
-			<input type="submit"  class="bottom" value="送信">
-			<a href="/WebApp_GENDA/LoginServlet" class="loginBack">ログイン画面へ戻る</a>
+			<input type="submit"  class="button" value="送信">
 		</form>
 </div>
 </body>
