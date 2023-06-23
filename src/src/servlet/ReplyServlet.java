@@ -28,9 +28,6 @@ public class ReplyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ReplyServlet() {
-		super();
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,17 +52,20 @@ public class ReplyServlet extends HttpServlet {
 
 
 		//匿名か実名かを確認する
-		POSTER posterList0 = (POSTER)session.getAttribute("POSTER");
-		REPLY replyList0 = (REPLY)session.getAttribute("REPLY");
-		int userNameSwitch = posterList0.getUSER_NAME_SWITCH();
+		POSTER poster0 = (POSTER)session.getAttribute("POSTER");
+		REPLY reply0 = (REPLY)session.getAttribute("REPLY");
+		int userNameSwitch = poster0.getUSER_NAME_SWITCH();
 		request.setAttribute("userNameSwitch", userNameSwitch);
 		//現在ログインしているidと投稿者のidと返信者のidを取得し、リクエストスコープに格納
 		String id = session.getId();
-		String postUserId = posterList0.getUSER_ID();
-		String replyUserId = replyList0.getUSER_ID();
+		String postUserId = poster0.getUSER_ID();
+		String replyUserId = reply0.getUSER_ID();
 		request.setAttribute("id", id);
 		request.setAttribute("postUserId", postUserId);
 		request.setAttribute("replyUserId", replyUserId);
+
+
+
 
 
 		// 以下の分岐は一般・一般管理者・ガチ管理者のどの状態で動かしているかで分岐
@@ -105,17 +105,11 @@ public class ReplyServlet extends HttpServlet {
 
 			// 返信内容を受け取る
 			REPLYDao rDao = new REPLYDao(); // REPLYDaoを使えるようにする（インスタンス化）
-			List<REPLY> replyList = rDao.select(0, poster_id); // poster_idを利用し、rDaoのselectでposter_idの値と同じ値を持つPOSTER＿IDのリストを検索・取得し、変数replyListに格納
+			List<REPLY> replyList = rDao.select(0, poster_id);// poster_idを利用し、rDaoのselectでposter_idの値と同じ値を持つPOSTER＿IDのリストを検索・取得し、変数replyListに格納
 
 			// 取得した返信内容（replyList）を属性名replyListとしてリクエストスコープに格納する
 			// (reply.jspで利用するため）
 			request.setAttribute("replyList", replyList);
-
 		}
-
-
-
-
-
 	}
 }
