@@ -18,24 +18,24 @@ body {
 header {
   background-color: #EAEAEA;
 }
-
 .logo {
   width: 325.066px;
   height: 148.077px;
-  flex-shrink: 0;
+  order: 1;
 }
 
 .setting-icon {
   width: 165.131px;
   height: 101.922px;
-  flex-shrink: 0;
+  order: 3;
 }
 
 .report-icon {
   width: 165.131px;
   height: 93.922px;
-  flex-shrink: 0;
+  order: 2;
 }
+
 
 .header-text {
   color: #294E76;
@@ -55,3 +55,4 @@ header {
   font-weight: 700;
   line-height: 86.964px;
 }
+
