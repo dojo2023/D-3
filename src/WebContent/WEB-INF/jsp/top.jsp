@@ -26,53 +26,22 @@
 		<a href="LogoutServlet">ログアウト</a>
 
 
-		<% List<POSTER> posterList = (List<POSTER>)request.getAttribute("posterList"); %>
 		<p> New </p>
-		<% if(posterList.size() == 0) { %>
-			新着の投稿はありません。
-		<% } else { %>
-		    <ul>
-		    	<% POSTER poster = posterList.get(0); %>
-		    		<form method="POST" name="posterForm1" action="/WebApp_GENDA/ReplyServlet">
-		    			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
-		    		</form>
-		    		新着1<li><a href="javascript:posterForm1.submit()"><%= poster.getTITLE() %></a> | <%= poster.getPOSTED_DATE() %></li>
-		<% }
-		if(posterList.size() > 1) { %>
-			<% POSTER poster = posterList.get(1); %>
-		    		<form method="POST" name="posterForm2" action="/WebApp_GENDA/ReplyServlet">
-		    			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
-		    		</form>
-		    		新着2<li><a href="javascript:posterForm2.submit()"><%= poster.getTITLE() %></a> | <%= poster.getPOSTED_DATE() %></li>
-		<% } else { %>
-			</ul>
-		<% }
-		if(posterList.size() > 2) { %>
-		<% POSTER poster = posterList.get(2); %>
-	    		<form method="POST" name="posterForm3" action="/WebApp_GENDA/ReplyServlet">
-	    			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
-	    		</form>
-	    		新着3<li><a href="javascript:posterForm3.submit()"><%= poster.getTITLE() %></a> | <%= poster.getPOSTED_DATE() %></li>
-		<% } else { %>
-			</ul>
-		<% }
-		if(posterList.size() > 3) { %>
-		<% POSTER poster = posterList.get(3); %>
-	    		<form method="POST" name="posterForm4" action="/WebApp_GENDA/ReplyServlet">
-	    			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
-	    		</form>
-	    		新着4<li><a href="javascript:posterForm4.submit()"><%= poster.getTITLE() %></a> | <%= poster.getPOSTED_DATE() %></li>
-		<% } else { %>
-			</ul>
-		<% }
-		if(posterList.size() > 4) {
-			POSTER poster = posterList.get(4); %>
-	    	<form method="POST" name="posterForm5" action="/WebApp_GENDA/ReplyServlet">
-	    		<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
-	    	</form>
-	    	新着5<li><a href="javascript:posterForm5.submit()"><%= poster.getTITLE() %></a> | <%= poster.getPOSTED_DATE() %></li>
-			</ul>
-		<% } %>
+		<ul>
+		    <% List<POSTER> posterList = (List<POSTER>)request.getAttribute("posterList");
+		    for (int i = 0; i < posterList.size(); i++) {
+		        POSTER poster = posterList.get(i); %>
+			    <li>
+			        <%= poster.getTITLE() %>
+			        <%= poster.getPOSTED_DATE() %>
+			        <form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
+			    		<input type="hidden" name="posterId" value="<%=  poster.getPOSTER_ID() %>">
+			    		<input type="hidden" name="replyIdf" value="0">
+			    		<input type="submit" value="詳細" name="submit_button">
+			    	</form>
+			    </li>
+		    <% } %>
+		</ul>
 
 
 

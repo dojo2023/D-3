@@ -33,7 +33,7 @@ public class REPLYDao {
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	        if(reply_id == 0) {
-	        	sql = "SELECT * FROM REPLY WHERE POSTER_ID = ?";
+	        	sql = "SELECT * FROM REPLY WHERE POSTER_ID = ? ORDER BY REPLIED_DATE DESC";
 	        	pStmt = conn.prepareStatement(sql);
 	        	pStmt.setInt(1, poster_id);
 	        } else if(poster_id == 0) {
