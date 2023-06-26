@@ -27,24 +27,25 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
 <body class="flex">
-<img src="./images/beforeLogin-left.png" class="pageLeft">
+<div class="place">
+<img src="./images/beforeLogin-left.png" class="page-left">
 <div class="box">
 	<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 		<h2><%=headline%></h2>
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
 		<div id="newDisplay">
-			<p class="name">氏名：<%=registerName%></p>
+			<p class="regist-name">氏名：<%=registerName%></p>
 
-			<p class="userId">ID：<%=registerId%></p>
+			<p class="regist-id">ID：<%=registerId%></p>
 
-			<p class="pw">パスワード：<%=registerPassword%></p>
+			<p class="regist-pw">パスワード：<%=registerPassword%></p>
 
-			<p class="en">社員番号：<%=employeeNumber%></p>
+			<p class="regist-en">社員番号：<%=employeeNumber%></p>
 
-			<p class="sq"> 秘密の質問：<%=SQsentence%> </p>
+			<p class="regist-sq"> 秘密の質問：<%=SQsentence%> </p>
 
-			<p  class="sa">秘密の質問の回答：<%=securityAnswer%></p>
+			<p  class="regist-sa">秘密の質問の回答：<%=securityAnswer%></p>
 		</div>
 		<% } %>
 
@@ -61,6 +62,7 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 			<p class="text">再設定したパスワード：<%=pw%></p>
 		</div>
 		<% } %>
+</div>
 </div>
 </body>
 </html>

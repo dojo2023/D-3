@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@media all and (-ms-high-contrast:none) {
+
 /* ログインする前のcss */
 /* ----------全体設定---------- */
 html{
@@ -7,15 +7,21 @@ html{
 
     }
 
-/* 画面サイズに関すること */
-htmi *{
-	box-sizing: border-box
+/* boxとleft-mageの位置について */
+.place {
+  display: flex;
+  height: 86%;
+  width: 90%;
+  margin-left: 7%;
+  margin-top: 3%;
 }
 
+/* 背景色と文字色に関すること */
 body {
         background-color: #8BA0B7; /*背景色*/
         color: #294E76; /*文字色*/
       }
+
 
 /* 要素の並び方に関すること */
 .flex {
@@ -23,7 +29,7 @@ body {
 }
 
 /* ページの左側の画像に関すること */
-.pageLeft {
+.page-left {
 	width: 540px;
     height: 700px;
 }
@@ -56,8 +62,9 @@ body {
 	border: none;
 	outline: none;
 	background-color: #F3F3F3;
-	font-size: 30.761px;
+	font-size: 27.5px;
 	flex-shrink: 0;
+	font-family:Senobi Gothic;
 	}
 
 /* プレースホルダーの書式設定 */
@@ -117,8 +124,8 @@ h2 {
 
 
 /* 秘密の質問画面、PW再設定画面のみ */
-/* 秘密の質問（sqText）と新規パスワード（newPw）のテキスト表示に関する部分の設定 */
-.sqText, .newPw {
+/* 秘密の質問（sq-text）と新規パスワード（new-pw-t）のテキスト表示に関する部分の設定 */
+.sq-text, .new-pw-t {
 	position: absolute;
 	top: 35%;
 	left: 12%;
@@ -132,7 +139,7 @@ h2 {
 }
 
 /* 秘密の質問の回答（saText）と確認用パスワード（checkPw）のテキスト表示に関する部分の設定 */
-.saText, .checkPw {
+.sa-text, .check-pw {
 	position: absolute;
 	top: 48%;
 	left: 12%;
@@ -147,8 +154,8 @@ h2 {
 
 
 /* 入力確認画面のみ */
-/* nameクラスに関する部分の設定 */
-.name {
+/* regist-nameクラスに関する部分の設定 */
+.regist-name {
 	position: absolute;
 	top: 20%;
 	left: 12%;
@@ -161,8 +168,8 @@ h2 {
 	width: 641.857px;
 }
 
-/* userIdクラスに関する部分の設定 */
-.userId {
+/* regist-idクラスに関する部分の設定 */
+.regist-id {
 	position: absolute;
 	top: 30%;
 	left: 12%;
@@ -175,8 +182,8 @@ h2 {
 	width: 641.857px;
 }
 
-/* pwクラスに関する部分の設定 */
-.pw {
+/* regist-pwクラスに関する部分の設定 */
+.regist-pw {
 	position: absolute;
 	top: 40%;
 	left: 12%;
@@ -189,8 +196,8 @@ h2 {
 	width: 641.857px;
 }
 
-/* enクラスに関する部分の設定 */
-.en {
+/* regist-enクラスに関する部分の設定 */
+.regist-en {
 	position: absolute;
 	top: 50%;
 	left: 12%;
@@ -203,8 +210,8 @@ h2 {
 	width: 641.857px;
 }
 
-/* sqクラスに関する部分の設定 */
-.sq {
+/* regist-sqクラスに関する部分の設定 */
+.regist-sq {
 	position: absolute;
 	top: 60%;
 	left: 12%;
@@ -217,8 +224,8 @@ h2 {
 	width: 641.857px;
 }
 
-/* saクラスに関する部分の設定 */
-.sa {
+/* regist-saクラスに関する部分の設定 */
+.regist-sa {
 	position: absolute;
 	top: 70%;
 	left: 12%;
@@ -231,7 +238,7 @@ h2 {
 	width: 641.857px;
 }
 
-/* info_check.jspのbuttomに関すること */
+/* info_check.jspのbuttonに関すること */
 .submit {
 	position: absolute;
 	top: 85%;
@@ -266,7 +273,7 @@ h2 {
 
 /* error.jspに関すること */
 /* ログイン画面へ戻るアイコンに関する設定 */
-.backLogin {
+.back-login {
 	position: absolute;
 	top: 45%;
     left: 55%;
@@ -276,7 +283,7 @@ h2 {
 }
 
 /* 前の画面へ戻るアイコンに関する設定 */
-.pageBack {
+.page-back {
 	position: absolute;
 	top: 45%;
     left: 20%;
@@ -286,7 +293,7 @@ h2 {
 }
 
 /* ログイン画面へ戻るアイコンに関する設定（前の画面へ戻るアイコンを表示しない時） */
-.loginError {
+.login-error {
 	position: absolute;
 	top: 40%;
     left: 40%;
@@ -296,7 +303,7 @@ h2 {
 }
 
 /* 前の画面へ戻るアイコンに関する設定（ログインへ戻るアイコンを表示しない時） */
-.registError {
+.regist-error {
 	position: absolute;
 	top: 40%;
     left: 40%;
@@ -310,36 +317,16 @@ h2 {
   display: flex;
   height: 86%;
   width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 3%;
+  margin-left: 8%;
+  margin-top: 3.5%;
   background-color: #fff;
 }
 
-.left-image {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-
-.right-content {
-  width: 10%;
-	  background-color: #F3F3F3;
-	  position: relative;
-      justify-content: center;
-      align-items: center;
-      width: 858px;
-      height: 700px;
-      flex-shrink: 0;
-      border: solid 0px #F3F3F3;
-
-}
 
 .right-content .tab {
   margin-bottom: 10px;
 }
-/*42~51*/
+
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
   top:0;
@@ -351,112 +338,56 @@ h2 {
   backface-visibility:hidden;
 
 }
-/*55~58*/
+
 .login-html .sign-in,
-.login-html .sign-up,
-.login-form .group .check{
+.login-html .sign-up
+{
   display:none;
 }
-/*61~64*/
-.login-html .tab,
-.login-form .group .label,
-.login-form .group .button{
+
+.login-html .tab
+ {
   text-transform:uppercase;
 }
-/*66~73*/
+
 .login-html .tab{
-  font-size:22px;
+  font-size:25px;
   margin-right:15px;
   padding-bottom:5px;
   margin:0 15px 10px 0;
   display:inline-block;
   border-bottom:2px solid transparent;
+  color: #5C5656;
 }
-/*76~78*/
+
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
-  border-color:#1161ee;
+  border-color:#294E76;
+  color: #294E76;
+  font-size:35px;
 }
-.login-form{
-  min-height:345px;
-  position:relative;
-  perspective:1000px;
-  transform-style:preserve-3d;
-}
-.login-form .group{
-  margin-bottom:15px;
-}
-.login-form .group .label,
-.login-form .group .input,
-.login-form .group /*.button*/{
-  width:100%;
 
-  display:block;
+
+
+.login-form{
+  min-height:635px;
+  position:relative;
+  perspective:100px;
+  transform-style:preserve-3d;
+  width: 10%;
+  background-color: #F3F3F3;
+  justify-content: center;
+  align-items: center;
+  width: 858px;
+  height: 600px;
+  flex-shrink: 0;
+  border: solid 0px #F3F3F3;
 }
-.login-form .group .input,
-.login-form .group /*.button*/{
-  border: none;
-  padding: 15px 20px;
-  /* border-radius: 25px; */
-  /* background: rgba(255,255,255,.1); */
-  border-bottom: 2px solid #999;
-  padding: 5px 10px;
-  outline: none;
-}
+
 .login-form .group input[data-type="password"]{
-  /*text-security:circle;*/
   -webkit-text-security:circle;
 }
-.login-form .group .label{
 
-  font-size:12px;
-}
-.login-form .group .button {
-  background: #ffffff;
-  border-radius: 40px;
-  width: 38%;
-  padding: 10px;
-  border: solid 4px #8BA0B7;
-}
-.login-form .group label .icon{
-  width:15px;
-  height:15px;
-  border-radius:2px;
-  position:relative;
-  display:inline-block;
-  background:rgba(255,255,255,.1);
-}
-.login-form .group label .icon:before,
-.login-form .group label .icon:after{
-  content:'';
-  width:10px;
-  height:2px;
-  background:#fff;
-  position:absolute;
-  transition:all .2s ease-in-out 0s;
-}
-.login-form .group label .icon:before{
-  left:3px;
-  width:5px;
-  bottom:6px;
-  transform:scale(0) rotate(0);
-}
-.login-form .group label .icon:after{
-  top:6px;
-  right:0;
-  transform:scale(0) rotate(0);
-}
-
-.login-form .group .check:checked + label .icon{
-  background:#1161ee;
-}
-.login-form .group .check:checked + label .icon:before{
-  transform:scale(1) rotate(45deg);
-}
-.login-form .group .check:checked + label .icon:after{
-  transform:scale(1) rotate(-45deg);
-}
-/*158~162*/
 .login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
   transform:rotate(0);
 }
@@ -464,5 +395,167 @@ h2 {
   transform:rotate(0);
 }
 
+/* 自分で書いた部分 */
+.loginId {
+	position: absolute;
+	top: 25%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
 }
 
+.loginPw {
+	position: absolute;
+	top: 45%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.login-button {
+	position: absolute;
+	top: 80%;
+	left: 40%;
+	width: 188.704px;
+    height: 71.256px;
+	border-radius: 67.475px;
+	border: 5px solid #294E76;
+    background: #FFF;
+    color: #294E76;
+    text-align: center;
+    font-size: 33.738px;
+    font-family: Senobi Gothic;
+    display:inline-block;
+    flex-shrink: 0;
+}
+
+.id-message {
+	position: absolute;
+	top: 58%;
+	left: 12%;
+	font-size: 23px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	flex-shrink: 0;
+	width: 641.857px;
+	text-decoration: none;
+}
+
+.pw-message {
+	position: absolute;
+	top: 65%;
+	left: 12%;
+	font-size: 23px;
+	flex-shrink: 0;
+	width: 641.857px;
+	text-decoration: none;
+}
+
+.new-name {
+	position: absolute;
+	top: 10%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.new-id {
+	position: absolute;
+	top: 20%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.new-pw {
+	position: absolute;
+	top: 30%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.new-pw-co {
+	position: absolute;
+	top: 40%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.new-en {
+	position: absolute;
+	top: 50%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.new-sq {
+	position: absolute;
+	top: 60%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}
+
+.select-sq {
+	font-size: 24.5px;
+	font-family:Senobi Gothic;
+	border: none;
+	outline: none;
+	background-color: #F3F3F3;
+}
+
+.new-sa {
+	position: absolute;
+	top: 70%;
+	left: 12%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 641.857px;
+}

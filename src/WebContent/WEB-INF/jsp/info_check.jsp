@@ -27,7 +27,8 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 <link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
 <body class="flex">
-<img src="./images/beforeLogin-left.png" class="pageLeft">
+<div class="place">
+<img src="./images/beforeLogin-left.png" class="page-left">
 <div class="box">
 		<a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 
@@ -68,6 +69,7 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 		<% } %>
 
 
+</div>
 </div>
 </body>
 </html>

@@ -14,14 +14,15 @@
 <link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
 <body class="flex">
-<img src="./images/beforeLogin-left.png" class="pageLeft">
+<div class="place">
+<img src="./images/beforeLogin-left.png" class="page-left">
 <div class="box">
 <a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 	<h2>秘密の質問の回答</h2>
 	<p class="message">以下の質問に回答してください</p>
-	<p  class="sqText">秘密の質問<%=sq_name%><br></p>
+	<p  class="sq-text">秘密の質問<%=sq_name%><br></p>
 	<form method="POST">
-		<p  class="saText">秘密の回答 <input type="text" class="textbox"  name="answer" required><br></p>
+		<p  class="sa-text">秘密の回答 <input type="text" class="textbox"  name="answer" required><br></p>
 
 		<% String idf = (String)request.getAttribute("idf");
 		if(idf.equals("1")) { %>
@@ -39,6 +40,7 @@
 			formaction="/WebApp_GENDA/PWServlet">
 		<% } %>
 	</form>
+	</div>
 </div>
 </body>
 </html>
