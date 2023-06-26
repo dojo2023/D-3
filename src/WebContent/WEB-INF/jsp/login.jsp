@@ -19,11 +19,11 @@
             <div class="sign-in-htm">
                 <form action="/WebApp_GENDA/LoginServlet" method="post">
             <div class="group">
-                <label class="loginId">ID
+                <label class="login-id">ID
                 <input type="text" name="ID" class="textbox" placeholder="IDを入力してください" required></label>
                  </div>
                <div class="group">
-                <label for="pass" class="loginPw">PW
+                <label for="pass" class="login-pw">PW
                 <input type="password" name="PW" class="textbox" placeholder="PWを入力してください" required></label>
                 <input type="hidden" name="login_idf" value="0">
                 </div>

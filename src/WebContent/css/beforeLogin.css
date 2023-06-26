@@ -7,6 +7,10 @@ html{
 
     }
 
+
+
+
+
 /* boxとleft-mageの位置について */
 .place {
   display: flex;
@@ -312,7 +316,7 @@ h2 {
 	flex-shrink: 0;
 }
 
-/* ログイン画面に関するcss */
+/* login.jspに関するcss */
 .login-html {
   display: flex;
   height: 86%;
@@ -329,7 +333,7 @@ h2 {
 
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
-  top:0;
+  top: 0;
   left:0;
   right:0;
   bottom:0;
@@ -343,18 +347,15 @@ h2 {
 .login-html .sign-up
 {
   display:none;
-}
 
-.login-html .tab
- {
-  text-transform:uppercase;
 }
 
 .login-html .tab{
+  text-transform:uppercase;
   font-size:25px;
-  margin-right:15px;
+  margin:40px 0 20px 40px;
   padding-bottom:5px;
-  margin:0 15px 10px 0;
+
   display:inline-block;
   border-bottom:2px solid transparent;
   color: #5C5656;
@@ -370,7 +371,7 @@ h2 {
 
 
 .login-form{
-  min-height:635px;
+  min-height:435px;
   position:relative;
   perspective:100px;
   transform-style:preserve-3d;
@@ -379,7 +380,7 @@ h2 {
   justify-content: center;
   align-items: center;
   width: 858px;
-  height: 600px;
+  height: 583px;
   flex-shrink: 0;
   border: solid 0px #F3F3F3;
 }
@@ -395,10 +396,9 @@ h2 {
   transform:rotate(0);
 }
 
-/* 自分で書いた部分 */
-.loginId {
+.login-id {
 	position: absolute;
-	top: 25%;
+	top: 15%;
 	left: 12%;
 	font-size: 27.5px;
 	line-height: 48.622px;
@@ -409,9 +409,9 @@ h2 {
 	width: 641.857px;
 }
 
-.loginPw {
+.login-pw {
 	position: absolute;
-	top: 45%;
+	top: 35%;
 	left: 12%;
 	font-size: 27.5px;
 	line-height: 48.622px;
@@ -441,7 +441,7 @@ h2 {
 
 .id-message {
 	position: absolute;
-	top: 58%;
+	top: 48%;
 	left: 12%;
 	font-size: 23px;
 	line-height: 48.622px;
@@ -453,7 +453,7 @@ h2 {
 
 .pw-message {
 	position: absolute;
-	top: 65%;
+	top: 55%;
 	left: 12%;
 	font-size: 23px;
 	flex-shrink: 0;
@@ -545,6 +545,9 @@ h2 {
 	border: none;
 	outline: none;
 	background-color: #F3F3F3;
+	max-width: 100%;
+
+
 }
 
 .new-sa {
