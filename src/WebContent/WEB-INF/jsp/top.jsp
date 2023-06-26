@@ -80,14 +80,17 @@
 		<% List<String> categoryList = (List<String>)request.getAttribute("categoryList"); %>
 		<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id1">
 			<input type="hidden" name="categoryId" value="1">
+			<input type="hidden" name="postIdf" value="0">
 		</form>
 		<a href="javascript:Id1.submit()"> <%= categoryList.get(0) %> </a>
 		<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id2">
 			<input type="hidden" name="categoryId" value="2">
+			<input type="hidden" name="postIdf" value="0">
 		</form>
 		<a href="javascript:Id2.submit()"> <%= categoryList.get(1) %> </a>
 		<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id3">
 			<input type="hidden" name="categoryId" value="3">
+			<input type="hidden" name="postIdf" value="0">
 		</form>
 		<a href="javascript:Id3.submit()"> <%= categoryList.get(2) %> </a>
 

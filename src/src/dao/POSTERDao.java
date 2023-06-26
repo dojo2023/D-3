@@ -35,12 +35,12 @@ public class POSTERDao {
 
 	        //投稿IDとカテゴリIDを検索するときで用いるsql文を場合分けして作成
 	        if(poster_id == 0) {
-	        	sql = "select * from POSTER where CATEGORY_ID = ? order by POSTED_DATE";
+	        	sql = "select * from POSTER where CATEGORY_ID = ? order by POSTED_DATE desc";
 	        	pStmt = conn.prepareStatement(sql);
 	        	pStmt.setInt(1, category_id);
 
 	        } else if(category_id == 0) {
-	        	sql = "select * from POSTER where POSTER_ID = ? order by POSTED_DATE";
+	        	sql = "select * from POSTER where POSTER_ID = ? order by POSTED_DATE desc";
 	        	pStmt = conn.prepareStatement(sql);
 	        	pStmt.setInt(1, poster_id);
 	        }

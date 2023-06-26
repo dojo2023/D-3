@@ -1,187 +1,139 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "model.POSTER" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>掲示板</title>
-    <link rel="stylesheet" href="./css/beforeLogin.css">
-    <style>
-        /* 共通のスタイル */
-        /* 省略 */
+	<head>
+	    <title>掲示板</title>
 
-        /* モーダルウィンドウのスタイル */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .modal.show {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 20px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 400px;
-            border-radius: 10px;
-        }
-        .modal input[type="text"],
-        .modal textarea {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .modal input[type="radio"] {
-            margin-right: 5px;
-        }
-        .modal .hashtags input[type="text"] {
-            margin-bottom: 10px;
-        }
-    </style>
+	</head>
+	<body>
+		<header>
+		    <div class="logo">
+		        <img src="https://placehold.jp/300x50.png" alt="ロゴ">
+		    </div>
+		    <div class="icons">
+		        <a href="top.jsp"><img src="https://placehold.jp/50x50.png" alt="ホーム"></a>
+		        <a href="login.jsp"><img src="https://placehold.jp/50x50.png" alt="ログアウト"></a>
+		    </div>
+		</header>
 
-</head>
-<body>
-<header>
-    <div class="logo">
-        <img src="https://placehold.jp/300x50.png" alt="ロゴ">
-    </div>
-    <div class="icons">
-        <a href="top.jsp"><img src="https://placehold.jp/50x50.png" alt="ホーム"></a>
-        <a href="login.jsp"><img src="https://placehold.jp/50x50.png" alt="ログアウト"></a>
-    </div>
-</header>
+		<a href="TopServlet">中庭掲示板ロゴ（ページ左上のやつ）</a>
+		<h1> BOARD </h1>
+		<% String categoryName = (String)request.getAttribute("categoryName");
+		String categoryId = (String)request.getAttribute("categoryId"); %>
+		<p> Category：<%= categoryName %> </p>
+		<a href="LogoutServlet">ログアウト</a><br>
 
-<!-- カテゴリー表示 -->
-		<div class="category">
-   			 <p>カテゴリ:</p>
- 				 <%
-				List<String> categoryNames = (List<String>) request.getAttribute("category_name");
+	    <form action="/WebApp_GENDA/PosterServlet" method="POST">
+	        <input type="text" name="keyword" placeholder="キーワードを入力してください">
+	        <input type="hidden" name="categoryId" value="<%= categoryId %>">
+	        <input type="hidden" name="categoryName" value="<%= categoryName %>">
+	        <input type="hidden" name="postIdf" value="1">
+	        <input type="submit" name="searchButton" value="検索">
+	    </form>
 
-				for (int i = 0; i < categoryNames.size(); i++) {
-    			String C_name = categoryNames.get(i);
-			%>
-				<%String category_name = (String)request.getAttribute("category_name"); %>
-    			<input type="hidden" name="c_name" value="<%= C_name %>">
-				<%
-				}
-				%>
-		</div>
+		<button id="modalOpen" class="button">新規投稿</button>
+  		<div id="easyModal" class="modal">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h1>新規投稿</h1>
+        			<span class="modalClose">×</span>
+      			</div>
+      			<div class="modal-body">
+        			<form method="POST" action="/WebApp_GENDA/PosterServlet">
+        				タイトル<input type="text" name="title" required><br>
+        				本文<input type="text" name="sentence" required><br>
+        				<input type="radio" name="name" value="匿名" checked>匿名
+        				<input type="radio" name="name" value="実名">実名<br>
+        				#<input type="text" name="hashtag1">
+        				#<input type="text" name="hashtag2">
+        				#<input type="text" name="hashtag3">
+        				#<input type="text" name="hashtag4">
+        				#<input type="text" name="hashtag5"><br>
+        				<input type="hidden" name="categoryId" value="<%= categoryId %>">
+        				<input type="hidden" name="categoryName" value="<%= categoryName %>">
+        				<input type="hidden" name="postIdf" value="2">
+        				<input type="submit" name="newFormSubmit" value="送信">
+        			</form>
+      			</div>
+    		</div>
+  		</div>
 
-<div class="search">
-    <form action="" method="get">
-        <input type="text" name="keyword" placeholder="キーワードを入力してください">
-        <button type="submit">検索</button>
-    </form>
-</div>
+  		<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
 
-<div class="create-post">
-    <p><a href="javascript:openModal()">新規投稿</a></p>
-</div>
-<ul>
-    <%
-    List<POSTER> p_list = (List<POSTER>) request.getAttribute("posterList");
-    for (int i = 0; i < p_list.size(); i++) {
-        POSTER post = p_list.get(i);
-    %>
-    <li>
-        <a><%= post.getTitle() %></a>
-        <%= post.getDate() %>
-    </li>
-    <% } %>
-</ul>
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  width: 50%;
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
 
-<!-- ページボタンの表示 -->
-<div class="pagination">
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-</div>
-<!-- 必要な数のページボタンを表示 -->
+.modal-header {
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
 
-<!-- 新規投稿のモーダルウィンドウ -->
-<div id="newPostModal" class="modal">
-    <div class="modal-content">
-        <form action="PosterServlet"  method="post" onsubmit="return setLinkTitle()">
-            <label for="post-title">タイトル:</label>
-            <input type="text" name="title" required>
+.modalClose:hover {
+  cursor: pointer;
+}
 
-            <div class="category">
-                <p>カテゴリ:</p>
-                <%
-				List<String> categoryNames = (List<String>) request.getAttribute("category_name");
+  		</style>
 
-				for (int i = 0; i < categoryNames.size(); i++) {
-    			String C_name = categoryNames.get(i);
-			%>
-				<%String category_name = (String)request.getAttribute("category_name"); %>
-    			<input type="hidden" name="c_name" value="<%= C_name %>">
-				<%
-				}
-				%>
-            </div>
+		<ul>
+		    <% List<POSTER> posterList = (List<POSTER>)request.getAttribute("posterList");
+		    for (int i = 0; i < posterList.size(); i++) {
+		        POSTER poster = posterList.get(i); %>
+			    <li>
+			        <%= poster.getTITLE() %>
+			        <%= poster.getPOSTED_DATE() %>
+			        <form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
+			    		<input type="hidden" name="posterId" value="<%=  poster.getPOSTER_ID() %>">
+			    		<input type="hidden" name="postIdf" value="0">
+			    		<input type="submit" value="詳細" name="submit_button">
+			    	</form>
+			    </li>
+		    <% } %>
+		</ul>
+		<script>
+		"use strict";
+		const buttonOpen = document.getElementById('modalOpen');
+		const modal = document.getElementById('easyModal');
+		const buttonClose = document.getElementsByClassName('modalClose')[0];
 
-            <p>匿名または実名:</p>
-            <input type="radio" id="anonymous" name="author" value="anonymous" checked>
-            <label for="anonymous">匿名</label>
-            <input type="radio" id="realname" name="author" value="realname">
-            <label for="realname">実名</label>
+		// ボタンがクリックされた時
+		buttonOpen.addEventListener('click', modalOpen);
+		function modalOpen() {
+		  modal.style.display = 'block';
+		}
 
-            <div class="hashtags">
-                <p>ハッシュタグ:</p>
-                <input type="text" name="hashtag1" maxlength="20">
-                <input type="text" name="hashtag2" maxlength="20">
-                <input type="text" name="hashtag3" maxlength="20">
-                <input type="text" name="hashtag4" maxlength="20">
-                <input type="text" name="hashtag5" maxlength="20">
-            </div>
+		// バツ印がクリックされた時
+		buttonClose.addEventListener('click', modalClose);
+		function modalClose() {
+		  modal.style.display = 'none';
+		}
 
-            <label for="post-content">本文:</label>
-            <textarea id="post-content" name="content" rows="5" required></textarea>
+		// モーダルコンテンツ以外がクリックされた時
+		addEventListener('click', outsideClose);
+		function outsideClose(e) {
+		  if (e.target == modal) {
+		    modal.style.display = 'none';
+		  }
+		}
+		</script>
 
-            <button type="submit" onclick="setLinkTitle()">投稿</button>
-        </form>
-        <button type="button" id="btn" onclick="closeModal()">キャンセル</button>
-    </div>
-</div>
-
-<script>
-    function openModal() {
-        var modal = document.getElementById("newPostModal");
-        modal.style.display = "flex";
-        setTimeout(function () {
-            modal.classList.add("show");
-        }, 10);
-    }
-
-    function closeModal() {
-        document.getElementById("post-title").value = "";
-        document.getElementById("post-content").value = "";
-
-        var hashtags = document.getElementsByClassName("hashtags")[0].getElementsByTagName("input");
-        for (var i = 0; i < hashtags.length; i++) {
-            hashtags[i].value = "";
-        }
-
-        var modal = document.getElementById("newPostModal");
-        modal.classList.remove("show");
-        setTimeout(function () {
-            modal.style.display = "none";
-        }, 300);
-    }
-</script>
-
-</body>
+	</body>
 </html>
