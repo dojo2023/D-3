@@ -8,6 +8,7 @@
  <link rel="stylesheet" href="./css/beforeLogin.css">
 </head>
 <body class="flex">
+<div class="place">
 <img src="./images/beforeLogin-left.png" class="pageLeft">
 <div class="box">
 <a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
@@ -20,6 +21,7 @@
 			<input type="hidden" name="idf" value="2">
 			<input type="submit" class="button" value="送信">
 		</form>
+	</div>
 	</div>
 </body>
 </html>
