@@ -102,7 +102,7 @@
 			        <%= poster.getPOSTED_DATE() %>
 			        <form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 			    		<input type="hidden" name="posterId" value="<%=  poster.getPOSTER_ID() %>">
-			    		<input type="hidden" name="postIdf" value="0">
+			    		<input type="hidden" name="replyIdf" value="0">
 			    		<input type="submit" value="詳細" name="submit_button">
 			    	</form>
 			    </li>
@@ -111,7 +111,7 @@
 		<script>
 		"use strict";
 		const buttonOpen = document.getElementById("modalOpen");
-		const modal = document.getElementById('easyModal');
+		const modal = document.getElementById("easyModal");
 		const buttonClose = document.getElementsByClassName("modalClose")[0];
 
 		// ボタンがクリックされた時

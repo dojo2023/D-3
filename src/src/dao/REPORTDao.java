@@ -28,7 +28,7 @@ public class REPORTDao {
 	        conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/src/data/gendaDB", "sa", "");
 
 	        // SQL文を準備する
-	        String sql = "SELECT * FROM REPORT ORDER BY REPORT_ID";
+	        String sql = "SELECT * FROM REPORT ORDER BY REPORT_ID DESC";
 
 	        PreparedStatement pStmt = conn.prepareStatement(sql);
 
