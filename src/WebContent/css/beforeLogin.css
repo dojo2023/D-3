@@ -312,7 +312,7 @@ h2 {
 	flex-shrink: 0;
 }
 
-/* ログイン画面に関するcss */
+/* login.jspに関するcss */
 .login-html {
   display: flex;
   height: 86%;
@@ -329,7 +329,7 @@ h2 {
 
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
-  top:0;
+  top: 0;
   left:0;
   right:0;
   bottom:0;
@@ -353,6 +353,7 @@ h2 {
 .login-html .tab{
   font-size:25px;
   margin-right:15px;
+  margin-left: 20px;
   padding-bottom:5px;
   margin:0 15px 10px 0;
   display:inline-block;
@@ -395,8 +396,7 @@ h2 {
   transform:rotate(0);
 }
 
-/* 自分で書いた部分 */
-.loginId {
+.login-id {
 	position: absolute;
 	top: 25%;
 	left: 12%;
@@ -409,7 +409,7 @@ h2 {
 	width: 641.857px;
 }
 
-.loginPw {
+.login-pw {
 	position: absolute;
 	top: 45%;
 	left: 12%;
