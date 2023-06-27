@@ -232,9 +232,11 @@ public class ReplyServlet extends HttpServlet {
 			if(reportIdf.equals("0")) {
 				rDao.insert(reportId, 0);
 				posterId = reportId;
+				request.setAttribute("resultSentence", "投稿を通報しました");
 			} else if(reportIdf.equals("1")) {
 				rDao.insert(0, reportId);
 				 posterId = Integer.parseInt(request.getParameter("posterId"));
+				 request.setAttribute("resultSentence", "返信を通報しました");
 			}
 
     		List<POSTER> posterList = pDao.select(posterId, 0);
@@ -334,6 +336,7 @@ public class ReplyServlet extends HttpServlet {
 
 				USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
 
+				request.setAttribute("resultSentence", "返信を削除しました");
 				request.setAttribute("posterName", posterInfo.getUser_name());
 				request.setAttribute("replyName", replyName);
 				request.setAttribute("replyAnimal", replyAnimal);

@@ -32,6 +32,10 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 		<% if(replyIdf.equals("-1")) { %>
 			<p> 投稿は削除されました </p>
 		<% } else { %>
+			<% if(replyIdf.equals("3") || replyIdf.equals("4")) {
+				String resultSentence = (String)request.getAttribute("resultSentence");	%>
+				<%= resultSentence %>
+			<% } %>
 			<p> Poster </p>
 			Category：<%= categoryName %>
 			タイトル：<%= poster.getTITLE() %>
