@@ -115,6 +115,75 @@ ul li a {
 	font-size: 35px;
 	box-shadow: 6px 7px 4px rgba(0, 0, 0, 0.3);
 }
+.no-post-message{
+	text-align: center;
+	margin-top: 20%;
+}
+.flameContainer {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 5px;
+  position: relative;
+}
+
+.flameLeft,
+.flameUpper5,
+.flameUpperRight,
+.flameBottomRight,
+.flameUpperLeft,
+.flameBottom,
+.flameRight,
+.flameBottomLeft {
+  position: absolute;
+}
+
+.flameLeft {
+    top: 98%;
+    left: 89px;
+    transform: translateY(-50%);
+}
+
+.flameUpper5 {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flameUpperRight {
+  top: -5px;
+  right: -5px;
+}
+
+.flameBottomRight {
+  bottom: -5px;
+  right: -5px;
+}
+
+.flameUpperLeft {
+    top: 65px;
+    left: -5px;
+}
+
+.flameBottom {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flameRight {
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+}
+
+.flameBottomLeft {
+  bottom: -5px;
+  left: -5px;
+}
+
+
+
+
 </style>
 <link rel="stylesheet" href="./css/afterLogin.css">
 </head>
@@ -161,10 +230,24 @@ ul li a {
 		%>
 		<p class="new-text">New</p>
 		<div class="new-content">
+		  <img class="flameLeft" src="./images/flameLeft.png" alt=""><!-- 左の横 -->
+		  <div class="flameContainer">
+  <img class="flameLeft" src="./images/flameLeft.png" alt="">
+  <img class="flameUpper5" src="./images/flameUpper 5.png" alt="">
+  <img class="flameUpperRight" src="./images/flameUpperRight.png" alt="">
+  <img class="flameBottomRight" src="./images/flameUpperLeft.png" alt="">
+  <img class="flameUpperLeft" src="./images/flameUpperLeft.png" alt="">
+  <img class="flameBottom" src="./images/flameBottom.png" alt="">
+  <img class="flameRight" src="./images/flameRight.png" alt="">
+  <img class="flameBottomLeft" src="./images/flameBottomLeft.png" alt="">
+</div>
+
 			<%
 				if (posterList.size() == 0) {
 			%>
-			新着の投稿はありません。
+			 <div id="no-post-message">
+    			新着の投稿はありません。
+  			</div>
 			<%
 				} else {
 			%>
