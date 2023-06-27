@@ -7,16 +7,11 @@ html{
 
     }
 
-
-
-
-
 /* boxとleft-mageの位置について */
 .place {
-  display: flex;
-  height: 86%;
-  width: calc(100% - 600px);
-  margin: 8% 4.5% 8% 4.5%;
+    display: flex;
+    width: 100%;
+    margin: 4% 10% 4% 10%;
 
 }
 
@@ -24,6 +19,7 @@ html{
 body {
         background-color: #8BA0B7; /*背景色*/
         color: #294E76; /*文字色*/
+        margin: 0px;
       }
 
 
@@ -34,12 +30,10 @@ body {
 
 /* ページの左側の画像に関すること */
 .page-left {
-	width: calc(100% - 100px);
-    height: 500px;
+	width: 30%;
 }
 /* それぞれの要素を囲んでる大枠の右側部分の設定 */
 .box {
-	  width: 10%;
 	  background-color: #F3F3F3;
 	  position: relative;
       justify-content: center;
@@ -318,16 +312,19 @@ h2 {
 }
 
 /* login.jspに関するcss */
+.login-wrap {
+	width: 100%;
+    margin: 4% 10% 4% 10%;
+}
+
 .login-html {
   display: flex;
-  height: 86%;
-  width: 90%;
-  margin: 8.85% 4.95% 8.85%  4.95%;
+  width: 100%;
+  margin: 0px;
 }
 
 .login-page-left {
-	width: calc(100% - 100px);
-    height: 500px;
+	width: 30%;
 }
 
 
@@ -375,16 +372,14 @@ h2 {
 
 
 .login-form{
-  min-height:422.5px;
+  min-height: 423px;
   position:relative;
   perspective:100px;
   transform-style:preserve-3d;
-  width: calc(100% - 600px);
   background-color: #F3F3F3;
   justify-content: center;
   align-items: center;
-  width: 758px;
-  height: 200px;
+   width: 78%;
   flex-shrink: 0;
   border: solid 0px #F3F3F3;
 }
