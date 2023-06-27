@@ -2,57 +2,103 @@
 /* ログインした後のcss */
 /* ----------全体設定---------- */
 html {
-	font-family: Senobi Gothic; /*font-family:ページ全体のフォントを指定*/
-	color: #294E76; /*文字色*/
-	display: inline-flex;
-	height: 900px;
-	padding: 100px 99px 100px 103px;
+	font-family: "Senobi Gothic"; /* ページ全体のフォントを指定 */
+	color: #294E76; /* 文字色 */
 	justify-content: flex-end;
 	align-items: flex-start;
+	background-color: #F3F3F3;
 }
 
 body {
-  background-color: #F3F3F3;
+	background-color: #F3F3F3;
+	margin: 0; /* 左右の隙間をなくす */
+}
+/*ヘッダーの設定 */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #EAEAEA;
+	height: 100px;
+	margin-top: 0; /* 上部の隙間をなくす */
 }
 
-header {
-  background-color: #EAEAEA;
-}
 .logo {
-  width: 325.066px;
-  height: 148.077px;
-  order: 1;
+	width: auto;
+	height: 100px;
+	text-align: right;
 }
 
-.setting-icon {
-  width: 165.131px;
-  height: 101.922px;
-  order: 3;
+.header-subtext {
+	color: #294E76;
+	text-align: center;
+	font-size: 20px;
+	font-family: "Senobi Gothic";
+	font-weight: 700;
+	line-height: 35px;
+}
+
+.header-text {
+	color: #294E76;
+	text-align: center;
+	font-size: 80px;
+	font-weight: 700;
+	font-family: "Senobi Gothic";
+	line-height: 86.964px;
+	margin: auto;
+}
+
+.header-icon li {
+	list-style: none;
+	float: left;
 }
 
 .report-icon {
-  width: 165.131px;
-  height: 93.922px;
-  order: 2;
+	width: auto;
+	height: 70px;
+	padding: 10px;
 }
 
-
-.header-text {
-  color: #294E76;
-  text-align: center;
-  font-size: 90.434px;
-  font-family: "Senobi Gothic",;
-  font-weight: 700;
-  line-height: 86.964px;
+.setting-icon {
+	width: auto;
+	height: 70px;
+	padding: 10px;
 }
 
-
-.header-subtext {
-  color: #294E76;
-  text-align: center;
-  font-size: 90.434px;
-  font-family: "Senobi Gothic";
-  font-weight: 700;
-  line-height: 86.964px;
+.logout-icon {
+	width: auto;
+	height: 70px;
+	padding: 10px 20px 10px 10px;
 }
 
+.flame {
+	border: solid #ccc 50px;
+	display: inline-block;
+	padding: 30px;
+	border-image: url(/simpleBC/WebContent/images/flame1.png) 100 round;
+}
+
+/*フッターの設定 */
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #294E76;
+	height: 70px;
+	margin: 0;
+	padding: 0;
+}
+
+.copyright {
+	color: #EAEAEA;
+	text-align: center;
+	font-weight: 700;
+	font-family: "Senobi Gothic";
+	margin: auto;
+}
+
+.up-icon {
+	width: auto;
+	height: 70px;
+	padding: 10px 20px 10px 10px;
+}
