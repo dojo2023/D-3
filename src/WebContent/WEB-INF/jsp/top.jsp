@@ -295,9 +295,7 @@ ul li a {
 		<div class=copyright>
 			©Copyright TeamGenda <br>All rights reserved.
 		</div>
-		<div>
-			<img class="up-icon" src="images/up.png" alt="up-icon">
-		</div>
+
 	</div>
 </body>
 </html>
