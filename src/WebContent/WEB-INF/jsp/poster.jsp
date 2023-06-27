@@ -4,29 +4,30 @@
 <%@ page import="model.POSTER"%>
 <!DOCTYPE html>
 <html>
-
+<link rel="stylesheet" href="./css/afterLogin.css">
 <body>
 	<div class="header">
-		<img class="logo" src="images/logo.png" alt="Logo">
 
-		<p class="header-text">POSTER</p>
+		<a href="LoginServlet"><img class="logo" src="images/logo.png"
+			alt="Logo"> </a>
+		<div class="header-subtext">
+			<%
+				String categoryName = (String) request.getAttribute("categoryName");
+			String categoryId = (String) request.getAttribute("categoryId");
+			%>
+			<p>
+				Category：<%=categoryName%>
+			</p>
+		</div>
+		<p class="header-text">BOARD</p>
 		<div class="header-icon">
 			<a href="LogoutServlet"> <img class="logout-icon"
 				src="./images/logoutIcon.png" alt="">
 			</a>
 		</div>
+
 	</div>
 
-	<a href="TopServlet">中庭掲示板ロゴ（ページ左上のやつ）</a>
-	<h1>BOARD</h1>
-	<%
-		String categoryName = (String) request.getAttribute("categoryName");
-	String categoryId = (String) request.getAttribute("categoryId");
-	%>
-	<p>
-		Category：<%=categoryName%>
-	</p>
-	<a href="LogoutServlet">ログアウト</a>
 	<br>
 
 	<form action="/WebApp_GENDA/PosterServlet" method="POST">
@@ -63,14 +64,8 @@
 		</div>
 	</div>
 
-	<div class="footer">
-		<div class=copyright>
-			©Copyright TeamGenda <br>All rights reserved.
-		</div>
-		<div>
-			<img class="up-icon" src="images/up.png" alt="up-icon">
-		</div>
-	</div>
+
+
 
 	<style>
 .modal {
@@ -147,6 +142,13 @@
 			}
 		}
 	</script>
-
+	<div class="footer">
+		<div class=copyright>
+			©Copyright TeamGenda <br>All rights reserved.
+		</div>
+		<div>
+			<img class="up-icon" src="images/up.png" alt="up-icon">
+		</div>
+	</div>
 </body>
 </html>
