@@ -134,7 +134,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* 秘密の質問の回答（saText）と確認用パスワード（checkPw）のテキスト表示に関する部分の設定 */
@@ -148,7 +148,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 
@@ -164,7 +164,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* regist-idクラスに関する部分の設定 */
@@ -178,7 +178,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* regist-pwクラスに関する部分の設定 */
@@ -192,7 +192,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* regist-enクラスに関する部分の設定 */
@@ -206,7 +206,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* regist-sqクラスに関する部分の設定 */
@@ -220,7 +220,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* regist-saクラスに関する部分の設定 */
@@ -234,7 +234,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* info_check.jspのbuttonに関すること */
@@ -314,7 +314,7 @@ h2 {
 /* login.jspに関するcss */
 .login-wrap {
 	width: 100%;
-    margin: 5% 13% 4% 13%;
+    margin: 3.5% 13% 3.5% 13%;
 }
 
 .login-html {
@@ -448,7 +448,7 @@ h2 {
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 	text-decoration: none;
 }
 
@@ -458,7 +458,7 @@ h2 {
 	left: 12%;
 	font-size: 23px;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 	text-decoration: none;
 }
 
@@ -472,7 +472,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .new-id {
@@ -485,7 +485,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .new-pw {
@@ -498,7 +498,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .new-pw-co {
@@ -511,7 +511,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .new-en {
@@ -524,7 +524,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .new-sq {
@@ -537,7 +537,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .select-sq {
@@ -561,7 +561,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 .login-textbox {
