@@ -1,215 +1,103 @@
 <%@page import="model.POSTER"%>
 <%@page import="java.util.List"%>
-<%@page import="servlet.ReplyServlet"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "model.REPLY" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%
 //リクエストスコープからデータを取得
-POSTER posterList = (POSTER) request.getAttribute("posterList");
+POSTER poster = (POSTER) request.getAttribute("poster");
 String id = (String) request.getAttribute("id");
-String postUserId = (String) request.getAttribute("postUserId");
-String replyUserId = (String) request.getAttribute("replyUserId");
-Integer userNameSwitch = (Integer) request.getAttribute("userNameSwitch");
-//どこのページから遷移してきたかを確認する際に使用
-String referer = request.getHeader("Referer");
-%>
+List<REPLY> replyList = (List<REPLY>)request.getAttribute("replyList");
+String replyIdf = (String)request.getAttribute("replyIdf");
+String categoryName = (String)request.getAttribute("categoryName");
+String[] hashtagList = (String[])request.getAttribute("hashtagList");
+String posterAnimal = (String)request.getAttribute("posterAnimal");
+List<String> replyAnimal = (List<String>)request.getAttribute("replyAnimal");
+String posterName = (String)request.getAttribute("posterName");
+List<String> replyName = (List<String>)request.getAttribute("replyName");
 
+String test = (String)request.getAttribute("test");
+%>
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8">
+		<title>返信ページ</title>
+	</head>
+	<body>
+		<a href="/TopServlet"> 中庭掲示板(左上) </a>
+		<p> Poster </p>
+		<a href="/LogoutServlet"> logout </a>
 
-<head>
-<meta charset="UTF-8">
-<title>返信ページ</title>
-</head>
-
-<body>
-	<%
-		if (referer != null && referer.contains("/poster.jsp")) {
-		//掲示板から遷移してきた場合
-	%>
-	<div id="newPostModal" class="modal">
-		<div class="modal-content">
-			<p id="post-title">
-				タイトル:<%=posterList.getTITLE()%></p>
-
-			<p id="category">
-				カテゴリ:<%=posterList.getCATEGORY_ID()%></p>
-
-			<%
-				if (userNameSwitch == 0) {
-			%>
-			<p id="post-user_name">投稿者名:実名</p>
-			<%
-				} else if (userNameSwitch == 1) {
-			%>
-			<p id="post-user_name">投稿者名:匿名</p>
-			<%
-				}
-			%>
-
-			<p id="post-time">
-				投稿日時:<%=posterList.getPOSTED_DATE()%></p>
-
-			<%
-				if (id.equals(postUserId)) {
-			%>
-			<form action="ReplyServlet" method="post">
-				<input type="hidden" name="delete_post_id" value="削除する投稿ID">
-				<button type="submit">削除</button>
+		<!-- 投稿の内容 -->
+		<p> Poster </p>
+		Category：<%= categoryName %>
+		タイトル：<%= poster.getTITLE() %>
+		投稿時間：<%= poster.getPOSTED_DATE() %>
+		本文：<%= poster.getMAIN_SENTENCE() %>
+		ハッシュタグ
+		#<%= hashtagList[0] %>
+		#<%= hashtagList[1] %>
+		#<%= hashtagList[2] %>
+		#<%= hashtagList[3] %>
+		#<%= hashtagList[4] %>
+		<% if(id.equals(poster.getUSER_ID())) { %>
+			<form action="/WebApp_GENDA/ReplyServlet" method="POST">
+				<input type="hidden" name="deleteId" value="<%= poster.getPOSTER_ID() %>">
+				<input type="hidden" name="deleteIdf" value="0">
+				<input type="hidden" name="replyIdf" value="4">
+				<input type="submit" value="削除">
 			</form>
-			<%
-				} else if (!id.equals(postUserId)) {
-			%>
-			<form action="ReportServlet" method="post">
-				<input type="hidden" name="report_post_id" value="通報する投稿ID">
-				<button type="submit">通報</button>
+		<% } else { %>
+			<form action="/WebApp_GENDA/ReplyServlet" method="POST">
+				<input type="hidden" name="reportId" value="<%= poster.getPOSTER_ID() %>">
+				<input type="hidden" name="reportIdf" value="0">
+				<input type="hidden" name="replyIdf" value="3">
+				<input type="submit" value="通報">
 			</form>
-			<%
-				}
-			%>
-			<p id="hashtags">
-				ハッシュタグ:<%=posterList.getHASHTAGS_ID1()%><%=posterList.getHASHTAGS_ID2()%><%=posterList.getHASHTAGS_ID3()%><%=posterList.getHASHTAGS_ID4()%><%=posterList.getHASHTAGS_ID5()%></p>
+		<% } %>
+		<% if(poster.getUSER_NAME_SWITCH() == 0) { %>
+			投稿者：<%= posterAnimal %>
+		<% } else if(poster.getUSER_NAME_SWITCH() == 1) { %>
+			投稿者：<%= posterName %>
+		<% } %>
+		<br><%= test %><br>
 
-			<p id="post-content">
-				本文：<%=posterList.getMAIN_SENTENCE()%></p>
-		</div>
-	</div>
-
-	<!-- 返信文の入力フォーム・匿名or実名選択ボタン・返信データの送信ボタン -->
-	<div class="input_reply">
-		<form action="/WebApp_GENDA/ReplyServlet" method="post">
-			<div class="reply_main">
-				<input type="text" name="reply">
-			</div>
-
-			<div class="name_switch_btn">
-				<input type="radio" name="name_switch" value="実名"> 実名 <input
-					type="radio" name="name_switch" value="匿名"> 匿名
-			</div>
-
-			<div class="submit_btn">
-				<button type="submit">送信</button>
-			</div>
+		<p> Reply </p>
+		<form action="/WebApp_GENDA/ReplyServlet" method="POST">
+			<input type="text" name="sentence">
+			<input type="radio" name="name" value="匿名" checked>匿名
+			<input type="radio" name="name" value="実名">実名
+			<input type="hidden" name="posterId" value="<%= poster.getUSER_ID() %>">
+			<input type="submit" value="返信">
 		</form>
 
-		<!-- 返信文の表示・匿名or実名の表示、削除or通報ボタンの表示 -->
-		<c:forEach items="${replyList}" var="reply">
-			<div class="reply_list">
-				<p id="reply_time">
-					返信日時：
-					<c:out value="${reply.getREPLIED_DATE()}" />
-				</p>
-				<p id="reply-content">
-					<c:out value="${reply.getREPLY_SENTENCE()}" />
-				</p>
-
-				<c:choose>
-					<c:when test="${userNameSwitch == 0}">
-						<p id="post-user_name">投稿者名:実名</p>
-					</c:when>
-					<c:when test="${userNameSwitch == 1}">
-						<p id="post-user_name">投稿者名:匿名</p>
-					</c:when>
-				</c:choose>
-
-				<c:choose>
-					<c:when test="${id.equals(postUserId)}">
-						<form action="ReplyServlet" method="post">
-							<input type="hidden" name="delete_post_id" value="削除する投稿ID">
-							<button type="submit">削除</button>
-						</form>
-					</c:when>
-					<c:otherwise>
-						<form action="ReportServlet" method="post">
-							<input type="hidden" name="report_post_id" value="通報する投稿ID">
-							<button type="submit">通報</button>
-						</form>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</c:forEach>
-
-	</div>
-	<%
-		} else if (referer != null && referer.contains("/report.jsp")) {
-	//通報ページから遷移してきた場合
-	%>
-	<div id="newPostModal" class="modal">
-		<div class="modal-content">
-			<p id="post-title">
-				タイトル:<%=posterList.getTITLE()%></p>
-
-			<p id="category">
-				カテゴリ:<%=posterList.getCATEGORY_ID()%></p>
-
-			<p id="post-user-id">
-				投稿者ID：<%=postUserId%></p>
-
-			<%
-				if (userNameSwitch == 0) {
-			%>
-			<p id="post-user_name">投稿者名:実名</p>
-			<%
-				} else if (userNameSwitch == 1) {
-			%>
-			<p id="post-user_name">投稿者名:匿名</p>
-			<%
-				}
-			%>
-
-			<p id="post-time">
-				投稿日時:<%=posterList.getPOSTED_DATE()%></p>
-
-			<form action="ReportServlet" method="post">
-				<input type="hidden" name="Identify_name" value="USER_NAME_SWITCH">
-				<button type="submit">匿名はがしちゃうよ</button>
+		<p> Reply-tree </p>
+		<% for(int i = 0; i < replyList.size(); i++) {
+			REPLY reply = replyList.get(i); %>
+			<%= reply.getREPLY_SENTENCE() %>
+			返信時間：<%= reply.getREPLIED_DATE() %>
+			<% if(reply.getUSER_NAME_SWITCH() == 0) { %>
+				返信者：<%= replyAnimal.get(i) %>
+			<% } else if(reply.getUSER_NAME_SWITCH() == 1) { %>
+				返信者：<%= replyName.get(i) %>
+			<% } %>
+			<% if(id.equals(reply.getUSER_ID())) { %>
+			<form action="/WebApp_GENDA/ReplyServlet" method="POST">
+				<input type="hidden" name="deleteId" value="<%= reply.getREPLY_ID() %>">
+				<input type="hidden" name="deleteIdf" value="1">
+				<input type="hidden" name="replyIdf" value="4">
+				<input type="submit" value="削除">
 			</form>
-
-			<p id="hashtags">
-				ハッシュタグ:<%=posterList.getHASHTAGS_ID1()%><%=posterList.getHASHTAGS_ID2()%><%=posterList.getHASHTAGS_ID3()%><%=posterList.getHASHTAGS_ID4()%><%=posterList.getHASHTAGS_ID5()%></p>
-
-
-			<p id="post-content"><%=posterList.getMAIN_SENTENCE()%></p>
-		</div>
-
-		<c:forEach items="${replyList}" var="reply">
-			<div class="reply_list">
-
-				<p id="reply_time">
-					返信日時：
-					<c:out value="${reply.getREPLYD_DATE()}" />
-				</p>
-
-				<p id="reply-content">
-					<c:out value="${reply.getREPLY_SENTENCE()}" />
-				</p>
-
-				<p id="reply-user-id">
-					返信者ID：
-					<c:out value="${reply.getUSER_ID()}" />
-				</p>
-
-				<c:choose>
-					<c:when test="${userNameSwitch == 0}">
-						<p id="post-user_name">投稿者名:実名</p>
-					</c:when>
-					<c:when test="${userNameSwitch == 1}">
-						<p id="post-user_name">投稿者名:匿名</p>
-					</c:when>
-				</c:choose>
-
-				<form action="ReportServlet" method="post">
-					<input type="hidden" name="Identify_name" value="USER_NAME_SWITCH">
-					<button type="submit">匿名はがしちゃうよ</button>
+			<% } else { %>
+				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
+					<input type="hidden" name="reportId" value="<%= reply.getREPLY_ID() %>">
+					<input type="hidden" name="reportIdf" value="1">
+					<input type="hidden" name="replyIdf" value="3">
+					<input type="submit" value="通報">
 				</form>
+			<% } %>
+		<% } %>
 
-			</div>
-		</c:forEach>
-	</div>
-	<%
-		}
-	%>
-</body>
+	</body>
 </html>
