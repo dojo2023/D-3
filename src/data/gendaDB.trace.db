@@ -8601,3 +8601,6 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/dojo6/src
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 44 more
+2023-06-27 17:18:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: 有効なデータがありません
+No data is available [2000-199]

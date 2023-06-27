@@ -171,9 +171,9 @@ public class ReplyServlet extends HttpServlet {
 			String name = request.getParameter("name");
     		int nameSwitch = 0;
     		if(name.equals("匿名")) {
-    			nameSwitch = 0;
-    		} else if(name.equals("実名")) {
     			nameSwitch = 1;
+    		} else if(name.equals("実名")) {
+    			nameSwitch = 2;
     		}
     		String animalId = aDao.get_animalID(posterId, id);
     		REPLY reply = new REPLY(posterId, sentence, nameSwitch, id, animalId);

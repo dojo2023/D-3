@@ -68,26 +68,28 @@
 
 
 		<form action="/WebApp_GENDA/SettingServlet" method="POST">
-			お気に入りワードの登録</form>
+			お気に入りワードの登録
 		<u> <input type="radio" name="item" value="タグ" checked
 			class="text">ハッシュタグ <input type="radio" name="item"
 			value="カテゴリー" class="text">カテゴリー <input type="radio"
 			name="item" value="フリーワード" class="text">フリーワード<br> <input
 			type="text" name="newsContent" required class="text"> <input
 			type="submit" class="button" value="登録" name="newsChange"
-			class="text"> <br>
+			class="text"></form> <br>
 		<br>
 
 
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="pwChangeForm" onsubmit="return checkPw()">
 				PWの変更<br class="text">
-			</form> 現在のPW：<input type="password" name="nowPassword" required
+			現在のPW：<input type="password" name="nowPassword" required
 			class="text"><br> 新しいPW：<input type="password"
 			name="newPassword" required class="text"> <input
 			type="submit" class="button" value="変更" name="passwordChange"
-			class="text"> <br>
+			class="text"> </form><br>
 		<br>
+		<% int userMode = (int)request.getAttribute("userMode");
+		if(userMode == 2) { %>
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="adminForm">
 				管理者権限<br> 権限の与奪 対象ID：<input type="text" name="userId" required
@@ -98,7 +100,7 @@
 					class="text">
 			</form>
 			<br>
-		<br>
+			<br>
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="enForm" onsubmit="return checkEn()">
 				社員番号の変更 対象ID：<input type="text" name="userId" required class="text"><br>
@@ -106,7 +108,8 @@
 				新しい社員番号：<input type="text" name="newEn" required class="text">
 				<input type="submit" class="button" value="変更" name="enChange"
 					class="text"></u>
-		</form>
+			</form>
+		<% } %>
 		<br>
 		<br>
 	</div>
