@@ -22,6 +22,7 @@ body {
 	background-color: #EAEAEA;
 	height: 100px;
 	margin-top: 0; /* 上部の隙間をなくす */
+	position: relative;
 }
 
 .header a {
@@ -50,6 +51,9 @@ body {
 	font-family: "Senobi Gothic";
 	line-height: 86.964px;
 	margin: 0 auto;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%,0);
 }
 
 .header-icon li {
