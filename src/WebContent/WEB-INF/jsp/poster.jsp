@@ -8,7 +8,7 @@
 <body>
 	<div class="header">
 
-		<a href="LoginServlet"><img class="logo" src="images/logo.png"
+		<a href="TopServlet"><img class="logo" src="images/logo.png"
 			alt="Logo"> </a>
 		<div class="header-subtext">
 			<%
