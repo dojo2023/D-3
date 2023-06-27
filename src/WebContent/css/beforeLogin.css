@@ -15,9 +15,8 @@ html{
 .place {
   display: flex;
   height: 86%;
-  width: 80%;
-  margin-left: 5.8%;
-  margin-top: 8.7%;
+  width: calc(100% - 600px);
+  margin: 8% 4.5% 8% 4.5%;
 
 }
 
@@ -35,9 +34,8 @@ body {
 
 /* ページの左側の画像に関すること */
 .page-left {
-	width: 340px;
+	width: calc(100% - 100px);
     height: 500px;
-    margin-left: 15px;
 }
 /* それぞれの要素を囲んでる大枠の右側部分の設定 */
 .box {
@@ -324,12 +322,11 @@ h2 {
   display: flex;
   height: 86%;
   width: 90%;
-  margin-left: 8%;
-  margin-top: 10%;
+  margin: 8.85% 4.95% 8.85%  4.95%;
 }
 
 .login-page-left {
-	width: 340px;
+	width: calc(100% - 100px);
     height: 500px;
 }
 
@@ -360,7 +357,7 @@ h2 {
 .login-html .tab{
   text-transform:uppercase;
   font-size:25px;
-  margin:20px 0 20px 40px;
+  margin:10px 10px 10px 10px;
   padding-bottom:5px;
 
   display:inline-block;
@@ -378,16 +375,16 @@ h2 {
 
 
 .login-form{
-  min-height:235px;
+  min-height:422.5px;
   position:relative;
   perspective:100px;
   transform-style:preserve-3d;
-  width: 10%;
+  width: calc(100% - 600px);
   background-color: #F3F3F3;
   justify-content: center;
   align-items: center;
   width: 758px;
-  height: 403px;
+  height: 200px;
   flex-shrink: 0;
   border: solid 0px #F3F3F3;
 }
