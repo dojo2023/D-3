@@ -26,6 +26,7 @@ body {
 /* 要素の並び方に関すること */
 .flex {
 	display:flex;
+	position:relative;
 }
 
 /* ページの左側の画像に関すること */
@@ -43,6 +44,7 @@ body {
       border: solid 0px #F3F3F3;
       min-height: 500px;
        }
+
 
 /* ログインに戻る右上のロゴアイコンに関する部分の設定るや */
 .logo {
