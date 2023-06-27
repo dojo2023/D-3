@@ -41,7 +41,7 @@ body {
       width: 60%;
       flex-shrink: 0;
       border: solid 0px #F3F3F3;
-      min-height: 590px;
+      min-height: 500px;
        }
 
 /* ログインに戻る右上のロゴアイコンに関する部分の設定るや */
@@ -100,7 +100,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 /* buttonクラス（submitbutton）に関する部分の設定 */
@@ -372,7 +372,7 @@ h2 {
 
 
 .login-form{
-  min-height: 513px;
+  min-height: 400px;
   position:relative;
   perspective:100px;
   transform-style:preserve-3d;
@@ -406,7 +406,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-    width: 641.857px;
+    width: 500px;
 }
 
 .login-pw {
@@ -419,7 +419,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 641.857px;
+	width: 500px;
 }
 
 
