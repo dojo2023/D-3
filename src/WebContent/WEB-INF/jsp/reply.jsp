@@ -35,12 +35,14 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			<p> Poster </p>
 			Category：<%= categoryName %>
 			タイトル：<%= poster.getTITLE() %>
-			投稿時間：<%= poster.getPOSTED_DATE() %>
+			投稿時間：<%= poster.getPOSTED_DATE() %><br>
 			<% if(replyIdf.equals("1")) {
 				int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
 				int reportPosterId = Integer.parseInt((String)request.getAttribute("reportPosterId"));
 				if(reportReplyId == 0) { %>
-					！
+					<div class="identify">IDと氏名の表示/非表示</div>
+					<div class="content">氏名：<%= posterName %>,ID：<%= poster.getUSER_ID() %></div>
+					<br>
 				<% }
 			} %>
 			本文：<%= poster.getMAIN_SENTENCE() %>
@@ -93,7 +95,9 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
 					int reportPosterId = Integer.parseInt((String)request.getAttribute("reportPosterId"));
 					if(reportReplyId == reply.getREPLY_ID()) { %>
-						！
+						<div class="identify">IDと氏名の表示/非表示</div>
+						<div class="content">氏名：<%= replyName.get(i) %>,ID：<%= reply.getUSER_ID() %></div>
+						<br>
 					<% }
 				} %>
 
@@ -122,7 +126,21 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			<% } %>
 		<% } %>
 
-
-
+		<script src="https://code.jquery.com/jquery.min.js"></script>
+		<script>
+			$(function() {
+			    $(".identify").click(function() {
+			        $(".content").slideToggle("");
+			    });
+			});
+		</script>
+		<style>
+			.identify{
+			    display: inline-block;
+			    background: #b6beff;
+			    padding: 5px 10px;
+			    cursor: pointer;
+			}
+		</style>
 	</body>
 </html>
