@@ -49,8 +49,6 @@ public class REPORTDao {
 	            REPORT report = new REPORT(reportId, replyId, posterId);
 	            REPORT_List.add(report);
 	        }
-
-
 	    } catch (ClassNotFoundException | SQLException e) {
 	        e.printStackTrace();
 	    } finally {

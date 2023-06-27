@@ -99,7 +99,6 @@ public class ReplyServlet extends HttpServlet {
 
 			USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
 
-			request.setAttribute("test", posterAnimal);
 			request.setAttribute("posterName", posterInfo.getUser_name());
 			request.setAttribute("replyName", replyName);
 			request.setAttribute("replyAnimal", replyAnimal);
@@ -154,6 +153,8 @@ public class ReplyServlet extends HttpServlet {
 
 			USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
 
+			request.setAttribute("reportReplyId", request.getParameter("reportReplyId"));
+			request.setAttribute("reportPosterId", request.getParameter("reportPosterId"));
 			request.setAttribute("posterName", posterInfo.getUser_name());
 			request.setAttribute("replyName", replyName);
 			request.setAttribute("replyAnimal", replyAnimal);
@@ -293,54 +294,55 @@ public class ReplyServlet extends HttpServlet {
 					replyDao.delete(reDeleteId);
 				}
 				pDao.delete(deleteId);
+				replyIdf = "-1";
 			} else if(deleteIdf.equals("1")) {
 				replyDao.delete(deleteId);
-			}
 
-			int posterId = Integer.parseInt(request.getParameter("posterId"));
-    		List<POSTER> posterList = pDao.select(posterId, 0);
-    		POSTER poster = posterList.get(0);
-    		List<REPLY> replyList = replyDao.select(0, posterId);
+				int posterId = Integer.parseInt(request.getParameter("posterId"));
+	    		List<POSTER> posterList = pDao.select(posterId, 0);
+	    		POSTER poster = posterList.get(0);
+	    		List<REPLY> replyList = replyDao.select(0, posterId);
 
-    		String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
-			String[] hashtagList = {"", "", "", "", ""};
-			if(poster.getHASHTAGS_ID1() != 0) {
-				hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
-			}
-			if(poster.getHASHTAGS_ID2() != 0) {
-				hashtagList[1] = hDao.get_htagname(poster.getHASHTAGS_ID2());
-			}
-			if(poster.getHASHTAGS_ID3() != 0) {
-				hashtagList[2] = hDao.get_htagname(poster.getHASHTAGS_ID3());
-			}
-			if(poster.getHASHTAGS_ID4() != 0) {
-				hashtagList[3] = hDao.get_htagname(poster.getHASHTAGS_ID4());
-			}
-			if(poster.getHASHTAGS_ID5() != 0) {
-				hashtagList[4] = hDao.get_htagname(poster.getHASHTAGS_ID5());
-			}
+	    		String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
+				String[] hashtagList = {"", "", "", "", ""};
+				if(poster.getHASHTAGS_ID1() != 0) {
+					hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
+				}
+				if(poster.getHASHTAGS_ID2() != 0) {
+					hashtagList[1] = hDao.get_htagname(poster.getHASHTAGS_ID2());
+				}
+				if(poster.getHASHTAGS_ID3() != 0) {
+					hashtagList[2] = hDao.get_htagname(poster.getHASHTAGS_ID3());
+				}
+				if(poster.getHASHTAGS_ID4() != 0) {
+					hashtagList[3] = hDao.get_htagname(poster.getHASHTAGS_ID4());
+				}
+				if(poster.getHASHTAGS_ID5() != 0) {
+					hashtagList[4] = hDao.get_htagname(poster.getHASHTAGS_ID5());
+				}
 
-			String posterAnimal = aDao.get_animalname(poster.getANIMAL_ID());
-			List<String> replyAnimal = new ArrayList<>();
-			List<String> replyName = new ArrayList<>();
-			for(int i = 0; i < replyList.size(); i++) {
-				REPLY replyInfo = replyList.get(i);
-				String animalName = aDao.get_animalname(replyInfo.getANIMAL_ID());
-				replyAnimal.add(animalName);
-				USER_INFO replyInfoData = uDao.select("", replyInfo.getUSER_ID());
-				replyName.add(replyInfoData.getUser_name());
+				String posterAnimal = aDao.get_animalname(poster.getANIMAL_ID());
+				List<String> replyAnimal = new ArrayList<>();
+				List<String> replyName = new ArrayList<>();
+				for(int i = 0; i < replyList.size(); i++) {
+					REPLY replyInfo = replyList.get(i);
+					String animalName = aDao.get_animalname(replyInfo.getANIMAL_ID());
+					replyAnimal.add(animalName);
+					USER_INFO replyInfoData = uDao.select("", replyInfo.getUSER_ID());
+					replyName.add(replyInfoData.getUser_name());
+				}
+
+				USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
+
+				request.setAttribute("posterName", posterInfo.getUser_name());
+				request.setAttribute("replyName", replyName);
+				request.setAttribute("replyAnimal", replyAnimal);
+				request.setAttribute("categoryName", categoryName);
+				request.setAttribute("hashtagList", hashtagList);
+				request.setAttribute("posterAnimal", posterAnimal);
+				request.setAttribute("poster", poster);
+				request.setAttribute("replyList", replyList);
 			}
-
-			USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
-
-			request.setAttribute("posterName", posterInfo.getUser_name());
-			request.setAttribute("replyName", replyName);
-			request.setAttribute("replyAnimal", replyAnimal);
-			request.setAttribute("categoryName", categoryName);
-			request.setAttribute("hashtagList", hashtagList);
-			request.setAttribute("posterAnimal", posterAnimal);
-			request.setAttribute("poster", poster);
-			request.setAttribute("replyList", replyList);
 		}
 
 

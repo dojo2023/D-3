@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.POSTERDao;
 import dao.REPORTDao;
@@ -26,29 +25,8 @@ public class ReportServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
-		if (session.getAttribute("user_id") == null) {
-			response.sendRedirect("/LoginServlet");
-			return;
-		}
-		// 通報ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/report.jsp");
-				dispatcher.forward(request, response);
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // もしもログインしていなかったらログインサーブレットにリダイレクトする
-	    HttpSession session = request.getSession();
-	    if (session.getAttribute("user_id") == null) {
-	        response.sendRedirect("/LoginServlet");
-	        return;
-	    }
-
-	    // リクエストパラメータを取得する
+		// リクエストパラメータを取得する
 	    request.setCharacterEncoding("UTF-8");
 
 	    // 検索処理を行う
@@ -56,6 +34,7 @@ public class ReportServlet extends HttpServlet {
 	    POSTERDao pDao = new POSTERDao();
 	    List<REPORT> reportList = rDao.select();
 	    List<POSTER> posterNewList = new ArrayList<>();
+
 	    for(int i = 0; i < reportList.size(); i++) {
 	    	REPORT report = reportList.get(i);
 	    	List<POSTER> posterList = pDao.select(report.getPOSTER_ID(), 0);
@@ -71,6 +50,14 @@ public class ReportServlet extends HttpServlet {
 	    // 通報ページにフォワードする
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/report.jsp");
 	    dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 	}
 
 
