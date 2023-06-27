@@ -16,8 +16,9 @@ html{
   display: flex;
   height: 86%;
   width: 80%;
-  margin-left: 3%;
-  margin-top: 3%;
+  margin-left: 5.8%;
+  margin-top: 8.7%;
+
 }
 
 /* 背景色と文字色に関すること */
@@ -323,9 +324,8 @@ h2 {
   display: flex;
   height: 86%;
   width: 90%;
-  margin-left: 4.8%;
-  margin-top: 3.3%;
-  background-color: #fff;
+  margin-left: 8%;
+  margin-top: 10%;
 }
 
 .login-page-left {
