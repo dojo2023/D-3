@@ -120,33 +120,30 @@ ul li a {
 	text-align: center;
 	margin-top: 20%;
 }
-
-
-
 </style>
 <link rel="stylesheet" href="./css/afterLogin.css">
 </head>
 <body>
 	<div class="header">
-		<div class="header-left">
-			<img class="logo" src="images/logo.png" alt="Logo">
-			<div class="header-subtext">
-				<%
+
+		<img class="logo" src="images/logo.png" alt="Logo">
+
+		<div class="header-subtext">
+			<%
 				int userMode = (int) request.getAttribute("userMode");
 			if (userMode == 1) {
 			%>
-				Mode：一般ユーザ
-				<%
+			Mode：一般ユーザ
+			<%
 				} else if (userMode == 2) {
 			%>
-				Mode：管理者
-				<%
+			Mode：管理者
+			<%
 				}
 			%>
-			</div>
 		</div>
 		<p class="header-text">HOME</p>
-		<div class="header-right">
+		<div class="header-icon">
 			<%
 				if (userMode == 2) {
 			%>
@@ -172,111 +169,109 @@ ul li a {
 		<p class="new-text">New</p>
 		<div class="new-content">
 			<div class="flameContainer">
-  			<img class="flameLeft" src="./images/flameLeft.png" alt="">
-  			<img class="flameUpper5" src="./images/flameUpper 5.png" alt="">
-  			<img class="flameUpperRight" src="./images/flameUpperRight.png" alt="">
-  			<img class="flameBottomRight" src="./images/flameUpperLeft.png" alt="">
-  			<img class="flameUpperLeft" src="./images/flameUpperLeft.png" alt="">
-  			<img class="flameBottom" src="./images/flameBottom.png" alt="">
-  			<img class="flameRight" src="./images/flameRight.png" alt="">
-  			<img class="flameBottomLeft" src="./images/flameBottomLeft.png" alt="">
+				<img class="flameLeft" src="./images/flameLeft.png" alt=""> <img
+					class="flameUpper5" src="./images/flameUpper 5.png" alt=""> <img
+					class="flameUpperRight" src="./images/flameUpperRight.png" alt="">
+				<img class="flameBottomRight" src="./images/flameUpperLeft.png"
+					alt=""> <img class="flameUpperLeft"
+					src="./images/flameUpperLeft.png" alt=""> <img
+					class="flameBottom" src="./images/flameBottom.png" alt=""> <img
+					class="flameRight" src="./images/flameRight.png" alt=""> <img
+					class="flameBottomLeft" src="./images/flameBottomLeft.png" alt="">
 			</div>
-			</div>
+		</div>
 
-			<%
+		<%
 				if (posterList.size() == 0) {
 			%>
-			<div id="no-post-message">新着の投稿はありません。</div>
-			<%
+		<div id="no-post-message">新着の投稿はありません。</div>
+		<%
 				} else {
 			%>
-			<ul>
-				<%
+		<ul>
+			<%
 					POSTER poster = posterList.get(0);
 				%>
-				<form method="POST" name="posterForm1"
-					action="/WebApp_GENDA/ReplyServlet">
-					<input type="hidden" name="posterId"
-						value="${poster.getPOSTER_ID()}">
-				</form>
-				新着1
-				<li><a href="javascript:posterForm1.submit()"><%=poster.getTITLE()%></a>
-					| <%=poster.getPOSTED_DATE()%></li>
-				<%
+			<form method="POST" name="posterForm1"
+				action="/WebApp_GENDA/ReplyServlet">
+				<input type="hidden" name="posterId"
+					value="${poster.getPOSTER_ID()}">
+			</form>
+			新着1
+			<li><a href="javascript:posterForm1.submit()"><%=poster.getTITLE()%></a>
+				| <%=poster.getPOSTED_DATE()%></li>
+			<%
 					}
 				if (posterList.size() > 1) {
 				%>
-				<%
+			<%
 					POSTER poster = posterList.get(1);
 				%>
-				<form method="POST" name="posterForm2"
-					action="/WebApp_GENDA/ReplyServlet">
-					<input type="hidden" name="posterId"
-						value="${poster.getPOSTER_ID()}">
-				</form>
-				新着2
-				<li><a href="javascript:posterForm2.submit()"><%=poster.getTITLE()%></a>
-					| <%=poster.getPOSTED_DATE()%></li>
-				<%
+			<form method="POST" name="posterForm2"
+				action="/WebApp_GENDA/ReplyServlet">
+				<input type="hidden" name="posterId"
+					value="${poster.getPOSTER_ID()}">
+			</form>
+			新着2
+			<li><a href="javascript:posterForm2.submit()"><%=poster.getTITLE()%></a>
+				| <%=poster.getPOSTED_DATE()%></li>
+			<%
 					} else {
 				%>
-			</ul>
-			<%
+		</ul>
+		<%
 				}
 			if (posterList.size() > 2) {
 			%>
-			<%
+		<%
 				POSTER poster = posterList.get(2);
 			%>
-			<form method="POST" name="posterForm3"
-				action="/WebApp_GENDA/ReplyServlet">
-				<input type="hidden" name="posterId"
-					value="${poster.getPOSTER_ID()}">
-			</form>
-			新着3
-			<li><a href="javascript:posterForm3.submit()"><%=poster.getTITLE()%></a>
-				| <%=poster.getPOSTED_DATE()%></li>
-			<%
+		<form method="POST" name="posterForm3"
+			action="/WebApp_GENDA/ReplyServlet">
+			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
+		</form>
+		新着3
+		<li><a href="javascript:posterForm3.submit()"><%=poster.getTITLE()%></a>
+			| <%=poster.getPOSTED_DATE()%></li>
+		<%
 				} else {
 			%>
-			</ul>
-			<%
+		</ul>
+		<%
 				}
 			if (posterList.size() > 3) {
 			%>
-			<%
+		<%
 				POSTER poster = posterList.get(3);
 			%>
-			<form method="POST" name="posterForm4"
-				action="/WebApp_GENDA/ReplyServlet">
-				<input type="hidden" name="posterId"
-					value="${poster.getPOSTER_ID()}">
-			</form>
-			新着4
-			<li><a href="javascript:posterForm4.submit()"><%=poster.getTITLE()%></a>
-				| <%=poster.getPOSTED_DATE()%></li>
-			<%
+		<form method="POST" name="posterForm4"
+			action="/WebApp_GENDA/ReplyServlet">
+			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
+		</form>
+		新着4
+		<li><a href="javascript:posterForm4.submit()"><%=poster.getTITLE()%></a>
+			| <%=poster.getPOSTED_DATE()%></li>
+		<%
 				} else {
 			%>
-			</ul>
-			<%
+		</ul>
+		<%
 				}
 			if (posterList.size() > 4) {
 			POSTER poster = posterList.get(4);
 			%>
-			<form method="POST" name="posterForm5"
-				action="/WebApp_GENDA/ReplyServlet">
-				<input type="hidden" name="posterId"
-					value="${poster.getPOSTER_ID()}">
-			</form>
-			新着5
-			<li><a href="javascript:posterForm5.submit()"><%=poster.getTITLE()%></a>
-				| <%=poster.getPOSTED_DATE()%></li>
-			</ul>
-			<%
+		<form method="POST" name="posterForm5"
+			action="/WebApp_GENDA/ReplyServlet">
+			<input type="hidden" name="posterId" value="${poster.getPOSTER_ID()}">
+		</form>
+		新着5
+		<li><a href="javascript:posterForm5.submit()"><%=poster.getTITLE()%></a>
+			| <%=poster.getPOSTED_DATE()%></li>
+		</ul>
+		<%
 				}
 			%>
-		</div>
+	</div>
 	</div>
 
 	<div class="main-category">

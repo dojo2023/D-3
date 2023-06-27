@@ -41,6 +41,8 @@ body {
 	font-family: "Senobi Gothic";
 	font-weight: 700;
 	line-height: 35px;
+	position: absolute;
+	left: 20%;
 }
 
 .header-text {
@@ -53,14 +55,11 @@ body {
 	margin: 0 auto;
 	position: absolute;
 	left: 50%;
-	transform: translate(-50%,0);
+	transform: translate(-50%, 0);
 }
 
-.header-left li {
-	list-style: none;
-	float: left;
-}
-.header-right li {
+
+.header-icon li {
 	list-style: none;
 	float: left;
 }
