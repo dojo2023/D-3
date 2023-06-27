@@ -40,11 +40,11 @@ public class INFODisplayServlet extends HttpServlet {
 		// 新規登録の場合（新規登録画面で登録ボタンを押したときに表示される）
 		/*新規登録のタブで登録ボタンが押されたら、新規登録の際に記入された、氏名、ID、パスワード、
 		 * 社員番号、秘密の質問とその回答*を取得する*/
+		request.setCharacterEncoding("UTF-8");
 		String idf = request.getParameter("idf");
 
 		if(idf.equals("0")) {
 
-			request.setCharacterEncoding("UTF-8"); // 文字コードの設定
 
 			String registerName = request.getParameter("registerName"); // 「registerName」というname属性をもつテキストボックスから氏名を取得し、String型の変数registerNameに代入
 			String registerId = request.getParameter("registerId"); // 「registerId」というname属性をもつテキストボックスからidを取得し、String型の変数registerIdに代入

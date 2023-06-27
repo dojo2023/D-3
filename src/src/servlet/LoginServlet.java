@@ -43,12 +43,12 @@ public class LoginServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		String login_idf = request.getParameter("login_idf");
 		USER_SQDao sq_dao = new USER_SQDao();
 		String[] sq_list = {sq_dao.SQ_return("1"), sq_dao.SQ_return("2"), sq_dao.SQ_return("3"), sq_dao.SQ_return("4"), sq_dao.SQ_return("5")};
