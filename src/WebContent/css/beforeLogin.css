@@ -15,8 +15,8 @@ html{
 .place {
   display: flex;
   height: 86%;
-  width: 90%;
-  margin-left: 7%;
+  width: 80%;
+  margin-left: 3%;
   margin-top: 3%;
 }
 
@@ -34,8 +34,9 @@ body {
 
 /* ページの左側の画像に関すること */
 .page-left {
-	width: 540px;
-    height: 700px;
+	width: 340px;
+    height: 500px;
+    margin-left: 15px;
 }
 /* それぞれの要素を囲んでる大枠の右側部分の設定 */
 .box {
@@ -44,8 +45,8 @@ body {
 	  position: relative;
       justify-content: center;
       align-items: center;
-      width: 858px;
-      height: 700px;
+      width: 758px;
+      height: 500px;
       flex-shrink: 0;
       border: solid 0px #F3F3F3;
        }
@@ -162,8 +163,8 @@ h2 {
 .regist-name {
 	position: absolute;
 	top: 20%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -176,8 +177,8 @@ h2 {
 .regist-id {
 	position: absolute;
 	top: 30%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -190,8 +191,8 @@ h2 {
 .regist-pw {
 	position: absolute;
 	top: 40%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -204,8 +205,8 @@ h2 {
 .regist-en {
 	position: absolute;
 	top: 50%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -218,8 +219,8 @@ h2 {
 .regist-sq {
 	position: absolute;
 	top: 60%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -232,8 +233,8 @@ h2 {
 .regist-sa {
 	position: absolute;
 	top: 70%;
-	left: 12%;
-	font-size: 27.5px;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -321,9 +322,14 @@ h2 {
   display: flex;
   height: 86%;
   width: 90%;
-  margin-left: 8%;
-  margin-top: 3.5%;
+  margin-left: 4.8%;
+  margin-top: 3.3%;
   background-color: #fff;
+}
+
+.login-page-left {
+	width: 340px;
+    height: 500px;
 }
 
 
@@ -353,7 +359,7 @@ h2 {
 .login-html .tab{
   text-transform:uppercase;
   font-size:25px;
-  margin:40px 0 20px 40px;
+  margin:20px 0 20px 40px;
   padding-bottom:5px;
 
   display:inline-block;
@@ -371,7 +377,7 @@ h2 {
 
 
 .login-form{
-  min-height:435px;
+  min-height:235px;
   position:relative;
   perspective:100px;
   transform-style:preserve-3d;
@@ -379,8 +385,8 @@ h2 {
   background-color: #F3F3F3;
   justify-content: center;
   align-items: center;
-  width: 858px;
-  height: 583px;
+  width: 758px;
+  height: 403px;
   flex-shrink: 0;
   border: solid 0px #F3F3F3;
 }
@@ -453,7 +459,7 @@ h2 {
 
 .pw-message {
 	position: absolute;
-	top: 55%;
+	top: 58%;
 	left: 12%;
 	font-size: 23px;
 	flex-shrink: 0;
@@ -463,9 +469,9 @@ h2 {
 
 .new-name {
 	position: absolute;
-	top: 10%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 0%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -476,9 +482,9 @@ h2 {
 
 .new-id {
 	position: absolute;
-	top: 20%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 12%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -489,9 +495,9 @@ h2 {
 
 .new-pw {
 	position: absolute;
-	top: 30%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 24%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -502,9 +508,9 @@ h2 {
 
 .new-pw-co {
 	position: absolute;
-	top: 40%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 34%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -515,9 +521,9 @@ h2 {
 
 .new-en {
 	position: absolute;
-	top: 50%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 44%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -528,9 +534,9 @@ h2 {
 
 .new-sq {
 	position: absolute;
-	top: 60%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 56%;
+	left: 8%;;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -540,7 +546,7 @@ h2 {
 }
 
 .select-sq {
-	font-size: 24.5px;
+	font-size: 17px;;
 	font-family:Senobi Gothic;
 	border: none;
 	outline: none;
@@ -552,9 +558,9 @@ h2 {
 
 .new-sa {
 	position: absolute;
-	top: 70%;
-	left: 12%;
-	font-size: 27.5px;
+	top: 66%;
+	left: 8%;
+	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -562,3 +568,14 @@ h2 {
 	flex-shrink: 0;
 	width: 641.857px;
 }
+
+.login-textbox {
+	width: 13em;
+	max-width: 100%;
+	border: none;
+	outline: none;
+	background-color: #F3F3F3;
+	font-size: 17.5px;
+	flex-shrink: 0;
+	font-family:Senobi Gothic;
+	}

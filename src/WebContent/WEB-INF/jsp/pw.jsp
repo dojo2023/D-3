@@ -9,7 +9,7 @@
 </head>
 <body class="flex">
 <div class="place">
-<img src="./images/beforeLogin-left.png" class="pageLeft">
+<img src="./images/beforeLogin-left.png" class="page-left">
 <div class="box">
 <a href="/WebApp_GENDA/LoginServlet"><img src="./images/backToTop.png" class="logo"></a>
 

@@ -10,7 +10,7 @@
 <body class="flex">
 <div class="login-wrap">
         <div class="login-html">
-                <img src="./images/beforeLogin-left.png" class="page-left">
+                <img src="./images/beforeLogin-left.png" class="login-page-left">
    <div class="login-form">
                 <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">ログイン</label>
                 <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">新規登録</label>
@@ -43,23 +43,23 @@
 	        <form action="/WebApp_GENDA/InformationCheckServlet" method="post">
 	        	<div class="group">
 	            <label  for="user" class="new-name">氏名:
-	            <input type="text" name="registerName" class="textbox" required></label>
+	            <input type="text" name="registerName" class="login-textbox" required></label>
 	            </div>
 	            <div class="group">
 	            <label class="new-id">ID:
-	            <input type="text" name="registerId"  class="textbox" required></label>
+	            <input type="text" name="registerId"  class="login-textbox" required></label>
 	            </div>
 	            <div class="group">
 	            <label for="pass" class="new-pw">パスワード:
-	            <input type="password" name="registerPassword" class="textbox" required></label>
+	            <input type="password" name="registerPassword" class="login-textbox" required></label>
 	            </div>
 	            <div class="group">
 	            <label for="pass" class="new-pw-co">パスワード確認:
-	            <input type="password" name="confirmPassword" class="textbox" required></label>
+	            <input type="password" name="confirmPassword" class="login-textbox" required></label>
 	            </div>
 	            <div class="group">
 	            <label for="pass" class="new-en">社員番号:
-	            <input type="text" name="employeeNumber" class="textbox" required></label>
+	            <input type="text" name="employeeNumber" class="login-textbox" required></label>
 	            </div>
 	            <label class="new-sq">秘密の質問:
 	            <select name="securityQuestion" class="select-sq">
@@ -71,7 +71,7 @@
 	                <option value="5"><%= sq_list[4] %></option>
 	            </select></label>
 	            <label class="new-sa">質問の答え:
-	            <input type="text" name="securityAnswer" class="textbox" required></label>
+	            <input type="text" name="securityAnswer" class="login-textbox" required></label>
 	            <div class="group">
 	            <button type="submit" name="submit_button" class="button" value="確認">確認</button>
 	            </div>
@@ -82,51 +82,51 @@
 		    String securityAnswer = (String) request.getAttribute("securityAnswer"); %>
 	        <form action="/WebApp_GENDA/InformationCheckServlet" method="POST">
 	            <label class="new-name">氏名:
-	            <input type="text" name="registerName" class="textbox" value="${registerName}"  required></label>
+	            <input type="text" name="registerName" class="login-textbox" value="${registerName}"  required></label>
 
 	            <% if(login_idf.equals("1")) {
 		    	String registerId = (String) request.getAttribute("registerId");
 		    	String employeeNumber = (String) request.getAttribute("employeeNumber"); %>
 	            <label class="new-id">ID:
-	            <input type="text" name="registerId" class="textbox" value="${registerId}"  required></label>
+	            <input type="text" name="registerId" class="login-textbox" value="${registerId}"  required></label>
 	            <label class="new-pw">パスワード:
-	            <input type="password" name="registerPassword" class="textbox" required></label>
+	            <input type="password" name="registerPassword" class="login-textbox" required></label>
 	            <label class="new-pw-co">パスワード確認:
-	            <input type="password" name="confirmPassword" class="textbox" required></label>
+	            <input type="password" name="confirmPassword" class="login-textbox" required></label>
 	            <label class="new-en">社員番号:
-	            <input type="text" name="employeeNumber" class="textbox" value="${employeeNumber}" required></label>
+	            <input type="text" name="employeeNumber" class="login-textbox" value="${employeeNumber}" required></label>
 	            <% } else if(login_idf.equals("2")) {
 			    	String registerPassword = (String) request.getAttribute("registerPassword"); %>
 		            <label class="new-id">ID:
-		            <input type="text" name="registerId" class="textbox"  required></label>
+		            <input type="text" name="registerId" class="login-textbox"  required></label>
 		            <label class="new-pw">パスワード:
-		            <input type="password" name="registerPassword" class="textbox" value="${registerPassword}" required></label>
+		            <input type="password" name="registerPassword" class="login-textbox" value="${registerPassword}" required></label>
 		            <label class="new-pw-co">パスワード確認:
-		            <input type="password" name="confirmPassword" class="textbox" value="${registerPassword}" required></label>
+		            <input type="password" name="confirmPassword" class="login-textbox" value="${registerPassword}" required></label>
 		            <label class="new-en">社員番号:
-		            <input type="text" name="employeeNumber" class="textbox" required></label>
+		            <input type="text" name="employeeNumber" class="login-textbox" required></label>
 		        <% } else if(login_idf.equals("3")) {
 		        		String registerId = (String) request.getAttribute("registerId");
 				    	String registerPassword = (String) request.getAttribute("registerPassword"); %>
 			            <label class="new-id">ID:
-			            <input type="text" name="registerId" class="textbox" value="${registerId}" required></label>
+			            <input type="text" name="registerId" class="login-textbox" value="${registerId}" required></label>
 			            <label class="new-pw">パスワード:
-			            <input type="password" name="registerPassword" class="textbox" value="${registerPassword}" required></label>
+			            <input type="password" name="registerPassword" class="login-textbox" value="${registerPassword}" required></label>
 			            <label class="new-pw-co">パスワード確認:
-			            <input type="password" name="confirmPassword" class="textbox" value="${registerPassword}" required></label>
+			            <input type="password" name="confirmPassword" class="login-textbox" value="${registerPassword}" required></label>
 			            <label class="new-en">社員番号:
-			            <input type="text" name="employeeNumber"  class="textbox" required></label>
+			            <input type="text" name="employeeNumber"  class="login-textbox" required></label>
 				<% } else if(login_idf.equals("4")) {
 					    	String registerPassword = (String) request.getAttribute("registerPassword");
 					    	String employeeNumber = (String) request.getAttribute("employeeNumber"); %>
 			            <label class="new-id">ID:
-			            <input type="text" name="registerId"  class="textbox" required></label>
+			            <input type="text" name="registerId"  class="login-textbox" required></label>
 			            <label class="new-pw">パスワード:
-			            <input type="password" name="registerPassword" class="textbox" value="${registerPassword}" required></label>
+			            <input type="password" name="registerPassword" class="login-textbox" value="${registerPassword}" required></label>
 			            <label class="new-pw-co">パスワード確認:
-			            <input type="password" name="confirmPassword" class="textbox" value="${registerPassword}" required></label>
+			            <input type="password" name="confirmPassword" class="login-textbox" value="${registerPassword}" required></label>
 			            <label class="new-en">社員番号:
-			            <input type="text" name="employeeNumber" class="textbox" value="${employeeNumber}" required></label>
+			            <input type="text" name="employeeNumber" class="login-textbox" value="${employeeNumber}" required></label>
 				<% } %>
 
 	            <label class="new-sq">秘密の質問:
@@ -138,7 +138,7 @@
 	                <option value="5" <% if(securityQuestion.equals("5")) { %> selected <% } %>><%= sq_list[4] %></option>
 	            </select></label>
 	            <label class="new-sa">質問の答え:
-	            <input type="text" name="securityAnswer"  class="textbox" value="${securityAnswer}" required></label>
+	            <input type="text" name="securityAnswer"  class="login-textbox" value="${securityAnswer}" required></label>
 	            <button type="submit" class="button" value="登録">登録</button>
 	        </form>
 	    <% } %>

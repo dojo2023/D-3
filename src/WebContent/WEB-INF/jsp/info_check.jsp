@@ -36,17 +36,17 @@ String pw = (String) request.getAttribute("pw"); // INFODisplayServletでリク�
 		<!-- 新規登録の場合に表示するもの -->
 		<% if (idf.equals("0")) { %>
 		<div id="newDisplay">
-			<p class="name">氏名：<%=registerName%></p>
+			<p class="regist-name">氏名：<%=registerName%></p>
 
-			<p class="userId">ID：<%=registerId%></p>
+			<p class="regist-id">ID：<%=registerId%></p>
 
-			<p class="pw">パスワード：<%=registerPassword%></p>
+			<p class="regist-pw">パスワード：<%=registerPassword%></p>
 
-			<p class="en">社員番号：<%=employeeNumber%></p>
+			<p class="regist-en">社員番号：<%=employeeNumber%></p>
 
-			<p class="sq"> 秘密の質問：<%=SQsentence%> </p>
+			<p class="regist-sq"> 秘密の質問：<%=SQsentence%> </p>
 
-			<p class="sa">秘密の質問の回答：<%=securityAnswer%></p>
+			<p class="regist-sa">秘密の質問の回答：<%=securityAnswer%></p>
 			<form class="flex">
 				<input type="hidden" name="registerName" value="${registerName}">
 				<input type="hidden" name="registerId" value="${registerId}">
