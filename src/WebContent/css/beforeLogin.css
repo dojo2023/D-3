@@ -11,7 +11,7 @@ html{
 .place {
     display: flex;
     width: 100%;
-    margin: 5% 5% 4% 13%;
+    margin: 5% 5% 4% 6%;
 
 }
 
@@ -31,7 +31,7 @@ body {
 
 /* ページの左側の画像に関すること */
 .page-left {
-	width: 30%;
+	width: 33.2%;
 }
 /* それぞれの要素を囲んでる大枠の右側部分の設定 */
 .box {
@@ -39,10 +39,10 @@ body {
 	  position: relative;
       justify-content: center;
       align-items: center;
-      width: 60%;
+      width: 65.8%;
       flex-shrink: 0;
       border: solid 0px #F3F3F3;
-      min-height: 500px;
+      min-height: 477px;
        }
 
 
@@ -314,10 +314,6 @@ h2 {
 }
 
 /* login.jspに関するcss */
-.login-wrap {
-	width: 100%;
-    margin: 3.5% 13% 3.5% 13%;
-}
 
 .login-html {
   display: flex;
@@ -401,7 +397,7 @@ h2 {
 .login-id {
 	position: absolute;
 	top: 15%;
-	left: 12%;
+	left: 25%;
 	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -414,7 +410,7 @@ h2 {
 .login-pw {
 	position: absolute;
 	top: 35%;
-	left: 12%;
+	left: 25%;
 	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -428,7 +424,7 @@ h2 {
 .login-button {
 	position: absolute;
 	top: 80%;
-	left: 40%;
+	left: 50%;
 	width: 188.704px;
     height: 71.256px;
 	border-radius: 67.475px;
@@ -445,7 +441,7 @@ h2 {
 .id-message {
 	position: absolute;
 	top: 48%;
-	left: 12%;
+	left: 25%;
 	font-size: 23px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -457,7 +453,7 @@ h2 {
 .pw-message {
 	position: absolute;
 	top: 58%;
-	left: 12%;
+	left: 25%;
 	font-size: 23px;
 	flex-shrink: 0;
 	width: 500px;
@@ -467,7 +463,7 @@ h2 {
 .new-name {
 	position: absolute;
 	top: 0%;
-	left: 8%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -479,8 +475,8 @@ h2 {
 
 .new-id {
 	position: absolute;
-	top: 12%;
-	left: 8%;
+	top: 10%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -492,8 +488,8 @@ h2 {
 
 .new-pw {
 	position: absolute;
-	top: 24%;
-	left: 8%;
+	top: 20%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -505,8 +501,8 @@ h2 {
 
 .new-pw-co {
 	position: absolute;
-	top: 34%;
-	left: 8%;
+	top: 30%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -518,8 +514,8 @@ h2 {
 
 .new-en {
 	position: absolute;
-	top: 44%;
-	left: 8%;
+	top: 40%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -531,8 +527,8 @@ h2 {
 
 .new-sq {
 	position: absolute;
-	top: 56%;
-	left: 8%;;
+	top: 50%;
+	left: 25%;;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -555,8 +551,8 @@ h2 {
 
 .new-sa {
 	position: absolute;
-	top: 66%;
-	left: 8%;
+	top: 60%;
+	left: 25%;
 	font-size: 17px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -575,4 +571,8 @@ h2 {
 	font-size: 17.5px;
 	flex-shrink: 0;
 	font-family:Senobi Gothic;
+	}
+
+	.login-text {
+	text-align-last: justify;
 	}
