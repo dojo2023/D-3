@@ -56,7 +56,11 @@ body {
 	transform: translate(-50%,0);
 }
 
-.header-icon li {
+.header-left li {
+	list-style: none;
+	float: left;
+}
+.header-right li {
 	list-style: none;
 	float: left;
 }
