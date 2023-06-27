@@ -199,6 +199,12 @@ public class ReplyServlet extends HttpServlet {
 			POSTERDao pDao = new POSTERDao();
 			REPLYDao replyDao = new REPLYDao();
 			if(deleteIdf.equals("0")) {
+				List<REPLY> replyList = replyDao.select(0, deleteId);
+				for (int  i = 0; i < replyList.size(); i++) {
+					REPLY reply = replyList.get(i);
+					int reDeleteId = reply.getREPLY_ID();
+					replyDao.delete(reDeleteId);
+				}
 				pDao.delete(deleteId);
 			} else if(deleteIdf.equals("1")) {
 				replyDao.delete(deleteId);
