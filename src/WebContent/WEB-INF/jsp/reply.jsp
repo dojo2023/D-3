@@ -30,13 +30,61 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 	<head>
 		<meta charset="UTF-8">
 		<title>返信ページ</title>
-	</head>
+		<link rel="stylesheet" href="./css/afterLogin.css">
+
+		<style>
+			.identify{
+			    display: inline-block;
+			    background: #b6beff;
+			    padding: 5px 10px;
+			    cursor: pointer;
+			}
+			.content {
+				display:none
+			}
+			.flameContainer {
+    width: 1015px;
+    height: 566px;
+    box-sizing: border-box;
+    padding: 80px;
+    border: 30px solid #ccc;
+    border-image-source: url(./images/flame.png);
+    border-image-slice: 300 fill;
+    border-image-width: 212px 236px;
+    border-image-outset: 0;
+    border-image-repeat: round;
+    margin-top: 5%;
+    margin-left: 4%;
+    display: inline-block;
+  max-height: 1000px; /* リストの最大高さを指定 */
+
+}
+.newItems {
+    list-style-type: none;
+    padding: 10px;
+    /* top: 84px; */
+    z-index: 300;
+    margin-left: 19%;
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+
+		</style>
+</head>
 	<body>
-		<a href="/WebApp_GENDA/TopServlet"> 中庭掲示板(左上) </a>
-		<p> Poster </p>
-		<a href="/WebApp_GENDA/LogoutServlet"> logout </a>
+	<div class="header">
+		<div class="header-left">
+			<img class="logo" src="images/logo.png" alt="Logo">
 
-
+		</div>
+		<p class="header-text">Poster</p>
+		<div class="header-right">
+			<a href="/WebApp_GENDA/LogoutServlet"> <img class="logout-icon"
+				src="./images/logoutIcon.png" alt="">
+			</a>
+		</div>
+	</div>
 
 
 		<% if(replyIdf.equals("-1")) {
@@ -49,7 +97,10 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 				String resultSentence = (String)request.getAttribute("resultSentence");	%>
 				<%= resultSentence %>
 			<% } %>
-			<p> Poster </p>
+			<div class="flameContainer">
+			<div class="scrollableContainer">
+			<div id="newItems">
+			<p class="title"> Poster </p>
 			Category：<%= categoryName %>
 			タイトル：<%= poster.getTITLE() %>
 			投稿時間：<%= poster.getPOSTED_DATE() %><br>
@@ -87,10 +138,10 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="submit" value="通報">
 				</form>
 			<% } %>
-			<% if(poster.getUSER_NAME_SWITCH() == 0) {
+			<% if(poster.getUSER_NAME_SWITCH() == 1) {
 			//匿名なら動物名を表示 %>
 				投稿者：<%= posterAnimal %>
-			<% } else if(poster.getUSER_NAME_SWITCH() == 1) {
+			<% } else if(poster.getUSER_NAME_SWITCH() == 2) {
 			//実名なら氏名を表示 %>
 				投稿者：<%= posterName %>
 			<% } %>
@@ -126,10 +177,10 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<% }
 				} %>
 
-				<% if(reply.getUSER_NAME_SWITCH() == 0) {
+				<% if(reply.getUSER_NAME_SWITCH() == 1) {
 				//匿名なら動物名を表示 %>
 					返信者：<%= replyAnimal.get(i) %>
-				<% } else if(reply.getUSER_NAME_SWITCH() == 1) {
+				<% } else if(reply.getUSER_NAME_SWITCH() == 2) {
 				//実名なら氏名を表示 %>
 					返信者：<%= replyName.get(i) %>
 				<% } %>
@@ -154,8 +205,9 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 				<% } %>
 			<% } %>
 		<% } %>
-
-
+</div>
+</div>
+</div>
 		<script src="https://code.jquery.com/jquery.min.js"></script>
 		<script>
 			//氏名・IDの表示・非表示に関するjavascriptとCSS
@@ -165,16 +217,6 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			    });
 			});
 		</script>
-		<style>
-			.identify{
-			    display: inline-block;
-			    background: #b6beff;
-			    padding: 5px 10px;
-			    cursor: pointer;
-			}
-			.content {
-				display:none
-			}
-		</style>
+
 	</body>
 </html>

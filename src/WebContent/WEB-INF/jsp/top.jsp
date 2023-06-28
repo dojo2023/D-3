@@ -22,10 +22,10 @@ body {
 	position: relative;
 }
 .new-text {
-	position: absolute;
-	top: 12px;
-	left: 104px;
-	font-size: 40px;
+    position: absolute;
+    top: -28px;
+    left: 111px;
+    font-size: 40px;
 }
 .new-content {
 	border-image: url(./images/flame1.png);
@@ -38,21 +38,25 @@ body {
 	box-sizing: border-box;
 }
 ul {
-position: absolute;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-z-index:300;
+    list-style-type: none;
+    padding: 10px;
+    /* top: 84px; */
+    z-index: 300;
+    margin-left: 19%;
+    position: relative;
+    height: 300px;
+    overflow: auto;
 }
-ul li {
-	/* margin-bottom: 0px; */
 
-	margin-left: 25%;
-	margin-top: 4%;
-	border-bottom: solid 2px;
-	width: 50%;
-	font-size: 20px;
 
+ ul li {
+    display: flex; /* 詳細ボタンを横に並べるために Flexbox を使用 */
+  align-items: center; /* アイテムを垂直方向に中央揃え */
+    border-bottom: solid 2px;
+    font-size: 20px;
+    margin-top: -20px;
+    padding: 10px;
+    white-space: nowrap;
 }
 ul li a {
 	display: block;
@@ -111,62 +115,24 @@ ul li a {
 	text-align: center;
 	margin-top: 20%;
 }
-.flameContainer{
-z-index:2;
-}
-.flameLeft,
-.flameUpper,
-.flameUpperRight,
-.flameBottomRight,
-.flameUpperLeft,
-.flameBottom,
-.flameRight,
-.flameBottomLeft {
-  position: absolute;
-}
-.flameLeft {
-    top: 419px;
-    left: 51px;
-    /* height: 138px; */
-    width: 295px;
-    height: calc(100% - 1155px);
-}
-.flameUpperRight {
-    left: 850px;
-    top: 120px;
-}
-.flameBottomRight {
-    top: 420px;
-    left: 850px;
-}
-.flameBottomLeft {
-    top: 420px;
-    left: 50px;
-}
-.flameBottom {
-    top: 420px;
-    left: 343px;
-    width: calc(100% - 700px);
-  height: 300px;
-}
-.flameRight {
-    top: 419px;
-    right: 58px;
-    /* height: 138px; */
-    width: 295px;
-    height: calc(100% - 1155px);
+.flameContainer {
+    width: 1015px;
+    height: 566px;
+    box-sizing: border-box;
+    padding: 80px;
+    border: 30px solid #ccc;
+    border-image-source: url(./images/flame.png);
+    border-image-slice: 300 fill;
+    border-image-width: 212px 236px;
+    border-image-outset: 0;
+    border-image-repeat: round;
+    margin-top: 5%;
+    margin-left: 4%;
+    display: inline-block;
+  max-height: 1000px; /* リストの最大高さを指定 */
+
 }
 
-.flameUpper {
-  top: 120px;
-  left: 350px;
-  width: calc(100% - 700px);
-  height: 300px;
-}
-.flameUpperLeft{
-top: 120px;
-    left: 50px;
-    }
 
 </style>
 <link rel="stylesheet" href="./css/afterLogin.css">
@@ -215,15 +181,8 @@ top: 120px;
 		<p class="new-text">New</p>
 
 			<div class="flameContainer">
-  			<img class="flameLeft" src="./images/flameLeft.png" alt="">
-  			<img class="flameUpper" src="./images/flameUpper.png" alt="">
-  			<img class="flameUpperRight" src="./images/flameUpperRight.png" alt="">
-  			<img class="flameBottomRight" src="./images/flameBottomRight.png" alt="">
-  			<img class="flameUpperLeft" src="./images/flameUpperLeft.png" alt="">
-  			<img class="flameBottom" src="./images/flameBottom.png" alt="">
 
-  			<img class="flameBottomLeft" src="./images/flameBottomLeft.png" alt="">
-			</div>
+
 
 			<%
 				if (posterList.size() == 0) {
@@ -232,11 +191,13 @@ top: 120px;
 			<%
 				} else {
 			%>
-			<ul >
+
+  <div class="scrollableContainer">
+    <ul id="newItems">
 				<%
 					POSTER poster = posterList.get(0);
 				%>
-				新着1
+				<p class="text-number">新着1</p>
 				<li>
 					<%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
@@ -252,7 +213,7 @@ top: 120px;
 				<%
 					POSTER poster = posterList.get(1);
 				%>
-				新着2
+				<p class="text-number">新着2</p>
 				<li>
 					<%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
@@ -272,7 +233,7 @@ top: 120px;
 			<%
 				POSTER poster = posterList.get(2);
 			%>
-			新着3
+			<p class="text-number">新着3</p>
 				<li>
 					<%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
@@ -292,7 +253,7 @@ top: 120px;
 			<%
 				POSTER poster = posterList.get(3);
 			%>
-			新着4
+			<p class="text-number">新着4</p>
 			<li>
 				<%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
 				<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
@@ -310,7 +271,7 @@ top: 120px;
 			if (posterList.size() > 4) {
 			POSTER poster = posterList.get(4);
 			%>
-			新着5
+			<p class="text-number">新着5</p>
 			<li>
 				<%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
 				<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
@@ -324,6 +285,9 @@ top: 120px;
 				}
 			%>
 		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	<div class="main-category">
 		<p class="category">Category</p>
@@ -364,5 +328,17 @@ top: 120px;
 			©Copyright TeamGenda <br>All rights reserved.
 		</div>
 	</div>
+	<script>
+  // 新着リストの親要素とスクロール可能なコンテナ要素を取得
+  var newItemsContainer = document.getElementById("newItems");
+  var scrollableContainer = document.querySelector(".scrollableContainer");
+
+  // フレームからはみ出た場合にスクロールを有効化
+  if (newItemsContainer.offsetHeight > scrollableContainer.offsetHeight) {
+    scrollableContainer.style.overflowY = "scroll";
+  } else {
+    scrollableContainer.style.overflowY = "hidden";
+  }
+</script>
 </body>
 </html>
