@@ -44,7 +44,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			}
 			.flameContainer {
     width: 1015px;
-    height: 566px;
+    height: 900px;
     box-sizing: border-box;
     padding: 80px;
     border: 30px solid #ccc;
@@ -69,18 +69,84 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
     height: 300px;
     overflow: auto;
 }
+.title-category{
+display: flex;
+}
+.title{
+font-size:30px;
+ margin-top: -50px;
+}
+.category{
+margin-top: -36px;
+margin-left:40px;
+}
+.title-time{
+display: flex;
+}
+.main-title{
+margin-top: -20px;
+border-bottom: 1px solid #294E76;
+padding-top:30px;
+}
+.time{
+margin-top: -20px;
+margin-left: 200px;
+border-bottom: 1px solid #294E76;
+padding-top:30px;
+
+}
+.container {
+  display: flex;
+  align-items: flex-start;
+
+}
+
+.main-content {
+  width: 70%; /* 本文の幅を調整 */
+  height: 300px;
+  padding: 10px;
+  border: 1px solid #294E76;
+  margin-top: 20px;
+}
+
+.hashtags {
+  width: 30%; /* ハッシュタグの幅を調整 */
+  padding: 10px;
+}
+
+.hashtag-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.hashtag-item {
+
+  align-items: center;
+  margin-bottom: 5px;
+
+}
+
+.hashtag-item::before {
+  content: "#";
+  margin-right: 5px;
+}
+.tittle{
+margin-top: 10px;
+}
+.hashu{
+margin-top: 10px;
+}
 
 		</style>
 </head>
 	<body>
 	<div class="header">
-		<div class="header-left">
-			<img class="logo" src="images/logo.png" alt="Logo">
-
-		</div>
-		<p class="header-text">Poster</p>
-		<div class="header-right">
-			<a href="/WebApp_GENDA/LogoutServlet"> <img class="logout-icon"
+		<a href="TopServlet"><img class="logo" src="images/logo.png"
+			alt="Logo"> </a>
+		<p class="header-text">POSTER</p>
+		<div class="header-icon">
+			<a href="LogoutServlet"> <img class="logout-icon"
 				src="./images/logoutIcon.png" alt="">
 			</a>
 		</div>
@@ -100,10 +166,13 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			<div class="flameContainer">
 			<div class="scrollableContainer">
 			<div id="newItems">
+			<div class="title-category">
 			<p class="title"> Poster </p>
-			Category：<%= categoryName %>
-			タイトル：<%= poster.getTITLE() %>
-			投稿時間：<%= poster.getPOSTED_DATE() %><br>
+			<p class="category">Category：<%= categoryName %></p>
+			</div>
+			<div class="title-time">
+			<div class="main-title">タイトル：<%= poster.getTITLE() %></div>
+			<div class="time">投稿時間：<%= poster.getPOSTED_DATE() %></div><br>
 			<% if(replyIdf.equals("1")) {
 				//通報ページから入った際は通報された投稿なのかを判定
 				int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
@@ -114,13 +183,29 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<br>
 				<% }
 			} %>
-			本文：<%= poster.getMAIN_SENTENCE() %>
-			ハッシュタグ
-			#<%= hashtagList[0] %>
-			#<%= hashtagList[1] %>
-			#<%= hashtagList[2] %>
-			#<%= hashtagList[3] %>
-			#<%= hashtagList[4] %>
+			</div>
+			<div class="tittle"> 本文：</div>
+<div class="container">
+
+   <div class="main-content">
+   <div> <%= poster.getMAIN_SENTENCE() %></div>
+  </div>
+
+  <div class="hashtags">
+ <div class="hashu"> ハッシュタグ</div><br>
+    <div class="hashtag-list">
+      <div class="hashtag-item"><%= hashtagList[0] %></div>
+      <div class="hashtag-item"><%= hashtagList[1] %></div>
+      <div class="hashtag-item"><%= hashtagList[2] %></div>
+      <div class="hashtag-item"><%= hashtagList[3] %></div>
+    </div>
+    <div class="hashtag-list">
+      <div class="hashtag-item"><%= hashtagList[4] %></div>
+    </div>
+  </div>
+</div>
+
+<div class="button-container">
 			<% if(id.equals(poster.getUSER_ID()) && !replyIdf.equals("1")) {
 			//投稿者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
@@ -137,6 +222,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="hidden" name="replyIdf" value="3">
 					<input type="submit" value="通報">
 				</form>
+</div>
 			<% } %>
 			<% if(poster.getUSER_NAME_SWITCH() == 1) {
 			//匿名なら動物名を表示 %>
@@ -184,6 +270,8 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 				//実名なら氏名を表示 %>
 					返信者：<%= replyName.get(i) %>
 				<% } %>
+
+				<div class="button-container2">
 				<% if(id.equals(reply.getUSER_ID()) && !replyIdf.equals("1")) {
 				//返信者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
@@ -205,6 +293,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 				<% } %>
 			<% } %>
 		<% } %>
+		</div>
 </div>
 </div>
 </div>

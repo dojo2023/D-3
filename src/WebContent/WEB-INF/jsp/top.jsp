@@ -23,20 +23,11 @@ body {
 }
 .new-text {
     position: absolute;
-    top: -28px;
-    left: 111px;
+    top: 78px;
+    left: 117px;
     font-size: 40px;
 }
-.new-content {
-	border-image: url(./images/flame1.png);
-	border-image-slice: 100 fill;
-	border-image-width: 160px;
-	border-image-outset: 20px;
-	border-image-repeat: stretch;
-	height: 630px;
-	padding: 100px;
-	box-sizing: border-box;
-}
+
 ul {
     list-style-type: none;
     padding: 10px;
@@ -66,25 +57,16 @@ ul li a {
 }
 /* カテゴリ */
 .main-category {
-	position: relative;
-	margin-top: 50%;
+    position: relative;
+    margin-top: 0%;
 }
 .category {
-	position: absolute;
-	top: 12px;
-	left: 104px;
-	font-size: 40px;
+    position: absolute;
+    top: 72px;
+    left: 111px;
+    font-size: 40px;
 }
-.new-content2 {
-	border-image: url(./images/flame1.png);
-	border-image-slice: 100 fill;
-	border-image-width: 160px;
-	border-image-outset: 20px;
-	border-image-repeat: stretch;
-	height: 720px;
-	padding: 100px;
-	box-sizing: border-box;
-}
+
 .category-container {
 	display: flex;
 	justify-content: space-between;
@@ -116,6 +98,23 @@ ul li a {
 	margin-top: 20%;
 }
 .flameContainer {
+    width: 1015px;
+    height: 566px;
+    box-sizing: border-box;
+    padding: 80px;
+    border: 30px solid #ccc;
+    border-image-source: url(./images/flame.png);
+    border-image-slice: 300 fill;
+    border-image-width: 212px 236px;
+    border-image-outset: 0;
+    border-image-repeat: round;
+    margin-top: 5%;
+    margin-left: 4%;
+    display: inline-block;
+  max-height: 1000px; /* リストの最大高さを指定 */
+
+}
+.flameContainer2 {
     width: 1015px;
     height: 566px;
     box-sizing: border-box;
@@ -294,20 +293,23 @@ ul li a {
 		<%
 			List<String> categoryList = (List<String>) request.getAttribute("categoryList");
 		%>
+		<div class="flameContainer2">
 		<div class="new-content2">
 			<div class="category-container">
 				<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id1">
 					<input type="hidden" name="categoryId" value="1"> <input
 						type="hidden" name="postIdf" value="0">
 				</form>
+
 				<a href="javascript:Id1.submit()">
 					<div class="category-item">
 						<img src="./images/categoryDoor.png" alt=""> <span>質問</span>
-					</div>
+					</div></a>
 					<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id2">
 						<input type="hidden" name="categoryId" value="2"> <input
 							type="hidden" name="postIdf" value="0">
-					</form> <a href="javascript:Id2.submit()">
+					</form>
+					<a href="javascript:Id2.submit()">
 						<div class="category-item">
 							<img src="./images/categoryDoor.png" alt=""> <span>趣味</span>
 						</div>
@@ -315,11 +317,14 @@ ul li a {
 					<form method="POST" action="/WebApp_GENDA/PosterServlet" name="Id3">
 						<input type="hidden" name="categoryId" value="3"> <input
 							type="hidden" name="postIdf" value="0">
-					</form> <a href="javascript:Id3.submit()">
+					</form>
+					<a href="javascript:Id3.submit()">
 						<div class="category-item">
 							<img src="./images/categoryDoor.png" alt=""> <span>相談</span>
 						</div>
 				</a>
+			</div>
+			</div>
 			</div>
 		</div>
 	</div>
