@@ -22,7 +22,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 //1 → 通報画面から掲示板詳細を開いた場合
 //2 → 返信した場合
 //3 → 投稿か返信を通報した場合
-//4 → 投稿か返信を削除した場合
+//4 → 返信を削除した場合
 %>
 
 <!DOCTYPE html>
@@ -70,7 +70,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			#<%= hashtagList[2] %>
 			#<%= hashtagList[3] %>
 			#<%= hashtagList[4] %>
-			<% if(id.equals(poster.getUSER_ID())) {
+			<% if(id.equals(poster.getUSER_ID()) && !replyIdf.equals("1")) {
 			//投稿者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="deleteId" value="<%= poster.getPOSTER_ID() %>">
@@ -78,7 +78,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="hidden" name="replyIdf" value="4">
 					<input type="submit" value="削除">
 				</form>
-			<% } else {
+			<% } else if(!replyIdf.equals("1")){
 			//投稿者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="reportId" value="<%= poster.getPOSTER_ID() %>">
@@ -133,7 +133,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 				//実名なら氏名を表示 %>
 					返信者：<%= replyName.get(i) %>
 				<% } %>
-				<% if(id.equals(reply.getUSER_ID())) {
+				<% if(id.equals(reply.getUSER_ID()) && !replyIdf.equals("1")) {
 				//返信者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="deleteId" value="<%= reply.getREPLY_ID() %>">
@@ -142,7 +142,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="hidden" name="replyIdf" value="4">
 					<input type="submit" value="削除">
 				</form>
-				<% } else {
+				<% } else if(!replyIdf.equals("1")){
 				//返信者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
 					<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 						<input type="hidden" name="reportId" value="<%= reply.getREPLY_ID() %>">
@@ -171,6 +171,9 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			    background: #b6beff;
 			    padding: 5px 10px;
 			    cursor: pointer;
+			}
+			.content {
+				display:none
 			}
 		</style>
 	</body>
