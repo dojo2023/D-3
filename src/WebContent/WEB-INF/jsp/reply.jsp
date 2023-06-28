@@ -44,7 +44,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			}
 			.flameContainer {
     width: 1015px;
-    height: 900px;
+    height: 1500px;
     box-sizing: border-box;
     padding: 80px;
     border: 30px solid #ccc;
@@ -103,7 +103,7 @@ padding-top:30px;
 
 .main-content {
   width: 70%; /* 本文の幅を調整 */
-  height: 300px;
+  height: 150px;
   padding: 10px;
   border: 1px solid #294E76;
   margin-top: 20px;
@@ -137,7 +137,34 @@ margin-top: 10px;
 .hashu{
 margin-top: 10px;
 }
+.reply-content{
+background-color: #ffffff;
+border-radius: 10px;
+ padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+.reply-tree{
+background-color: #ffffff;
+border-radius: 10px;
+ padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
 
+}
+.tree{
+border: 1px solid #294E76;
+border-radius: 10px;
+ padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+}
 		</style>
 </head>
 	<body>
@@ -232,6 +259,8 @@ margin-top: 10px;
 				投稿者：<%= posterName %>
 			<% } %>
 
+<div class="reply-content">
+
 			<% if(!replyIdf.equals("1")) {
 			//通報画面から入った際は返信フォームを表示しない%>
 				<p> Reply </p>
@@ -245,7 +274,12 @@ margin-top: 10px;
 				</form>
 			<% } %>
 
+			</div>
+
+<div class="reply-tree">
+
 			<p> Reply-tree </p>
+			<div class="tree">
 			<% for(int i = 0; i < replyList.size(); i++) {
 			//上記の投稿に紐づいた返信を全て表示
 				REPLY reply = replyList.get(i); %>
@@ -271,7 +305,7 @@ margin-top: 10px;
 					返信者：<%= replyName.get(i) %>
 				<% } %>
 
-				<div class="button-container2">
+
 				<% if(id.equals(reply.getUSER_ID()) && !replyIdf.equals("1")) {
 				//返信者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
@@ -291,9 +325,11 @@ margin-top: 10px;
 						<input type="submit" value="通報">
 					</form>
 				<% } %>
+				</div>
 			<% } %>
 		<% } %>
-		</div>
+	</div>
+	</div>
 </div>
 </div>
 </div>
