@@ -12,28 +12,30 @@
 
 <style>
 .rePoster {
-  font-size: 30px;
-  margin: 0% 0% 0% 30%;
+	font-size: 30px;
+	margin: 0% 0% 0% 30%;
 }
 
 .rePoster-line {
-	display:  inline-block;
+	display: inline-block;
 }
 
 .detail-line {
-	display:  inline-block;
+	display: inline-block;
 }
 
 li {
-  padding: 3% 0 0 0;
+	padding: 3% 0 0 0;
 }
 
-.input detail{
+form.input[type="submit"]  {
+	width: 124.337px;
+	height: 54.999px;
+	flex-shrink: 0;
 	border-radius: 52.695px;
-border: 0.775px solid #000;
-background: #8BA0B7;
+	border: 0.775px solid #000;
+	background: #8BA0B7;
 }
-
 </style>
 
 </head>
@@ -75,7 +77,7 @@ background: #8BA0B7;
 					<input type="hidden" name="reportReplyId" value="<%= report.getREPLY_ID() %>">
 					<input type="hidden" name="reportPosterId" value="<%= report.getPOSTER_ID() %>">
 					<input type="hidden" name="replyIdf" value="1">
-					<input type="submit" class="input detail" value="詳細" name="submit_button">
+					<input type="submit" value="詳細" name="submit_button">
 				</form>
 			</li>
 		<% } %>

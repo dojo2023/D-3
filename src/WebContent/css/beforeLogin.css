@@ -27,7 +27,6 @@ body {
 .flex {
 	display:flex;
 	position:relative;
-	overflow: hidden;
 }
 
 /* ページの左側の画像に関すること */
@@ -243,7 +242,7 @@ h2 {
 /* info_check.jspのbuttonに関すること */
 .submit {
 	position: absolute;
-	top: 85%;
+	top: 450px;
 	left: 27%;
 	width: 188.704px;
     height: 71.256px;
@@ -259,7 +258,7 @@ h2 {
 
 .cancel {
 	position: absolute;
-	top: 85%;
+	top: 450px;
 	left: 53%;
 	width: 188.704px;
     height: 71.256px;
@@ -371,7 +370,7 @@ h2 {
 
 
 .login-form{
-	zoom: 0.96;
+	zoom: 0.9;
   min-height: 400px;
   position:relative;
   perspective:100px;
