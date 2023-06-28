@@ -12,7 +12,7 @@ html{
     display: flex;
     width: 100%;
     margin: 5% 5% 4% 6%;
-
+	zoom: 0.9;
 }
 
 /* 背景色と文字色に関すること */
@@ -27,6 +27,7 @@ body {
 .flex {
 	display:flex;
 	position:relative;
+	overflow: hidden;
 }
 
 /* ページの左側の画像に関すること */
@@ -370,7 +371,7 @@ h2 {
 
 
 .login-form{
-	zoom:0.9;
+	zoom: 0.96;
   min-height: 400px;
   position:relative;
   perspective:100px;
