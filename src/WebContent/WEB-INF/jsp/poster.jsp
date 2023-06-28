@@ -78,7 +78,7 @@
 	z-index: 1;
 	left: 0;
 	top: 0;
-	height: 75%;
+	height: 100%;
 	width: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -96,7 +96,7 @@
 }
 
 .modal-header {
-	padding: 3px 15px;
+	padding: 3px 10px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -129,9 +129,10 @@
 }
 
 .search-text {
-	width: 580px;
+	width: 456px;
 	heigth: 40px;
 	font-size: 35px;
+
 }
 
 ::placeholder {
@@ -154,13 +155,13 @@
 .create-text {
 	font-size: 35px;
 	display:  inline-block;
-	margin: 0% 0% 0% 15%;
-	width: 587px;
+	margin: 0% 0% 0% 16%;
+	width: 456px;
 }
 
 .poster {
   font-size: 30px;
-  margin: 0% 0% 0% 30%;
+  margin: 0% 0% 0% 25%;
 }
 
 .poster-line {
@@ -196,7 +197,7 @@ li {
 
 .create-title-box {
 	font-size: 25px;
-	width: 395px;
+    width: 250px;
 	border: none;
 
 	outline: none;
@@ -222,7 +223,7 @@ li {
 }
 
 .create-sentence-box {
-	width: 500px;
+	width: 350px;
     height: 200px;
     top: 375px;
     left: 173px;
@@ -242,18 +243,10 @@ li {
 	border: none;
 	border-bottom: solid 1.5px #294E76;
 	outline: none;
-	font-size: 17px;
+	font-size: 14px;
 	background-color: #F3F3F3;
 	font-family:Senobi Gothic;
 }
-
-/*.display-name {
-	border-bottom: solid 1.5px #294E76;
-	font-size: 25px;
-	width: 50%;
-	display: inline-block;
-
-}*/
 
 </style>
 
