@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>設定画面</title>
 <style>
-//
-設定画面のcss /* ----------全体設定---------- */
+//設定画面のcss
+
+/* ----------全体設定---------- */
 
 .button {
 	width: 4em;
@@ -22,7 +23,7 @@
 
 /* プレースホルダーの書式設定 */
 ::placeholder {
-	font-family: "Senobi Gothic";
+	font-family: Senobi Gothic;
 }
 
 .button {
@@ -32,7 +33,7 @@
 	color: #294E76;
 	text-align: center;
 	font-size: 12.738px;
-	font-family: "Senobi Gothic";
+	font-family: Senobi Gothic;
 }
 /*表に下線を引く*/
 .table {
@@ -43,9 +44,89 @@
 	background-color: #F3F3F3;
 	font-size: 12.5px;
 	flex-shrink: 0;
-	font-family: "Senobi Gothic";
+	font-family: Senobi Gothic;
+}
+.favorite {
+display:inline-block;
+font-family:Senobi Gothic;
 }
 
+.register {
+ color: #fff;
+ text-align: center;
+ line-height: 100px;
+ width: 100px;
+ height: 100px;
+ font-family: Senobi Gothic;
+ font-size: 80px;
+ font-weight: 700;
+}
+
+.text {
+	border: none;　/* 枠線消す設定 */
+	outline: none; /* クリック時の枠線消す設定 */
+	background-color: #F3F3F3;　/* 背景色の設定 */　
+	font-family:Senobi Gothic;　/* フォントの設定 */
+}
+.line {
+border-bottom: solid 2px #294E76;
+line-height: 48.622px;
+letter-spacing: 2.768px;
+flex-shrink: 0;
+	width: 641.857px;
+}
+
+/*ヘッダーの設定 */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	background-color: #EAEAEA;
+	height: 100px;
+	margin-top: 0; /* 上部の隙間をなくす */
+	position: relative;
+}
+
+.header a {
+	text-decoration: none;
+}
+
+.logo {
+	width: auto;
+	height: 100px;
+	text-align: right;
+}
+/*フッターの設定 */
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #294E76;
+	height: 70px;
+	margin: 0;
+	padding: 0;
+}
+
+.copyright {
+	color: #EAEAEA;
+	text-align: center;
+	font-weight: 700;
+	font-family: "Senobi Gothic";
+	margin: auto;
+}
+
+.up-icon {
+	width: auto;
+	height: 70px;
+	padding: 10px 20px 10px 10px;
+}
+
+html{
+  font-family:Senobi Gothic;
+  font-size: 17px;
+  font-weight:  bold;
+}
 
 </style>
 </head>
@@ -68,47 +149,48 @@
 
 
 		<form action="/WebApp_GENDA/SettingServlet" method="POST">
-			お気に入りワードの登録
-			<input type="radio" name="item" value="タグ" checked class="text"> ハッシュタグ
-			<input type="radio" name="item" value="カテゴリー" class="text"> カテゴリー
-			<input type="radio" name="item" value="フリーワード" class="text"> フリーワード<br>
-			<input type="text" name="newsContent" required class="text">
-			<input type="submit" class="button" value="登録" name="newsChange" class="text">
-		</form> <br>
-		<br>
+			<div class = "favorite line">お気に入りワードの登録
+		   <input type="radio" name="item" value="タグ" checked
+			class="text">ハッシュタグ <input type="radio" name="item"
+			value="カテゴリー" class="text">カテゴリー <input type="radio"
+			name="item" value="フリーワード" class="text">フリーワード<br> </div>
+			<div class = "line"><input type="text" name="newsContent" required class="text">
 
+			<input type="submit" class="button" value="登録" name="newsChange"
+			class="text"></div></form><br><br>
 
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
-				name="pwChangeForm" onsubmit="return checkPw()">
-				PWの変更<br class="text">
-			現在のPW：<input type="password" name="nowPassword" required
-			class="text"><br> 新しいPW：<input type="password"
+			name="pwChangeForm" onsubmit="return checkPw()"><br><br>
+
+				<div class = "line">PWの変更<br class="text"></div>
+		   <div class = "line">現在のPW：<input type="password" name="nowPassword" required
+			class="text"></div><br> <div class = "line">新しいPW：<input type="password"
 			name="newPassword" required class="text"> <input
 			type="submit" class="button" value="変更" name="passwordChange"
-			class="text"> </form><br>
-		<br>
-		<% int userMode = (int)request.getAttribute("userMode");
+			class="text"> </div></form><br><br>
+			<% int userMode = (int)request.getAttribute("userMode");
 		if(userMode == 2) { %>
+
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
-				name="adminForm">
-				管理者権限<br> 権限の与奪 対象ID：<input type="text" name="userId" required
+				name="adminForm"><br>
+				<div class = "line">管理者権限</div><br> <div class = "line">権限の与奪 対象ID：<input type="text" name="userId" required
 					class="text"> <input type="submit" name="grant"
 					class="button" value="付与" onsubmit="return checkAdminGrant()"
 					class="text"> <input type="submit" name="revoke"
 					class="button" value="剥奪" onsubmit="return checkAdminRevoke()"
-					class="text">
+					class="text"></div>
 			</form>
-			<br>
-			<br>
+			<br><br><br>
+
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="enForm" onsubmit="return checkEn()">
-				社員番号の変更 対象ID：<input type="text" name="userId" required class="text"><br>
-				現在の社員番号：<input type="text" name="nowEn" required class="text"><br>
-				新しい社員番号：<input type="text" name="newEn" required class="text">
+				<div class = "line">社員番号の変更 対象ID：<input type="text" name="userId" required class="text"></div><br>
+				<div class = "line">現在の社員番号：<input type="text" name="nowEn" required class="text"></div><br>
+				<div class = "line">新しい社員番号：<input type="text" name="newEn" required class="text">
 				<input type="submit" class="button" value="変更" name="enChange"
-					class="text"></u>
-			</form>
-		<% } %>
+					class="text"></div>
+		</form>
+		  <% } %>
 		<br>
 		<br>
 	</div>
