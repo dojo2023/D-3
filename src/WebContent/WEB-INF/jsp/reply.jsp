@@ -28,11 +28,14 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 		<p> Poster </p>
 		<a href="/WebApp_GENDA/LogoutServlet"> logout </a>
 
-		<!-- 投稿の内容 -->
-		<% if(replyIdf.equals("-1")) { %>
+
+		<% if(replyIdf.equals("-1")) {
+		//投稿を削除したなら以下の文だけ表示する%>
 			<p> 投稿は削除されました </p>
-		<% } else { %>
+		<% } else {
+		//投稿の内容%>
 			<% if(replyIdf.equals("3") || replyIdf.equals("4")) {
+				//投稿・返信を削除・通報した場合はその旨を以下の文章で示す
 				String resultSentence = (String)request.getAttribute("resultSentence");	%>
 				<%= resultSentence %>
 			<% } %>
@@ -41,6 +44,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			タイトル：<%= poster.getTITLE() %>
 			投稿時間：<%= poster.getPOSTED_DATE() %><br>
 			<% if(replyIdf.equals("1")) {
+				//通報ページから入った際は通報された投稿なのかを判定
 				int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
 				int reportPosterId = Integer.parseInt((String)request.getAttribute("reportPosterId"));
 				if(reportReplyId == 0) { %>
@@ -56,14 +60,16 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			#<%= hashtagList[2] %>
 			#<%= hashtagList[3] %>
 			#<%= hashtagList[4] %>
-			<% if(id.equals(poster.getUSER_ID())) { %>
+			<% if(id.equals(poster.getUSER_ID())) {
+			//投稿者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="deleteId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="deleteIdf" value="0">
 					<input type="hidden" name="replyIdf" value="4">
 					<input type="submit" value="削除">
 				</form>
-			<% } else { %>
+			<% } else {
+			//投稿者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="reportId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="reportIdf" value="0">
@@ -71,13 +77,16 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="submit" value="通報">
 				</form>
 			<% } %>
-			<% if(poster.getUSER_NAME_SWITCH() == 0) { %>
+			<% if(poster.getUSER_NAME_SWITCH() == 0) {
+			//匿名なら動物名を表示 %>
 				投稿者：<%= posterAnimal %>
-			<% } else if(poster.getUSER_NAME_SWITCH() == 1) { %>
+			<% } else if(poster.getUSER_NAME_SWITCH() == 1) {
+			//実名なら氏名を表示 %>
 				投稿者：<%= posterName %>
 			<% } %>
 
-			<% if(!replyIdf.equals("1")) { %>
+			<% if(!replyIdf.equals("1")) {
+			//通報画面から入った際は返信フォームを表示しない%>
 				<p> Reply </p>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="text" name="sentence">
@@ -91,11 +100,13 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 
 			<p> Reply-tree </p>
 			<% for(int i = 0; i < replyList.size(); i++) {
+			//上記の投稿に紐づいた返信を全て表示
 				REPLY reply = replyList.get(i); %>
 				<%= reply.getREPLY_SENTENCE() %>
 				返信時間：<%= reply.getREPLIED_DATE() %>
 
 				<% if(replyIdf.equals("1")) {
+				//通報ページから入った際は通報された返信なのかを一つずつ判定
 					int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
 					int reportPosterId = Integer.parseInt((String)request.getAttribute("reportPosterId"));
 					if(reportReplyId == reply.getREPLY_ID()) { %>
@@ -105,12 +116,15 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<% }
 				} %>
 
-				<% if(reply.getUSER_NAME_SWITCH() == 0) { %>
+				<% if(reply.getUSER_NAME_SWITCH() == 0) {
+				//匿名なら動物名を表示 %>
 					返信者：<%= replyAnimal.get(i) %>
-				<% } else if(reply.getUSER_NAME_SWITCH() == 1) { %>
+				<% } else if(reply.getUSER_NAME_SWITCH() == 1) {
+				//実名なら氏名を表示 %>
 					返信者：<%= replyName.get(i) %>
 				<% } %>
-				<% if(id.equals(reply.getUSER_ID())) { %>
+				<% if(id.equals(reply.getUSER_ID())) {
+				//返信者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="hidden" name="deleteId" value="<%= reply.getREPLY_ID() %>">
 					<input type="hidden" name="posterId" value="<%= poster.getPOSTER_ID() %>">
@@ -118,7 +132,8 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 					<input type="hidden" name="replyIdf" value="4">
 					<input type="submit" value="削除">
 				</form>
-				<% } else { %>
+				<% } else {
+				//返信者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
 					<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 						<input type="hidden" name="reportId" value="<%= reply.getREPLY_ID() %>">
 						<input type="hidden" name="posterId" value="<%= poster.getPOSTER_ID() %>">
@@ -130,8 +145,10 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			<% } %>
 		<% } %>
 
+
 		<script src="https://code.jquery.com/jquery.min.js"></script>
 		<script>
+			//氏名・IDの表示・非表示に関するjavascriptとCSS
 			$(function() {
 			    $(".identify").click(function() {
 			        $(".content").slideToggle("");
