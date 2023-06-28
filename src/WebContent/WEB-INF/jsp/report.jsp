@@ -8,15 +8,44 @@
 <head>
 <meta charset="UTF-8">
 <title>通報ページ</title>
-<link rel="stylesheet" href="./css/beforeLogin.css">
+<link rel="stylesheet" href="./css/afterLogin.css">
+
+<style>
+.rePoster {
+  font-size: 30px;
+  margin: 0% 0% 0% 30%;
+}
+
+.rePoster-line {
+	display:  inline-block;
+}
+
+.detail-line {
+	display:  inline-block;
+}
+
+li {
+  padding: 3% 0 0 0;
+}
+
+.input detail{
+	border-radius: 52.695px;
+border: 0.775px solid #000;
+background: #8BA0B7;
+}
+
+</style>
+
 </head>
 <body>
 	<div class="header">
-		<img class="logo" src="images/logo.png" alt="Logo">
-
+		<div class="header-left">
+			<a href="TopServlet"><img class="logo" src="images/logo.png"
+			alt="Logo"> </a>
+		</div>
 		<p class="header-text">REPORT</p>
-		<div class="header-icon">
-			<a href="LogoutServlet"> <img class="logout-icon"
+		<div class="header-right">
+			<a href="/WebApp_GENDA/LogoutServlet"> <img class="logout-icon"
 				src="./images/logoutIcon.png" alt="">
 			</a>
 		</div>
@@ -28,8 +57,8 @@
 		for(int i = 0; i < posterNewList.size(); i++) {
 			REPORT report = reportList.get(i);
 			POSTER poster = posterNewList.get(i); %>
-			<li><%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%>
-				<form method="POST" action="/WebApp_GENDA/ReplyServlet">
+			<li class="rePoster"><div class="rePoster-line"><%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%></div>
+				<form method="POST" class="detail-line" action="/WebApp_GENDA/ReplyServlet">
 					<%
 						if (report.getREPLY_ID() == 0) {
 					%>
@@ -46,7 +75,7 @@
 					<input type="hidden" name="reportReplyId" value="<%= report.getREPLY_ID() %>">
 					<input type="hidden" name="reportPosterId" value="<%= report.getPOSTER_ID() %>">
 					<input type="hidden" name="replyIdf" value="1">
-					<input type="submit" value="詳細" name="submit_button">
+					<input type="submit" class="input detail" value="詳細" name="submit_button">
 				</form>
 			</li>
 		<% } %>
