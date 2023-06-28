@@ -73,7 +73,7 @@
 	            <label class="new-sa login-text">質問の答え:
 	            <input type="text" name="securityAnswer" class="login-textbox" required></label>
 	            <div class="group">
-	            <button type="submit" name="submit_button" class="button" value="確認">確認</button>
+	            <button type="submit" name="submit_button" class="regist-button" value="確認">確認</button>
 	            </div>
 	        </form>
 	    <% } else if(!login_idf.equals("0")) { %>

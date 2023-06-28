@@ -136,7 +136,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
 /* 秘密の質問の回答（saText）と確認用パスワード（checkPw）のテキスト表示に関する部分の設定 */
@@ -150,7 +150,7 @@ h2 {
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
 
@@ -394,11 +394,12 @@ h2 {
   transform:rotate(0);
 }
 
+/* ログインの際に必要なID */
 .login-id {
 	position: absolute;
-	top: 15%;
-	left: 25%;
-	font-size: 27.5px;
+	top: 25%;
+	left: 35%;
+	font-size: 37.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -407,11 +408,12 @@ h2 {
     width: 500px;
 }
 
+/* ログインの際に必要なPW */
 .login-pw {
 	position: absolute;
-	top: 35%;
-	left: 25%;
-	font-size: 27.5px;
+	top: 45%;
+	left: 35%;
+	font-size: 37.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
@@ -420,11 +422,28 @@ h2 {
 	width: 500px;
 }
 
-
+/* ログインボタンと確認ボタンに関すること */
 .login-button {
 	position: absolute;
-	top: 80%;
-	left: 50%;
+	top: 85%;
+	left: 65%;
+	width: 188.704px;
+    height: 71.256px;
+	border-radius: 67.475px;
+	border: 5px solid #294E76;
+    background: #FFF;
+    color: #294E76;
+    text-align: center;
+    font-size: 33.738px;
+    font-family: Senobi Gothic;
+    display:inline-block;
+    flex-shrink: 0;
+}
+
+.regist-button {
+	position: absolute;
+	top: 105%;
+	left: 65%;
 	width: 188.704px;
     height: 71.256px;
 	border-radius: 67.475px;
@@ -440,8 +459,8 @@ h2 {
 
 .id-message {
 	position: absolute;
-	top: 48%;
-	left: 25%;
+	top: 58%;
+	left: 35%;
 	font-size: 23px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
@@ -452,94 +471,101 @@ h2 {
 
 .pw-message {
 	position: absolute;
-	top: 58%;
-	left: 25%;
+	top: 68%;
+	left: 35%;
 	font-size: 23px;
 	flex-shrink: 0;
 	width: 500px;
 	text-decoration: none;
 }
 
+/* 新規登録の際に必要な名前 */
 .new-name {
 	position: absolute;
 	top: 0%;
 	left: 25%;
-	font-size: 17px;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録の際に必要なID */
 .new-id {
 	position: absolute;
-	top: 10%;
+	top: 15%;
 	left: 25%;
-	font-size: 17px;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録の際に必要なPW */
 .new-pw {
-	position: absolute;
-	top: 20%;
-	left: 25%;
-	font-size: 17px;
-	line-height: 48.622px;
-	letter-spacing: 2.768px;
-	display: inline-block;
-	border-bottom: solid 2px #294E76;
-	flex-shrink: 0;
-	width: 500px;
-}
-
-.new-pw-co {
 	position: absolute;
 	top: 30%;
 	left: 25%;
-	font-size: 17px;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録の際に必要なPWの確認 */
+.new-pw-co {
+	position: absolute;
+	top: 45%;
+	left: 25%;
+	font-size: 27.5px;
+	line-height: 48.622px;
+	letter-spacing: 2.768px;
+	display: inline-block;
+	border-bottom: solid 2px #294E76;
+	flex-shrink: 0;
+	width: 700px;
+}
+
+/* 新規登録の際に必要な社員番号 */
 .new-en {
 	position: absolute;
-	top: 40%;
+	top: 60%;
 	left: 25%;
-	font-size: 17px;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録の際に必要な質問 */
 .new-sq {
 	position: absolute;
-	top: 50%;
-	left: 25%;;
-	font-size: 17px;
+	top: 75%;
+	left: 25%;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録の際に必要な質問を選ぶ部分 */
 .select-sq {
-	font-size: 17px;;
+	font-size: 27.5px;;
 	font-family:Senobi Gothic;
 	border: none;
 	outline: none;
@@ -549,19 +575,21 @@ h2 {
 
 }
 
+/* 新規登録の際に必要な質問の答え */
 .new-sa {
 	position: absolute;
-	top: 60%;
+	top: 90%;
 	left: 25%;
-	font-size: 17px;
+	font-size: 27.5px;
 	line-height: 48.622px;
 	letter-spacing: 2.768px;
 	display: inline-block;
 	border-bottom: solid 2px #294E76;
 	flex-shrink: 0;
-	width: 500px;
+	width: 700px;
 }
 
+/* 新規登録画面のテキストボックス */
 .login-textbox {
 	width: 13em;
 	max-width: 100%;
@@ -573,6 +601,7 @@ h2 {
 	font-family:Senobi Gothic;
 	}
 
-	.login-text {
+/* 新規登録画面のテキスト */
+	/*.login-text {
 	text-align-last: justify;
-	}
+	}*/
