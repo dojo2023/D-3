@@ -370,6 +370,7 @@ h2 {
 
 
 .login-form{
+	zoom:0.9;
   min-height: 400px;
   position:relative;
   perspective:100px;
@@ -380,7 +381,6 @@ h2 {
    width: 66.8%;
   flex-shrink: 0;
   border: solid 0px #F3F3F3;
-
 }
 
 .login-form .group input[data-type="password"]{
