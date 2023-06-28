@@ -49,15 +49,16 @@
 			</div>
 			<div class="modal-body">
 				<form method="POST" action="/WebApp_GENDA/PosterServlet">
-					<div class="create-title">タイトル<input type="text" name="title"  required></div> <div class="check"><input
+					<div class="create-title">タイトル<input type="text" name="title" class="create-title-box" required></div>
+					<div class="check"><input
 						type="radio" name="name"  value="匿名" checked>匿名 <input
 						type="radio" name="name"   value="実名">実名</div><br>
-						<div class="create-sentence">本文<input
+						<div class="create-sentence">本文<br><input
 						type="text" name="sentence" class="create-sentence-box" required></div> <div class="create-hashtag">#<input
-						type="text" name="hashtag1"> #<input type="text"
-						name="hashtag2"><br> #<input type="text" name="hashtag3">
-					#<input type="text" name="hashtag4"><br> #<input type="text"
-						name="hashtag5"></div><br> <input type="hidden"
+						type="text" class="create-hashtag-box" name="hashtag1"> #<input type="text" class="create-hashtag-box"
+						name="hashtag2"><br> #<input type="text" class="create-hashtag-box" name="hashtag3">
+					#<input type="text" class="create-hashtag-box" name="hashtag4"><br> #<input type="text" class="create-hashtag-box"
+						name="hashtag5"></div> <input type="hidden"
 						name="categoryId" value="<%=categoryId%>"> <input
 						type="hidden" name="categoryName" value="<%=categoryName%>">
 					<input type="hidden" name="postIdf" value="2"> <input
@@ -91,6 +92,7 @@
     width: 70%;
     height: 70%;
     border-radius: 67px;
+    position: relative;
 }
 
 .modal-header {
@@ -178,17 +180,33 @@ li {
   padding: 3% 0 0 0;
 }
 
-.create-title, .create-sentence, .create-hashtag {
+.create-title, .create-sentence, .create-hashtag,.create-sentence-box {
 	display:  inline-block;
 }
 
 .check {
 	display:  inline-block;
 	font-size: 25px;
+	margin: 0% 0% 0% 10%;
 }
 
 .create-title, .create-check, .create-sentence,.create-sentence-box, .create-hashtag, .create-input {
 	font-size: 25px;
+}
+
+.create-title-box {
+	font-size: 25px;
+	width: 395px;
+	border: none;
+
+	outline: none;
+	background-color: #F3F3F3;
+	font-family:Senobi Gothic;
+}
+
+.create-title {
+	margin: 0% 0% 0% 10%;
+	border-bottom: solid 1.5px #294E76;
 }
 
 .create-sentence {
@@ -196,18 +214,46 @@ li {
 }
 
 .create-input {
-	margin: 7% 0% 0% 50%;
+	width: 10%;
+	display: inline-block;
+	position: absolute;
+	top: 80%;
+	left: 70%;
 }
 
 .create-sentence-box {
-	width: 40%;
-	heigth: 40%px;
+	width: 500px;
+    height: 200px;
+    top: 375px;
+    left: 173px;
+    border: 1px
+
 }
 
-.create-hashtag {
-	margin: 0% 0% 0% 30%;
+.create-sentence-box {
+	border: solid 1.5px #294E76;
+	outline: none;
+	background-color: #F3F3F3;
+	font-size: 27.5px;
+	font-family:Senobi Gothic;
 }
 
+.create-hashtag-box {
+	border: none;
+	border-bottom: solid 1.5px #294E76;
+	outline: none;
+	font-size: 17px;
+	background-color: #F3F3F3;
+	font-family:Senobi Gothic;
+}
+
+/*.display-name {
+	border-bottom: solid 1.5px #294E76;
+	font-size: 25px;
+	width: 50%;
+	display: inline-block;
+
+}*/
 
 </style>
 
