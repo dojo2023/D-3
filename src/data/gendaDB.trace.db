@@ -8608,3 +8608,6 @@ No data is available [2000-199]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "DELETE *[*] FROM POSTER"; 期待されるステートメント "identifier"
 Syntax error in SQL statement "DELETE *[*] FROM POSTER"; expected "identifier"; SQL statement:
 delete * from POSTER [42001-200]
+2023-06-28 11:55:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: 有効なデータがありません
+No data is available [2000-199]

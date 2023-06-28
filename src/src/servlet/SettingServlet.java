@@ -234,7 +234,7 @@ public class SettingServlet extends HttpServlet {
 
 		}
 
-		if (request.getParameter("grant") != null) {
+		else if (request.getParameter("grant") != null) {
 
 		    String userId = request.getParameter("userId");
 

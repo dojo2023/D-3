@@ -339,7 +339,7 @@ public class USER_INFODao {
 			}
 
 			if(login_info.getCategory_id() != 0) {
-				pStmt.setInt(4, login_info.getUser_mode_switch());
+				pStmt.setInt(4, login_info.getCategory_id());
 			}
 			else {
 				pStmt.setInt(4, user.getCategory_id());

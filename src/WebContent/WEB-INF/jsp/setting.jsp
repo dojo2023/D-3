@@ -69,13 +69,12 @@
 
 		<form action="/WebApp_GENDA/SettingServlet" method="POST">
 			お気に入りワードの登録
-		<u> <input type="radio" name="item" value="タグ" checked
-			class="text">ハッシュタグ <input type="radio" name="item"
-			value="カテゴリー" class="text">カテゴリー <input type="radio"
-			name="item" value="フリーワード" class="text">フリーワード<br> <input
-			type="text" name="newsContent" required class="text"> <input
-			type="submit" class="button" value="登録" name="newsChange"
-			class="text"></form> <br>
+			<input type="radio" name="item" value="タグ" checked class="text"> ハッシュタグ
+			<input type="radio" name="item" value="カテゴリー" class="text"> カテゴリー
+			<input type="radio" name="item" value="フリーワード" class="text"> フリーワード<br>
+			<input type="text" name="newsContent" required class="text">
+			<input type="submit" class="button" value="登録" name="newsChange" class="text">
+		</form> <br>
 		<br>
 
 
