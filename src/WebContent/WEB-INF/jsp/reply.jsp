@@ -15,6 +15,14 @@ String posterAnimal = (String)request.getAttribute("posterAnimal");
 List<String> replyAnimal = (List<String>)request.getAttribute("replyAnimal");
 String posterName = (String)request.getAttribute("posterName");
 List<String> replyName = (List<String>)request.getAttribute("replyName");
+
+//replyIdf
+//-1 → 投稿とそれに紐づいている返信の削除
+//0 → 掲示板一覧とTOPの新着画面から投稿詳細を開いた場合
+//1 → 通報画面から掲示板詳細を開いた場合
+//2 → 返信した場合
+//3 → 投稿か返信を通報した場合
+//4 → 投稿か返信を削除した場合
 %>
 
 <!DOCTYPE html>
@@ -27,6 +35,8 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 		<a href="/WebApp_GENDA/TopServlet"> 中庭掲示板(左上) </a>
 		<p> Poster </p>
 		<a href="/WebApp_GENDA/LogoutServlet"> logout </a>
+
+
 
 
 		<% if(replyIdf.equals("-1")) {
