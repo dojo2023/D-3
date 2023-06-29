@@ -117,7 +117,7 @@ html{
 }
 .center {
     width: 1015px;
-    height: 700px;
+
     box-sizing: border-box;
     padding: 80px;
     border: 30px solid #ccc;
@@ -131,6 +131,7 @@ html{
     display: inline-block;
   max-height: 1000px; /* リストの最大高さを指定 */
 }
+
 h2{
     margin-top: -4%;
     margin-bottom: 7%;
@@ -157,6 +158,7 @@ margin-left: 10%;
 	<% String message = (String)request.getAttribute("message"); %>
 	<%= message %>
 	<div class="center">
+
 	<div class="center-content">
 		<h2>Setting (変更/登録用のメッセージボックス)</h2>
 		<form action="/WebApp_GENDA/SettingServlet" method="POST">
@@ -164,30 +166,35 @@ margin-left: 10%;
 		   <input type="radio" name="item" value="タグ" checked
 			class="text">ハッシュタグ <input type="radio" name="item"
 			value="カテゴリー" class="text">カテゴリー <input type="radio"
-			name="item" value="フリーワード" class="text">フリーワード<br> </div>
+			name="item" value="フリーワード" class="text">フリーワード </div>
 			<div class = "line">登録ワード：<input type="text" name="newsContent" required class="text">
 			<input type="submit" class="button" value="登録" name="newsChange"
-			class="text"></div></form><br><br>
+			class="text"></div></form>
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
-			name="pwChangeForm" onsubmit="return checkPw()"><br><br>
-				<div class = "line">PWの変更<br class="text"></div>
+			name="pwChangeForm" onsubmit="return checkPw()">
+				<div class = "line">PWの変更</div>
 		   <div class = "line">現在のPW：<input type="password" name="nowPassword" required
-			class="text"></div><br> <div class = "line">新しいPW：<input type="password"
+			class="text"></div><div class = "line">新しいPW：<input type="password"
 			name="newPassword" required class="text"> <input
 			type="submit" class="button" value="変更" name="passwordChange"
-			class="text"> </div></form><br><br>
+			class="text"> </div></form>
+			</div>
+
+
+<div class="center-admin">
 			<% int userMode = (int)request.getAttribute("userMode");
 		if(userMode == 2) { %>
+
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="adminForm"><br>
-				<div class = "line">管理者権限</div><br> <div class = "line">権限の与奪 対象ID：<input type="text" name="userId" required
+				<div class = "line">管理者権限</div> <div class = "line">権限の与奪 対象ID：<input type="text" name="userId" required
 					class="text"> <input type="submit" name="grant"
 					class="button" value="付与" onsubmit="return checkAdminGrant()"
 					class="text"> <input type="submit" name="revoke"
 					class="button" value="剥奪" onsubmit="return checkAdminRevoke()"
 					class="text"></div>
 			</form>
-			<br><br><br>
+
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="enForm" onsubmit="return checkEn()">
 				<div class = "line">社員番号の変更 対象ID：<input type="text" name="userId" required class="text"></div><br>
@@ -196,11 +203,10 @@ margin-left: 10%;
 				<input type="submit" class="button" value="変更" name="enChange"
 					class="text"></div>
 		</form>
-		  <% } %>
-		<br>
-		<br>
 		</div>
-	</div>
+		  <% } %>
+		</div>
+
 	<script>
 	    	"use strict";
 	    	function checkPw() {
