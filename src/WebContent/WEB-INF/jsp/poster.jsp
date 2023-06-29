@@ -263,7 +263,9 @@ z-index:40;
 		<li class="poster"><div class="poster-line"><%=poster.getTITLE()%> <%=poster.getPOSTED_DATE()%></div>
 			<form method="POST" name="idForm" class="detail-line" action="/WebApp_GENDA/ReplyServlet">
 				<input type="hidden" name="posterId"
-					value="<%=poster.getPOSTER_ID()%>"> <input type="hidden"
+					value="<%=poster.getPOSTER_ID()%>">
+					<input type="hidden" name="categoryId" value="<%= categoryId %>">
+					<input type="hidden"
 					name="replyIdf" value="0"> <input type="hidden"
 					name="posterIdf" value="1"><input type="submit" class="input detail" value="詳細"
 					name="submit_button">
