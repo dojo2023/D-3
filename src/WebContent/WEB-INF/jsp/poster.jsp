@@ -47,8 +47,7 @@
 					<div class="check"><input
 						type="radio" name="name"  value="匿名" checked>匿名 <input
 						type="radio" name="name"   value="実名">実名</div><br>
-						<div class="create-sentence">本文<br><input
-						type="text" name="sentence" class="create-sentence-box" required></div> <div class="create-hashtag">#<input
+						<div class="create-sentence">本文<br><textarea name="sentence" class="create-sentence-box" required></textarea></div> <div class="create-hashtag">#<input
 						type="text" class="create-hashtag-box" name="hashtag1"> #<input type="text" class="create-hashtag-box"
 						name="hashtag2"><br> #<input type="text" class="create-hashtag-box" name="hashtag3">
 					#<input type="text" class="create-hashtag-box" name="hashtag4"><br> #<input type="text" class="create-hashtag-box"
@@ -202,6 +201,7 @@ ul li a {
 }
 .create-sentence {
 	margin: 0% 0% 0% 10%;
+	 float:left;
 }
 .create-input {
 	width: 10%;
@@ -215,7 +215,8 @@ ul li a {
     height: 200px;
     top: 375px;
     left: 173px;
-    border: 1px
+    border: 1px;
+
 }
 .create-sentence-box {
 	border: solid 1.5px #294E76;
@@ -224,6 +225,11 @@ ul li a {
 	font-size: 27.5px;
 	font-family:Senobi Gothic;
 }
+
+.create-hashtag {
+ margin: 5% 0 0 0;
+}
+
 .create-hashtag-box {
 	border: none;
 	border-bottom: solid 1.5px #294E76;
@@ -231,6 +237,7 @@ ul li a {
 	font-size: 14px;
 	background-color: #F3F3F3;
 	font-family:Senobi Gothic;
+
 }
 .flameContainer {
   width: 1015px;
