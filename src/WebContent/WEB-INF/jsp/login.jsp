@@ -139,7 +139,7 @@
 	            </select></label>
 	            <label class="new-sa login-text">質問の答え:
 	            <input type="text" name="securityAnswer"  class="login-textbox" value="${securityAnswer}" required></label>
-	            <button type="submit" class="button" value="登録">登録</button>
+	            <button type="submit" class="regist-button" value="登録">確認</button>
 	        </form>
 	    <% } %>
 	    </div>
