@@ -38,8 +38,7 @@ public class ReportServlet extends HttpServlet {
 	    for(int i = 0; i < reportList.size(); i++) {
 	    	REPORT report = reportList.get(i);
 	    	List<POSTER> posterList = pDao.select(report.getPOSTER_ID(), 0);
-	    	POSTER poster = posterList.get(0);
-	    	posterNewList.add(poster);
+	    	posterNewList.add(posterList.get(0));
 	    }
 
 
