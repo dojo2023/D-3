@@ -209,15 +209,17 @@ border: 3px solid #294E76;/* 枠線の設定 */
 		<p class="header-text">POSTER</p>
 		<div class="header-icon">
 			<% if(replyIdf.equals("1")) { %>
-				<a href="ReportServlet"> 通報画面に戻る </a>
+				<a href="ReportServlet">
+					<img alt="" src="./images/return.png" class="return-logo">
+				</a>
 			<% } else if(replyIdf.equals("0")) {
 				String posterIdf = (String)request.getAttribute("posterIdf");
 				if(posterIdf.equals("0")) { %>
 					<a href="TopServlet">
-						トップ画面に戻る
+						<img alt="" src="./images/return.png" class="return-logo">
 					</a>
 				<% } else if(posterIdf.equals("1")) {
-					int categoryId = (int)request.getAttribute("categoryId"); %>
+					String categoryId = (String)request.getAttribute("categoryId"); %>
 					<form action="/WebApp_GENDA/PosterServlet" method="POST" name="posterBackForm">
 						<input type="hidden" name="postIdf" value="0">
 						<input type="hidden" name="categoryId" value="<%= categoryId %>">
@@ -227,13 +229,13 @@ border: 3px solid #294E76;/* 枠線の設定 */
 					</a>
 				<% }
 			} else {
-				int categoryId = (int)request.getAttribute("categoryId");%>
+				String categoryId = (String)request.getAttribute("categoryId");%>
 				<form action="/WebApp_GENDA/PosterServlet" method="POST" name="posterBackForm">
 					<input type="hidden" name="postIdf" value="0">
 					<input type="hidden" name="categoryId" value="<%= categoryId %>">
 				</form>
 				<a href="javascript:posterBackForm.submit()">
-					投稿一覧画面に戻る
+					<img alt="" src="./images/return.png" class="return-logo">
 				</a>
 			<% } %>
 
