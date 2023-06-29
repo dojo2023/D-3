@@ -97,6 +97,8 @@ flex-shrink: 0;
 	height: 70px;
 	margin: 0;
 	padding: 0;
+	position: absolute;
+	bottom: 0;
 }
 .copyright {
 	color: #EAEAEA;
@@ -131,7 +133,9 @@ html{
     display: inline-block;
   max-height: 1000px; /* リストの最大高さを指定 */
 }
-
+.center-admin{
+margin-left: 10%;
+}
 h2{
     margin-top: -4%;
     margin-bottom: 7%;
