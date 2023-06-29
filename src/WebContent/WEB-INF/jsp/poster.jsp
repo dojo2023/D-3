@@ -83,6 +83,7 @@
     height: 70%;
     border-radius: 67px;
     position: relative;
+    border: 5px solid #8BA0B7;
 }
 .modal-header {
 	padding: 3px 10px;
