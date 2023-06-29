@@ -41,7 +41,7 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 			}
 			.flameContainer {
     width: 1015px;
-    height: 1500px;
+
     box-sizing: border-box;
     padding: 80px;
     border: 30px solid #ccc;
