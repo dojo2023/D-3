@@ -65,6 +65,12 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
     height: 300px;
     overflow: auto;
 }
+
+
+.return-logo{
+width:85.5px
+}
+
 .title-category{
 display: flex;
 }
@@ -217,7 +223,7 @@ border: 3px solid #294E76;/* 枠線の設定 */
 						<input type="hidden" name="categoryId" value="<%= categoryId %>">
 					</form>
 					<a href="javascript:posterBackForm.submit()">
-						投稿一覧画面に戻る
+						<img alt="" src="./images/return.png" class="return-logo">
 					</a>
 				<% }
 			} else {
