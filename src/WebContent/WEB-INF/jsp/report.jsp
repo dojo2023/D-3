@@ -9,25 +9,20 @@
 <meta charset="UTF-8">
 <title>通報ページ</title>
 <link rel="stylesheet" href="./css/afterLogin.css">
-
 <style>
 .rePoster {
-	font-size: 30px;
-	margin: 0% 0% 0% 30%;
+    font-size: 30px;
+    margin: 0% 0% 0% 16%;
 }
-
 .rePoster-line {
 	display: inline-block;
 }
-
 .detail-line {
 	display: inline-block;
 }
-
 li {
 	padding: 3% 0 0 0;
 }
-
 form.input[type="submit"]  {
 	width: 124.337px;
 	height: 54.999px;
@@ -36,8 +31,23 @@ form.input[type="submit"]  {
 	border: 0.775px solid #000;
 	background: #8BA0B7;
 }
+.flameContainer {
+    width: 1006px;
+    height: 468px;
+    box-sizing: border-box;
+    padding: 80px;
+    border: 30px solid #ccc;
+    border-image-source: url(./images/flame.png);
+    border-image-slice: 300 fill;
+    border-image-width: 212px 236px;
+    border-image-outset: 0;
+    border-image-repeat: round;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: inline-block;
+  max-height: 1000px; /* リストの最大高さを指定 */
+}
 </style>
-
 </head>
 <body>
 	<div class="header">
@@ -52,7 +62,9 @@ form.input[type="submit"]  {
 			</a>
 		</div>
 	</div>
-	<ul>
+	<div class="flameContainer">
+	<div class="scrollableContainer">
+    <ul id="newItems">
 		<%
 		List<REPORT> reportList = (List<REPORT>) request.getAttribute("reportList");
 		List<POSTER> posterNewList = (List<POSTER>) request.getAttribute("posterNewList");
@@ -82,11 +94,26 @@ form.input[type="submit"]  {
 			</li>
 		<% } %>
 	</ul>
+	</div>
+	</div>
 	<div class="footer">
 		<div class=copyright>
 			©Copyright TeamGenda <br>All rights reserved.
 		</div>
-
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
