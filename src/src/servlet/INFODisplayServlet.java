@@ -174,28 +174,29 @@ public class INFODisplayServlet extends HttpServlet {
 				request.setAttribute("ans", ans);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 				dispatcher.forward(request, response);
-			}
+			} else {
 
-			USER_INFO user = new USER_INFO(); // USER_INFO型の変数userを定義し、空のUSER_INFOを代入
-			user.setUser_id(id); // 変数userのもつidにセッションスコープから取得したidを代入
-			user.setUser_pw(newPassword); // 変数userのもつpwに更新したいpwResetを代入
+				USER_INFO user = new USER_INFO(); // USER_INFO型の変数userを定義し、空のUSER_INFOを代入
+				user.setUser_id(id); // 変数userのもつidにセッションスコープから取得したidを代入
+				user.setUser_pw(newPassword); // 変数userのもつpwに更新したいpwResetを代入
 
-			USER_INFODao user_dao = new USER_INFODao(); // USER_INFODao型の変数user_daoを定義し、空のUSER_INFODaoを代入
-			boolean result = user_dao.update(user); // user_daoのidとpwを更新（idは誰を更新するのかの識別に使ったため、更新されるのはpwのみ）
+				USER_INFODao user_dao = new USER_INFODao(); // USER_INFODao型の変数user_daoを定義し、空のUSER_INFODaoを代入
+				boolean result = user_dao.update(user); // user_daoのidとpwを更新（idは誰を更新するのかの識別に使ったため、更新されるのはpwのみ）
 
-			if(result == false) {
-				request.setAttribute("err_sen", "ユーザ情報の登録に失敗しました。");
-				request.setAttribute("err_idf", "9");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+				if(result == false) {
+					request.setAttribute("err_sen", "ユーザ情報の登録に失敗しました。");
+					request.setAttribute("err_idf", "9");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+					dispatcher.forward(request, response);
+				}
+				// リクエストスコープに取得したpwResetを格納
+				//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
+				request.setAttribute("pw", newPassword);
+				request.setAttribute("idf", idf);
+				request.setAttribute("headline", "再設定したパスワード");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
 				dispatcher.forward(request, response);
 			}
-			// リクエストスコープに取得したpwResetを格納
-			//（INFODisplay.jspでリクエストスコープを利用して表示させるため）
-			request.setAttribute("pw", newPassword);
-			request.setAttribute("idf", idf);
-			request.setAttribute("headline", "再設定したパスワード");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/INFODisplay.jsp");
-			dispatcher.forward(request, response);
 		}
 	}
 
