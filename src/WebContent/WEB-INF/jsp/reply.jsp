@@ -157,9 +157,9 @@ font-size:30px;
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 10px;
-  margin-top: -5px;
+  margin-top: 2px;
   overflow: auto; /* スクロールバーを表示する */
-  max-height: 200px; /* 必要な高さに適宜変更してください */
+  max-height: 250px; /* 必要な高さに適宜変更してください */
 }
 .tree {
 display: flex;
@@ -184,7 +184,8 @@ border: 3px solid #294E76;/* 枠線の設定 */
     color: #294E76;
     text-align: center;
     font-family: Senobi Gothic;
-       top: 75%;
+        top: 82%;
+       left: 80%;
     margin-left: -57px;
     position: absolute;
 }
@@ -254,6 +255,7 @@ border: 3px solid #294E76;/* 枠線の設定 */
       <div class="hashtag-item"><%= hashtagList[4] %></div>
     </div>
   </div>
+  </div>
 <div class="button-container">
 			<% if(id.equals(poster.getUSER_ID()) && !replyIdf.equals("1")) {
 			//投稿者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
@@ -272,7 +274,7 @@ border: 3px solid #294E76;/* 枠線の設定 */
 					<input type="submit" class="button2" value="通報">
 				</form>
 				</div>
-</div>
+
 			<% } %>
 			<div class="name-animal">
 			<% if(poster.getUSER_NAME_SWITCH() == 1) {
@@ -283,9 +285,10 @@ border: 3px solid #294E76;/* 枠線の設定 */
 				投稿者：<%= posterName %>
 			<% } %>
 			</div>
-<div class="reply-content">
+
 			<% if(!replyIdf.equals("1")) {
 			//通報画面から入った際は返信フォームを表示しない%>
+<div class="reply-content">
 				<p class="reply-title"> Reply </p>
 				<div class="reply-post">
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
@@ -296,8 +299,11 @@ border: 3px solid #294E76;/* 枠線の設定 */
 					<input type="hidden" name="replyIdf" value="2">
 					<input type="submit" class="button" value="返信">
 				</form>
-			<% } %></div>
-			</div>
+				</div>
+</div>
+			<% } %>
+
+
 <div class="reply-tree">
 			<p class="reply-title"> Reply-tree </p>
 			<div class="tree">
