@@ -8,9 +8,7 @@
 <title>設定画面</title>
 <style>
 //設定画面のcss
-
 /* ----------全体設定---------- */
-
 .button {
 	width: 4em;
 	max-width: 80%;
@@ -20,12 +18,10 @@
 	font-size: 12.761px;
 	flex-shrink: 0;
 }
-
 /* プレースホルダーの書式設定 */
 ::placeholder {
 	font-family: Senobi Gothic;
 }
-
 .button {
 	border-radius: 67.475px;
 	border: 3px solid #294E76;
@@ -50,7 +46,6 @@
 display:inline-block;
 font-family:Senobi Gothic;
 }
-
 .register {
  color: #fff;
  text-align: center;
@@ -61,7 +56,6 @@ font-family:Senobi Gothic;
  font-size: 80px;
  font-weight: 700;
 }
-
 .text {
 	border: none;　/* 枠線消す設定 */
 	outline: none; /* クリック時の枠線消す設定 */
@@ -75,7 +69,6 @@ letter-spacing: 2.768px;
 flex-shrink: 0;
 	width: 641.857px;
 }
-
 /*ヘッダーの設定 */
 .header {
 	display: flex;
@@ -87,11 +80,9 @@ flex-shrink: 0;
 	margin-top: 0; /* 上部の隙間をなくす */
 	position: relative;
 }
-
 .header a {
 	text-decoration: none;
 }
-
 .logo {
 	width: auto;
 	height: 100px;
@@ -107,7 +98,6 @@ flex-shrink: 0;
 	margin: 0;
 	padding: 0;
 }
-
 .copyright {
 	color: #EAEAEA;
 	text-align: center;
@@ -115,19 +105,40 @@ flex-shrink: 0;
 	font-family: "Senobi Gothic";
 	margin: auto;
 }
-
 .up-icon {
 	width: auto;
 	height: 70px;
 	padding: 10px 20px 10px 10px;
 }
-
 html{
   font-family:Senobi Gothic;
   font-size: 17px;
   font-weight:  bold;
 }
-
+.center {
+    width: 1015px;
+    height: 700px;
+    box-sizing: border-box;
+    padding: 80px;
+    border: 30px solid #ccc;
+    border-image-source: url(./images/flame.png);
+    border-image-slice: 300 fill;
+    border-image-width: 212px 236px;
+    border-image-outset: 0;
+    border-image-repeat: round;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: inline-block;
+  max-height: 1000px; /* リストの最大高さを指定 */
+}
+h2{
+    margin-top: -4%;
+    margin-bottom: 7%;
+    margin-left:-12%;
+}
+.center-content{
+margin-left: 10%;
+}
 </style>
 </head>
 <body>
@@ -141,27 +152,22 @@ html{
 			</a>
 		</div>
 	</div>
-
 	<% String message = (String)request.getAttribute("message"); %>
 	<%= message %>
 	<div class="center">
+	<div class="center-content">
 		<h2>Setting (変更/登録用のメッセージボックス)</h2>
-
-
 		<form action="/WebApp_GENDA/SettingServlet" method="POST">
 			<div class = "favorite line">お気に入りワードの登録
 		   <input type="radio" name="item" value="タグ" checked
 			class="text">ハッシュタグ <input type="radio" name="item"
 			value="カテゴリー" class="text">カテゴリー <input type="radio"
 			name="item" value="フリーワード" class="text">フリーワード<br> </div>
-			<div class = "line"><input type="text" name="newsContent" required class="text">
-
+			<div class = "line">登録ワード：<input type="text" name="newsContent" required class="text">
 			<input type="submit" class="button" value="登録" name="newsChange"
 			class="text"></div></form><br><br>
-
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 			name="pwChangeForm" onsubmit="return checkPw()"><br><br>
-
 				<div class = "line">PWの変更<br class="text"></div>
 		   <div class = "line">現在のPW：<input type="password" name="nowPassword" required
 			class="text"></div><br> <div class = "line">新しいPW：<input type="password"
@@ -170,7 +176,6 @@ html{
 			class="text"> </div></form><br><br>
 			<% int userMode = (int)request.getAttribute("userMode");
 		if(userMode == 2) { %>
-
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="adminForm"><br>
 				<div class = "line">管理者権限</div><br> <div class = "line">権限の与奪 対象ID：<input type="text" name="userId" required
@@ -181,7 +186,6 @@ html{
 					class="text"></div>
 			</form>
 			<br><br><br>
-
 			<form action="/WebApp_GENDA/SettingServlet" method="POST"
 				name="enForm" onsubmit="return checkEn()">
 				<div class = "line">社員番号の変更 対象ID：<input type="text" name="userId" required class="text"></div><br>
@@ -193,10 +197,10 @@ html{
 		  <% } %>
 		<br>
 		<br>
+		</div>
 	</div>
 	<script>
 	    	"use strict";
-
 	    	function checkPw() {
 				const nowPassword = pwChangeForm.nowPassword.value;
 				const newPassword = pwChangeForm.newPassword.value;
@@ -206,10 +210,8 @@ html{
 					return false;
 				}
 	    	}
-
 	    	const grantButton = adminForm.grant;
 	    	const revokeButton = adminForm.revoke;
-
 	    	grantButton.addEventListener("click", () => {
 	    		const userId = adminForm.userId.value;
 	    		if(window.confirm("「" + userId + "」に管理者権限を付与します。よろしいですか？")) {
@@ -218,16 +220,13 @@ html{
 					return false;
 				}
 	    	});
-
 	    	revokeButton.addEventListener("click", () => {
 	    		const userId = adminForm.userId.value;
 	    		if(window.confirm("「" + userId + "」の管理者権限を剥奪します。よろしいですか？")) {
 					return true;
 				} else {
 				}					return false;
-
 	    	});
-
 	    	function checkEn() {
 				const userId = enForm.userId.value;
 				const nowEn = enForm.nowEn.value;
@@ -239,7 +238,6 @@ html{
 				}
 	    	}
 	    </script>
-
 	<div class="footer">
 		<div class=copyright>
 			©Copyright TeamGenda <br>All rights reserved.

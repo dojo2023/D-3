@@ -15,7 +15,6 @@ String posterAnimal = (String)request.getAttribute("posterAnimal");
 List<String> replyAnimal = (List<String>)request.getAttribute("replyAnimal");
 String posterName = (String)request.getAttribute("posterName");
 List<String> replyName = (List<String>)request.getAttribute("replyName");
-
 //replyIdf
 //-1 → 投稿とそれに紐づいている返信の削除
 //0 → 掲示板一覧とTOPの新着画面から投稿詳細を開いた場合
@@ -24,18 +23,16 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
 //3 → 投稿か返信を通報した場合
 //4 → 返信を削除した場合
 %>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>返信ページ</title>
 		<link rel="stylesheet" href="./css/afterLogin.css">
-
 		<style>
 			.identify{
 			    display: inline-block;
-			    background: #b6beff;
+			    background: #B6BEFF;
 			    padding: 5px 10px;
 			    cursor: pointer;
 			}
@@ -54,10 +51,9 @@ List<String> replyName = (List<String>)request.getAttribute("replyName");
     border-image-outset: 0;
     border-image-repeat: round;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 10%;
     display: inline-block;
   max-height: 1000px; /* リストの最大高さを指定 */
-
 }
 .newItems {
     list-style-type: none;
@@ -93,14 +89,11 @@ margin-top: -20px;
 margin-left: 200px;
 border-bottom: 1px solid #294E76;
 padding-top:30px;
-
 }
 .container {
   display: flex;
   align-items: flex-start;
-
 }
-
 .main-content {
   width: 70%; /* 本文の幅を調整 */
   height: 150px;
@@ -108,25 +101,19 @@ padding-top:30px;
   border: 1px solid #294E76;
   margin-top: 20px;
 }
-
 .hashtags {
   width: 30%; /* ハッシュタグの幅を調整 */
   padding: 10px;
 }
-
 .hashtag-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
 .hashtag-item {
-
   align-items: center;
   margin-bottom: 5px;
-
 }
-
 .hashtag-item::before {
   content: "#";
   margin-right: 5px;
@@ -138,32 +125,73 @@ margin-top: 10px;
 margin-top: 10px;
 }
 .reply-content{
-background-color: #ffffff;
+background-color: #FFFFFF;
 border-radius: 10px;
  padding-top: 0px;
     padding-right: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 40px;
     padding-left: 10px;
     margin-top: 10px;
 }
-.reply-tree{
-background-color: #ffffff;
-border-radius: 10px;
- padding-top: 0px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    margin-top: 10px;
-
+.reply-post {
+    border: 1px solid #294E76;
+    padding: 20px;
+    margin-top: -2%;
+    margin-left: 2%;
+    margin-right: 3%;
 }
-.tree{
-border: 1px solid #294E76;
-border-radius: 10px;
- padding-top: 0px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    margin-top: 10px;
+.reply-post input[type="text"] {
+  width: 70%;
+   height: 100px;
+}
+.reply-post input[type="radio"] {
+  margin-bottom: 10px;
+}
+.reply-post input[type="submit"] {
+  margin-top: 10px;
+}
+.reply-title{
+font-size:30px;
+}
+.reply-tree {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: -5px;
+  overflow: auto; /* スクロールバーを表示する */
+  max-height: 200px; /* 必要な高さに適宜変更してください */
+}
+.tree {
+display: flex;
+flex-wrap: wrap;
+  border: 1px solid #294E76;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 0px;
+}
+.button {
+border-radius: 67.475px;/* 形の設定 */
+border: 3px solid #294E76;/* 枠線の設定 */
+    background: #FFF;/* 背景色の設定 */
+    color: #294E76;/* フォントの色の設定 */
+    text-align: center;/* フォントの位置の設定 */
+    font-family: Senobi Gothic;/* フォントの設定 */
+}
+.button2 {
+    border-radius: 67.475px;
+    border: 3px solid #294E76;
+    background: #FFF;
+    color: #294E76;
+    text-align: center;
+    font-family: Senobi Gothic;
+       top: 75%;
+    margin-left: -57px;
+    position: absolute;
+}
+.name-animal{
+    margin-left: 45%;
+    position: absolute;
+    top: 499px;
 }
 		</style>
 </head>
@@ -178,8 +206,6 @@ border-radius: 10px;
 			</a>
 		</div>
 	</div>
-
-
 		<% if(replyIdf.equals("-1")) {
 		//投稿を削除したなら以下の文だけ表示する%>
 			<p> 投稿は削除されました </p>
@@ -213,11 +239,9 @@ border-radius: 10px;
 			</div>
 			<div class="tittle"> 本文：</div>
 <div class="container">
-
    <div class="main-content">
    <div> <%= poster.getMAIN_SENTENCE() %></div>
   </div>
-
   <div class="hashtags">
  <div class="hashu"> ハッシュタグ</div><br>
     <div class="hashtag-list">
@@ -230,8 +254,6 @@ border-radius: 10px;
       <div class="hashtag-item"><%= hashtagList[4] %></div>
     </div>
   </div>
-</div>
-
 <div class="button-container">
 			<% if(id.equals(poster.getUSER_ID()) && !replyIdf.equals("1")) {
 			//投稿者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
@@ -239,7 +261,7 @@ border-radius: 10px;
 					<input type="hidden" name="deleteId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="deleteIdf" value="0">
 					<input type="hidden" name="replyIdf" value="4">
-					<input type="submit" value="削除">
+					<input type="submit" class="button2" value="削除">
 				</form>
 			<% } else if(!replyIdf.equals("1")){
 			//投稿者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
@@ -247,10 +269,12 @@ border-radius: 10px;
 					<input type="hidden" name="reportId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="reportIdf" value="0">
 					<input type="hidden" name="replyIdf" value="3">
-					<input type="submit" value="通報">
+					<input type="submit" class="button2" value="通報">
 				</form>
+				</div>
 </div>
 			<% } %>
+			<div class="name-animal">
 			<% if(poster.getUSER_NAME_SWITCH() == 1) {
 			//匿名なら動物名を表示 %>
 				投稿者：<%= posterAnimal %>
@@ -258,34 +282,30 @@ border-radius: 10px;
 			//実名なら氏名を表示 %>
 				投稿者：<%= posterName %>
 			<% } %>
-
+			</div>
 <div class="reply-content">
-
 			<% if(!replyIdf.equals("1")) {
 			//通報画面から入った際は返信フォームを表示しない%>
-				<p> Reply </p>
+				<p class="reply-title"> Reply </p>
+				<div class="reply-post">
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
 					<input type="text" name="sentence">
 					<input type="radio" name="name" value="匿名" checked>匿名
 					<input type="radio" name="name" value="実名">実名
 					<input type="hidden" name="posterId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="replyIdf" value="2">
-					<input type="submit" value="返信">
+					<input type="submit" class="button" value="返信">
 				</form>
-			<% } %>
-
+			<% } %></div>
 			</div>
-
 <div class="reply-tree">
-
-			<p> Reply-tree </p>
+			<p class="reply-title"> Reply-tree </p>
 			<div class="tree">
 			<% for(int i = 0; i < replyList.size(); i++) {
 			//上記の投稿に紐づいた返信を全て表示
 				REPLY reply = replyList.get(i); %>
-				<%= reply.getREPLY_SENTENCE() %>
+				<%= reply.getREPLY_SENTENCE() %><br>
 				返信時間：<%= reply.getREPLIED_DATE() %>
-
 				<% if(replyIdf.equals("1")) {
 				//通報ページから入った際は通報された返信なのかを一つずつ判定
 					int reportReplyId = Integer.parseInt((String)request.getAttribute("reportReplyId"));
@@ -296,7 +316,6 @@ border-radius: 10px;
 						<br>
 					<% }
 				} %>
-
 				<% if(reply.getUSER_NAME_SWITCH() == 1) {
 				//匿名なら動物名を表示 %>
 					返信者：<%= replyAnimal.get(i) %>
@@ -304,8 +323,6 @@ border-radius: 10px;
 				//実名なら氏名を表示 %>
 					返信者：<%= replyName.get(i) %>
 				<% } %>
-
-
 				<% if(id.equals(reply.getUSER_ID()) && !replyIdf.equals("1")) {
 				//返信者のIDとログイン者のIDが同じなら削除ボタンと送信するデータを用意 %>
 				<form action="/WebApp_GENDA/ReplyServlet" method="POST">
@@ -313,7 +330,7 @@ border-radius: 10px;
 					<input type="hidden" name="posterId" value="<%= poster.getPOSTER_ID() %>">
 					<input type="hidden" name="deleteIdf" value="1">
 					<input type="hidden" name="replyIdf" value="4">
-					<input type="submit" value="削除">
+					<input type="submit" class="button" value="削除">
 				</form>
 				<% } else if(!replyIdf.equals("1")){
 				//返信者のIDとログイン者のIDが違うなら通報ボタンと送信するデータを用意 %>
@@ -322,15 +339,13 @@ border-radius: 10px;
 						<input type="hidden" name="posterId" value="<%= poster.getPOSTER_ID() %>">
 						<input type="hidden" name="reportIdf" value="1">
 						<input type="hidden" name="replyIdf" value="3">
-						<input type="submit" value="通報">
+						<input type="submit" class="button" value="通報">
 					</form>
 				<% } %>
-				</div>
-			<% } %>
+			<% } %></div>
 		<% } %>
 	</div>
 	</div>
-</div>
 </div>
 </div>
 		<script src="https://code.jquery.com/jquery.min.js"></script>
@@ -342,6 +357,5 @@ border-radius: 10px;
 			    });
 			});
 		</script>
-
 	</body>
 </html>

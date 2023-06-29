@@ -8,7 +8,6 @@
 <body>
 <div class="wrapper">
 	<div class="header">
-
 		<a href="TopServlet"><img class="logo" src="images/logo.png"
 			alt="Logo"> </a>
 		<div class="header-subtext">
@@ -16,9 +15,7 @@
 				String categoryName = (String) request.getAttribute("categoryName");
 			String categoryId = (String) request.getAttribute("categoryId");
 			%>
-
 				Category：<%=categoryName%>
-
 		</div>
 		<p class="header-text">BOARD</p>
 		<div class="header-icon">
@@ -26,9 +23,7 @@
 				src="./images/logoutIcon.png" alt="">
 			</a>
 		</div>
-
 	</div>
-
 	<br>
 	<form action="/WebApp_GENDA/PosterServlet" method="POST" class="form">
 	    <div class="search-area">
@@ -39,7 +34,6 @@
 			type="image" name="searchButton" src="./images/searchIcon.png" class="search" value="検索">
 		</div>
 	</form>
-
 	<button id="modalOpen" class="button input create-text"><img src="./images/createIcon.png" alt="" class="pencil">Create New&emsp;</button>
 	<div id="easyModal" class="modal">
 		<div class="modal-content">
@@ -67,10 +61,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 <style>
 .modal {
 	display: none;
@@ -81,11 +71,11 @@
 	height: 100%;
 	width: 100%;
 	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: #00000;
+	z-index:400000;
 }
-
 .modal-content {
-	background-color: #f4f4f4;
+	background-color: #F4F4F4;
     margin: 8% 0 0 15%;
     animation-name: modalopen;
     animation-duration: 1s;
@@ -94,25 +84,23 @@
     border-radius: 67px;
     position: relative;
 }
-
 .modal-header {
 	padding: 3px 10px;
 	display: flex;
 	justify-content: space-between;
 }
-
+.modalClose{
+    font-size: 45px;
+    }
 .modalClose:hover {
 	cursor: pointer;
 }
-
 .wrapper {
 	width: 100%;
 }
-
 .form {
 	display: inline-block;
 }
-
 .input {
    border-radius: 67.475px;
    border: 5px solid #8BA0B7;
@@ -121,24 +109,19 @@
    text-align: center;
    font-family: Senobi Gothic;
 }
-
 .search-area {
 	position: relative;
 	margin: 0% 0% 0% 28%;
 	display:  inline-block;
 }
-
 .search-text {
 	width: 456px;
 	heigth: 40px;
 	font-size: 35px;
-
 }
-
 ::placeholder {
 	color: #8BA0B7;
 }
-
 .search {
 	position: absolute;
 	top: 5%;
@@ -146,74 +129,79 @@
 	width: 47px;
 	heigth: 45px;
 }
-
 .pencil {
 	width: 65px;
 	heigth: 67px;
 }
-
 .create-text {
 	font-size: 35px;
 	display:  inline-block;
 	margin: 0% 0% 0% 16%;
 	width: 456px;
 }
-
 .poster {
   font-size: 30px;
-  margin: 0% 0% 0% 25%;
+  margin: 0% 0% 0% 0%;
 }
-
 .poster-line {
 	display:  inline-block;
 }
-
 .detail{
   font-size: 25px;
   width: 100px;
 }
-
 .detail-line {
 	display:  inline-block;
 }
-
-li {
-  padding: 3% 0 0 0;
+ul {
+  list-style-type: none;
+  padding: 10px;
+  z-index: 300;
+  margin-left: 10%;
+  position: relative;
+  height: 300px;
+  overflow-x: hidden; /* 横方向のスクロールバーを非表示 */
 }
-
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 2px;
+  font-size: 20px;
+  margin-top: -20px;
+  padding: 10px;
+  white-space: nowrap;
+}
+ul li a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
 .create-title, .create-sentence, .create-hashtag,.create-sentence-box {
 	display:  inline-block;
 }
-
 .check {
 	display:  inline-block;
 	font-size: 25px;
 	margin: 0% 0% 0% 10%;
 }
-
 .create-title, .create-check, .create-sentence,.create-sentence-box, .create-hashtag, .create-input {
 	font-size: 25px;
 }
-
 .create-title-box {
 	font-size: 25px;
     width: 250px;
 	border: none;
-
 	outline: none;
 	background-color: #F3F3F3;
 	font-family:Senobi Gothic;
 }
-
 .create-title {
 	margin: 0% 0% 0% 10%;
 	border-bottom: solid 1.5px #294E76;
 }
-
 .create-sentence {
 	margin: 0% 0% 0% 10%;
 }
-
 .create-input {
 	width: 10%;
 	display: inline-block;
@@ -221,16 +209,13 @@ li {
 	top: 80%;
 	left: 70%;
 }
-
 .create-sentence-box {
 	width: 350px;
     height: 200px;
     top: 375px;
     left: 173px;
     border: 1px
-
 }
-
 .create-sentence-box {
 	border: solid 1.5px #294E76;
 	outline: none;
@@ -238,7 +223,6 @@ li {
 	font-size: 27.5px;
 	font-family:Senobi Gothic;
 }
-
 .create-hashtag-box {
 	border: none;
 	border-bottom: solid 1.5px #294E76;
@@ -247,10 +231,29 @@ li {
 	background-color: #F3F3F3;
 	font-family:Senobi Gothic;
 }
-
+.flameContainer {
+  width: 1015px;
+  height: 566px;
+  box-sizing: border-box;
+  padding: 80px;
+  border: 30px solid #ccc;
+  border-image-source: url(./images/flame.png);
+  border-image-slice: 300 fill;
+  border-image-width: 212px 236px;
+  border-image-outset: 0;
+  border-image-repeat: round;
+  margin-top: 5%;
+  margin-left: 10%;
+  display: inline-block;
+  max-height: 1000px;
+}
+newItems{
+z-index:40;
+}
 </style>
-
-	<ul>
+<div class="flameContainer">
+	<div class="scrollableContainer">
+    <ul id="newItems">
 		<%
 			List<POSTER> posterList = (List<POSTER>) request.getAttribute("posterList");
 		for (int i = 0; i < posterList.size(); i++) {
@@ -267,24 +270,23 @@ li {
 			}
 		%>
 	</ul>
+	</div>
+	</div>
 	<script>
 		"use strict";
 		const buttonOpen = document.getElementById("modalOpen");
 		const modal = document.getElementById("easyModal");
 		const buttonClose = document.getElementsByClassName("modalClose")[0];
-
 		// ボタンがクリックされた時
 		buttonOpen.addEventListener("click", modalOpen);
 		function modalOpen() {
 			modal.style.display = "block";
 		}
-
 		// バツ印がクリックされた時
 		buttonClose.addEventListener("click", modalClose);
 		function modalClose() {
 			modal.style.display = "none";
 		}
-
 		// モーダルコンテンツ以外がクリックされた時
 		addEventListener("click", outsideClose);
 		function outsideClose(e) {
@@ -292,6 +294,14 @@ li {
 				modal.style.display = "none";
 			}
 		}
+		var newItemsContainer = document.getElementById("newItems");
+		  var scrollableContainer = document.querySelector(".scrollableContainer");
+		  // フレームからはみ出た場合にスクロールを有効化
+		  if (newItemsContainer.offsetHeight > scrollableContainer.offsetHeight) {
+		    scrollableContainer.style.overflowY = "scroll";
+		  } else {
+		    scrollableContainer.style.overflowY = "hidden";
+		  }
 	</script>
 	<div class="footer">
 		<div class=copyright>

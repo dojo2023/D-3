@@ -24,10 +24,9 @@ body {
 .new-text {
     position: absolute;
     top: 78px;
-    left: 117px;
+    left: 200px;
     font-size: 40px;
 }
-
 ul {
     list-style-type: none;
     padding: 10px;
@@ -38,8 +37,6 @@ ul {
     height: 300px;
     overflow: auto;
 }
-
-
  ul li {
     display: flex; /* 詳細ボタンを横に並べるために Flexbox を使用 */
   align-items: center; /* アイテムを垂直方向に中央揃え */
@@ -53,7 +50,6 @@ ul li a {
 	display: block;
 	text-decoration: none;
 	color: #000;
-
 }
 /* カテゴリ */
 .main-category {
@@ -62,11 +58,10 @@ ul li a {
 }
 .category {
     position: absolute;
-    top: 72px;
-    left: 111px;
+    top: 75px;
+    left: 200px;
     font-size: 40px;
 }
-
 .category-container {
 	display: flex;
 	justify-content: space-between;
@@ -82,11 +77,11 @@ ul li a {
 	align-items: center;
 }
 .category-item img {
-	width: 100%;
-	margin-top: 30%;
+    width: 100%;
+    margin-top: 19%;
 }
 .category-item span {
-	margin-top: -240px;
+	margin-top: -190px;
 	margin-left: -20px;
 	background-color: #F3E4CF;
 	padding: 10px;
@@ -109,14 +104,13 @@ ul li a {
     border-image-outset: 0;
     border-image-repeat: round;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 10%;
     display: inline-block;
   max-height: 1000px; /* リストの最大高さを指定 */
-
 }
 .flameContainer2 {
     width: 1015px;
-    height: 566px;
+    height: 520px;
     box-sizing: border-box;
     padding: 80px;
     border: 30px solid #ccc;
@@ -126,13 +120,10 @@ ul li a {
     border-image-outset: 0;
     border-image-repeat: round;
     margin-top: 5%;
-    margin-left: 4%;
+    margin-left: 10%;
     display: inline-block;
   max-height: 1000px; /* リストの最大高さを指定 */
-
 }
-
-
 </style>
 <link rel="stylesheet" href="./css/afterLogin.css">
 </head>
@@ -178,11 +169,7 @@ ul li a {
 			List<POSTER> posterList = (List<POSTER>) request.getAttribute("posterList");
 		%>
 		<p class="new-text">New</p>
-
 			<div class="flameContainer">
-
-
-
 			<%
 				if (posterList.size() == 0) {
 			%>
@@ -190,7 +177,6 @@ ul li a {
 			<%
 				} else {
 			%>
-
   <div class="scrollableContainer">
     <ul id="newItems">
 				<%
@@ -300,7 +286,6 @@ ul li a {
 					<input type="hidden" name="categoryId" value="1"> <input
 						type="hidden" name="postIdf" value="0">
 				</form>
-
 				<a href="javascript:Id1.submit()">
 					<div class="category-item">
 						<img src="./images/categoryDoor.png" alt=""> <span>質問</span>
@@ -337,7 +322,6 @@ ul li a {
   // 新着リストの親要素とスクロール可能なコンテナ要素を取得
   var newItemsContainer = document.getElementById("newItems");
   var scrollableContainer = document.querySelector(".scrollableContainer");
-
   // フレームからはみ出た場合にスクロールを有効化
   if (newItemsContainer.offsetHeight > scrollableContainer.offsetHeight) {
     scrollableContainer.style.overflowY = "scroll";
