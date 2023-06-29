@@ -67,8 +67,9 @@ public class ReplyServlet extends HttpServlet {
 			List<POSTER> posterList = pDao.select(posterId, 0);
 			POSTER poster = posterList.get(0);
 			List<REPLY> replyList = replyDao.select(0, posterId);
+			int categoryId = poster.getCATEGORY_ID();
 
-			String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
+			String categoryName = cDao.get_categoryname(categoryId);
 			String[] hashtagList = {"", "", "", "", ""};
 			if(poster.getHASHTAGS_ID1() != 0) {
 				hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
@@ -99,10 +100,12 @@ public class ReplyServlet extends HttpServlet {
 
 			USER_INFO posterInfo = uDao.select("", poster.getUSER_ID());
 
+			request.setAttribute("posterIdf", request.getParameter("posterIdf"));
 			request.setAttribute("posterName", posterInfo.getUser_name());
 			request.setAttribute("replyName", replyName);
 			request.setAttribute("replyAnimal", replyAnimal);
 			request.setAttribute("categoryName", categoryName);
+			request.setAttribute("categoryId", categoryId);
 			request.setAttribute("hashtagList", hashtagList);
 			request.setAttribute("posterAnimal", posterAnimal);
 			request.setAttribute("poster", poster);
@@ -183,7 +186,8 @@ public class ReplyServlet extends HttpServlet {
     		POSTER poster = posterList.get(0);
     		List<REPLY> replyList = replyDao.select(0, posterId);
 
-    		String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
+    		int categoryId = poster.getCATEGORY_ID();
+    		String categoryName = cDao.get_categoryname(categoryId);
 			String[] hashtagList = {"", "", "", "", ""};
 			if(poster.getHASHTAGS_ID1() != 0) {
 				hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
@@ -218,6 +222,7 @@ public class ReplyServlet extends HttpServlet {
 			request.setAttribute("replyName", replyName);
 			request.setAttribute("replyAnimal", replyAnimal);
 			request.setAttribute("categoryName", categoryName);
+			request.setAttribute("categoryId", categoryId);
 			request.setAttribute("hashtagList", hashtagList);
 			request.setAttribute("posterAnimal", posterAnimal);
 			request.setAttribute("poster", poster);
@@ -243,7 +248,8 @@ public class ReplyServlet extends HttpServlet {
     		POSTER poster = posterList.get(0);
     		List<REPLY> replyList = replyDao.select(0, posterId);
 
-    		String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
+    		int categoryId = poster.getCATEGORY_ID();
+    		String categoryName = cDao.get_categoryname(categoryId);
 			String[] hashtagList = {"", "", "", "", ""};
 			if(poster.getHASHTAGS_ID1() != 0) {
 				hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
@@ -278,6 +284,7 @@ public class ReplyServlet extends HttpServlet {
 			request.setAttribute("replyName", replyName);
 			request.setAttribute("replyAnimal", replyAnimal);
 			request.setAttribute("categoryName", categoryName);
+			request.setAttribute("categoryId", categoryId);
 			request.setAttribute("hashtagList", hashtagList);
 			request.setAttribute("posterAnimal", posterAnimal);
 			request.setAttribute("poster", poster);
@@ -305,7 +312,8 @@ public class ReplyServlet extends HttpServlet {
 	    		POSTER poster = posterList.get(0);
 	    		List<REPLY> replyList = replyDao.select(0, posterId);
 
-	    		String categoryName = cDao.get_categoryname(poster.getCATEGORY_ID());
+	    		int categoryId = poster.getCATEGORY_ID();
+	    		String categoryName = cDao.get_categoryname(categoryId);
 				String[] hashtagList = {"", "", "", "", ""};
 				if(poster.getHASHTAGS_ID1() != 0) {
 					hashtagList[0] = hDao.get_htagname(poster.getHASHTAGS_ID1());
@@ -341,6 +349,7 @@ public class ReplyServlet extends HttpServlet {
 				request.setAttribute("replyName", replyName);
 				request.setAttribute("replyAnimal", replyAnimal);
 				request.setAttribute("categoryName", categoryName);
+				request.setAttribute("categoryId", categoryId);
 				request.setAttribute("hashtagList", hashtagList);
 				request.setAttribute("posterAnimal", posterAnimal);
 				request.setAttribute("poster", poster);

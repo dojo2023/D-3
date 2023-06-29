@@ -42,6 +42,7 @@ public class SettingServlet extends HttpServlet {
 		USER_INFO user = userDao.select("", id);
 		request.setAttribute("userMode", user.getUser_mode_switch());
 		request.setAttribute("message", "");
+		request.setAttribute("id", id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
         dispatcher.forward(request, response);
 	}
@@ -69,6 +70,7 @@ public class SettingServlet extends HttpServlet {
 			if(!nowPassword.equals(user.getUser_pw())) {
 				message = "入力されたパスワードが違います。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -81,11 +83,13 @@ public class SettingServlet extends HttpServlet {
 			if(result) {
 				message = "パスワードを" + newPassword + "に変更しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				message = "パスワードの変更に失敗しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -100,6 +104,7 @@ public class SettingServlet extends HttpServlet {
 				if(result = false) {
 					message = "ハッシュタグの登録に失敗しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -113,11 +118,13 @@ public class SettingServlet extends HttpServlet {
 				if(result) {
 					message = "新着情報に表示する投稿を #" + newTag + " がついているものに設定しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				} else {
 					message = "新着情報に表示する投稿の設定に失敗しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -130,6 +137,7 @@ public class SettingServlet extends HttpServlet {
 				if(cId == 0) {
 					message = "入力したカテゴリは未登録です。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -143,11 +151,13 @@ public class SettingServlet extends HttpServlet {
 				if(result) {
 					message = "新着情報に表示する投稿をカテゴリ：" + newCategory + "の投稿に設定しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				} else {
 					message = "新着情報に表示する投稿の設定に失敗しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -166,11 +176,13 @@ public class SettingServlet extends HttpServlet {
 				if(result) {
 					message = "新着情報に表示する投稿を「" + freeWord + "」を含むものに設定しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				} else {
 					message = "新着情報に表示する投稿の設定に失敗しました。";
 					request.setAttribute("message", message);
+					request.setAttribute("id", id);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -188,12 +200,14 @@ public class SettingServlet extends HttpServlet {
 			if(user.getUser_id().equals("")) {
 				message = "入力されたIDは未登録です。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
 			if(!nowEn.equals(user.getUser_en())) {
 				message = "入力されたIDと社員番号が一致しません。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -203,6 +217,7 @@ public class SettingServlet extends HttpServlet {
 			if(nowEn.equals(newEn)) {
 				message = "入力された2つの社員番号が同じものです。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -210,6 +225,7 @@ public class SettingServlet extends HttpServlet {
 			if(!searchUser.getUser_en().equals("")) {
 				message = "入力された社員番号は既に使われています。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -223,11 +239,13 @@ public class SettingServlet extends HttpServlet {
 			if(result) {
 				message = "ID：" + userId + " の社員番号を" + newEn + "に変更しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				message = "社員番号の変更に失敗しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -247,11 +265,13 @@ public class SettingServlet extends HttpServlet {
 		    if(result) {
 		    	message = "ID：" + userId + " に管理者権限を付与しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 		    } else {
 		    	message = "管理者権限の付与に失敗しました。IDを間違えている可能性があります。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 		    }
@@ -269,11 +289,13 @@ public class SettingServlet extends HttpServlet {
 		    if(result) {
 		    	message = "ID：" + userId + " の管理者権限を剥奪しました。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 		    } else {
 		    	message = "管理者権限の剥奪に失敗しました。IDを間違えている可能性があります。";
 				request.setAttribute("message", message);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/setting.jsp");
 				dispatcher.forward(request, response);
 		    }
