@@ -224,9 +224,7 @@ border: 3px solid #294E76;/* 枠線の設定 */
 						<input type="hidden" name="postIdf" value="0">
 						<input type="hidden" name="categoryId" value="<%= categoryId %>">
 					</form>
-					<a href="javascript:posterBackForm.submit()">
-						<img alt="" src="./images/return.png" class="return-logo">
-					</a>
+
 				<% }
 			} else {
 				String categoryId = (String)request.getAttribute("categoryId");%>
@@ -391,6 +389,14 @@ border: 3px solid #294E76;/* 枠線の設定 */
 	</div>
 </div>
 </div>
+<div class="footer">
+		<div class=copyright>
+			©Copyright TeamGenda <br>All rights reserved.
+		</div>
+		<div>
+			<img class="up-icon" src="images/up.png" alt="up-icon">
+		</div>
+	</div>
 		<script src="https://code.jquery.com/jquery.min.js"></script>
 		<script>
 			//氏名・IDの表示・非表示に関するjavascriptとCSS
