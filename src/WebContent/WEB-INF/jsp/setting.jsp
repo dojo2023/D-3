@@ -96,9 +96,7 @@ flex-shrink: 0;
 	background-color: #294E76;
 	height: 70px;
 	margin: 0;
-	padding: 0;
-	position: absolute;
-	bottom: 0;
+	padding:0;
 }
 .copyright {
 	color: #EAEAEA;
@@ -107,6 +105,7 @@ flex-shrink: 0;
 	font-family: "Senobi Gothic";
 	margin: auto;
 }
+
 .up-icon {
 	width: auto;
 	height: 70px;
@@ -150,8 +149,8 @@ margin-left: 10%;
 	<div class="header">
 		<a href="TopServlet"><img class="logo" src="images/logo.png"
 			alt="Logo"> </a>
-		<% String id = (String)request.getAttribute("id"); %>
-		ID:<%= id %>
+		<div class="header-subtext"><% String id = (String)request.getAttribute("id"); %>
+		ID:<%= id %></div>
 		<p class="header-text">SETTING</p>
 		<div class="header-icon">
 			<a href="LogoutServlet"> <img class="logout-icon"
@@ -210,7 +209,15 @@ margin-left: 10%;
 		</div>
 		  <% } %>
 		</div>
-
+	</div>
+<div class="footer">
+		<div class=copyright>
+			©Copyright TeamGenda <br>All rights reserved.
+		</div>
+		<div>
+			<img class="up-icon" src="images/up.png" alt="up-icon">
+		</div>
+	</div>
 	<script>
 	    	"use strict";
 	    	function checkPw() {
@@ -250,13 +257,6 @@ margin-left: 10%;
 				}
 	    	}
 	    </script>
-	<div class="footer">
-		<div class=copyright>
-			©Copyright TeamGenda <br>All rights reserved.
-		</div>
-		<div>
-			<img class="up-icon" src="images/up.png" alt="up-icon">
-		</div>
-	</div>
+
 </body>
 </html>
