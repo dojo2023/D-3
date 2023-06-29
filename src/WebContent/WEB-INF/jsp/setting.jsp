@@ -145,6 +145,8 @@ margin-left: 10%;
 	<div class="header">
 		<a href="TopServlet"><img class="logo" src="images/logo.png"
 			alt="Logo"> </a>
+		<% String id = (String)request.getAttribute("id"); %>
+		ID:<%= id %>
 		<p class="header-text">SETTING</p>
 		<div class="header-icon">
 			<a href="LogoutServlet"> <img class="logout-icon"

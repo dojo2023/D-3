@@ -167,8 +167,10 @@ ul li a {
 	<div class="new-message">
 		<%
 			List<POSTER> posterList = (List<POSTER>) request.getAttribute("posterList");
+			String userFavoriteId = (String)request.getAttribute("userFavoriteId");
+			String userFavoriteContent = (String)request.getAttribute("userFavoriteContent");
 		%>
-		<p class="new-text">New</p>
+		<p class="new-text">New <%= userFavoriteId %>：<%= userFavoriteContent %></p>
 			<div class="flameContainer">
 			<%
 				if (posterList.size() == 0) {
@@ -188,6 +190,7 @@ ul li a {
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 						<input type="hidden" name="posterId" value="<%=poster.getPOSTER_ID()%>">
 						<input type="hidden" name="replyIdf" value="0">
+						<input type="hidden" name="posterIdf" value="0">
 						<input type="submit" value="詳細" name="submit_button">
 					</form>
 				</li>
@@ -204,6 +207,7 @@ ul li a {
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 						<input type="hidden" name="posterId" value="<%=poster.getPOSTER_ID()%>">
 						<input type="hidden" name="replyIdf" value="0">
+						<input type="hidden" name="posterIdf" value="0">
 						<input type="submit" value="詳細" name="submit_button">
 					</form>
 				</li>
@@ -224,6 +228,7 @@ ul li a {
 					<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 						<input type="hidden" name="posterId" value="<%=poster.getPOSTER_ID()%>">
 						<input type="hidden" name="replyIdf" value="0">
+						<input type="hidden" name="posterIdf" value="0">
 						<input type="submit" value="詳細" name="submit_button">
 					</form>
 				</li>
@@ -244,6 +249,7 @@ ul li a {
 				<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 					<input type="hidden" name="posterId" value="<%=poster.getPOSTER_ID()%>">
 					<input type="hidden" name="replyIdf" value="0">
+					<input type="hidden" name="posterIdf" value="0">
 					<input type="submit" value="詳細" name="submit_button">
 				</form>
 			</li>
@@ -262,6 +268,7 @@ ul li a {
 				<form method="POST" name="idForm" action="/WebApp_GENDA/ReplyServlet">
 					<input type="hidden" name="posterId" value="<%=poster.getPOSTER_ID()%>">
 					<input type="hidden" name="replyIdf" value="0">
+					<input type="hidden" name="posterIdf" value="0">
 					<input type="submit" value="詳細" name="submit_button">
 				</form>
 			</li>

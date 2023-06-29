@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.CATEGORYDao;
+import dao.HASHTAGSDao;
 import dao.POSTERDao;
 import dao.USER_INFODao;
 import model.LOGIN_USER;
@@ -46,13 +47,23 @@ public class TopServlet extends HttpServlet {
 		USER_INFO user = userDao.select("", id);
 		List<POSTER> posterList = new ArrayList<>();
 		POSTERDao pDao = new POSTERDao();
+		String userFavoriteId = "";
+		String userFavoriteContent = "";
 
 		if(user.getFavorite_switch() == 2) {
 			posterList = pDao.select(0, user.getCategory_id());
+			userFavoriteId = "カテゴリ";
+			CATEGORYDao cDao = new CATEGORYDao();
+			userFavoriteContent = cDao.get_categoryname(user.getCategory_id());
 		} else if(user.getFavorite_switch() == 3) {
 			posterList = pDao.searchHashtags(user.getHashtags_id());
+			userFavoriteId = "タグ";
+			HASHTAGSDao hDao = new HASHTAGSDao();
+			userFavoriteContent = hDao.get_htagname(user.getHashtags_id());
 		} else if(user.getFavorite_switch() == 4) {
 			posterList = pDao.searchWord(user.getFree_word());
+			userFavoriteId = "フリーワード";
+			userFavoriteContent = user.getFree_word();
 		}
 
 		CATEGORYDao cDao = new CATEGORYDao();
@@ -60,6 +71,8 @@ public class TopServlet extends HttpServlet {
 
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("posterList", posterList);
+		request.setAttribute("userFavoriteId", userFavoriteId);
+		request.setAttribute("userFavoriteContent", userFavoriteContent);
 		request.setAttribute("userMode", user.getUser_mode_switch());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
         dispatcher.forward(request, response);
